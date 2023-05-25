@@ -1,0 +1,10 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+>
+<SelectDialog contentHeight="60%" showClearButton="true" title="Select Sales Organization" class="sapUiPopupWithPadding"
+		items="{path:'S4D>/SalesOrgSet'}" search="handleValueHelpSalesOrgSearch"
+		confirm="handleValueHelpSalesOrgConfirm" cancel="handleValueHelpSalesOrgClose" multiSelect="false">
+		<StandardListItem title="{S4D>Salesorg}" description="{S4D>Salesorgtext}"/>
+	</SelectDialog>
+</c:FragmentDefinition>

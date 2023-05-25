@@ -1,0 +1,67 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m" >
+	<forms:SimpleForm editable="false" layout="ColumnLayout">
+		<Label text="Business Unit" />
+		<Input value="{Customers>/zbusiness_unit_name}" enabled="false" />
+		<Label text = "Vertical" />
+		<Input value="{Customers>/zvertical}" enabled="false" />
+		
+		<Label text="Customer Group" />
+		<Input value="{Customers>/zcustomer_group}" enabled="false" />
+		
+        <Label text="Business Proposal" />
+		<Input value="{Customers>/zbusiness_proposal}" enabled="false" />
+
+           <core:Title text="Expected Business"/>
+        <Label text="Annual Sales Revenue(AED)" />
+		<Input value="{Customers>/zstandard_usage}" enabled="false" />
+
+        <Label text="Customer Ratings" />
+		<Input value="{Customers>/zcustomer_internal_rating}" enabled="false" />
+
+        <core:Title text="Credit Limit"/>
+        <Label text="Unsecured (AED)" />
+		<Input value="{Customers>/ztotal_unsecured_limit}" enabled="false" />
+
+		<Label text="Proposed Unsecured (AED)" />
+		<Input value="{Customers>/ztot_cl_proposed_tot_unsec_cl}" enabled="false" />
+
+        <Label text="Secured (AED)" />
+		<Input value="{Customers>/ztotal_secured_limit}" enabled="false" />
+
+		<Label text="Proposed Secured (AED)" />
+		<Input value="{Customers>/ztot_cl_proposed_tot_securedcl}" enabled="false" />
+
+        <Label text="Total Credit Limit(AED)" />
+		<Input value="{Customers>/ztotal_credit_amount}" enabled="false" />
+
+		<Label text="Proposed Total Credit Limit(AED)" />
+		<Input value="{Customers>/ztot_cl_proposed_credit_amount}" enabled="false" />
+
+        <Label text="In Functional Currency(AED)" />
+		<Input value="{Customers>/zstandard_usage}" enabled="false" />
+
+        
+        <Label text="Payment Terms" />
+		<Input value="{Customers>/zpayment_terms}" enabled="false" />
+
+        <Label text="Proxima" />
+		<Input value="{Customers>/zproxima}" enabled="false" />
+
+        <Label text="Total Credit Days" />
+		<Input value="{Customers>/ztotal_credit_days}" enabled="false" />
+
+		<Label text="Proposed Total Credit Days" />
+		<Input value="{Customers>/ztotal_credit_days}" enabled="false" />
+
+        <Label text="Limit Valid Till" />
+		<Input value="{Customers>/zstandard_usage}" enabled="false" />
+
+        <Label text="Sales Head" />
+		<Input value="{Customers>/zsales_person}" enabled="false" />
+
+        <Label text="Remarks" />
+		<Input value="{Customers>/zstandard_usage}" enabled="false" />
+
+       
+	</forms:SimpleForm>
+</mvc:View>

@@ -1,0 +1,20 @@
+<mvc:View controllerName="iffco.managecustomer.sections.SalesArea.PSController" xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m">
+    <forms:SimpleForm editable="false" layout="ColumnLayout">
+        <Label text="Price Group" visible="{=${fieldMappingModels>/PriceGroupVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/PriceGroupMandatory} === true ? true : false}"/>
+        <MultiInput enabled="{=${appView>/process} === 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForPriceGrp" value="{Customers>/zprice_group}"
+       valueHelpOnly="true" visible="{=${fieldMappingModels>/PriceGroupVisible} === true ? true : false}"/>
+	<Label text="Price List" visible="{=${fieldMappingModels>/PricelistVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/PricelistMandatory} === true ? true : false}"/>
+       <MultiInput enabled="{=${appView>/process} === 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForPriceList" value="{Customers>/zpricelist}"
+       valueHelpOnly="true" visible="{=${fieldMappingModels>/PricelistVisible} === true ? true : false}"/>
+	<Label text="Price Procedure Determination"  visible="{=${fieldMappingModels>/PriceProcedureDterm.Visible} === true ? true : false}"
+ required="{=${fieldMappingModels>/PriceProcedureDterm.Mandatory} === true ? true : false}"/>
+        <!-- <Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zprice_procedured_term}" maxLength="2" visible="{=${fieldMappingModels>/PriceProcedureDterm.Visible} === true ? true : false}"/> -->
+        <MultiInput enabled="{=${appView>/process} === 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForPPDetermination" value="{Customers>/zprice_procedured_term}"
+       valueHelpOnly="true" visible="{=${fieldMappingModels>/PriceProcedureDterm.Visible} === true ? true : false}"/>
+	<Label text="Customer Statistic Group"  visible="{=${fieldMappingModels>/CustomerStatisticsGroupVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CustomerStatisticsGroupMandatory} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zcustomer_statistics_group}" maxLength="1" visible="{=${fieldMappingModels>/CustomerStatisticsGroupVisible} === true ? true : false}"/>
+    </forms:SimpleForm>
+</mvc:View>

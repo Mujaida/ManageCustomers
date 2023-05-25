@@ -1,0 +1,17 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" >
+	<forms:SimpleForm editable="false" layout="ColumnLayout">
+		<Label text="Tax Number category" visible="{=${fieldMappingModels>/TaxNumberCategoryVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/TaxNumberCategoryMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/ztax_number_category}" maxLength="4" visible="{=${fieldMappingModels>/TaxNumberCategoryVisible} === true ? true : false}"/>
+		<Label text = "Tax Description" visible="{=${fieldMappingModels>/TaxDescriptionVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/TaxDescriptionMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/ztax_description}" maxLength="40" visible="{=${fieldMappingModels>/TaxDescriptionVisible} === true ? true : false}"/>
+		
+		<Label text="Tax Number" visible="{=${fieldMappingModels>/TaxNumberVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/TaxNumberMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/ztax_number}" maxLength="20" visible="{=${fieldMappingModels>/TaxNumberVisible} === true ? true : false}"/>
+	
+		
+		
+	</forms:SimpleForm>
+</mvc:View>

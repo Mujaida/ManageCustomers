@@ -1,0 +1,9 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+>
+<SelectDialog contentHeight="60%" showClearButton="true" title="Select Delivery Priority" class="sapUiPopupWithPadding"
+		items="{path:'S4D>/DeliveryPrioritySet'}" search="handleValueHelpDelvPriorSearch" confirm="handleValueHelpDelvPriorConfirm" cancel="handleValueHelpDelvPriorClose" multiSelect="false">
+		<StandardListItem title="{S4D>Deliverypriority}" description="{S4D>Bezei}"/>
+	</SelectDialog>
+</c:FragmentDefinition>

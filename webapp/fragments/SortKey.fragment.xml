@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Sort Key" class="sapUiPopupWithPadding"
+		items="{path:'S4D>/SortKeySet'}" search="handleValueHelpSortKeySearch"
+		confirm="handleValueHelpSortKeyConfirm" cancel="handleValueHelpSortKeyClose" multiSelect="false">
+		<StandardListItem title="{S4D>Sortkey}" description="{S4D>Description}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

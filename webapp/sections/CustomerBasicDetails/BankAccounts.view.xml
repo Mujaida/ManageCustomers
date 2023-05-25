@@ -1,0 +1,26 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" >
+	<forms:SimpleForm editable="false" layout="ColumnLayout">
+		<Label text="ID" visible="{=${fieldMappingModels>/IDVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/IDMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zid}" maxLength="20" visible="{=${fieldMappingModels>/IDVisible} === true ? true : false}"/>
+		<Label text = "Bank Country" visible="{=${fieldMappingModels>/BankCountryVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/BankCountryMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zbankcountry}" maxLength="20" visible="{=${fieldMappingModels>/BankCountryVisible} === true ? true : false}"/>
+		
+		<Label text="Bank Key" visible="{=${fieldMappingModels>/BankKeyVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/BankKeyMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zbankkey}" maxLength="20" visible="{=${fieldMappingModels>/BankKeyVisible} === true ? true : false}"/>
+		<Label text="Bank Name" visible="{=${fieldMappingModels>/BankNameVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/BankNameMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zbankname}" maxLength="20"  visible="{=${fieldMappingModels>/BankNameVisible} === true ? true : false}"/>
+		<Label text="Bank Account" visible="{=${fieldMappingModels>/BankAccountVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/BankAccountMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zbankaccount}" maxLength="20"  visible="{=${fieldMappingModels>/BankAccountVisible} === true ? true : false}"/>
+		<Label text="Account Name" visible="{=${fieldMappingModels>/AccountNameVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/AccountNameMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zaccountname}" maxLength="20"  visible="{=${fieldMappingModels>/AccountNameVisible} === true ? true : false}"/>
+
+		
+		
+	</forms:SimpleForm>
+</mvc:View>

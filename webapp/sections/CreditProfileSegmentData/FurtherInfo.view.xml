@@ -1,0 +1,73 @@
+<mvc:View controllerName="iffco.managecustomer.sections.CreditProfileSegmentData.FurtherInfoController" xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" >
+<forms:SimpleForm editable="false" layout="ColumnLayout">
+
+    <Label text="Information Cat" />
+		<MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" id="infoCat" value="{Customers>/zinfo_category}" valueHelpRequest="handleValueHelpForInfoCat"
+		valueHelpOnly="true" />
+	
+	</forms:SimpleForm>
+	<Table id="furtherInfo" items="{creditSegmentModel>/}">
+												<headerToolbar>
+													<Toolbar>
+														<ToolbarSpacer/>
+														<Button id="addSalesId" icon="sap-icon://add" type="Transparent" press="handleFurtherOpen"/>
+													</Toolbar>
+												</headerToolbar>
+												<columns>
+												<Column>
+														<Text text="Industry Type" />
+													</Column>
+													<Column>
+														<Text text="Name of Type" />
+													</Column>
+													<Column>
+														<Text text="Relevance for Credit Check" />
+													</Column>
+													<Column>
+														<Text text="Individual Step" />
+													</Column>
+													
+													<Column>
+														<Text text="Amount"/>
+													</Column>
+                                                    <Column>
+														<Text text="From Date"/>
+													</Column>
+                                                    <Column>
+														<Text text="To Date"/>
+													</Column>
+                                                    <Column>
+														<Text text="Entered On"/>
+													</Column>
+                                                    <Column>
+														<Text text="Deleted On"/>
+													</Column>
+                                                    <Column>
+														<Text text="Resubmit"/>
+													</Column>
+                                                    <Column>
+														<Text text="Text Field"/>
+													</Column>
+												</columns>
+												<items>
+													<ColumnListItem type="Active" visible="{= ${creditSegmentModel>Flag} === 'D' ? false : true}" press="onTaxItemPress">
+														<cells>
+														    <Text text="{creditSegmentModel>zinfo_type}" />
+															<Text text="{creditSegmentModel>zname_of_type}" />
+															<CheckBox selected="{creditSegmentModel>zrelevant}"/>
+															<Text text="{creditSegmentModel>zindividual_step}" />
+															<Text text="{creditSegmentModel>zcredit_amount}"></Text>
+                                                            <Text id="fromDate" text="{creditSegmentModel>zdate_from}"></Text>
+                                                            <Text id="toDate" text="{creditSegmentModel>zdate_to}"></Text>
+                                                            <Text id="enteredOn" text="{creditSegmentModel>zentered_on}"></Text>
+                                                            <Text id="deletedOn" text="{creditSegmentModel>zdeleted_on}"></Text>
+                                                            <Text text="{creditSegmentModel>zresubmission_date}"></Text>
+                                                            <Text text="{creditSegmentModel>ztext_field}"></Text>
+                                                           
+
+															<Button icon="sap-icon://delete" type="Transparent" press="handleDeleteSalesGrid"/>
+														</cells>
+													</ColumnListItem>
+												</items>
+											</Table>
+</mvc:View>

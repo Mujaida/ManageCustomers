@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:input="sap.m.MultiInput" xmlns:l="sap.ui.layout"
+	xmlns:html="http://www/w3.org/1999/xhtml" xmlns:f="sap.ui.layout.form">
+<Dialog title="Sales data" contentWidth="50%" class="sapUiSizeCompact" contentHeight="12rem" visible="true">
+		<endButton>
+			<Button text="Cancel" press="handleCancelSalesGrid"/>
+		</endButton>
+		<beginButton>
+			<Button text="Add" type="Emphasized" press="handleAddSalesGrid"/>
+		</beginButton>
+		<f:SimpleForm editable="true" layout="ResponsiveGridLayout" title="" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12"
+			adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0" emptySpanM="1" emptySpanS="0">
+			<f:content>
+				<Label text="Sales Organization" visible="{=${fieldMappingModels>/SalesOrganizationVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/SalesOrganizationMandatory} === true ? true : false}"/>
+ <MultiInput value="{salesModel>/zsales_orgnization}"  valueHelpRequest="handleValueHelpForSalesOrg"
+	valueHelpOnly="true" visible="{=${fieldMappingModels>/SalesOrganizationVisible} === true ? true : false}"/>
+		<!-- <Input value="{Customers>/zsales_orgnization}" visible="{=${fieldMappingModels>/391} === true ? true : false}"/> -->
+		<Label text = "Distribution Channel" visible="{=${fieldMappingModels>/DistributionChannelVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/DistributionChannelMandatory} === true ? true : false}"/>
+		<MultiInput value="{salesModel>/zdistribution_channel}" valueHelpRequest="handleValueHelpForDistChannel"
+	valueHelpOnly="true" visible="{=${fieldMappingModels>/DistributionChannelVisible} === true ? true : false}"/>
+		<!-- <Input value="{Customers>/zdistribution_channel}" visible="{=${fieldMappingModels>/167} === true ? true : false}"/> -->
+		 
+		<Label text="Division" visible="{=${fieldMappingModels>/DivisionVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/DivisionMandatory} === true ? true : false}"/>
+ <MultiInput value="{salesModel>/zdivision}" valueHelpRequest="handleValueHelpForDivision"
+	valueHelpOnly="true" visible="{=${fieldMappingModels>/DivisionVisible} === true ? true : false}"/>
+		<!-- <Input value="{Customers>/zdivision}"  visible="{=${fieldMappingModels>/168} === true ? true : false}"/> -->
+			</f:content>
+		</f:SimpleForm>
+	</Dialog>
+</core:FragmentDefinition>

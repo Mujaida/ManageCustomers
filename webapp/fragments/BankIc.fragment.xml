@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Bank" class="sapUiPopupWithPadding"
+		items="{/ZDD_BANK_VH}" search="handleValueHelpBankSearch1"
+		confirm="handleValueHelpBankConfirm1" cancel="handleValueHelpBankClose1" multiSelect="false">
+		<StandardListItem title="{bank}" />
+	</SelectDialog>
+</core:FragmentDefinition>

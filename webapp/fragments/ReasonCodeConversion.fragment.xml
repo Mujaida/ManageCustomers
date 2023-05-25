@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Reason Code Conversion" class="sapUiPopupWithPadding"
+		items="{path:'S4D>/ReasonCodeConversionSet'}" search="handleValueHelpReasnCodConvSearch"
+		confirm="handleValueHelpReasnCodConvConfirm" cancel="handleValueHelpReasnCodConvClose" multiSelect="false">
+		<StandardListItem title="{S4D>Reasoncode}" description="{S4D>Description}" />
+	</SelectDialog>
+</core:FragmentDefinition>

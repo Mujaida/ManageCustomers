@@ -1,0 +1,198 @@
+<mvc:View controllerName="iffco.managecustomer.sections.CreditLimit.SecuredCreditLimitController" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" xmlns:core="sap.ui.core">
+    <forms:SimpleForm editable="false" layout="ColumnLayout">
+        <core:Title text="Irrevocable Bank Guarantee" />
+        <Label text="Bank Name" visible="{=${fieldMappingModels>/IrrevocableBankGuaranteeBankNameVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/IrrevocableBankGuaranteeBankNameMandatory} === true ? true : false}" />
+        <Input value="{Customers>/zirr_bank_guarantee_name}" maxLength="20" enabled="false" visible="{=${fieldMappingModels>/IrrevocableBankGuaranteeBankNameVisible} === true ? true : false}" />
+        
+        <Label text="Proposed Bank Name" visible="{=${fieldMappingModels>/IrrevocableBankGuaranteeProposedBankNameVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/IrrevocableBankGuaranteeProposedBankNameMandatory} === true ? true : false}" />
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zibg_proposed_bank_name}" maxLength="20" visible="{=${fieldMappingModels>/IrrevocableBankGuaranteeProposedBankNameVisible} === true ? true : false}" />
+        
+        <Label text="Amount (AED)" visible="{=${fieldMappingModels>/IrrevocableBankGuaranteeBankAmountAEDVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/IrrevocableBankGuaranteeBankAmountAEDMandatory} === true ? true : false}" />
+        <Input type="Number" value="{Customers>/zirr_bank_guarantee_amt}" maxLength="8" liveChange="handleSetMaxLength" enabled="false" visible="{=${fieldMappingModels>/IrrevocableBankGuaranteeBankAmountAEDVisible} === true ? true : false}" />
+        
+        <Label text="Proposed Amount (AED)" visible="{=${fieldMappingModels>/IrrevocableBankGuaranteeProposedAmountAEDVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/IrrevocableBankGuaranteeProposedAmountAEDMandatory} === true ? true : false}" />
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" type="Number" value="{Customers>/zibg_proposed_amount}" liveChange="handleSetMaxLength" maxLength="8" visible="{=${fieldMappingModels>/IrrevocableBankGuaranteeProposedAmountAEDVisible} === true ? true : false}" />
+
+        <Label text="Varience in Amount (AED)" visible="{=${fieldMappingModels>/IrrevocableBankGuaranteeVarianceinAmountAEDVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/IrrevocableBankGuaranteeVarianceinAmountAEDMandatory} === true ? true : false}" />
+        <Input value="{parts: [{path: 'Customers>/zirr_bank_guarantee_amt'},
+		{path:'Customers>/zibg_proposed_amount'}],
+  formatter:'.formatter.getVarienceAmt'}" enabled="false" type="Number" liveChange="handleSetMaxLength" maxLength="20" visible="{=${fieldMappingModels>/IrrevocableBankGuaranteeVarianceinAmountAEDVisible} === true ? true : false}"/>
+        
+        <core:Title text="Irrevocable LC from Approved Bank" />
+        <Label text="LC Issuance Bank Country" visible="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankLCIssuanceBankCountryVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankLCIssuanceBankCountryMandatory} === true ? true : false}" />
+        <MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zlc_issuance_bankcountry}" valueHelpRequest="handleValueHelpForBankCountry"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankLCIssuanceBankCountryVisible} === true ? true : false}"/>
+        <!-- <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zlc_issuance_bankcountry}" visible="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankLCIssuanceBankCountryVisible} === true ? true : false}" /> -->
+        <Label text="LC Issuance Bank" visible="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankLCIssuanceBankVisible} === true ? true : false}" 
+        required="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankLCIssuanceBankMandatory} === true ? true : false}" />
+        <MultiInput  value="{Customers>/zlc_issuance_bank}" valueHelpRequest="handleValueHelpForBank"
+		valueHelpOnly="true" enabled="false" visible="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankLCIssuanceBankVisible} === true ? true : false}"/>
+        
+        <Label text="Proposed LC Issuance Bank" visible="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankProposedLCConfirmingBankVisible} === true ? true : false}" 
+        required="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankProposedLCConfirmingBankMandatory} === true ? true : false}" />
+        <MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zilcab_proposed_lc_iss_bank}" maxLength="20" valueHelpRequest="handleValueHelpForBank"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankProposedLCConfirmingBankVisible} === true ? true : false}"/>
+
+        <Label text="Amount (AED)" visible="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankAmountAEDVisible} === true ? true : false}" 
+        required="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankAmountAEDMandatory} === true ? true : false}"/>
+        <Input type="Number" value="{Customers>/zlc_issuance_amount}" liveChange="handleSetMaxLength" maxLength="8" enabled="false" visible="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankAmountAEDVisible} === true ? true : false}"/>
+
+        <Label text="Proposed Amount (AED)" visible="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankProposedAmountAEDVisible} === true ? true : false}" 
+        required="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankProposedAmountAEDMandatory} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" type="Number" value="{Customers>/zilcab_proposed_amount}" liveChange="handleSetMaxLength" maxLength="8" visible="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankProposedAmountAEDVisible} === true ? true : false}"/>
+
+        <Label text="Varience in Amount (AED)" visible="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankVarianceinAmountAEDVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankVarianceinAmountAEDMandatory} === true ? true : false}" />
+        <Input value="{parts: [{path: 'Customers>/zlc_issuance_amount'},
+		{path:'Customers>/zilcab_proposed_amount'}],
+  formatter:'.formatter.getVarienceAmt'}" enabled="false" type="Number" liveChange="handleSetMaxLength" maxLength="8" visible="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankVarianceinAmountAEDVisible} === true ? true : false}"/>
+
+        <core:Title text="Irrevocable Confirmed LC" />
+        <Label text="LC Confirming Bank Country" visible="{=${fieldMappingModels>/IrrevocableConfirmedLCLCConfirmingBankCountryVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/IrrevocableConfirmedLCLCConfirmingBankCountryMandatory} === true ? true : false}" />
+         <MultiInput value="{Customers>/zlc_confirming_bank_country}" maxLength="20" valueHelpRequest="handleValueHelpForBankCountry1"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/IrrevocableConfirmedLCLCConfirmingBankCountryVisible} === true ? true : false}"/>
+        
+        <Label text="LC Confirming Bank" visible="{=${fieldMappingModels>/IrrevocableConfirmedLCLCConfirmingBankVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/IrrevocableConfirmedLCLCConfirmingBankMandatory} === true ? true : false}" />
+        <MultiInput enabled="false" value="{Customers>/zlc_confirming_bank}" maxLength="20" valueHelpRequest="handleValueHelpForBank1"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankLCIssuanceBankVisible} === true ? true : false}"/>
+
+        <Label text="Proposed LC Confirming Bank" visible="{=${fieldMappingModels>/IrrevocableConfirmedLCLCConfirmingBankVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/IrrevocableConfirmedLCLCConfirmingBankMandatory} === true ? true : false}" />
+        <MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/ziclc_proposed_lc_confirm_bank}" maxLength="20" valueHelpRequest="handleValueHelpForBank1"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankLCIssuanceBankVisible} === true ? true : false}"/>
+
+        <Label text="Amount (AED)" visible="{=${fieldMappingModels>/IrrevocableConfirmedLCAmountAEDVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/IrrevocableConfirmedLCAmountAEDMandatory} === true ? true : false}" />
+        <Input type="Number" value="{Customers>/zlc_confirming_amount}" liveChange="handleSetMaxLength" maxLength="8" enabled="false" visible="{=${fieldMappingModels>/IrrevocableConfirmedLCAmountAEDVisible} === true ? true : false}" />
+
+        <Label text="Proposed Amount (AED)" visible="{=${fieldMappingModels>/IrrevocableConfirmedLCProposedAmountAEDVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/IrrevocableConfirmedLCProposedAmountAEDMandatory} === true ? true : false}" />
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" type="Number" value="{Customers>/ziclc_proposed_amount}" liveChange="handleSetMaxLength" maxLength="8" visible="{=${fieldMappingModels>/IrrevocableConfirmedLCProposedAmountAEDVisible} === true ? true : false}" />
+
+        <Label text="Varience in Amount (AED)" visible="{=${fieldMappingModels>/IrrevocableConfirmedLCVarianceinAmountAEDVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/IrrevocableConfirmedLCVarianceinAmountAEDMandatory} === true ? true : false}" />
+        <Input value="{parts: [{path: 'Customers>/zlc_confirming_amount'},
+		{path:'Customers>/ziclc_proposed_amount'}],
+  formatter:'.formatter.getVarienceAmt'}" enabled="false" type="Number" liveChange="handleSetMaxLength" maxLength="8" visible="{=${fieldMappingModels>/IrrevocableConfirmedLCVarianceinAmountAEDVisible} === true ? true : false}" />
+
+        <core:Title text="Credit Risk Insurance (CRI) [With attachments]" />
+
+        <Label text="Insurer" visible="{=${fieldMappingModels>/CreditRiskInsuranceInsurerVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/CreditRiskInsuranceInsurerMandatory} === true ? true : false}" />
+        <Input value="{Customers>/zcri_insurer}" maxLength="20" enabled="false" visible="{=${fieldMappingModels>/CreditRiskInsuranceInsurerVisible} === true ? true : false}" />
+        
+        <Label text="Proposed Insurer" visible="{=${fieldMappingModels>/CreditRiskInsuranceProposedInsurerVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/CreditRiskInsuranceProposedInsurerMandatory} === true ? true : false}" />
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zcri_proposed_insurer}" maxLength="20" visible="{=${fieldMappingModels>/CreditRiskInsuranceProposedInsurerVisible} === true ? true : false}" />
+
+        <Label text="Amount (AED)" visible="{=${fieldMappingModels>/CreditRiskInsuranceAmountAEDVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/CreditRiskInsuranceAmountAEDMandatory} === true ? true : false}" />
+        <Input type="Number" value="{Customers>/zcri_insurer_amount}" liveChange="handleSetMaxLength" maxLength="10" enabled="false" visible="{=${fieldMappingModels>/CreditRiskInsuranceAmountAEDVisible} === true ? true : false}" />
+        
+        <Label text="Proposed Amount (AED)" visible="{=${fieldMappingModels>/CreditRiskInsuranceProposedAmountAEDVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/CreditRiskInsuranceProposedAmountAEDMandatory} === true ? true : false}" />
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" type="Number" value="{Customers>/zcri_proposed_amount}" liveChange="handleSetMaxLength" maxLength="8" visible="{=${fieldMappingModels>/CreditRiskInsuranceProposedAmountAEDVisible} === true ? true : false}" />
+
+        <Label text="Varience in Amount (AED)" visible="{=${fieldMappingModels>/CreditRiskInsuranceVarianceinAmountAEDVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/CreditRiskInsuranceVarianceinAmountAEDMandatory} === true ? true : false}" />
+        <Input
+        value="{parts: [{path: 'Customers>/zlc_issuance_amount'},
+		{path:'Customers>/zcri_proposed_amount'}],
+  formatter:'.formatter.getVarienceAmt'}" enabled="false" type="Number" liveChange="handleSetMaxLength" maxLength="8" visible="{=${fieldMappingModels>/CreditRiskInsuranceVarianceinAmountAEDVisible} === true ? true : false}" />
+
+        <Label text="CRI Buyer ID" visible="{=${fieldMappingModels>/CreditRiskInsuranceCRIBuyerIDVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/CreditRiskInsuranceCRIBuyerIDMandatory} === true ? true : false}" />
+        <Input value="{Customers>/zcri_buyerid}" maxLength="20" enabled="false" visible="{=${fieldMappingModels>/CreditRiskInsuranceCRIBuyerIDVisible} === true ? true : false}" />
+        
+        <Label text="Proposed CRI Buyer ID" visible="{=${fieldMappingModels>/CreditRiskInsuranceProposedCRIBuyerIDVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/CreditRiskInsuranceProposedCRIBuyerIDMandatory} === true ? true : false}" />
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zcri_proposed_cri_buyer_id}" maxLength="20" visible="{=${fieldMappingModels>/CreditRiskInsuranceProposedCRIBuyerIDVisible} === true ? true : false}" />
+
+        <Label text="Approval Mail Attachment" visible="{=${fieldMappingModels>/CreditRiskInsuranceApprovalMailAttachmentVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/CreditRiskInsuranceApprovalMailAttachmentMandatory} === true ? true : false}" />
+        <u:FileUploader value="{getDmsModel>/zcri_approval_mail_attach}" visible="{=${fieldMappingModels>/zcri_approval_mail_attach} === true ? true : false}"
+         id="zcri_approval_mail_attach"
+    name="fileUploader"
+    buttonText="Upload File"
+    fileType="pdf"
+    sendXHR="true" change="onConfirm" enabled="false"/>
+       
+       <Label text="Proposed Approval Mail Attachment" visible="{=${fieldMappingModels>/CreditRiskInsuranceProposedApprovalMailAttachmentVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/CreditRiskInsuranceProposedApprovalMailAttachmentMandatory} === true ? true : false}" />
+        <u:FileUploader value="{getDmsModel>/zcri_proposed_appr_mail_attach}" visible="{=${fieldMappingModels>/zcri_approval_mail_attach} === true ? true : false}"
+         id="zcri_proposed_appr_mail_attach"
+    name="fileUploader"
+    buttonText="Upload File"
+    fileType="pdf"
+    sendXHR="true" change="onConfirm" />
+
+        <core:Title text="Corporate Guarantee from Parent co. of Class A customer" />
+        <Label text="Name of Company" visible="{=${fieldMappingModels>/NameofCompanyVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/NameofCompanyMandatory} === true ? true : false}" />
+        <Input value="{Customers>/zclassa_name_of_the_company}" maxLength="20" enabled="false" visible="{=${fieldMappingModels>/NameofCompanyVisible} === true ? true : false}" />
+        
+        <Label text="Proposed Name of Company" visible="{=${fieldMappingModels>/ProposedNameofCompanyVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/ProposedNameofCompanyMandatory} === true ? true : false}" />
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zcorp_classa_prop_name_of_comp }" maxLength="20" visible="{=${fieldMappingModels>/ProposedNameofCompanyVisible} === true ? true : false}" />
+
+        <Label text="Amount (AED)" visible="{=${fieldMappingModels>/AmountAEDVisible} === true ? true : false}" />
+        <Input type="Number" value="{Customers>/zclassa_customer_amount}" liveChange="handleSetMaxLength" maxLength="8" enabled="false" visible="{=${fieldMappingModels>/AmountAEDVisible} === true ? true : false}" />
+        
+        <Label text="Proposed Amount (AED)" visible="{=${fieldMappingModels>/ProposedAmountAEDVisible} === true ? true : false}" 
+        required="{=${fieldMappingModels>/ProposedAmountAEDMandatory} === true ? true : false}" />
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" type="Number" value="{Customers>/zcorp_classa_proposed_amount}" liveChange="handleSetMaxLength" maxLength="8" visible="{=${fieldMappingModels>/ProposedAmountAEDVisible} === true ? true : false}" />
+
+        <Label text="Varience in Amount (AED)" visible="{=${fieldMappingModels>/VarianceinAmountVisible} === true ? true : false}" 
+        required="{=${fieldMappingModels>/VarianceinAmountMandatory} === true ? true : false}" />
+        <Input value="{parts: [{path: 'Customers>/zclassa_customer_amount'},
+		{path:'Customers>/zcorp_classa_proposed_amount'}],
+  formatter:'.formatter.getVarienceAmt'}" enabled="false" type="Number" liveChange="handleSetMaxLength" maxLength="8" visible="{=${fieldMappingModels>/VarianceinAmountVisible} === true ? true : false}" />
+
+        <core:Title text="Cash Deposit/Advance" />
+        <Label text="Amount (AED)" visible="{=${fieldMappingModels>/CashDeposit-AdvanceAmountAEDVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/CashDeposit-AdvanceAmountAEDMandatory} === true ? true : false}" />
+        <Input type="Number" value="{Customers>/zcash_deposit_adv_amount}" liveChange="handleSetMaxLength" maxLength="8" enabled="false" visible="{=${fieldMappingModels>/CashDeposite-AdvanceAmountAEDVisible} === true ? true : false}" />
+        
+        <Label text="Proposed Amount (AED)" visible="{=${fieldMappingModels>/CashDeposite-AdvanceProposedAmountAEDVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/CashDeposite-AdvanceProposedAmountAEDMandatory} === true ? true : false}" />
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" type="Number" value="{Customers>/zcashdep_adv_proposed_amount}" liveChange="handleSetMaxLength" maxLength="8" visible="{=${fieldMappingModels>/CashDeposite-AdvanceProposedAmountAEDVisible} === true ? true : false}" />
+
+        <Label text="Variance in Amount (AED)" visible="{=${fieldMappingModels>/CashDeposite-AdvanceVarianceinAmountAEDVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/CashDeposite-AdvanceVarianceinAmountAEDMandatory} === true ? true : false}" />
+        <Input value="{parts: [{path: 'Customers>/zcash_deposit_adv_amount'},
+		{path:'Customers>/zcashdep_adv_proposed_amount'}],
+  formatter:'.formatter.getVarienceAmt'}" enabled="false" type="Number" liveChange="handleSetMaxLength" maxLength="8" visible="{=${fieldMappingModels>/CashDeposite-AdvanceVarianceinAmountAEDVisible} === true ? true : false}" />
+
+        <core:Title text="Avalization Draft (accepted by Customer and duly accepted by Customer Bank)" />
+        
+        <Label text="Bank Name" visible="{=${fieldMappingModels>/AvalizationDraftBankNameVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/AvalizationDraftBankNameMandatory} === true ? true : false}" />
+        <Input value="{Customers>/zavalization_draft_bank_name}" maxLength="20" enabled="false" visible="{=${fieldMappingModels>/AvalizationDraftBankNameVisible} === true ? true : false}" />
+        
+        <Label text="Proposed Bank Name" visible="{=${fieldMappingModels>/AvalizationDraftProposedAmountAEDVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/AvalizationDraftProposedAmountAEDMandatory} === true ? true : false}" />
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zavalization_proposed_bankname}" maxLength="20" visible="{=${fieldMappingModels>/AvalizationDraftProposedAmountAEDVisible} === true ? true : false}" />
+
+        <Label text="Amount (AED)" visible="{=${fieldMappingModels>/AvalizationDraftAmountAEDVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/AvalizationDraftAmountAEDMandatory} === true ? true : false}" />
+        <Input type="Number" value="{Customers>/zavalization_draft_amount}" liveChange="handleSetMaxLength" maxLength="8" enabled="false" visible="{=${fieldMappingModels>/AvalizationDraftAmountAEDVisible} === true ? true : false}" />
+        
+        <Label text="Proposed Amount (AED)" visible="{=${fieldMappingModels>/AvalizationDraftProposedAmountAEDVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/AvalizationDraftProposedAmountAEDMandatory} === true ? true : false}" />
+        <Input value="{Customers>/zavalization_proposed_amount}" enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" type="Number" liveChange="handleSetMaxLength" maxLength="8" visible="{=${fieldMappingModels>/AvalizationDraftProposedAmountAEDVisible} === true ? true : false}" />
+
+        <Label text="Varience in Amount (AED)" visible="{=${fieldMappingModels>/AvalizationDraftVarianceinAmountAEDVisible} === true ? true : false}" 
+        required="{=${fieldMappingModels>/AvalizationDraftVarianceinAmountAEDMandatory} === true ? true : false}" />
+        <Input value="{parts: [{path: 'Customers>/zavalization_draft_amount'},
+		{path:'Customers>/zavalization_proposed_amount'}],
+  formatter:'.formatter.getVarienceAmt'}" enabled="false" type="Number" liveChange="handleSetMaxLength" maxLength="8" visible="{=${fieldMappingModels>/AvalizationDraftVarianceinAmountAEDVisible} === true ? true : false}" />
+    </forms:SimpleForm>
+</mvc:View>

@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Customer Internal Rating" class="sapUiPopupWithPadding"
+		items="{/ZDD_CLASS_VH}" search="handleValueHelpCustInterRatingSearch"
+		confirm="handleValueHelpCustInterRatingConfirm" cancel="handleValueHelpCustInterRatingClose" multiSelect="false">
+		<StandardListItem title="{class}" />
+	</SelectDialog>
+</core:FragmentDefinition>

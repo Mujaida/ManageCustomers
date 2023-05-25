@@ -1,0 +1,19 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" >
+	<forms:SimpleForm editable="false" layout="ColumnLayout">
+		<Label text="Bill to, Ship to, Payer, Buyer" visible="{=${fieldMappingModels>/BilltoShiptoPayerBuyerVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/BilltoShiptoPayerBuyerMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zbill_to_buyer}" maxLength="10" visible="{=${fieldMappingModels>/BilltoShiptoPayerBuyerVisible} === true ? true : false}"/>
+		<Label text = "Only Ship To" visible="{=${fieldMappingModels>/OnlyShipToVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/OnlyShipToMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zonly_ship_to}" visible="{=${fieldMappingModels>/OnlyShipToVisible} === true ? true : false}"/>
+		
+		<Label text="Sales Person" visible="{=${fieldMappingModels>/SalesPersonVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/SalesPersonMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zsales_person}" visible="{=${fieldMappingModels>/SalesPersonVisible} === true ? true : false}"/>
+		<Label text="Agent" visible="{=${fieldMappingModels>/AgentVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/AgentMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zagent}" visible="{=${fieldMappingModels>/AgentVisible} === true ? true : false}"/>
+
+		
+	</forms:SimpleForm>
+</mvc:View>

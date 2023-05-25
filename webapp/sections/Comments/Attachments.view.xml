@@ -1,0 +1,33 @@
+<mvc:View controllerName="iffco.managecustomer.sections.Comments.AttachmentsController" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" >
+	
+	<Table id="salesOrg" items="{attachmentsModel>/}">
+												
+												<columns>
+													<Column>
+														<Text text="Field Name" />
+													</Column>
+												
+													<Column>
+														<Text text="File Name" />
+													</Column>
+
+                                                    <Column>
+														<Text text=""/>
+													</Column>
+													
+													<Column>
+														<Text text=""/>
+													</Column>
+												</columns>
+												<items>
+													<ColumnListItem type="Active"  visible="{= ${attachmentsModel>Flag} === 'D' ? false : true}">
+														<cells>
+															<Text id="fieldName" text="{path:'attachmentsModel>FieldName', formatter: '.formatter.getFieldSpace'}" />
+															<Link id="fileName" text="{attachmentsModel>FileName}" press="onClickAttachment"/>
+															
+															<Button icon="sap-icon://delete" type="Transparent" press="handleDeleteAttachment"/>
+														</cells>
+													</ColumnListItem>
+												</items>
+											</Table>
+</mvc:View>

@@ -1,0 +1,81 @@
+<!-- value help dialog fragment (ValueHelpDialog.fragment.xml) -->
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:fb="sap.ui.comp.filterbar">
+    <Dialog title="Existing Customers" contentHeight="80%"  visible="true">
+        <content>
+
+       <fb:FilterBar persistencyKey="myPersKey" useToolbar="false" search=".onSearchExist" filterChange=".onFilterChange" afterVariantLoad=".onAfterVariantLoad">
+                                <fb:filterItems>
+								<fb:FilterItem name="Business Partner Id" label="Business Partner Id">
+                                        <fb:control>
+                                            <Input />
+                                        </fb:control>
+                                    </fb:FilterItem>
+                                    <fb:FilterItem name="Customer Name" label="Customer Name">
+                                        <fb:control>
+                                            <Input />
+                                        </fb:control>
+                                    </fb:FilterItem>
+                                    <fb:FilterItem name="Customer Legal Name" label="Customer Legal Name">
+                                        <fb:control>
+                                           
+                                            <Input />
+                                        </fb:control>
+                                    </fb:FilterItem>
+                                    <fb:FilterItem name="Company Code" label="Company Code">
+                                        <fb:control>
+                                            <Input />
+                                        </fb:control>
+                                    </fb:FilterItem>
+                                    
+                                </fb:filterItems>
+                            
+                            </fb:FilterBar>
+								
+        
+            <Table selectionChange="getSelections" mode="SingleSelectLeft" inset="false" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="100"
+					growingTriggerText="Load More..."
+                    items="{path: 'existingCustomerSet>/'}">
+                    
+            
+                        <columns>
+                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                <Text text="Business Partner Id" />
+                            </Column>
+                            <Column minScreenWidth="Tablet" demandPopin="true">
+                                <Text text="First name" />
+                            </Column>
+                            <Column minScreenWidth="Tablet" demandPopin="true">
+                                <Text text="Customer Legal Name" />
+                            </Column>
+                            <Column minScreenWidth="Tablet" demandPopin="true">
+                                <Text text="Company Code" />
+                            </Column>
+                            <Column minScreenWidth="Tablet" demandPopin="true">
+                                <Text text="Country" />
+                            </Column>
+                            
+                        </columns>
+
+                        <items>
+                            <ColumnListItem vAlign="Middle" type="Active" press="handleRequestnavigation">
+                                <cells>
+                                
+                                <Text text="{existingCustomerSet>zbusiness_partner_id}" />
+                                    <Text text="{existingCustomerSet>zfirst_name}" />
+                                    <Text text="{existingCustomerSet>zcustomer_legal_name}" />
+                                    <Text text="{existingCustomerSet>zcompany_code}" />
+									<Text text="{existingCustomerSet>zcountry}" />
+                                   
+                                  
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+        </content>
+        <buttons>
+            <Button text="Cancel" press="handleCancel"/>
+            <Button text="OK" press="handleOK"/>
+        </buttons>
+		
+    </Dialog>
+</core:FragmentDefinition>

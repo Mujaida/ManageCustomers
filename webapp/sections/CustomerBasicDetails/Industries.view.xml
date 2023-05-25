@@ -1,0 +1,18 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" >
+	<forms:SimpleForm editable="false" layout="ColumnLayout">
+		<Label text="Industry" visible="{=${fieldMappingModels>/IndustryVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/IndustryMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zindustry}" maxLength="20" visible="{=${fieldMappingModels>/IndustryVisible} === true ? true : false}"/>
+		
+		<Label text = "Industry Description" visible="{=${fieldMappingModels>/IndustryDescriptionVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/IndustryDescriptionMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zindustry_description}" visible="{=${fieldMappingModels>/IndustryDescriptionVisible} === true ? true : false}"/>
+		
+		<Label text="Standard Industry" visible="{=${fieldMappingModels>/StandardIndustryVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/StandardIndustryMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zstandard_industry}" maxLength="4" visible="{=${fieldMappingModels>/StandardIndustryVisible} === true ? true : false}"/>
+	
+		
+		
+	</forms:SimpleForm>
+</mvc:View>

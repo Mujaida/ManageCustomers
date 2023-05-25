@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Authorization group" class="sapUiPopupWithPadding"
+		items="{path:'S4D>/AuthorizationGroupSet'}" search="handleValueHelpAuthrSearch"
+		confirm="handleValueHelpAuthurConfirm" cancel="handleValueHelpAuthurClose" multiSelect="false">
+		<StandardListItem title="{S4D>Authori}" description="{S4D>Description}" />
+	</SelectDialog>
+</core:FragmentDefinition>

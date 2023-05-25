@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Accounting Clerk" class="sapUiPopupWithPadding"
+		items="{path:'S4D>/AccountingClerkSet'}" search="handleValueHelpAcctClerkSearch"
+		confirm="handleValueHelpAcctClerkConfirm" cancel="handleValueHelpAcctClerkClose" multiSelect="false">
+		<StandardListItem title="{S4D>Accountingclerk}" description="{S4D>Description}" />
+	</SelectDialog>
+</core:FragmentDefinition>

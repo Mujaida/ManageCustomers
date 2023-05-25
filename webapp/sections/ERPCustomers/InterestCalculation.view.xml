@@ -1,0 +1,19 @@
+<mvc:View controllerName="iffco.managecustomer.sections.ERPCustomers.InterestCalculationController" xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" >
+	<forms:SimpleForm editable="false" layout="ColumnLayout">
+		<Label text="Interest Indicator" visible="{=${fieldMappingModels>/InterestIndicatorVisible} === true ? true : false}"
+		 required="{=${fieldMappingModels>/InterestIndicatorMandatory} === true ? true : false}" />
+		<!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" visible="{=${fieldMappingModels>/InterestIndicatorVisible} === true ? true : false}" value="{Customers>/zinterest_indicator}" maxLength="25"/> -->
+		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpInterestIndicator" value="{Customers>/zinterest_indicator}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/InterestIndicatorVisible} === true ? true : false}"/>
+		<Label text = "Interest Calculation Frequency" visible="{=${fieldMappingModels>/InterestCalculationFrequencyVisible} === true ? true : false}"
+		 required="{=${fieldMappingModels>/InterestCalculationFrequencyMandatory} === true ? true : false}" />
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zinterest_calculation_frequenc}" liveChange="handleSetMaxLength" type="Number" maxLength="2" visible="{=${fieldMappingModels>/InterestCalculationFrequencyVisible} === true ? true : false}"/>		
+		<Label text="Last key Date" visible="{=${fieldMappingModels>/LastKeyDateVisible} === true ? true : false}"
+		 required="{=${fieldMappingModels>/LastKeyDateMandatory} === true ? true : false}" />
+		<DatePicker enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zlast_key_date}" visible="{=${fieldMappingModels>/LastKeyDateVisible} === true ? true : false}" valueFormat="yyyy-MM-dd" displayFormat="long" />		
+		<Label text="Last Interest Run" visible="{=${fieldMappingModels>/LastInterestRunVisible} === true ? true : false}"
+		 required="{=${fieldMappingModels>/LastInterestRunMandatory} === true ? true : false}" />
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zlast_interestringn}" maxLength="5" visible="{=${fieldMappingModels>/LastInterestRunVisible} === true ? true : false}"/>
+		
+	</forms:SimpleForm>
+</mvc:View>	

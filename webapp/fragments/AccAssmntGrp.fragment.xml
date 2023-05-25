@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Account Assignment group" class="sapUiPopupWithPadding"
+		items="{path:'S4D>/AccountAssignGrpSet'}" search="handleValueHelpAccAssignGrpSearch"
+		confirm="handleValueHelpAccAssignGrpConfirm" cancel="handleValueHelpAccAssignGrpClose" multiSelect="false">
+		<StandardListItem title="{S4D>Accountgrp}" description="{S4D>Vtext}" />
+	</SelectDialog>
+</core:FragmentDefinition>

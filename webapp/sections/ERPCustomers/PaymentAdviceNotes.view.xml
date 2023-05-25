@@ -1,0 +1,12 @@
+<mvc:View controllerName="iffco.managecustomer.sections.ERPCustomers.PaymentAdviceNotesCtrl" xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" >
+	<forms:SimpleForm editable="false" layout="ColumnLayout">
+		<Label text="Reason Code Conversion" visible="{=${fieldMappingModels>/ReasonCodeConversionVisible} === true ? true : false}" required="{=${fieldMappingModels>/ReasonCodeConversionMandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zreason_code_conversion}" maxLength="3" visible="{=${fieldMappingModels>/ReasonCodeConversionVisible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForReasonCodeConversion" value="{Customers>/zreason_code_conversion}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/ReasonCodeConversionVisible} === true ? true : false}"/>
+		<Label text = "Selection Rule" visible="{=${fieldMappingModels>/SelectionRuleVisible} === true ? true : false}" required="{=${fieldMappingModels>/SelectionRuleMandatory} === true ? true : false}"/>
+		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForSelectionRule" value="{Customers>/zselection_rule}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/SelectionRuleVisible} === true ? true : false}"/>
+		<!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zselection_rule}" maxLength="3" visible="{=${fieldMappingModels>/SelectionRuleVisible} === true ? true : false}"/> -->
+	</forms:SimpleForm>
+</mvc:View>

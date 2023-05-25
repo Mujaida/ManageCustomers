@@ -1,0 +1,6 @@
+<mvc:View controllerName="iffco.managecustomer.sections.Comments.CommentsController" xmlns:mvc="sap.ui.core.mvc"  xmlns:forms="sap.ui.layout.form" xmlns="sap.m">
+    <FeedInput post="onPost" icon="sap-icon://customer" class="sapUiSmallMarginTopBottom" />
+    <List id="list" showSeparators="Inner" items="{commentsModel>/}">
+        <FeedListItem sender="{commentsModel>createdby}" icon="sap-icon://customer" senderPress="onSenderPress" iconPress="onIconPress" iconDensityAware="false" info="{commentsModel>zcomment}" timestamp="{commentsModel>createdat}" text="{commentsModel>zcomment}" convertLinksToAnchorTags="All" />
+    </List>
+</mvc:View>

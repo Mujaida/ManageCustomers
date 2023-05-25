@@ -1,0 +1,145 @@
+<mvc:View controllerName="iffco.managecustomer.controller.View1"
+ xmlns:mvc="sap.ui.core.mvc" 
+ displayBlock="true"
+  xmlns="sap.m"
+   xmlns:core="sap.ui.core"
+   xmlns:f="sap.f" 
+   xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:svm="sap.ui.comp.smartvariants">
+    <Page id="page" title="Manage Customer" titleAlignment="Center">
+        <content>
+            <f:DynamicPage headerExpanded="{/headerExpanded}">
+                <f:title>
+                </f:title>
+                <f:header>
+                    <f:DynamicPageHeader>
+                        <f:content>
+                            <fb:FilterBar id="filterbar" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" afterVariantLoad=".onAfterVariantLoad">
+                                <fb:filterItems>
+								<fb:FilterItem name="Request Number" label="Request Number">
+                                        <fb:control>
+                                            <Input />
+                                        </fb:control>
+                                    </fb:FilterItem>
+                                    <fb:FilterItem name="Customer Name" label="Customer Name">
+                                        <fb:control>
+                                            <Input />
+                                        </fb:control>
+                                    </fb:FilterItem>
+                                    <fb:FilterItem name="Company Code" label="Company Code">
+                                        <fb:control>
+                                           
+                                            <Input />
+                                        </fb:control>
+                                    </fb:FilterItem>
+                                    <fb:FilterItem name="License Code" label="License Code">
+                                        <fb:control>
+                                            <Input />
+                                        </fb:control>
+                                    </fb:FilterItem>
+                                    <fb:FilterItem name="Status" label="Status">
+                                        <fb:control>
+                                            <MultiComboBox name="Status" selectedKeys="All" selectionChange=".onSelectionChange" items="{
+												path: 'MasterData>/Status',
+												templateShareable: true
+											}">
+                                                <core:Item key="{MasterData>value}" text="{MasterData>value}" />
+                                            </MultiComboBox>
+                                        </fb:control>
+                                    </fb:FilterItem>
+                                    
+                                    <fb:FilterItem name="Request Type" label="Request Type">
+                                        <fb:control>
+                                            <MultiComboBox name="Request Type" selectedKeys="All" selectionChange=".onSelectionChange" items="{
+												path: 'MasterData>/RequestType',
+												templateShareable: true
+											}">
+                                                <core:Item key="{MasterData>value}" text="{MasterData>value}" />
+                                            </MultiComboBox>
+                                        </fb:control>
+                                    </fb:FilterItem>
+                                    <fb:FilterItem name="Date Range" label="Date Range">
+                                        <fb:control>
+                                            <DateRangeSelection displayFormat="dd/MM/yyyy"/>
+                                        </fb:control>
+                                    </fb:FilterItem>
+                                </fb:filterItems>
+                            </fb:FilterBar>
+                            
+                        </f:content>
+                        
+                    </f:DynamicPageHeader>
+                    
+                </f:header>
+                <f:content>
+                    <!-- <Table id="table" inset="false" items="{
+						path: '/ZDD_CLAP1_VIEW'
+					}"> -->
+                    <Table id="table" inset="false" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="100"
+					growingTriggerText="Load More..."
+                    items="{path: '/ZDD_CUSTOMER', filters:[{path:'zrequest_type',operator:'EQ',value1:'Extend Customer'},
+                    {path:'zrequest_type',operator:'EQ',value1:'Change Customer'}], sorter: [{ path: 'zcreated_date', descending: 'true'}]}">
+                    
+                        <headerToolbar>
+                            <OverflowToolbar>
+                                <content>
+                                    <Title text="Customer Requests" level="H2" />
+                                    <ToolbarSpacer />
+
+                                    <Button text="Change" type="Emphasized" press="handleChangeCustomer" />
+                                    
+                                    <Button text="Extend" type="Emphasized" press="handleExtendCustomer" />
+                                   
+                                </content>
+                            </OverflowToolbar>
+                        </headerToolbar>
+                        <columns>
+                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                <Text text="Request Number" />
+                            </Column>
+                            <Column minScreenWidth="Tablet" demandPopin="true">
+                                <Text text="Request Type" />
+                            </Column>
+                            <Column minScreenWidth="Tablet" demandPopin="true">
+                                <Text text="Customer Name" />
+                            </Column>
+                            <Column minScreenWidth="Tablet" demandPopin="true">
+                                <Text text="License Code" />
+                            </Column>
+                            <Column minScreenWidth="Tablet" demandPopin="true">
+                                <Text text="Company Code" />
+                            </Column>
+                            <Column minScreenWidth="Tablet" demandPopin="true">
+                                <Text text="Created At" />
+                            </Column>
+                            <Column minScreenWidth="Tablet" demandPopin="true">
+                                <Text text="Created By" />
+                            </Column>
+                            <Column minScreenWidth="Tablet" demandPopin="true">
+                                <Text text="Status" />
+                            </Column>
+                        </columns>
+
+                        <items>
+                            <ColumnListItem vAlign="Middle" type="Active" press="handleRequestnavigation">
+                                <cells>
+                                
+                                <Text text="{zrequest_no}" />
+                                    <Text text="{zrequest_type}" />
+                                    <Text text="{zfirst_name}" />
+                                    <Text text="{zimport_license_number}" />
+                                    <Text text="{zcompany_code}" />
+                                    <!-- <Text text="{zcreated_date}" /> -->
+                                    <Text text="{path:'zcreated_date', formatter: '.formatter.getFormatDate'}" />
+                                    <!-- {path:'expandEntitiesModel>/0/CreatedDate', formatter: '.formatter.formatDate'} -->
+                                    <Text text="{zcreated_by}" />
+                                    <Text text="{zrequest_status}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </f:content>
+            </f:DynamicPage>
+        </content>
+    </Page>
+</mvc:View>

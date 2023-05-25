@@ -1,0 +1,22 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" >
+	<forms:SimpleForm editable="false" layout="ColumnLayout">
+		<Label text="Manual Invoice Maintenance"  visible="{=${fieldMappingModels>/ManualInvoiceMaintenanceVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/ManualInvoiceMaintenanceMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zmanual_invoice_maintenance}" maxLength="1" visible="{=${fieldMappingModels>/ManualInvoiceMaintenanceVisible} === true ? true : false}"/>
+		<Label text = "Rebate" visible="{=${fieldMappingModels>/RebateVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/RebateMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zrebate}" maxLength="1" visible="{=${fieldMappingModels>/RebateVisible} === true ? true : false}"/>
+		
+		<Label text="Pricing" visible="{=${fieldMappingModels>/PricingVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/PricingMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zpricing}" maxLength="2" visible="{=${fieldMappingModels>/PricingVisible} === true ? true : false}"/>
+		<Label text="Invoice Dates" visible="{=${fieldMappingModels>/InvoicingDatesVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/InvoicingDatesMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zinvoicing_dates}" maxLength="2" visible="{=${fieldMappingModels>/InvoicingDatesVisible} === true ? true : false}"/>
+		<Label text = "Invoice List Dates" visible="{=${fieldMappingModels>/InvoicingListDatesVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/InvoicingListDatesMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zinvoicing_list_dates}" maxLength="2" visible="{=${fieldMappingModels>/InvoicingListDatesVisible} === true ? true : false}"/>
+		
+		
+	</forms:SimpleForm>
+</mvc:View>

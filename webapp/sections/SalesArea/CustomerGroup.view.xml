@@ -1,0 +1,34 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" >
+	<forms:SimpleForm editable="false" layout="ColumnLayout">   
+		<Label text="Customer Group 1" visible="{=${fieldMappingModels>/CustomerGroup1Visible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CustomerGroup1Mandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zcustomer_group1}" maxLength="3" visible="{=${fieldMappingModels>/CustomerGroup1Visible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${appView>/process} === 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForCusGrp1" value="{Customers>/zcustomer_group1}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/CustomerGroup1Visible} === true ? true : false}"/>
+		<Label text="Customer Group 2" visible="{=${fieldMappingModels>/CustomerGroup2Visible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CustomerGroup2Mandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zcustomer_group2}" maxLength="3" visible="{=${fieldMappingModels>/CustomerGroup2Visible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${appView>/process} === 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForCusGrp2" value="{Customers>/zcustomer_group2}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/CustomerGroup2Visible} === true ? true : false}"/>
+		<Label text="Customer Group 3" visible="{=${fieldMappingModels>/CustomerGroup3Visible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CustomerGroup3Mandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zcustomer_group3}" maxLength="3" visible="{=${fieldMappingModels>/CustomerGroup3Visible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${appView>/process} === 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForCusGrp3" value="{Customers>/zcustomer_group3}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/CustomerGroup3Visible} === true ? true : false}"/>
+		<Label text="Customer Group 4" visible="{=${fieldMappingModels>/CustomerGroup4Visible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CustomerGroup4Mandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zcustomer_group4}" maxLength="3" visible="{=${fieldMappingModels>/CustomerGroup4Visible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${appView>/process} === 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForCusGrp4" value="{Customers>/zcustomer_group4}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/CustomerGroup4Visible} === true ? true : false}"/>
+		<Label text="Customer Group 5" visible="{=${fieldMappingModels>/CustomerGroup5Visible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CustomerGroup5Mandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zcustomer_group5}" maxLength="3" visible="{=${fieldMappingModels>/CustomerGroup5Visible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${appView>/process} === 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForCusGrp5" value="{Customers>/zcustomer_group5}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/CustomerGroup5Visible} === true ? true : false}"/>
+		<Label text="Customer Group" visible="{=${fieldMappingModels>/CustomerGroupVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CustomerGroupMandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zcustomer_group}" maxLength="10" visible="{=${fieldMappingModels>/CustomerGroupVisible} === true ? true : false}" /> -->
+	<MultiInput enabled="{=${appView>/process} === 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForCusGrp" value="{Customers>/zcustomer_group}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/CustomerGroupVisible} === true ? true : false}"/>
+		</forms:SimpleForm>
+</mvc:View>

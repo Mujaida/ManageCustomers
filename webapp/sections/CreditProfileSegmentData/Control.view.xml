@@ -1,0 +1,17 @@
+<mvc:View controllerName="iffco.managecustomer.sections.CreditProfileSegmentData.ControlController" xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" >
+	<forms:SimpleForm editable="false" layout="ColumnLayout">
+    <Label text="Blocked in Credit Management" />
+		<CheckBox id="blockedCm" selected="{=${Customers>/zblockedincm} === 'Y' ? true : false}" />
+        <!-- visible="{=${fieldMappingModels>/RuleVisible} === true ? true : false}" -->
+
+		<Label text="Special Attention" />
+        <CheckBox id="spclAtnt" selected="{=${Customers>/zspecialattention} === 'Y' ? true : false}" />
+
+        <Label text="Block Reason" />
+        <MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zblock_reason}" valueHelpRequest="handleValueHelpForBlockReason"
+		valueHelpOnly="true" />
+
+        <Label text="Resubmission On" />
+        <DatePicker enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" id="validFrom" value="{Customers>/zresubmission_on}" valueFormat="MM.dd.yyyy" displayFormat="long"/>
+    </forms:SimpleForm>
+</mvc:View>

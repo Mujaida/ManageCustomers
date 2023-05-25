@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Line of business" class="sapUiPopupWithPadding"
+		items="{/zdd_lineofbusiness_vh}" search="handleValueHelplobSearch"
+		confirm="handleValueHelpLineOfBusinessTypeConfirm" cancel="handleValueHelpLineOfBusinessTypeClose" multiSelect="false">
+		<StandardListItem title="{lineofbusinesstype}" />
+	</SelectDialog>
+</core:FragmentDefinition>

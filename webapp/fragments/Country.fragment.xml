@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Country" class="sapUiPopupWithPadding"
+		items="{path:'S4D>/CountriesSet'}" search="handleValueHelpCountrySearch"
+		confirm="handleValueHelpCountryConfirm" cancel="handleValueHelpCountrClose" multiSelect="false">
+		<StandardListItem title="{S4D>Land1}" description="{S4D>Landx}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

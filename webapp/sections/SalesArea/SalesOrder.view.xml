@@ -1,0 +1,61 @@
+<mvc:View controllerName="iffco.managecustomer.sections.SalesArea.SalesOrderController" xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" >
+	<forms:SimpleForm editable="false" layout="ColumnLayout">
+		<Label text="Sales District" visible="{=${fieldMappingModelss>/SalesdistrictVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/SalesdistrictMandatory} === true ? true : false}" />
+		<MultiInput enabled="{=${appView>/process} === 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForsalesDist" value="{Customers>/zsales_district}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/SalesdistrictVisible} === true ? true : false}"/>
+		<Label text = "Sales office" visible="{=${fieldMappingModels>/SalesOfficeVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/SalesOfficeMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zsales_office}" maxLength="4" visible="{=${fieldMappingModels>/SalesOfficeVisible} === true ? true : false}"/>
+		
+		<Label text="Sales Group" visible="{=${fieldMappingModels>/SalesGroupVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/SalesGroupMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zsales_group}" maxLength="3" visible="{=${fieldMappingModels>/SalesGroupVisible} === true ? true : false}"/>
+
+		<Label text="Customer Group" visible="{=${fieldMappingModels>/CustomerGroupVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CustomerGroupMandatory} === true ? true : false}" />
+		<!-- <Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zcustomer_group}" maxLength="10" visible="{=${fieldMappingModels>/CustomerGroupVisible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${appView>/process} === 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForCusGrp" value="{Customers>/zcustomer_group}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/CustomerGroupVisible} === true ? true : false}"/>
+		<Label text = "ABC Class" visible="{=${fieldMappingModelss>/ABCClassVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/ABCClassMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zabc_class}" maxLength="2" visible="{=${fieldMappingModels>/ABCClassVisible} === true ? true : false}"/>
+
+		<Label text="Currency" visible="{=${fieldMappingModels>/CurrencyVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CurrencyMandatory} === true ? true : false}"/>
+        <MultiInput enabled="{=${appView>/process} === 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForCurrency" value="{Customers>/zcurrency}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/CurrencyVisible} === true ? true : false}"/>
+		<!-- <Input visible="{=${fieldMappingModels>/141/visibility} === true ? true : false}"/> -->
+		<Label text="Account at Customer" visible="{=${fieldMappingModels>/AccountatCustomerVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CurrencyMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zaccount_at_customer}" maxLength="12" visible="{=${fieldMappingModels>/AccountatCustomerVisible} === true ? true : false}"/>
+		<Label text = "Switch off rounding" visible="{=${fieldMappingModels>/SwitchOffRoundingVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/SwitchOffRoundingMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zswitch_off_rounding}" maxLength="1" visible="{=${fieldMappingModels>/SwitchOffRoundingVisible} === true ? true : false}"/>
+		
+		<Label text="Order Probability(%)" visible="{=${fieldMappingModels>/OrderProbabilityVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/OrderProbabilityMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zorderprobability}" maxLength="3" type="Number" liveChange="handleSetMaxLength" visible="{=${fieldMappingModels>/OrderProbabilityVisible} === true ? true : false}"/>
+
+		<Label text="Authorization Group" visible="{=${fieldMappingModels>/AuthorizationGroupVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/AuthorizationGroupMandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zauthorization_group}" maxLength="4" visible="{=${fieldMappingModels>/AuthorizationGroupVisible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${appView>/process} === 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForAuthorization" value="{Customers>/zauthorization_group}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/AuthorizationGroupVisible} === true ? true : false}"/>
+		<Label text="Item Proposal"  visible="{=${fieldMappingModels>/ItemProposalVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/ItemProposalMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zitemproposal}" maxLength="10" visible="{=${fieldMappingModels>/ItemProposalVisible} === true ? true : false}"/>
+		<Label text = "Unit Of Measure group" visible="{=${fieldMappingModels>/UnitOfMeasureGroupVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/UnitOfMeasureGroupMandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zunit_of_measure_group}" maxLength="4" visible="{=${fieldMappingModels>/UnitOfMeasureGroupVisible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${appView>/process} === 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForUntOfMeasrGrp" value="{Customers>/zunit_of_measure_group}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/UnitOfMeasureGroupVisible} === true ? true : false}"/>
+		<Label text="Exchange Rate Type" visible="{=${fieldMappingModels>/ExchangeRateTypeVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/ExchangeRateTypeMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zexchange_rate_type}" maxLength="4" visible="{=${fieldMappingModels>/ExchangeRateTypeVisible} === true ? true : false}"/>
+		<Label text="PP Customer Procedure" visible="{=${fieldMappingModels>/PPCustomerProcedureVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/PPCustomerProcedureMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zpp_customer_procedure}" maxLength="2" visible="{=${fieldMappingModels>/PPCustomerProcedureVisible} === true ? true : false}"/>
+		
+	</forms:SimpleForm>
+</mvc:View>

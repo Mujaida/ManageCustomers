@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Invoice List" class="sapUiPopupWithPadding"
+		items="{S4D>/InvoicingDateSet}" search="handleValueHelpInvcListSearch"
+		confirm="handleValueHelpInvcListConfirm" cancel="handleValueHelpInvcListClose" multiSelect="false">
+		<StandardListItem title="{S4D>Invoicedate}" description="{S4D>Description}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

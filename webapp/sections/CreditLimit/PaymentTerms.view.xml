@@ -1,0 +1,37 @@
+<mvc:View controllerName="iffco.managecustomer.sections.CreditLimit.PaymentTermsController" xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m">
+    <forms:SimpleForm editable="false" layout="ColumnLayout">
+        <Label text="Max. Credit Days" visible="{=${fieldMappingModels>/MaxCreditDaysVisible} === true ? true : false}" 
+        required="{=${fieldMappingModels>/MaxCreditDaysMandatory} === true ? true : false}" />
+        <Input value="{Customers>/zmaximum_credit_days}" maxLength="20" enabled="false" visible="{=${fieldMappingModels>/MaxCreditDaysVisible} === true ? true : false}" />
+        
+        <Label text="Proposed Max. Credit Days" visible="{=${fieldMappingModels>/ProposedMax.CreditDaysVisible} === true ? true : false}" 
+        required="{=${fieldMappingModels>/ProposedMax.CreditDaysMandatory} === true ? true : false}" />
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zpaytterm_proposed_maxcreditdy}" maxLength="20" visible="{=${fieldMappingModels>/ProposedMax.CreditDaysVisible} === true ? true : false}" />
+
+        <Label text="Cash Collection" visible="{=${fieldMappingModels>/CashCollectionVisible} === true ? true : false}" 
+        required="{=${fieldMappingModels>/CashCollectionMandatory} === true ? true : false}" />
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zcash_collection}" maxLength="20" visible="{=${fieldMappingModels>/CashCollectionVisible} === true ? true : false}" />
+        
+        <Label text="Transit Time" visible="{=${fieldMappingModels>/TransitTimeVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/TransitTimeMandatory} === true ? true : false}" />
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/ztransit_time}" maxLength="20" visible="{=${fieldMappingModels>/TransitTimeVisible} === true ? true : false}" />
+        
+        <Label text="Total Credit Days" visible="{=${fieldMappingModels>/TotalCreditDaysVisible} === true ? true : false}" required="{=${fieldMappingModels>/TotalCreditDaysMandatory} === true ? true : false}" />
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/ztotal_credit_days}" maxLength="10" visible="{=${fieldMappingModels>/TotalCreditDaysVisible} === true ? true : false}" />
+        
+        <Label text="Is Proxima" visible="{=${fieldMappingModels>/IsProximaVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/IsProximaMandatory} === true ? true : false}" />
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zproxima}" maxLength="20" visible="{=${fieldMappingModels>/IsProximaVisible} === true ? true : false}" />
+        
+        <Label text="Payment Terms" visible="{=${fieldMappingModels>/PaymentTermsVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/PaymentTermsMandatory} === true ? true : false}" />
+         <MultiInput value="{Customers>/zpayment_terms}" enabled="false" valueHelpRequest="handleValueHelpForPaymentTerms"
+		valueHelpOnly="true" maxLength="4" visible="{=${fieldMappingModels>/TermsOfPaymentVisible} === true ? true : false}"/>
+        
+        <Label text="Proposed Payment Terms" visible="{=${fieldMappingModels>/PaymentTermsVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/PaymentTermsMandatory} === true ? true : false}" />
+        <MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zpaytterm_proposed_paymentterm}" valueHelpRequest="handleValueHelpForPaymentTerms"
+		valueHelpOnly="true" maxLength="4" visible="{=${fieldMappingModels>/TermsOfPaymentVisible} === true ? true : false}"/>
+   
+    </forms:SimpleForm>
+</mvc:View>

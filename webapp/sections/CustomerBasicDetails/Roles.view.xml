@@ -1,0 +1,28 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" >
+		<Table  inset="false" items="{ path: 'MasterData>/BPRoles' }">
+		<headerToolbar>
+			<OverflowToolbar>
+				<content>
+					<Title text="Assigned Roles" level="H2"/>
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="BP Role"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="BPRole Description"/>
+			</Column>
+			
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle">
+				<cells>
+					<Text text="{MasterData>BPRole}"/>
+					<Text text="{MasterData>BPRoleDesc}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</mvc:View>

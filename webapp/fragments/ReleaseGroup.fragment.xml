@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Release Group" class="sapUiPopupWithPadding"
+		items="{path:'S4D>/ReleaseGroupSet'}" search="handleValueHelpReleasGrpSearch"
+		confirm="handleValueHelpReleasGrpConfirm" cancel="handleValueHelpReleasGrpClose" multiSelect="false">
+		<StandardListItem title="{S4D>Releasegroup}" />
+	</SelectDialog>
+</core:FragmentDefinition>

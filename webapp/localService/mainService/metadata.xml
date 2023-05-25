@@ -1,0 +1,1070 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="..hana.ondemand.com/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="..hana.ondemand.com/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="..hana.ondemand.com/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="..hana.ondemand.com/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="..hana.ondemand.com/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="..hana.ondemand.com/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="..hana.ondemand.com/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="..hana.ondemand.com/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="..hana.ondemand.com/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="..hana.ondemand.com/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="cds_zsd_clap_definition" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <EntityType Name="ZDD_BANK_VHType" sap:label="Data Definition for Bank Details" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="bank"/>
+                </Key>
+                <Property Name="bank" Type="Edm.String" Nullable="false" MaxLength="70"/>
+                <Property Name="country" Type="Edm.String" MaxLength="40"/>
+                <Property Name="isactive" Type="Edm.String" MaxLength="3"/>
+                <Property Name="isbank_with_condition" Type="Edm.String" MaxLength="3"/>
+            </EntityType>
+            <EntityType Name="ZDD_BusinessUnit_VHType" sap:label="Business Unit Value Help" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Businessunit"/>
+                    <PropertyRef Name="bucode"/>
+                    <PropertyRef Name="vertical"/>
+                </Key>
+                <Property Name="Businessunit" Type="Edm.String" Nullable="false" MaxLength="70"/>
+                <Property Name="bucode" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="vertical" Type="Edm.String" Nullable="false" MaxLength="70"/>
+                <Property Name="childbusinessunit" Type="Edm.String" MaxLength="70"/>
+                <Property Name="currency" Type="Edm.String" MaxLength="5" sap:semantics="currency-code"/>
+                <Property Name="erpsource" Type="Edm.String" MaxLength="10"/>
+                <Property Name="bushortcode" Type="Edm.String" MaxLength="40"/>
+                <Property Name="trading" Type="Edm.String" MaxLength="3"/>
+                <Property Name="maxcreditlimitapplicable" Type="Edm.String" MaxLength="3"/>
+                <Property Name="maximumcreditdayslogic" Type="Edm.String" MaxLength="70"/>
+                <Property Name="cc" Type="Edm.String" MaxLength="70"/>
+                <Property Name="ccemailid" Type="Edm.String" MaxLength="70"/>
+                <Property Name="fa" Type="Edm.String" MaxLength="70"/>
+                <Property Name="faemailid" Type="Edm.String" MaxLength="70"/>
+                <Property Name="hof" Type="Edm.String" MaxLength="70"/>
+                <Property Name="hofemailid" Type="Edm.String" MaxLength="70"/>
+                <Property Name="gm" Type="Edm.String" MaxLength="70"/>
+                <Property Name="gmemailid" Type="Edm.String" MaxLength="70"/>
+                <Property Name="Ceo" Type="Edm.String" MaxLength="70"/>
+                <Property Name="ceoemailid" Type="Edm.String" MaxLength="70"/>
+                <Property Name="rf" Type="Edm.String" MaxLength="70"/>
+                <Property Name="rfemailid" Type="Edm.String" MaxLength="70"/>
+                <Property Name="Cfr" Type="Edm.String" MaxLength="70"/>
+                <Property Name="cfremailid" Type="Edm.String" MaxLength="70"/>
+                <Property Name="df" Type="Edm.String" MaxLength="70"/>
+                <Property Name="dfemailid" Type="Edm.String" MaxLength="70"/>
+                <Property Name="md" Type="Edm.String" MaxLength="70"/>
+                <Property Name="mdemailid" Type="Edm.String" MaxLength="70"/>
+                <Property Name="ed" Type="Edm.String" MaxLength="70"/>
+                <Property Name="edemailid" Type="Edm.String" MaxLength="70"/>
+                <Property Name="sb" Type="Edm.String" MaxLength="70"/>
+                <Property Name="sbemailid" Type="Edm.String" MaxLength="70"/>
+                <Property Name="mdm" Type="Edm.String" MaxLength="250"/>
+                <Property Name="mdmemailid" Type="Edm.String" MaxLength="250"/>
+                <Property Name="issnd" Type="Edm.String" MaxLength="3"/>
+                <Property Name="isactive" Type="Edm.String" MaxLength="3"/>
+            </EntityType>
+            <EntityType Name="ZDD_Channel_VHType" sap:label="Channel Value Help" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="channel"/>
+                </Key>
+                <Property Name="channel" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="isactive" Type="Edm.String" MaxLength="1" sap:display-format="NonNegative"/>
+            </EntityType>
+            <EntityType Name="ZDD_ChannleGroup_VHType" sap:label="Channel Group Value Help" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="channelgroup"/>
+                </Key>
+                <Property Name="channelgroup" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="isactive" Type="Edm.String" MaxLength="3"/>
+            </EntityType>
+            <EntityType Name="ZDD_CLAP1_VIEWType" sap:label="Data Definition for Customer Creation" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="zcustomer_num"/>
+                    <PropertyRef Name="zsales_orgnization"/>
+                </Key>
+                <Property Name="zcustomer_num" Type="Edm.Guid" Nullable="false" sap:label="UUID" sap:quickinfo="16 Byte UUID in 16 Bytes (Raw Format)" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="zsales_orgnization" Type="Edm.String" Nullable="false" MaxLength="30" sap:display-format="UpperCase" sap:label="Sales" sap:quickinfo="sales Orgnization"/>
+                <Property Name="zbusiness_unit_name" Type="Edm.String" MaxLength="50"/>
+                <Property Name="ztype_of_customer" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zvertical" Type="Edm.String" MaxLength="50"/>
+                <Property Name="ztype_of_entity" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zline_business_type" Type="Edm.String" MaxLength="50"/>
+                <Property Name="zcustomer_legal_name" Type="Edm.String" MaxLength="50"/>
+                <Property Name="zrequest_no" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative"/>
+                <Property Name="zcustomer_group" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zadd_sites" Type="Edm.String" MaxLength="40"/>
+                <Property Name="zyear_of_establishment" Type="Edm.String" MaxLength="4" sap:display-format="NonNegative"/>
+                <Property Name="zcustomer_internal_rating" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zcustomer_type" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zclass" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zchannel_group" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zchannel" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zsub_channel" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zcountry" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zaddress_line_1" Type="Edm.String" MaxLength="50"/>
+                <Property Name="zaddress_line_2" Type="Edm.String" MaxLength="50"/>
+                <Property Name="zalternate_address" Type="Edm.String" MaxLength="50"/>
+                <Property Name="zcity" Type="Edm.String" MaxLength="35"/>
+                <Property Name="zstate" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zpo_box_no_pin_code" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative"/>
+                <Property Name="zprovins" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zfirst_name" Type="Edm.String" MaxLength="40"/>
+                <Property Name="zlast_name" Type="Edm.String" MaxLength="40"/>
+                <Property Name="zdesignation" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zemail_id" Type="Edm.String" MaxLength="30"/>
+                <Property Name="zoffice_phone_number" Type="Edm.String" MaxLength="15" sap:display-format="NonNegative"/>
+                <Property Name="zmobile_number" Type="Edm.String" MaxLength="16"/>
+                <Property Name="zvat_gst_number" Type="Edm.String" MaxLength="20" sap:display-format="NonNegative"/>
+                <Property Name="zattachment" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zlicense_type" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zvalid_from" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+                <Property Name="zvalid_to" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+                <Property Name="zimport_license_number" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zsource_of_inquiry" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zcompany_identity_by_pass" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zcertifications_of_incorporati" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zmemorandum_articles_of_associ" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zsponsors_passport" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zcommercial_license" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zattachments_with_signature" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zroute_audit_is_performed" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zroute_code" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zgeo_code" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zlatitude" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zlongitude" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zcredit_limit_currency" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zbackgrond_of_customer" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zrationable_for_trading" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zmonthly_physical_buy_volume" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zmonthly_physical_sell_volume" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zmonthly_paper_volume" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zstoploss_mt_if_any" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zgross_average_gc_or_av_gc_mt" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zavg_gc_mt_or_gc" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zinco_term" Type="Edm.String" MaxLength="3"/>
+                <Property Name="zcredit_limit_type" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zcredit_limit_type_currency" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zopen_clean_credit_amount" Type="Edm.String" MaxLength="20" sap:display-format="NonNegative"/>
+                <Property Name="zcad_amount" Type="Edm.String" MaxLength="20" sap:display-format="NonNegative"/>
+                <Property Name="zpoc_in_hand_amount" Type="Edm.String" MaxLength="20" sap:display-format="NonNegative"/>
+                <Property Name="zundated_or_security_deposit_c" Type="Edm.String" MaxLength="40"/>
+                <Property Name="zcri" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zcri_amount" Type="Edm.String" MaxLength="20" sap:display-format="NonNegative"/>
+                <Property Name="zcri_insurer_amount" Type="Edm.String" MaxLength="20" sap:display-format="NonNegative"/>
+                <Property Name="zuncfrmd_lc_nonapvd_bnkname" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zuncfrmd_lc_nonapvd_bnkamt" Type="Edm.String" MaxLength="20" sap:display-format="NonNegative"/>
+                <Property Name="ztotal_secured_limit" Type="Edm.String" MaxLength="20" sap:display-format="NonNegative"/>
+                <Property Name="ztotal_unsecured_limit" Type="Edm.String" MaxLength="20" sap:display-format="NonNegative"/>
+                <Property Name="ztotal_credit_amount" Type="Edm.String" MaxLength="20" sap:display-format="NonNegative"/>
+                <Property Name="zin_functional_currency" Type="Edm.String" MaxLength="20" sap:display-format="NonNegative"/>
+                <Property Name="zdate" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+                <Property Name="zmaximum_credit_days" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zcash_collection" Type="Edm.String" MaxLength="20"/>
+                <Property Name="ztransit_time" Type="Edm.String" MaxLength="20"/>
+                <Property Name="ztotal_credit_days" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative"/>
+                <Property Name="zproxima" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zpayment_terms" Type="Edm.String" MaxLength="4"/>
+                <Property Name="zbu_name" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zbu_code" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zsite_name" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zprty_site_no" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zcredit_limit" Type="Edm.Decimal" Precision="13" Scale="0"/>
+                <Property Name="zbalance_amt" Type="Edm.String" MaxLength="20" sap:display-format="NonNegative"/>
+                <Property Name="ztot_site_lvl_cl" Type="Edm.String" MaxLength="20" sap:display-format="NonNegative"/>
+                <Property Name="ztot_credit_limit" Type="Edm.String" MaxLength="20" sap:display-format="NonNegative"/>
+                <Property Name="zfinancial_statement" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zd_and_b_report" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zbank_statement_references" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zlast_12_stmnt_accts" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zyear_of_financial" Type="Edm.String" MaxLength="20" sap:display-format="NonNegative"/>
+                <Property Name="zrevenue_net_profit_crncy" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zrevenue_turnover" Type="Edm.String" MaxLength="20"/>
+                <Property Name="znetprofit" Type="Edm.String" MaxLength="20" sap:display-format="NonNegative"/>
+                <Property Name="zcountry2" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zcountry_rating" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zd_and_b_rating" Type="Edm.String" MaxLength="20"/>
+                <Property Name="ztrail_date" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+                <Property Name="ztrail_user" Type="Edm.String" MaxLength="20"/>
+                <Property Name="ztrail_role" Type="Edm.String" MaxLength="20"/>
+                <Property Name="ztrail_status" Type="Edm.String" MaxLength="20"/>
+                <Property Name="ztrail_tot_cl_approved" Type="Edm.String" MaxLength="20" sap:display-format="NonNegative"/>
+                <Property Name="ztrailmax_credit_days" Type="Edm.String" MaxLength="20" sap:display-format="NonNegative"/>
+                <Property Name="ztrail_version" Type="Edm.String" MaxLength="20"/>
+                <Property Name="ztrail_remarks" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zchangerequestid" Type="Edm.String" MaxLength="12"/>
+                <Property Name="zdescription" Type="Edm.String"/>
+                <Property Name="zpriority" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zduedate" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+                <Property Name="zreason" Type="Edm.String"/>
+                <Property Name="zstatus" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zcurrentworkitem" Type="Edm.String" MaxLength="30"/>
+                <Property Name="zchangedby" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="User Name"/>
+                <Property Name="zchangedon" Type="Edm.DateTimeOffset" Precision="0" sap:label="Time Stamp" sap:quickinfo="UTC Time Stamp in Short Form (YYYYMMDDhhmmss)"/>
+                <Property Name="zfinalizedon" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="User Name"/>
+                <Property Name="zfinalizedby" Type="Edm.DateTimeOffset" Precision="0" sap:label="Time Stamp" sap:quickinfo="UTC Time Stamp in Short Form (YYYYMMDDhhmmss)"/>
+                <Property Name="znote" Type="Edm.String"/>
+                <Property Name="zfile_link" Type="Edm.String"/>
+                <Property Name="zbusiness_partner_id" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zsalutation" Type="Edm.String" MaxLength="2" sap:display-format="NonNegative"/>
+                <Property Name="zsearch_term1" Type="Edm.String" MaxLength="25"/>
+                <Property Name="zpostal_code_city" Type="Edm.String" MaxLength="8" sap:display-format="NonNegative"/>
+                <Property Name="zlanguage" Type="Edm.String" MaxLength="2"/>
+                <Property Name="ztransportation_zone" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zpo_box_without_number" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zcompany_postal_code" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zlegalform" Type="Edm.String" MaxLength="2" sap:display-format="NonNegative"/>
+                <Property Name="zdate_founded" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+                <Property Name="zliquidationdate" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+                <Property Name="ztele_number" Type="Edm.String" MaxLength="16"/>
+                <Property Name="ztele_country" Type="Edm.String" MaxLength="16"/>
+                <Property Name="ztele_extension" Type="Edm.String" MaxLength="16"/>
+                <Property Name="zmobile_country" Type="Edm.String" MaxLength="16"/>
+                <Property Name="zfax_country" Type="Edm.String" MaxLength="31"/>
+                <Property Name="zfax_number" Type="Edm.String" MaxLength="31"/>
+                <Property Name="zfax_extension" Type="Edm.String" MaxLength="31"/>
+                <Property Name="zwebsite" Type="Edm.String"/>
+                <Property Name="zbprole_flcu00" Type="Edm.String" MaxLength="6"/>
+                <Property Name="zbprole_ukm000" Type="Edm.String" MaxLength="6"/>
+                <Property Name="zbp_role_flcu01" Type="Edm.String" MaxLength="6"/>
+                <Property Name="zaddress_version" Type="Edm.String" MaxLength="10"/>
+                <Property Name="ztitle" Type="Edm.String"/>
+                <Property Name="zsearch_term" Type="Edm.String" MaxLength="25"/>
+                <Property Name="zstreet" Type="Edm.String" MaxLength="35"/>
+                <Property Name="zhouse_number" Type="Edm.String" MaxLength="35"/>
+                <Property Name="zaddress_type" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zstandard_usage" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zidentification_type" Type="Edm.String" MaxLength="6"/>
+                <Property Name="zidentification_number" Type="Edm.String" MaxLength="60"/>
+                <Property Name="zresonsible_institute" Type="Edm.String" MaxLength="26"/>
+                <Property Name="zentry_date" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+                <Property Name="ztax_number_category" Type="Edm.String" MaxLength="4"/>
+                <Property Name="ztax_description" Type="Edm.String"/>
+                <Property Name="ztax_number" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zindustry" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zindustry_description" Type="Edm.String"/>
+                <Property Name="zstandard_industry" Type="Edm.String" MaxLength="4"/>
+                <Property Name="zcompany_code" Type="Edm.String" MaxLength="4"/>
+                <Property Name="zreconciliation_account" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zhead_office" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zauthorization_group" Type="Edm.String" MaxLength="4"/>
+                <Property Name="zvalue_adjustment" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zsort_key" Type="Edm.String" MaxLength="3"/>
+                <Property Name="zplanning_group" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zrelease_group" Type="Edm.String" MaxLength="4"/>
+                <Property Name="zinterest_indicator" Type="Edm.String" MaxLength="25"/>
+                <Property Name="zinterest_calculation_frequenc" Type="Edm.String" MaxLength="2" sap:display-format="NonNegative"/>
+                <Property Name="zlast_key_date" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+                <Property Name="zlast_interestringn" Type="Edm.String" MaxLength="5" sap:semantics="currency-code"/>
+                <Property Name="zprevious_account_number" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative"/>
+                <Property Name="zbuying_group" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zpersonnel_number" Type="Edm.String" MaxLength="8" sap:display-format="NonNegative"/>
+                <Property Name="zterms_of_payment" Type="Edm.String" MaxLength="4"/>
+                <Property Name="zcredi_memo_payment_terms" Type="Edm.String" MaxLength="4"/>
+                <Property Name="zb_charges_payment_term" Type="Edm.String" MaxLength="4"/>
+                <Property Name="ze_charges_payment_term" Type="Edm.String" MaxLength="4"/>
+                <Property Name="zcheck_cashing_time" Type="Edm.Decimal" Precision="3" Scale="0"/>
+                <Property Name="ztolerance_group" Type="Edm.String" MaxLength="4"/>
+                <Property Name="zknow_leave" Type="Edm.String" MaxLength="4"/>
+                <Property Name="znegotiated_leave" Type="Edm.String" MaxLength="4"/>
+                <Property Name="zar_pledging_indicator" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zpayment_history_record" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zpayment_method" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zalternative_payer" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zbill_of_exchangelimit" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="zcurrency" sap:variable-scale="true"/>
+                <Property Name="zpayment_method_supplement" Type="Edm.String" MaxLength="2"/>
+                <Property Name="znext_payee" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zlockbox" Type="Edm.String" MaxLength="7"/>
+                <Property Name="zpayment_block" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zhouse_bank" Type="Edm.String" MaxLength="5"/>
+                <Property Name="zindividual_payment" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zpayment_advice_by_edi" Type="Edm.String" MaxLength="3"/>
+                <Property Name="zreason_code_conversion" Type="Edm.String" MaxLength="3"/>
+                <Property Name="zselection_rule" Type="Edm.String" MaxLength="3"/>
+                <Property Name="zpolicy_number" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative"/>
+                <Property Name="zlead_months" Type="Edm.Decimal" Precision="3" Scale="0" sap:unit="zcurrency" sap:variable-scale="true"/>
+                <Property Name="zinstitute_number" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zdeductible" Type="Edm.Decimal" Precision="3" Scale="0"/>
+                <Property Name="zaccounting_clerk" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zaccount_with_number" Type="Edm.String" MaxLength="30"/>
+                <Property Name="zaccount_memo" Type="Edm.String" MaxLength="30"/>
+                <Property Name="zclerk_at_customer" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zclerks_telephone_number" Type="Edm.String" MaxLength="30"/>
+                <Property Name="zaccount_statement" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zcollective_invoice_variant" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zlocal_processing" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zclerks_internet_address" Type="Edm.String" MaxLength="130"/>
+                <Property Name="zclerks_fax_number" Type="Edm.String" MaxLength="31"/>
+                <Property Name="zgrouping_key" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zdunning_area" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zdunning_area_description" Type="Edm.String"/>
+                <Property Name="zwith_holding_tax_type" Type="Edm.String" MaxLength="3"/>
+                <Property Name="zwith_holding_tax_type_descrip" Type="Edm.String"/>
+                <Property Name="zcustomer_with_ci" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zsales" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zlegal_deparment" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zcustomer_w_o_ci" Type="Edm.String" MaxLength="30"/>
+                <Property Name="zaccounting" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zdistribution_channel" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zdivision" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zsales_district" Type="Edm.String" MaxLength="6"/>
+                <Property Name="zsales_office" Type="Edm.String" MaxLength="4"/>
+                <Property Name="zsales_group" Type="Edm.String" MaxLength="3"/>
+                <Property Name="zabc_class" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zaccount_at_customer" Type="Edm.String" MaxLength="12"/>
+                <Property Name="zswitch_off_rounding" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zorderprobability" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative"/>
+                <Property Name="zitemproposal" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zunit_of_measure_group" Type="Edm.String" MaxLength="4"/>
+                <Property Name="zexchange_rate_type" Type="Edm.String" MaxLength="4"/>
+                <Property Name="zpp_customer_procedure" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zprice_group" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zpricelist" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zprice_procedured_term" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zcustomer_statistics_group" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zagency_business" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zdocument_index_active" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zdelivery_priority" Type="Edm.String" MaxLength="2" sap:display-format="NonNegative"/>
+                <Property Name="zshipping_conditions" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zdelivery_plant" Type="Edm.String" MaxLength="4"/>
+                <Property Name="zorder_combination" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zrelevant_pod" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zpod_timeframe" Type="Edm.Decimal" Precision="11" Scale="0"/>
+                <Property Name="zcomplete_delivery" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zmaximum_number_of_part_delive" Type="Edm.Decimal" Precision="11" Scale="0"/>
+                <Property Name="zpartial_delivery_per_item" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zunlimited_tolerance" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zunder_delivery_tolerance" Type="Edm.Decimal" Precision="3" Scale="1"/>
+                <Property Name="zover_delivery_tolerance" Type="Edm.Decimal" Precision="3" Scale="1"/>
+                <Property Name="zmanual_invoice_maintenance" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zrebate" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zpricing" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zinvoicing_dates" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zinvoicing_list_dates" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zinco_location1" Type="Edm.String" MaxLength="70"/>
+                <Property Name="zcredit_control_area" Type="Edm.String" MaxLength="4"/>
+                <Property Name="zpayment_gurantee_procedure" Type="Edm.String" MaxLength="30"/>
+                <Property Name="zsettlement_group" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zaccount_assignment_group" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zcustomer_group1" Type="Edm.String" MaxLength="3"/>
+                <Property Name="zcustomer_group2" Type="Edm.String" MaxLength="3"/>
+                <Property Name="zcustomer_group3" Type="Edm.String" MaxLength="3"/>
+                <Property Name="zcustomer_group4" Type="Edm.String" MaxLength="3"/>
+                <Property Name="zcustomer_group5" Type="Edm.String" MaxLength="3"/>
+                <Property Name="zship_to_buyer" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zship_to_payer" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zbill_to_buyer" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zbill_to_payer" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zonly_ship_to" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zsales_person" Type="Edm.String" MaxLength="12"/>
+                <Property Name="zagent" Type="Edm.String" MaxLength="1"/>
+                <Property Name="ztaxcategory" Type="Edm.String"/>
+                <Property Name="ztax_classification" Type="Edm.String" MaxLength="1"/>
+                <Property Name="ztax_category2" Type="Edm.String"/>
+                <Property Name="ztax_classification2" Type="Edm.String" MaxLength="1"/>
+                <Property Name="ztrading_partner" Type="Edm.String" MaxLength="6"/>
+                <Property Name="zrule" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zrisk_class" Type="Edm.String" MaxLength="3"/>
+                <Property Name="zcheck_rule" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zlimit_define" Type="Edm.String" MaxLength="35"/>
+                <Property Name="zlimit" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="zcurrency" sap:variable-scale="true"/>
+                <Property Name="zvalidity_to" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+                <Property Name="zcredit_segment" Type="Edm.String" MaxLength="28"/>
+                <Property Name="zrelationship_to_bp" Type="Edm.String"/>
+                <Property Name="zcreated_by" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="User Name"/>
+                <Property Name="zcreated_date" Type="Edm.DateTimeOffset" Precision="0" sap:label="Time Stamp" sap:quickinfo="UTC Time Stamp in Short Form (YYYYMMDDhhmmss)"/>
+                <Property Name="zupdated_by" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="User Name"/>
+                <Property Name="zupdated_date" Type="Edm.DateTimeOffset" Precision="0" sap:label="Time Stamp" sap:quickinfo="UTC Time Stamp in Short Form (YYYYMMDDhhmmss)"/>
+                <Property Name="zrequest_type" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zassigned_to" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zrequest_status" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zmdg_status" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zinitiator_name" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zid" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zbankcountry" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zbankkey" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zbankname" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zbankaccount" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zaccountname" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zcurrency" Type="Edm.String" MaxLength="5" sap:semantics="currency-code"/>
+                <Property Name="zregion" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zpobox" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zpo_box_postal_code" Type="Edm.String" MaxLength="10"/>
+                <NavigationProperty Name="to_zdd_comments" Relationship="cds_zsd_clap_definition.assoc_70E6EB9120DACE0C189520D251E6739C" FromRole="FromRole_assoc_70E6EB9120DACE0C189520D251E6739C" ToRole="ToRole_assoc_70E6EB9120DACE0C189520D251E6739C"/>
+                <NavigationProperty Name="to_zdd_sale" Relationship="cds_zsd_clap_definition.assoc_4CA5F42DF9885BE2C156C97B2304207F" FromRole="FromRole_assoc_4CA5F42DF9885BE2C156C97B2304207F" ToRole="ToRole_assoc_4CA5F42DF9885BE2C156C97B2304207F"/>
+            </EntityType>
+            <EntityType Name="ZDD_COMMENT2Type" sap:label="comments" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="zcustomer_num"/>
+                    <PropertyRef Name="zsales_orgnization"/>
+                </Key>
+                <Property Name="zcustomer_num" Type="Edm.Guid" Nullable="false" sap:label="UUID" sap:quickinfo="16 Byte UUID in 16 Bytes (Raw Format)" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="zsales_orgnization" Type="Edm.String" Nullable="false" MaxLength="30" sap:display-format="UpperCase" sap:label="Sales" sap:quickinfo="sales Orgnization" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="zcomment" Type="Edm.String" MaxLength="100"/>
+                <Property Name="createdby" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="User Name"/>
+                <Property Name="createdat" Type="Edm.DateTimeOffset" Precision="0" sap:label="Time Stamp" sap:quickinfo="UTC Time Stamp in Short Form (YYYYMMDDhhmmss)"/>
+                <NavigationProperty Name="to_zdd_clap1" Relationship="cds_zsd_clap_definition.assoc_70E6EB9120DACE0C189520D251E6739C" FromRole="ToRole_assoc_70E6EB9120DACE0C189520D251E6739C" ToRole="FromRole_assoc_70E6EB9120DACE0C189520D251E6739C"/>
+            </EntityType>
+            <EntityType Name="zdd_country_vhType" sap:label="Country Value Help" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="country"/>
+                </Key>
+                <Property Name="country" Type="Edm.String" Nullable="false" MaxLength="50"/>
+                <Property Name="code" Type="Edm.String" MaxLength="10"/>
+                <Property Name="rating" Type="Edm.String" MaxLength="100"/>
+                <Property Name="isactive" Type="Edm.String" MaxLength="3"/>
+                <Property Name="last_changed_at" Type="Edm.DateTimeOffset" Precision="7" sap:label="Changed On" sap:quickinfo="Last Change Date Time"/>
+                <Property Name="local_last_changed_at" Type="Edm.DateTimeOffset" Precision="7" sap:label="Changed On" sap:quickinfo="Local Instance Last Change Date Time"/>
+            </EntityType>
+            <EntityType Name="ZDD_CREDIT_DOM_VHType" sap:label="Credit Days per Domestic VH" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="srno"/>
+                    <PropertyRef Name="channel"/>
+                </Key>
+                <Property Name="srno" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative"/>
+                <Property Name="channel" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="subchannel" Type="Edm.String" MaxLength="40"/>
+                <Property Name="lineofbusinesstype" Type="Edm.String" MaxLength="40"/>
+                <Property Name="classtype" Type="Edm.String" MaxLength="10"/>
+                <Property Name="maximumcreditdays" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative"/>
+                <Property Name="businessunit" Type="Edm.String" MaxLength="70"/>
+                <Property Name="vertical" Type="Edm.String" MaxLength="40"/>
+                <Property Name="doarole" Type="Edm.String" MaxLength="40"/>
+                <Property Name="isproxima" Type="Edm.String" MaxLength="3"/>
+                <Property Name="isactive" Type="Edm.String" MaxLength="3"/>
+            </EntityType>
+            <EntityType Name="zdd_cr_currency_vhType" sap:label="Credit Limit Currency Value Help" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="currency"/>
+                    <PropertyRef Name="abbreviation"/>
+                </Key>
+                <Property Name="currency" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="abbreviation" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Property Name="country" Type="Edm.String" MaxLength="40"/>
+                <Property Name="forexrate" Type="Edm.Decimal" Precision="13" Scale="7"/>
+                <Property Name="isactive" Type="Edm.String" MaxLength="3"/>
+            </EntityType>
+            <EntityType Name="ZDD_DELEGATION_TR_VHType" sap:label="Delegation TR Value Help" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="customertype"/>
+                    <PropertyRef Name="creditlimittype"/>
+                    <PropertyRef Name="classtype"/>
+                    <PropertyRef Name="businessunit"/>
+                    <PropertyRef Name="vertical"/>
+                    <PropertyRef Name="segment"/>
+                    <PropertyRef Name="minimumquantitylimit"/>
+                    <PropertyRef Name="maximumquantitylimit"/>
+                    <PropertyRef Name="minimumvaluelimit"/>
+                    <PropertyRef Name="maximumvaluelimit"/>
+                </Key>
+                <Property Name="customertype" Type="Edm.String" Nullable="false" MaxLength="20"/>
+                <Property Name="creditlimittype" Type="Edm.String" Nullable="false" MaxLength="20"/>
+                <Property Name="classtype" Type="Edm.String" Nullable="false" MaxLength="20"/>
+                <Property Name="businessunit" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="vertical" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="segment" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="minimumquantitylimit" Type="Edm.Decimal" Nullable="false" Precision="10" Scale="0"/>
+                <Property Name="maximumquantitylimit" Type="Edm.Decimal" Nullable="false" Precision="10" Scale="0"/>
+                <Property Name="minimumvaluelimit" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="0"/>
+                <Property Name="maximumvaluelimit" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="0"/>
+                <Property Name="lastselectedrole" Type="Edm.String" MaxLength="40"/>
+                <Property Name="roletype" Type="Edm.String" MaxLength="40"/>
+                <Property Name="informativerole" Type="Edm.String" MaxLength="10"/>
+                <Property Name="iscad" Type="Edm.String" MaxLength="3"/>
+                <Property Name="isactive" Type="Edm.String" MaxLength="3"/>
+            </EntityType>
+            <EntityType Name="ZDD_DELEGATION_VHType" sap:label="Delegation Value Help" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="customertype"/>
+                    <PropertyRef Name="class"/>
+                    <PropertyRef Name="credittype"/>
+                    <PropertyRef Name="businessunit"/>
+                    <PropertyRef Name="vertical"/>
+                    <PropertyRef Name="minimumcreditlimit"/>
+                    <PropertyRef Name="maximumcreditlimit"/>
+                    <PropertyRef Name="lastselectedrole"/>
+                </Key>
+                <Property Name="customertype" Type="Edm.String" Nullable="false" MaxLength="20"/>
+                <Property Name="class" Type="Edm.String" Nullable="false" MaxLength="20"/>
+                <Property Name="credittype" Type="Edm.String" Nullable="false" MaxLength="20"/>
+                <Property Name="businessunit" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="vertical" Type="Edm.String" Nullable="false" MaxLength="70"/>
+                <Property Name="minimumcreditlimit" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="0"/>
+                <Property Name="maximumcreditlimit" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="0"/>
+                <Property Name="lastselectedrole" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="iscad" Type="Edm.String" MaxLength="3"/>
+                <Property Name="roletype" Type="Edm.String" MaxLength="40"/>
+                <Property Name="informativerole" Type="Edm.String" MaxLength="10"/>
+                <Property Name="isactive" Type="Edm.String" MaxLength="3"/>
+            </EntityType>
+            <EntityType Name="ZDD_DOA_Credit_LimitType" sap:label="Data Definition for DOA Credit limit" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="zcustomer_num"/>
+                    <PropertyRef Name="zbusiness_unit_name"/>
+                </Key>
+                <Property Name="zcustomer_num" Type="Edm.Guid" Nullable="false" sap:label="UUID" sap:quickinfo="16 Byte UUID in 16 Bytes (Raw Format)"/>
+                <Property Name="zbusiness_unit_name" Type="Edm.String" Nullable="false" MaxLength="50"/>
+                <Property Name="zrequest_no" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative"/>
+                <Property Name="credittype" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zclass" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zvertical" Type="Edm.String" MaxLength="50"/>
+                <Property Name="roletype" Type="Edm.String" MaxLength="40"/>
+                <Property Name="lastselectedrole" Type="Edm.String" MaxLength="40"/>
+                <Property Name="minimumcreditlimit" Type="Edm.Decimal" Precision="13" Scale="0"/>
+                <Property Name="maximumcreditlimit" Type="Edm.Decimal" Precision="13" Scale="0"/>
+                <Property Name="zcredit_limit" Type="Edm.Decimal" Precision="13" Scale="0"/>
+                <Property Name="approvers_name" Type="Edm.String" MaxLength="1042"/>
+            </EntityType>
+            <EntityType Name="ZDD_EXP_PYTTERM_VHType" sap:label="Export Payt Term Value Help" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="paymentterm"/>
+                    <PropertyRef Name="businessname"/>
+                    <PropertyRef Name="vertical"/>
+                    <PropertyRef Name="class"/>
+                </Key>
+                <Property Name="paymentterm" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="businessname" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="vertical" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="class" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="creditdays" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative"/>
+            </EntityType>
+            <EntityType Name="ZDD_LEGAL_STATUS_VHType" sap:label="Legal Status Value Help" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Legalstatus"/>
+                </Key>
+                <Property Name="Legalstatus" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="Iscompany" Type="Edm.String" MaxLength="3"/>
+                <Property Name="Ispartnership" Type="Edm.String" MaxLength="3"/>
+                <Property Name="Isowner" Type="Edm.String" MaxLength="3"/>
+                <Property Name="Isactive" Type="Edm.String" MaxLength="3"/>
+            </EntityType>
+            <EntityType Name="zdd_lineofbusiness_vhType" sap:label="Line of Business Type Value Help" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="channelgroup"/>
+                    <PropertyRef Name="channel"/>
+                    <PropertyRef Name="subchannel"/>
+                    <PropertyRef Name="lineofbusinesstype"/>
+                </Key>
+                <Property Name="channelgroup" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="channel" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="subchannel" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="lineofbusinesstype" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="isactive" Type="Edm.String" MaxLength="3"/>
+            </EntityType>
+            <EntityType Name="zdd_paymentterm_vhType" sap:label="Payment Term Value Help" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="customertype"/>
+                    <PropertyRef Name="credittype"/>
+                    <PropertyRef Name="paymentterm"/>
+                    <PropertyRef Name="iscad"/>
+                    <PropertyRef Name="tillsb"/>
+                </Key>
+                <Property Name="customertype" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="credittype" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="paymentterm" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="iscad" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Property Name="tillsb" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Property Name="isactive" Type="Edm.String" MaxLength="3"/>
+            </EntityType>
+            <EntityType Name="ZDD_REMARKSType" sap:label="Data Definition for Remarks" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="remarks"/>
+                </Key>
+                <Property Name="remarks" Type="Edm.String" Nullable="false" MaxLength="100"/>
+                <Property Name="isfreetext" Type="Edm.String" MaxLength="40"/>
+                <Property Name="isapplicableformdedsb" Type="Edm.String" MaxLength="40"/>
+                <Property Name="isactive" Type="Edm.String" MaxLength="40"/>
+                <Property Name="createdby" Type="Edm.String" MaxLength="40"/>
+                <Property Name="modifiedby" Type="Edm.String" MaxLength="40"/>
+                <Property Name="createddate" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+                <Property Name="modifieddate" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+            </EntityType>
+            <EntityType Name="ZDD_REMINDERType" sap:label="Reminder" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="title"/>
+                </Key>
+                <Property Name="title" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="daysno" Type="Edm.String" MaxLength="10"/>
+                <Property Name="toroles" Type="Edm.String"/>
+                <Property Name="ccroles" Type="Edm.String"/>
+                <Property Name="status" Type="Edm.String"/>
+                <Property Name="emailtemplatebody" Type="Edm.Binary" sap:label="Attachment" sap:quickinfo="Datatype for Attachment"/>
+                <Property Name="isactive" Type="Edm.String" MaxLength="3"/>
+            </EntityType>
+            <EntityType Name="ZDD_SALE_AREA1Type" sap:label="Data Definition for Sales Area" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="zcustomer_num"/>
+                    <PropertyRef Name="zsales_orgnization"/>
+                </Key>
+                <Property Name="zcustomer_num" Type="Edm.Guid" Nullable="false" sap:label="UUID" sap:quickinfo="16 Byte UUID in 16 Bytes (Raw Format)" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="zsales_orgnization" Type="Edm.String" Nullable="false" MaxLength="30" sap:display-format="UpperCase" sap:label="Sales" sap:quickinfo="sales Orgnization" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="zdistribution_channel" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zdivision" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zsales_org_text" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zdistribution_channel_text" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zdivision_text" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zsales_district" Type="Edm.String" MaxLength="6"/>
+                <Property Name="zsales_office" Type="Edm.String" MaxLength="4"/>
+                <Property Name="zsales_group" Type="Edm.String" MaxLength="3"/>
+                <Property Name="zcustomer_group" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zabc_class" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zcurrency" Type="Edm.String" MaxLength="5" sap:semantics="currency-code"/>
+                <Property Name="zaccount_at_customer" Type="Edm.String" MaxLength="12"/>
+                <Property Name="zswitch_off_rounding" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zorderprobability" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative"/>
+                <Property Name="zauthorization_group" Type="Edm.String" MaxLength="4"/>
+                <Property Name="zitemproposal" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zunit_of_measure_group" Type="Edm.String" MaxLength="4"/>
+                <Property Name="zexchange_rate_type" Type="Edm.String" MaxLength="4"/>
+                <Property Name="zpp_customer_procedure" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zprice_group" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zpricelist" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zprice_procedured_term" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zcustomer_statistics_group" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zagency_business" Type="Edm.String" MaxLength="20"/>
+                <Property Name="zdocument_index_active" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zdelivery_priority" Type="Edm.String" MaxLength="2" sap:display-format="NonNegative"/>
+                <Property Name="zshipping_conditions" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zdelivery_plant" Type="Edm.String" MaxLength="4"/>
+                <Property Name="zorder_combination" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zrelevant_pod" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zpod_timeframe" Type="Edm.Decimal" Precision="11" Scale="0"/>
+                <Property Name="zcomplete_delivery" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zmaximum_number_of_part_delive" Type="Edm.Decimal" Precision="11" Scale="0"/>
+                <Property Name="zpartial_delivery_per_item" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zunlimited_tolerance" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zunder_delivery_tolerance" Type="Edm.Decimal" Precision="3" Scale="1"/>
+                <Property Name="zover_delivery_tolerance" Type="Edm.Decimal" Precision="3" Scale="1"/>
+                <Property Name="zmanual_invoice_maintenance" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zrebate" Type="Edm.String" MaxLength="1"/>
+                <Property Name="zpricing" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zinvoicing_dates" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zinvoicing_list_dates" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zinco_term" Type="Edm.String" MaxLength="3"/>
+                <Property Name="zinco_location1" Type="Edm.String" MaxLength="70"/>
+                <Property Name="zpayment_terms" Type="Edm.String" MaxLength="4"/>
+                <Property Name="zcredit_control_area" Type="Edm.String" MaxLength="4"/>
+                <Property Name="zpayment_gurantee_procedure" Type="Edm.String" MaxLength="30"/>
+                <Property Name="zsettlement_group" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zaccount_assignment_group" Type="Edm.String" MaxLength="2"/>
+                <Property Name="zcustomer_group1" Type="Edm.String" MaxLength="3"/>
+                <Property Name="zcustomer_group2" Type="Edm.String" MaxLength="3"/>
+                <Property Name="zcustomer_group3" Type="Edm.String" MaxLength="3"/>
+                <Property Name="zcustomer_group4" Type="Edm.String" MaxLength="3"/>
+                <Property Name="zcustomer_group5" Type="Edm.String" MaxLength="3"/>
+                <Property Name="zship_to_buyer" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zship_to_payer" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zbill_to_buyer" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zbill_to_payer" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zonly_ship_to" Type="Edm.String" MaxLength="10"/>
+                <Property Name="zsales_person" Type="Edm.String" MaxLength="12"/>
+                <Property Name="zagent" Type="Edm.String" MaxLength="1"/>
+                <Property Name="ztaxcategory" Type="Edm.String"/>
+                <Property Name="ztax_classification" Type="Edm.String" MaxLength="1"/>
+                <Property Name="ztax_category2" Type="Edm.String"/>
+                <Property Name="ztax_classification2" Type="Edm.String" MaxLength="1"/>
+                <NavigationProperty Name="to_zdd_clap" Relationship="cds_zsd_clap_definition.assoc_4CA5F42DF9885BE2C156C97B2304207F" FromRole="ToRole_assoc_4CA5F42DF9885BE2C156C97B2304207F" ToRole="FromRole_assoc_4CA5F42DF9885BE2C156C97B2304207F"/>
+            </EntityType>
+            <EntityType Name="ZDD_SubChannel_VHType" sap:label="Sub Channel Value Help" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="subchannel"/>
+                </Key>
+                <Property Name="subchannel" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="isactive" Type="Edm.String" MaxLength="3"/>
+            </EntityType>
+            <EntityType Name="ZDD_Vertical_VHType" sap:label="value help for Vertical" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="vertical"/>
+                </Key>
+                <Property Name="vertical" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative"/>
+                <Property Name="verticaldescription" Type="Edm.String" MaxLength="50"/>
+                <Property Name="mdapprovalrequired" Type="Edm.String" MaxLength="3"/>
+                <Property Name="sitevisitcompulsion" Type="Edm.String" MaxLength="3"/>
+                <Property Name="isactive" Type="Edm.String" MaxLength="3"/>
+                <Property Name="iscash" Type="Edm.String" MaxLength="3"/>
+            </EntityType>
+            <EntityType Name="ZDD_VIOLATIONType" sap:label="Data Definition for VIOLATION" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="businessunitname"/>
+                    <PropertyRef Name="verticalname"/>
+                    <PropertyRef Name="violationtypename"/>
+                </Key>
+                <Property Name="businessunitname" Type="Edm.String" Nullable="false" MaxLength="150"/>
+                <Property Name="verticalname" Type="Edm.String" Nullable="false" MaxLength="150"/>
+                <Property Name="violationtypename" Type="Edm.String" Nullable="false" MaxLength="120"/>
+                <Property Name="rolename" Type="Edm.String" MaxLength="120"/>
+                <Property Name="isactive" Type="Edm.String" MaxLength="3"/>
+            </EntityType>
+            <Association Name="assoc_4CA5F42DF9885BE2C156C97B2304207F" sap:content-version="1">
+                <End Type="cds_zsd_clap_definition.ZDD_CLAP1_VIEWType" Multiplicity="1" Role="FromRole_assoc_4CA5F42DF9885BE2C156C97B2304207F">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Type="cds_zsd_clap_definition.ZDD_SALE_AREA1Type" Multiplicity="*" Role="ToRole_assoc_4CA5F42DF9885BE2C156C97B2304207F"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_4CA5F42DF9885BE2C156C97B2304207F">
+                        <PropertyRef Name="zsales_orgnization"/>
+                        <PropertyRef Name="zcustomer_num"/>
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_4CA5F42DF9885BE2C156C97B2304207F">
+                        <PropertyRef Name="zsales_orgnization"/>
+                        <PropertyRef Name="zcustomer_num"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_70E6EB9120DACE0C189520D251E6739C" sap:content-version="1">
+                <End Type="cds_zsd_clap_definition.ZDD_CLAP1_VIEWType" Multiplicity="1" Role="FromRole_assoc_70E6EB9120DACE0C189520D251E6739C">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Type="cds_zsd_clap_definition.ZDD_COMMENT2Type" Multiplicity="*" Role="ToRole_assoc_70E6EB9120DACE0C189520D251E6739C"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_70E6EB9120DACE0C189520D251E6739C">
+                        <PropertyRef Name="zsales_orgnization"/>
+                        <PropertyRef Name="zcustomer_num"/>
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_70E6EB9120DACE0C189520D251E6739C">
+                        <PropertyRef Name="zsales_orgnization"/>
+                        <PropertyRef Name="zcustomer_num"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="cds_zsd_clap_definition_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZDD_BANK_VH" EntityType="cds_zsd_clap_definition.ZDD_BANK_VHType" sap:content-version="1"/>
+                <EntitySet Name="ZDD_BusinessUnit_VH" EntityType="cds_zsd_clap_definition.ZDD_BusinessUnit_VHType" sap:content-version="1"/>
+                <EntitySet Name="ZDD_Channel_VH" EntityType="cds_zsd_clap_definition.ZDD_Channel_VHType" sap:content-version="1"/>
+                <EntitySet Name="ZDD_ChannleGroup_VH" EntityType="cds_zsd_clap_definition.ZDD_ChannleGroup_VHType" sap:content-version="1"/>
+                <EntitySet Name="ZDD_CLAP1_VIEW" EntityType="cds_zsd_clap_definition.ZDD_CLAP1_VIEWType" sap:content-version="1"/>
+                <EntitySet Name="ZDD_COMMENT2" EntityType="cds_zsd_clap_definition.ZDD_COMMENT2Type" sap:creatable="false" sap:content-version="1"/>
+                <EntitySet Name="zdd_country_vh" EntityType="cds_zsd_clap_definition.zdd_country_vhType" sap:content-version="1"/>
+                <EntitySet Name="ZDD_CREDIT_DOM_VH" EntityType="cds_zsd_clap_definition.ZDD_CREDIT_DOM_VHType" sap:content-version="1"/>
+                <EntitySet Name="zdd_cr_currency_vh" EntityType="cds_zsd_clap_definition.zdd_cr_currency_vhType" sap:content-version="1"/>
+                <EntitySet Name="ZDD_DELEGATION_TR_VH" EntityType="cds_zsd_clap_definition.ZDD_DELEGATION_TR_VHType" sap:content-version="1"/>
+                <EntitySet Name="ZDD_DELEGATION_VH" EntityType="cds_zsd_clap_definition.ZDD_DELEGATION_VHType" sap:content-version="1"/>
+                <EntitySet Name="ZDD_DOA_Credit_Limit" EntityType="cds_zsd_clap_definition.ZDD_DOA_Credit_LimitType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZDD_EXP_PYTTERM_VH" EntityType="cds_zsd_clap_definition.ZDD_EXP_PYTTERM_VHType" sap:content-version="1"/>
+                <EntitySet Name="ZDD_LEGAL_STATUS_VH" EntityType="cds_zsd_clap_definition.ZDD_LEGAL_STATUS_VHType" sap:content-version="1"/>
+                <EntitySet Name="zdd_lineofbusiness_vh" EntityType="cds_zsd_clap_definition.zdd_lineofbusiness_vhType" sap:content-version="1"/>
+                <EntitySet Name="zdd_paymentterm_vh" EntityType="cds_zsd_clap_definition.zdd_paymentterm_vhType" sap:content-version="1"/>
+                <EntitySet Name="ZDD_REMARKS" EntityType="cds_zsd_clap_definition.ZDD_REMARKSType" sap:content-version="1"/>
+                <EntitySet Name="ZDD_REMINDER" EntityType="cds_zsd_clap_definition.ZDD_REMINDERType" sap:content-version="1"/>
+                <EntitySet Name="ZDD_SALE_AREA1" EntityType="cds_zsd_clap_definition.ZDD_SALE_AREA1Type" sap:creatable="false" sap:content-version="1"/>
+                <EntitySet Name="ZDD_SubChannel_VH" EntityType="cds_zsd_clap_definition.ZDD_SubChannel_VHType" sap:content-version="1"/>
+                <EntitySet Name="ZDD_Vertical_VH" EntityType="cds_zsd_clap_definition.ZDD_Vertical_VHType" sap:content-version="1"/>
+                <EntitySet Name="ZDD_VIOLATION" EntityType="cds_zsd_clap_definition.ZDD_VIOLATIONType" sap:content-version="1"/>
+                <AssociationSet Name="assoc_4CA5F42DF9885BE2C156C97B2304207F" Association="cds_zsd_clap_definition.assoc_4CA5F42DF9885BE2C156C97B2304207F" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZDD_CLAP1_VIEW" Role="FromRole_assoc_4CA5F42DF9885BE2C156C97B2304207F"/>
+                    <End EntitySet="ZDD_SALE_AREA1" Role="ToRole_assoc_4CA5F42DF9885BE2C156C97B2304207F"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_70E6EB9120DACE0C189520D251E6739C" Association="cds_zsd_clap_definition.assoc_70E6EB9120DACE0C189520D251E6739C" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZDD_CLAP1_VIEW" Role="FromRole_assoc_70E6EB9120DACE0C189520D251E6739C"/>
+                    <End EntitySet="ZDD_COMMENT2" Role="ToRole_assoc_70E6EB9120DACE0C189520D251E6739C"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotations Target="cds_zsd_clap_definition.cds_zsd_clap_definition_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+            </Annotations>
+            <Annotations Target="cds_zsd_clap_definition.ZDD_CLAP1_VIEWType/to_zdd_comments" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Composition"/>
+            </Annotations>
+            <Annotations Target="cds_zsd_clap_definition.ZDD_CLAP1_VIEWType/to_zdd_sale" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Composition"/>
+            </Annotations>
+            <Annotations Target="cds_zsd_clap_definition.cds_zsd_clap_definition_Entities/ZDD_CLAP1_VIEW" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="zdescription"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="zreason"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="znote"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="zfile_link"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="zwebsite"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="ztitle"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="ztax_description"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="zindustry_description"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="zdunning_area_description"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="zwith_holding_tax_type_descrip"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="ztaxcategory"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="ztax_category2"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="zrelationship_to_bp"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.NavigationRestrictions">
+                    <Record>
+                        <PropertyValue Property="RestrictedProperties">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_zdd_comments"/>
+                                    <PropertyValue Property="InsertRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Insertable" Bool="true"/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_zdd_sale"/>
+                                    <PropertyValue Property="InsertRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Insertable" Bool="true"/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>zdescription</PropertyPath>
+                                <PropertyPath>zreason</PropertyPath>
+                                <PropertyPath>znote</PropertyPath>
+                                <PropertyPath>zfile_link</PropertyPath>
+                                <PropertyPath>zwebsite</PropertyPath>
+                                <PropertyPath>ztitle</PropertyPath>
+                                <PropertyPath>ztax_description</PropertyPath>
+                                <PropertyPath>zindustry_description</PropertyPath>
+                                <PropertyPath>zdunning_area_description</PropertyPath>
+                                <PropertyPath>zwith_holding_tax_type_descrip</PropertyPath>
+                                <PropertyPath>ztaxcategory</PropertyPath>
+                                <PropertyPath>ztax_category2</PropertyPath>
+                                <PropertyPath>zrelationship_to_bp</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsd_clap_definition.cds_zsd_clap_definition_Entities/ZDD_REMINDER" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="toroles"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="ccroles"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="status"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>toroles</PropertyPath>
+                                <PropertyPath>ccroles</PropertyPath>
+                                <PropertyPath>status</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsd_clap_definition.cds_zsd_clap_definition_Entities/ZDD_SALE_AREA1" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="ztaxcategory"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="ztax_category2"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>ztaxcategory</PropertyPath>
+                                <PropertyPath>ztax_category2</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsd_clap_definition.cds_zsd_clap_definition_Entities/ZDD_BANK_VH" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsd_clap_definition.cds_zsd_clap_definition_Entities/ZDD_BusinessUnit_VH" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsd_clap_definition.cds_zsd_clap_definition_Entities/ZDD_COMMENT2" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsd_clap_definition.cds_zsd_clap_definition_Entities/ZDD_CREDIT_DOM_VH" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsd_clap_definition.cds_zsd_clap_definition_Entities/ZDD_Channel_VH" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsd_clap_definition.cds_zsd_clap_definition_Entities/ZDD_ChannleGroup_VH" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsd_clap_definition.cds_zsd_clap_definition_Entities/ZDD_DELEGATION_TR_VH" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsd_clap_definition.cds_zsd_clap_definition_Entities/ZDD_DELEGATION_VH" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsd_clap_definition.cds_zsd_clap_definition_Entities/ZDD_EXP_PYTTERM_VH" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsd_clap_definition.cds_zsd_clap_definition_Entities/ZDD_LEGAL_STATUS_VH" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsd_clap_definition.cds_zsd_clap_definition_Entities/ZDD_REMARKS" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsd_clap_definition.cds_zsd_clap_definition_Entities/ZDD_SubChannel_VH" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsd_clap_definition.cds_zsd_clap_definition_Entities/ZDD_VIOLATION" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsd_clap_definition.cds_zsd_clap_definition_Entities/ZDD_Vertical_VH" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsd_clap_definition.cds_zsd_clap_definition_Entities/zdd_country_vh" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsd_clap_definition.cds_zsd_clap_definition_Entities/zdd_cr_currency_vh" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsd_clap_definition.cds_zsd_clap_definition_Entities/zdd_lineofbusiness_vh" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsd_clap_definition.cds_zsd_clap_definition_Entities/zdd_paymentterm_vh" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsd_clap_definition.cds_zsd_clap_definition_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Org.OData.Capabilities.V1.BatchSupport">
+                    <Record Type="Org.OData.Capabilities.V1.BatchSupportType">
+                        <PropertyValue Property="ReferencesAcrossChangeSetsSupported" Bool="true"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="https://ec1a78af-5702-4e45-810c-8adc11be0ea7.abap.eu10.hana.ondemand.com/sap/opu/odata/sap/ZSB_CLAP_BINDING/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://ec1a78af-5702-4e45-810c-8adc11be0ea7.abap.eu10.hana.ondemand.com/sap/opu/odata/sap/ZSB_CLAP_BINDING/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

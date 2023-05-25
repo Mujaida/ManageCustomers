@@ -1,0 +1,22 @@
+<mvc:View controllerName="iffco.managecustomer.sections.CreditProfileSegmentData.HDLContrl" xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" xmlns:core="sap.ui.core">
+	<forms:SimpleForm editable="false" layout="ColumnLayout">
+    <core:Title text="Highest Dunning Level"/>
+    <Label text="Data Outdated" />
+		<CheckBox selected="{=${Customers>/zdata_outdated} === 'Y' ? true : false}" />
+
+		<Label text="Dunning Level" />
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zdunning_level}" maxLength="8" />
+      
+        <Label text="Amount" />
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value= "{Customers>/zdunning_amt}" maxLength="7" liveChange="handleSetMaxLength" type="Number"/>
+
+        <Label text="Document" />
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value= "{Customers>/zdunning_doc}" maxLength="32"/>
+
+        <Label text="No.Dunning Nots" />
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value= "{Customers>/zdunning_not}" maxLength="4" liveChange="handleSetMaxLength" type="Number"/>
+        
+
+
+    </forms:SimpleForm>
+</mvc:View>

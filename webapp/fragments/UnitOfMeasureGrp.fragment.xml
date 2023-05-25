@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Unit Measure Group" class="sapUiPopupWithPadding"
+		items="{path:'S4D>/UnitMeasureGroupSet'}" search="handleValueHelpUntMsrGrpSearch"
+		confirm="handleValueHelpUntMsrGrpConfirm" cancel="handleValueHelpUntMsrGrpClose" multiSelect="false">
+		<StandardListItem title="{S4D>UnitMeasureGroup}" description="{S4D>Description}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

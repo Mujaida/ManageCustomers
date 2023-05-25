@@ -1,0 +1,39 @@
+<mvc:View controllerName="iffco.managecustomer.sections.ERPCustomers.APTController" xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" >
+	<forms:SimpleForm editable="false" layout="ColumnLayout">
+		<Label text="Company Code" visible="{=${fieldMappingModels>/CompanyCodeVisible} === true ? true : false}"
+		 required="{=${fieldMappingModels>/CompanyCodeMandatory} === true ? true : false}" />
+		<Input visible="{=${fieldMappingModels>/CompanyCodeVisible} === true ? true : false}" enabled="{=${Customers>/zrequest_no} ? false : true}" maxLength="4" value="{Customers>/zcompany_code}"/>
+		<Label text = "Reconcilation Account" visible="{=${fieldMappingModels>/ReconciliationAccountVisible} === true ? true : false}" required="{=${fieldMappingModels>/ReconciliationAccountMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zreconciliation_account}" maxLength="10" visible="{=${fieldMappingModels>/ReconciliationAccountVisible} === true ? true : false}"/>
+		<Label text="Head office" visible="{=${fieldMappingModels>/HeadOfficeVisible} === true ? true : false}" 
+		required="{=${fieldMappingModels>/HeadOfficeMandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zhead_office}" maxLength="10" visible="{=${fieldMappingModels>/HeadOfficeVisible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForHeadOffice" value="{Customers>/zhead_office}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/HeadOfficeVisible} === true ? true : false}"/>
+		<Label text="Authorization Group" visible="{=${fieldMappingModels>/AuthorizationGroupVisible} === true ? true : false}" 
+		required="{=${fieldMappingModels>/AuthorizationGroupMandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zauthorization_group}" maxLength="4" visible="{=${fieldMappingModels>/AuthorizationGroupVisible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForAuthorization" value="{Customers>/zauthorization_group}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/AuthorizationGroupVisible} === true ? true : false}"/>
+		<Label text="Value Adjustment" visible="{=${fieldMappingModels>/ValueAdjustmentVisible} === true ? true : false}" 
+		required="{=${fieldMappingModels>/ValueAdjustmentMandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zvalue_adjustment}" maxLength="2" visible="{=${fieldMappingModels>/ValueAdjustmentVisible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForValueAdjustment" value="{Customers>/zvalue_adjustment}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/ValueAdjustmentVisible} === true ? true : false}"/>
+		<Label text="Sort Key" visible="{=${fieldMappingModels>/SortKeyVisible} === true ? true : false}" 
+		required="{=${fieldMappingModels>/SortKeyMandatory} === true ? true : false}"/>
+		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForSortKey" value="{Customers>/zsort_key}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/SortKeyVisible} === true ? true : false}"/>
+		<!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zsort_key}" maxLength="3" visible="{=${fieldMappingModels>/SortKeyVisible} === true ? true : false}"/> -->
+		<Label text="Planning Group" visible="{=${fieldMappingModels>/PlanningGroupVisible} === true ? true : false}" 
+		required="{=${fieldMappingModels>/PlanningGroupMandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zplanning_group}" maxLength="10" visible="{=${fieldMappingModels>/PlanningGroupVisible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForPlanningGrp" value="{Customers>/zplanning_group}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/PlanningGroupVisible} === true ? true : false}"/>
+		<Label text="Release Group" visible="{=${fieldMappingModels>/ReleaseGroupVisible} === true ? true : false}" 
+		required="{=${fieldMappingModels>/ReleaseGroupMandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zrelease_group}" maxLength="4" visible="{=${fieldMappingModels>/ReleaseGroupVisible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForReleaseGrp" value="{Customers>/zrelease_group}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/ReleaseGroupVisible} === true ? true : false}"/>
+	</forms:SimpleForm>
+</mvc:View>

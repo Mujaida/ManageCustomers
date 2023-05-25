@@ -1,0 +1,43 @@
+<mvc:View controllerName="iffco.managecustomer.sections.ERPCustomers.APTController" id="aptView" xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" >
+	<forms:SimpleForm editable="false" layout="ColumnLayout" id="apt">
+		<Label text="Payment Method" visible="{=${fieldMappingModels>/PaymentMethodVisible} === true ? true : false}"
+		 required="{=${fieldMappingModels>/PaymentMethodMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zpayment_method}" maxLength="10" visible="{=${fieldMappingModels>/PaymentMethodVisible} === true ? true : false}"/>
+		<Label text = "Alternative payer" visible="{=${fieldMappingModels>/AlternativePayerVisible} === true ? true : false}"
+		 required="{=${fieldMappingModels>/AlternativePayerMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zalternative_payer}" maxLength="10" visible="{=${fieldMappingModels>/AlternativePayerVisible} === true ? true : false}"/>		
+		<Label text="Bill of Exchange Limit" visible="{=${fieldMappingModels>/BillOfExchangeLimitVisible} === true ? true : false}"
+		 required="{=${fieldMappingModels>/BillOfExchangeLimitMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zbill_of_exchangelimit}" liveChange="handleSetMaxLength" maxLength="11" type="Number" visible="{=${fieldMappingModels>/BillOfExchangeLimitVisible} === true ? true : false}"/>
+		<Label text="Payment Method Supplement" visible="{=${fieldMappingModels>/PaymentMethodSupplementVisible} === true ? true : false}"
+		 required="{=${fieldMappingModels>/PaymentMethodSupplementMandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zpayment_method_supplement}" maxLength="2" visible="{=${fieldMappingModels>/PaymentMethodSupplementVisible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForPaymntMethdSupplmnt" value="{Customers>/zpayment_method_supplement}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/PaymentMethodSupplementVisible} === true ? true : false}"/>
+		<Label text="Next Payee" visible="{=${fieldMappingModels>/NextPayeeVisible} === true ? true : false}"
+		 required="{=${fieldMappingModels>/NextPayeeMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/znext_payee}" maxLength="10" visible="{=${fieldMappingModels>/NextPayeeVisible} === true ? true : false}"/>
+		<Label text="Lockbox" visible="{=${fieldMappingModels>/LockboxVisible} === true ? true : false}"
+		 required="{=${fieldMappingModels>/LockboxMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zlockbox}" maxLength="7" visible="{=${fieldMappingModels>/LockboxVisible} === true ? true : false}"/>
+		<Label text="Payment Block" visible="{=${fieldMappingModels>/PaymentBlockVisible} === true ? true : false}"
+		 required="{=${fieldMappingModels>/PaymentBlockMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zpayment_block}" maxLength="1" visible="{=${fieldMappingModels>/PaymentBlockVisible} === true ? true : false}"/>
+		<Label text="House Bank" visible="{=${fieldMappingModels>/HouseBankVisible} === true ? true : false}"
+		 required="{=${fieldMappingModels>/HouseBankMandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zhouse_bank}" maxLength="5" visible="{=${fieldMappingModels>/HouseBankVisible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForHouseBank" value="{Customers>/zhouse_bank}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/HouseBankVisible} === true ? true : false}"/>
+		<Label text="Grouping Key" visible="{=${fieldMappingModels>/GroupingKeyVisible} === true ? true : false}"
+		 required="{=${fieldMappingModels>/GroupingKeyMandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zgrouping_key}" maxLength="2" visible="{=${fieldMappingModels>/GroupingKeyVisible} === true ? true : false}"/> -->
+        <MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForGroupingKey" value="{Customers>/zgrouping_key}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/GroupingKeyVisible} === true ? true : false}"/>
+		<Label text="Individual payment" visible="{=${fieldMappingModels>/IndividualPaymentVisible} === true ? true : false}"
+		 required="{=${fieldMappingModels>/IndividualPaymentMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zindividual_paymen}" maxLength="1" visible="{=${fieldMappingModels>/IndividualPaymentVisible} === true ? true : false}"/>
+        <Label text="Payment Advice by EDI" visible="{=${fieldMappingModels>/PaymentAdvicebyEDIVisible} === true ? true : false}"
+		 required="{=${fieldMappingModels>/PaymentAdvicebyEDIMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zpayment_advice_by_edi}" maxLength="3" visible="{=${fieldMappingModels>/PaymentAdvicebyEDIVisible} === true ? true : false}"/>
+	</forms:SimpleForm>
+</mvc:View>

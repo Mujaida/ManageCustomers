@@ -1,0 +1,10 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+>
+<SelectDialog contentHeight="60%" showClearButton="true" title="Select Customer Group" class="sapUiPopupWithPadding"
+		items="{path:'S4D>/CustomerGroupSet'}" search="handleValueHelpcusGrpSearch"
+		confirm="handleValueHelpcusGrpConfirm" cancel="handleValueHelpcusGrpClose" multiSelect="false">
+		<StandardListItem title="{S4D>Customergroup}" description="{S4D>Description}"/>
+	</SelectDialog>
+</c:FragmentDefinition>

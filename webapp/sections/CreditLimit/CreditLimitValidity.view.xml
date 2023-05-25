@@ -1,0 +1,11 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" >
+	<forms:SimpleForm editable="false" layout="ColumnLayout">
+		<Label text="Date" visible="{=${fieldMappingModels>/DateVisible} === true ? true : false}"
+		required="{=${fieldMappingModels>/DateMandatory} === true ? true : false}" />
+		<DatePicker enabled="false" value="{Customers>/zdate}" valueFormat="MM.dd.yyyy" visible="{=${fieldMappingModels>/DateVisible} === true ? true : false}"/>
+	
+	<Label text="Proposed Date" visible="{=${fieldMappingModels>/ProposedDateVisible} === true ? true : false}"
+		required="{=${fieldMappingModels>/ProposedDateMandatory} === true ? true : false}" />
+		<DatePicker enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zcl_validity_proposed_date}" valueFormat="MM.dd.yyyy" visible="{=${fieldMappingModels>/ProposedDateVisible} === true ? true : false}"/>
+	</forms:SimpleForm>
+</mvc:View>

@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Payment Terms" class="sapUiPopupWithPadding"
+		items="{/zdd_paymentterm_vh}" search="handleValueHelpPaymentTermsSearch"
+		confirm="handleValueHelpPaymentTermsConfirm" cancel="handleValueHelpPaymentTermsClose" multiSelect="false">
+		<StandardListItem title="{paymentterm}" />
+	</SelectDialog>
+</core:FragmentDefinition>

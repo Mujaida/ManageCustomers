@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Industry type" class="sapUiPopupWithPadding"
+		items="{path:'creditInfoSet1>/'}" search="handleValueHelpIndusTypeSearch"
+		confirm="handleValueHelpIndusTypeConfirm" cancel="handleValueHelpIndusTypeClose" multiSelect="false">
+		<StandardListItem title="{creditInfoSet1>InformationType}" description="{creditInfoSet1>NameOfType}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

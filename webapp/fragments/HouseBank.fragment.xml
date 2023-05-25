@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select House Bank" class="sapUiPopupWithPadding"
+		items="{path:'S4D>/HouseBankSet'}" search="handleValueHelpHouseBankSearch"
+		confirm="handleValueHelpHouseBankConfirm" cancel="handleValueHelpHouseBankClose" multiSelect="false">
+		<StandardListItem title="{S4D>Housebank}" description="{S4D>Description}" />
+	</SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,292 @@
+<core:FragmentDefinition xmlns:forms="sap.ui.layout.form" xmlns="sap.m" xmlns:core="sap.ui.core">
+    <HBox>
+        <Panel expandable="true" >
+				<headerToolbar>
+			<OverflowToolbar style="Clear">
+				<Text text="Sales Area" />
+				<ToolbarSpacer />
+				<Button icon="sap-icon://decline" press="handleDeleteSalesArea"/>
+				<!-- <Button icon="sap-icon://settings" /> -->
+				
+			</OverflowToolbar>
+		</headerToolbar>
+				<content>	
+				<VBox >
+				<forms:SimpleForm editable="false" layout="ColumnLayout"> 
+				
+				<Label text="Sales Organization" visible="{=${fieldMappingModels>/SalesOrganizationVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/SalesOrganizationMandatory} === true ? true : false}"/>
+ <MultiInput value="{salesDataModel>zsales_orgnization}" valueHelpRequest="handleValueHelpForSalesOrg"
+	valueHelpOnly="true" visible="{=${fieldMappingModels>/SalesOrganizationVisible} === true ? true : false}"/>
+		<!-- <Input value="{salesDataModel>zsales_orgnization}" visible="{=${fieldMappingModels>/391} === true ? true : false}"/> -->
+		<Label text = "Distribution Channel" visible="{=${fieldMappingModels>/DistributionChannelVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/DistributionChannelMandatory} === true ? true : false}"/>
+		<MultiInput value="{salesDataModel>zdistribution_channel}" valueHelpRequest="handleValueHelpForDistChannel"
+	valueHelpOnly="true" visible="{=${fieldMappingModels>/DistributionChannelVisible} === true ? true : false}"/>
+		<!-- <Input value="{salesDataModel>zdistribution_channel}" visible="{=${fieldMappingModels>/167} === true ? true : false}"/> -->
+		 
+		<Label text="Division" visible="{=${fieldMappingModels>/DivisionVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/DivisionMandatory} === true ? true : false}"/>
+ <MultiInput value="{salesDataModel>zdivision}" valueHelpRequest="handleValueHelpForDivision"
+	valueHelpOnly="true" visible="{=${fieldMappingModels>/DivisionVisible} === true ? true : false}"/>
+				
+				<Label text="Settlement Group" visible="{=${fieldMappingModels>/SettlementGroupVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/SettlementGroupMandatory} === true ? true : false}" />
+		<Input value="{salesDataModel>zsettlement_group}" maxLength="10" visible="{=${fieldMappingModels>/SettlementGroupVisible} === true ? true : false}"/>
+		
+		<Label text = "Account Assignment Group" visible="{=${fieldMappingModels>/AccountAssignmentGroupVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/AccountAssignmentGroupMandatory} === true ? true : false}"/>
+		<Input value="{salesDataModel>zaccount_assignment_group}" maxLength="2" visible="{=${fieldMappingModels>/AccountAssignmentGroupVisible} === true ? true : false}"/>
+
+
+		<Label text="Agency Business" visible="{=${fieldMappingModels>/AgencyBusinessVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/AgencyBusinessMandatory} === true ? true : false}"/>
+        <Input value="{salesDataModel>zagency_business}" maxLength="20" visible="{=${fieldMappingModels>/AgencyBusinessVisible} === true ? true : false}" enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}"/>
+        <Label text="Document Index Active" visible="{=${fieldMappingModels>/DocumentIndexActiveVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/DocumentIndexActiveMandatory} === true ? true : false}"/>
+        <Input value="{salesDataModel>zdocument_index_active}" maxLength="1" visible="{=${fieldMappingModels>/DocumentIndexActiveVisible} === true ? true : false}" enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}"/>
+
+
+		<Label text="Manual Invoice Maintenance"  visible="{=${fieldMappingModels>/ManualInvoiceMaintenanceVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/ManualInvoiceMaintenanceMandatory} === true ? true : false}"/>
+		<Input value="{salesDataModel>zmanual_invoice_maintenance}" maxLength="1" visible="{=${fieldMappingModels>/ManualInvoiceMaintenanceVisible} === true ? true : false}" enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}"/>
+		<Label text = "Rebate" visible="{=${fieldMappingModels>/RebateVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/RebateMandatory} === true ? true : false}"/>
+		<Input value="{salesDataModel>zrebate}" maxLength="1" visible="{=${fieldMappingModels>/RebateVisible} === true ? true : false}" enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}"/>
+		<Label text="Pricing" visible="{=${fieldMappingModels>/PricingVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/PricingMandatory} === true ? true : false}"/>
+		<Input value="{salesDataModel>zpricing}" maxLength="2" visible="{=${fieldMappingModels>/PricingVisible} === true ? true : false}" enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}"/>
+		<Label text="Invoice Dates" visible="{=${fieldMappingModels>/InvoicingDatesVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/InvoicingDatesMandatory} === true ? true : false}"/>
+		<!-- <Input value="{salesDataModel>zinvoicing_dates}" maxLength="2" visible="{=${fieldMappingModels>/InvoicingDatesVisible} === true ? true : false}" enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}"/> -->
+		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zinvoicing_dates}" valueHelpRequest="handleValueHelpForInvcDates"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/InvoicingDatesVisible} === true ? true : false}"/>
+		<Label text = "Invoice List Dates" visible="{=${fieldMappingModels>/InvoicingListDatesVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/InvoicingListDatesMandatory} === true ? true : false}"/>
+		<!-- <Input value="{salesDataModel>zinvoicing_list_dates}" maxLength="2" visible="{=${fieldMappingModels>/InvoicingListDatesVisible} === true ? true : false}" enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}"/> -->
+		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zinvoicing_list_dates}" valueHelpRequest="handleValueHelpForInvcLists"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/InvoicingListDatesVisible} === true ? true : false}"/>
+
+
+		<Label text="Customer Group 1" visible="{=${fieldMappingModels>/CustomerGroup1Visible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CustomerGroup1Mandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zcustomer_group1}" maxLength="3" visible="{=${fieldMappingModels>/CustomerGroup1Visible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForCusGrp1" value="{salesDataModel>zcustomer_group1}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/CustomerGroup1Visible} === true ? true : false}"/>
+		<Label text="Customer Group 2" visible="{=${fieldMappingModels>/CustomerGroup2Visible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CustomerGroup2Mandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zcustomer_group2}" maxLength="3" visible="{=${fieldMappingModels>/CustomerGroup2Visible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForCusGrp2" value="{salesDataModel>zcustomer_group2}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/CustomerGroup2Visible} === true ? true : false}"/>
+		<Label text="Customer Group 3" visible="{=${fieldMappingModels>/CustomerGroup3Visible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CustomerGroup3Mandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zcustomer_group3}" maxLength="3" visible="{=${fieldMappingModels>/CustomerGroup3Visible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForCusGrp3" value="{salesDataModel>zcustomer_group3}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/CustomerGroup3Visible} === true ? true : false}"/>
+		<Label text="Customer Group 4" visible="{=${fieldMappingModels>/CustomerGroup4Visible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CustomerGroup4Mandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zcustomer_group4}" maxLength="3" visible="{=${fieldMappingModels>/CustomerGroup4Visible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForCusGrp4" value="{salesDataModel>zcustomer_group4}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/CustomerGroup4Visible} === true ? true : false}"/>
+		<Label text="Customer Group 5" visible="{=${fieldMappingModels>/CustomerGroup5Visible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CustomerGroup5Mandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zcustomer_group5}" maxLength="3" visible="{=${fieldMappingModels>/CustomerGroup5Visible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForCusGrp5" value="{salesDataModel>zcustomer_group5}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/CustomerGroup5Visible} === true ? true : false}"/>
+		<Label text="Customer Group" visible="{=${fieldMappingModels>/CustomerGroupVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CustomerGroupMandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zcustomer_group}" maxLength="10" visible="{=${fieldMappingModels>/CustomerGroupVisible} === true ? true : false}" /> -->
+	<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForCusGrp" value="{salesDataModel>zcustomer_group}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/CustomerGroupVisible} === true ? true : false}"/>
+
+
+		<Label text="Incoterms" visible="{=${fieldMappingModels>/IncotermsVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/IncotermsMandatory} === true ? true : false}"/>
+ <MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zinco_term}" maxLength="3" valueHelpRequest="handleValueHelpForIncoterms"
+	 valueHelpOnly="true" visible="{=${fieldMappingModels>/IncotermsVisible} === true ? true : false}"/>
+		<!-- <Input value="{salesDataModel>zinco_term}" visible="{=${fieldMappingModels>/209} === true ? true : false}"/> -->
+		<Label text = "Inco. Location1"  visible="{=${fieldMappingModels>/Inco.Location1Visible} === true ? true : false}"
+ required="{=${fieldMappingModels>/Inco.Location1Mandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zinco_location1}" maxLength="70" visible="{=${fieldMappingModels>/Inco.Location1Visible} === true ? true : false}"/>
+		
+		<Label text="Payment Terms" visible="{=${fieldMappingModels>/PaymentTermsVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/PaymentTermsMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zpayment_terms}" maxLength="4" visible="{=${fieldMappingModels>/PaymentTermsVisible} === true ? true : false}"/>
+
+		<Label text="Credit Control Area" visible="{=${fieldMappingModels>/CreditControlAreaVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CreditControlAreaMandatory} === true ? true : false}"/>
+		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zcredit_control_area}" maxLength="4" valueHelpRequest="handleValueHelpForCreditControl"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/CreditControlAreaVisible} === true ? true : false}"/>
+		<Label text="Payment Gurantee Procedure" visible="{=${fieldMappingModels>/PaymentGuranteeProcedureVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/PaymentGuranteeProcedureMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zpayment_gurantee_procedure}" visible="{=${fieldMappingModels>/PaymentGuranteeProcedureVisible} === true ? true : false}"/>
+
+
+		<Label text="Complete Delivery" visible="{=${fieldMappingModels>/CompleteDeliveryVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CompleteDeliveryMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zcomplete_delivery}" maxLength="1" visible="{=${fieldMappingModels>/CompleteDeliveryVisible} === true ? true : false}"/>
+		<Label text = "Maximum Number of Part. Deliveries" visible="{=${fieldMappingModels>/MaximumNumberofPart.DeliveriesVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/MaximumNumberofPart.DeliveriesMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zmaximum_number_of_part_delive}" visible="{=${fieldMappingModels>/MaximumNumberofPart.DeliveriesVisible} === true ? true : false}"/>
+		
+		<Label text="Partial Delivery per Item" visible="{=${fieldMappingModels>/PartialDeliveryperItemVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/PartialDeliveryperItemMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zpartial_delivery_per_item}" maxLength="1" visible="{=${fieldMappingModels>/PartialDeliveryperItemVisible} === true ? true : false}"/>
+		<Label text="Unlimited Tolerance"  visible="{=${fieldMappingModels>/UnlimitedToleranceVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/UnlimitedToleranceMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zunlimited_tolerance}" maxLength="1" visible="{=${fieldMappingModels>/UnlimitedToleranceVisible} === true ? true : false}"/>
+		<Label text = "Underdelivery Tolerance" visible="{=${fieldMappingModels>/UnderdeliveryToleranceVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/UnderdeliveryToleranceMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zunder_delivery_tolerance}" maxLength="3" visible="{=${fieldMappingModels>/UnderdeliveryToleranceVisible} === true ? true : false}"/>
+		
+		<Label text="Overdelivery Tolerance" visible="{=${fieldMappingModels>/OverdeliveryToleranceVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/OverdeliveryToleranceMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zover_delivery_tolerance}" maxLength="3" visible="{=${fieldMappingModels>/OverdeliveryToleranceVisible} === true ? true : false}"/>
+
+
+		<Label text="Bill to, Ship to, Payer, Buyer" visible="{=${fieldMappingModels>/BilltoShiptoPayerBuyerVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/BilltoShiptoPayerBuyerMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zbill_to_buyer}" maxLength="10" visible="{=${fieldMappingModels>/BilltoShiptoPayerBuyerVisible} === true ? true : false}"/>
+		<Label text = "Only Ship To" visible="{=${fieldMappingModels>/OnlyShipToVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/OnlyShipToMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zonly_ship_to}" maxLength="10" visible="{=${fieldMappingModels>/OnlyShipToVisible} === true ? true : false}"/>
+		
+		<Label text="Sales Person" visible="{=${fieldMappingModels>/SalesPersonVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/SalesPersonMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zsales_person}" maxLength="12" visible="{=${fieldMappingModels>/SalesPersonVisible} === true ? true : false}"/>
+		<Label text="Agent" visible="{=${fieldMappingModels>/AgentVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/AgentMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zagent}" maxLength="1" visible="{=${fieldMappingModels>/AgentVisible} === true ? true : false}"/>
+
+
+		<Label text="Price Group" visible="{=${fieldMappingModels>/PriceGroupVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/PriceGroupMandatory} === true ? true : false}"/>
+        <MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForPriceGrp" value="{salesDataModel>zprice_group}"
+       valueHelpOnly="true" visible="{=${fieldMappingModels>/PriceGroupVisible} === true ? true : false}"/>
+	<Label text="Price List" visible="{=${fieldMappingModels>/PricelistVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/PricelistMandatory} === true ? true : false}"/>
+       <MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForPriceList" value="{salesDataModel>zpricelist}"
+       valueHelpOnly="true" visible="{=${fieldMappingModels>/PricelistVisible} === true ? true : false}"/>
+	<Label text="Price Procedure Determination"  visible="{=${fieldMappingModels>/PriceProcedureDterm.Visible} === true ? true : false}"
+ required="{=${fieldMappingModels>/PriceProcedureDterm.Mandatory} === true ? true : false}"/>
+        <!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zprice_procedured_term}" maxLength="2" visible="{=${fieldMappingModels>/PriceProcedureDterm.Visible} === true ? true : false}"/> -->
+        <MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForPPDetermination" value="{salesDataModel>zprice_procedured_term}"
+       valueHelpOnly="true" visible="{=${fieldMappingModels>/PriceProcedureDterm.Visible} === true ? true : false}"/>
+	<Label text="Customer Statistic Group"  visible="{=${fieldMappingModels>/CustomerStatisticsGroupVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CustomerStatisticsGroupMandatory} === true ? true : false}"/>
+        <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zcustomer_statistics_group}" maxLength="1" visible="{=${fieldMappingModels>/CustomerStatisticsGroupVisible} === true ? true : false}"/>
+
+
+		<Label text="Sales District" visible="{=${fieldMappingModelss>/SalesdistrictVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/SalesdistrictMandatory} === true ? true : false}" />
+		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForsalesDist" value="{salesDataModel>zsales_district}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/SalesdistrictVisible} === true ? true : false}"/>
+		<Label text = "Sales office" visible="{=${fieldMappingModels>/SalesOfficeVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/SalesOfficeMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zsales_office}" maxLength="4" visible="{=${fieldMappingModels>/SalesOfficeVisible} === true ? true : false}"/>
+		
+		<Label text="Sales Group" visible="{=${fieldMappingModels>/SalesGroupVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/SalesGroupMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zsales_group}" maxLength="3" visible="{=${fieldMappingModels>/SalesGroupVisible} === true ? true : false}"/>
+
+		<Label text="Customer Group" visible="{=${fieldMappingModels>/CustomerGroupVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CustomerGroupMandatory} === true ? true : false}" />
+		<!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zcustomer_group}" maxLength="10" visible="{=${fieldMappingModels>/CustomerGroupVisible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForCusGrp" value="{salesDataModel>zcustomer_group}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/CustomerGroupVisible} === true ? true : false}"/>
+		<Label text = "ABC Class" visible="{=${fieldMappingModelss>/ABCClassVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/ABCClassMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zabc_class}" maxLength="2" visible="{=${fieldMappingModels>/ABCClassVisible} === true ? true : false}"/>
+
+		<Label text="Currency" visible="{=${fieldMappingModels>/CurrencyVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CurrencyMandatory} === true ? true : false}"/>
+        <MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForCurrency" value="{salesDataModel>zcurrency}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/CurrencyVisible} === true ? true : false}"/>
+		<!-- <Input visible="{=${fieldMappingModels>/141/visibility} === true ? true : false}"/> -->
+		<Label text="Account at Customer" visible="{=${fieldMappingModels>/AccountatCustomerVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CurrencyMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zaccount_at_customer}" maxLength="12" visible="{=${fieldMappingModels>/AccountatCustomerVisible} === true ? true : false}"/>
+		<Label text = "Switch off rounding" visible="{=${fieldMappingModels>/SwitchOffRoundingVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/SwitchOffRoundingMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zswitch_off_rounding}" maxLength="1" visible="{=${fieldMappingModels>/SwitchOffRoundingVisible} === true ? true : false}"/>
+		
+		<Label text="Order Probability(%)" visible="{=${fieldMappingModels>/OrderProbabilityVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/OrderProbabilityMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zorderprobability}" maxLength="3" type="Number" liveChange="handleSetMaxLength" visible="{=${fieldMappingModels>/OrderProbabilityVisible} === true ? true : false}"/>
+
+		<Label text="Authorization Group" visible="{=${fieldMappingModels>/AuthorizationGroupVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/AuthorizationGroupMandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zauthorization_group}" maxLength="4" visible="{=${fieldMappingModels>/AuthorizationGroupVisible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForAuthorization" value="{salesDataModel>zauthorization_group}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/AuthorizationGroupVisible} === true ? true : false}"/>
+		<Label text="Item Proposal"  visible="{=${fieldMappingModels>/ItemProposalVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/ItemProposalMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zitemproposal}" maxLength="10" visible="{=${fieldMappingModels>/ItemProposalVisible} === true ? true : false}"/>
+		<Label text = "Unit Of Measure group" visible="{=${fieldMappingModels>/UnitOfMeasureGroupVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/UnitOfMeasureGroupMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zunit_of_measure_group}" maxLength="4" visible="{=${fieldMappingModels>/UnitOfMeasureGroupVisible} === true ? true : false}"/>
+		
+		<Label text="Exchange Rate Type" visible="{=${fieldMappingModels>/ExchangeRateTypeVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/ExchangeRateTypeMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zexchange_rate_type}" maxLength="4" visible="{=${fieldMappingModels>/ExchangeRateTypeVisible} === true ? true : false}"/>
+		<Label text="PP Customer Procedure" visible="{=${fieldMappingModels>/PPCustomerProcedureVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/PPCustomerProcedureMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zpp_customer_procedure}" maxLength="2" visible="{=${fieldMappingModels>/PPCustomerProcedureVisible} === true ? true : false}"/>
+
+
+		<Label text="Delivery Priority" visible="{=${fieldMappingModels>/DeliveryPriorityVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/DeliveryPriorityMandatory} === true ? true : false}" />
+        <!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zdelivery_priority}" liveChange="handleSetMaxLength" type="Number" maxLength="2" visible="{=${fieldMappingModels>/DeliveryPriorityVisible} === true ? true : false}" /> -->
+        <MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zdelivery_priority}" valueHelpRequest="handleValueHelpForDelvPrior"
+	 valueHelpOnly="true" visible="{=${fieldMappingModels>/DeliveryPriorityVisible} === true ? true : false}"/>
+		<Label text="Shipping Conditions"  visible="{=${fieldMappingModels>/ShippingConditionsVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/ShippingConditionsMandatory} === true ? true : false}" />
+        <!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zshipping_conditions}" maxLength="2" visible="{=${fieldMappingModels>/ShippingConditionsVisible} === true ? true : false}" /> -->
+        <MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zshipping_conditions}" valueHelpRequest="handleValueHelpForShippingCondn"
+        valueHelpOnly="true" visible="{=${fieldMappingModels>/ShippingConditionsVisible} === true ? true : false}"/>
+		<Label text="Delivery Plant" visible="{=${fieldMappingModels>/DeliveryPlantVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/DeliveryPlantMandatory} === true ? true : false}" />
+        <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zdelivery_plant}" maxLength="4" visible="{=${fieldMappingModels>/DeliveryPlantVisible} === true ? true : false}" />
+        <Label text="Order Combination"  visible="{=${fieldMappingModels>/OrderCombinationVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/OrderCombinationMandatory} === true ? true : false}" />
+        <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zorder_combination}" maxLength="1" visible="{=${fieldMappingModels>/OrderCombinationVisible} === true ? true : false}" />
+        <Label text="Relevant POD" visible="{=${fieldMappingModels>/RelevantPODVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/RelevantPODMandatory} === true ? true : false}" />
+        <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zrelevant_pod}" maxLength="1" visible="{=${fieldMappingModels>/RelevantPODVisible} === true ? true : false}" />
+
+        <Label text="POD Timeframe" visible="{=${fieldMappingModels>/PODTimeframeVisible} === true ? true : false}"
+         required="{=${fieldMappingModels>/PODTimeframeMandatory} === true ? true : false}" />
+        <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zpod_timeframe}" maxLength="11" type="Number" liveChange="handleSetMaxLength" visible="{=${fieldMappingModels>/PODTimeframeVisible} === true ? true : false}" />
+
+
+		<!-- <Label text="Country" visible="{=${fieldMappingModels>/CountryVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CountryMandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>zcountry}" maxLength="20" visible="{=${fieldMappingModels>/CountryVisible} === true ? true : false}"/> -->
+		<Label text = "Tax category" visible="{=${fieldMappingModels>/TaxCategoryVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/TaxCategoryMandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>ztaxcategory}" visible="{=${fieldMappingModels>/TaxCategoryVisible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForTaxCat" value="{salesDataModel>ztaxcategory}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/TaxCategoryVisible} === true ? true : false}"/>
+		<Label text="Tax Classification" visible="{=${fieldMappingModels>/TaxclassificationVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/TaxclassificationMandatory} === true ? true : false}"/>
+		<!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>ztax_classification}" maxLength="1" visible="{=${fieldMappingModels>/TaxclassificationVisible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForTaxClssfn" value="{salesDataModel>ztax_classification}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/TaxclassificationVisible} === true ? true : false}"/>
+		<Label text="Tax Category 2" visible="{=${fieldMappingModels>/TaxCategory2Visible} === true ? true : false}"
+ required="{=${fieldMappingModels>/TaxCategory2Mandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>ztax_category2}" visible="{=${fieldMappingModels>/TaxCategory2Visible} === true ? true : false}"/>
+		<Label text="Tax Classification 2" visible="{=${fieldMappingModels>/Taxclassification2Visible} === true ? true : false}"
+ required="{=${fieldMappingModels>/Taxclassification2Mandatory} === true ? true : false}"/>
+		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{salesDataModel>ztax_classification2}" maxLength="1" visible="{=${fieldMappingModels>/Taxclassification2Visible} === true ? true : false}"/>
+
+		
+
+			    </forms:SimpleForm>
+				</VBox>
+					
+				</content>
+			</Panel>
+
+    </HBox>
+    <!-- Include additional input fields and labels here -->
+</core:FragmentDefinition>

@@ -1,0 +1,13 @@
+<mvc:View controllerName="iffco.managecustomer.sections.SalesArea.AccountingController" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:forms="sap.ui.layout.form" xmlns:mvc="sap.ui.core.mvc" height="100%">
+	
+	<l:VerticalLayout class="sapUiContentPadding" width="100%">
+		<l:content>
+
+		<Button text="Add Sales Area" id="add" icon="sap-icon://add" type="Transparent" press="handleCreate" />
+		<Button text="Generate Sales Area" id="generateSales" press="handleGenerateSales"/>
+			 <VBox id="container"> </VBox>
+			
+
+		</l:content>
+	</l:VerticalLayout>
+</mvc:View>

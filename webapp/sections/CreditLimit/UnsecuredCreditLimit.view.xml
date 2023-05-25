@@ -1,0 +1,113 @@
+<mvc:View controllerName="iffco.managecustomer.sections.CreditLimit.UnsecuredCreditLimitController" xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" xmlns:core="sap.ui.core">
+    <forms:SimpleForm editable="false" layout="ColumnLayout">
+        <core:Title text="Open Credit / Clean Credit" />
+        <Label text="Amount (SAR)" visible="{=${fieldMappingModels>/OpenCredit-CleanCreditAmountSARVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/OpenCredit-CleanCreditAmountSARMandatory} === true ? true : false}"/>
+        <Input enabled="false" value="{Customers>/zopen_clean_credit_amount}" liveChange="handleSetMaxLength" maxLength="20" type="Number" visible="{=${fieldMappingModels>/OpenCredit-CleanCreditAmountSARVisible} === true ? true : false}"/>
+        
+         <Label text="Proposed Amount (SAR)" visible="{=${fieldMappingModels>/OpenCredit-CleanCreditProposedAmountAEDVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/OpenCredit-CleanCreditProposedAmountAEDMandatory} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zopen_clean_credit_proamount}" liveChange="handleSetMaxLength" maxLength="20" type="Number" visible="{=${fieldMappingModels>/OpenCredit-CleanCreditProposedAmountAEDVisible} === true ? true : false}"/>
+
+         <Label text="Varience in Amounnt" visible="{=${fieldMappingModels>/OpenCredit-CleanCreditVarianceinAmountAEDVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/OpenCredit-CleanCreditVarianceinAmountAEDMandatory} === true ? true : false}"/>
+        <Input value="{parts: [{path: 'Customers>/zopen_clean_credit_amount'},
+		{path:'Customers>/zopen_clean_credit_proamount'}],
+  formatter:'.formatter.getVarienceAmt'}" enabled="false" liveChange="handleSetMaxLength" maxLength="20" type="Number" visible="{=${fieldMappingModels>/OpenCredit-CleanCreditVarianceinAmountAEDVisible} === true ? true : false}"/>
+
+       
+        <core:Title text="CAD" />
+        <Label text="Amount (SAR)" visible="{=${fieldMappingModels>/CADAmountSARVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CADAmountSARMandatory} === true ? true : false}"/>
+        <Input enabled="false" value="{Customers>/zcad_amount}" liveChange="handleSetMaxLength" maxLength="20" type="Number" visible="{=${fieldMappingModels>/CADAmountSARVisible} === true ? true : false}"/>
+        
+        <Label text="Proposed Amount (SAR)" visible="{=${fieldMappingModels>/CADProposedAmountAEDVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CADProposedAmountAEDMandatory} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zcad_pro_amount}" liveChange="handleSetMaxLength" maxLength="20" type="Number" visible="{=${fieldMappingModels>/CADProposedAmountAEDVisible} === true ? true : false}"/>
+
+        <Label text="Varience in Amount (SAR)" visible="{=${fieldMappingModels>/CADVarianceinAmountAEDVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CADVarianceinAmountAEDMandatory} === true ? true : false}"/>
+        <Input value="{parts: [{path: 'Customers>/zcad_amount'},
+		{path:'Customers>/zcad_pro_amount'}],
+  formatter:'.formatter.getVarienceAmt'}" enabled="false" liveChange="handleSetMaxLength" maxLength="20" type="Number" visible="{=${fieldMappingModels>/CADVarianceinAmountAEDVisible} === true ? true : false}"/>
+        
+        <core:Title text="PDC in hand" />
+        <Label text="Amount (SAR)" visible="{=${fieldMappingModels>/PDCinhandAmountSARVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/PDCinhandAmountSARMandatory} === true ? true : false}"/>
+        <Input enabled="false" value="{Customers>/zpoc_in_hand_amount}" liveChange="handleSetMaxLength" maxLength="20" type="Number" visible="{=${fieldMappingModels>/PDCinhandAmountSARVisible} === true ? true : false}"/>
+        
+        <Label text="Proposed Amount (SAR)" visible="{=${fieldMappingModels>/PDCinhandProposedAmountAEDVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/PDCinhandProposedAmountAEDMandatory} === true ? true : false}"/>
+        <Input  enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zpdc_in_hand_pro_amount}" liveChange="handleSetMaxLength" maxLength="20" type="Number" visible="{=${fieldMappingModels>/PDCinhandProposedAmountAEDVisible} === true ? true : false}"/>
+
+        <Label text="Varience in Amount (SAR)" visible="{=${fieldMappingModels>/PDCinhandVarianceinAmountAEDVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/PDCinhandVarianceinAmountAEDMandatory} === true ? true : false}"/>
+        <Input value="{parts: [{path: 'Customers>/zpoc_in_hand_amount'},
+		{path:'Customers>/zpdc_in_hand_pro_amount'}],
+  formatter:'.formatter.getVarienceAmt'}" enabled="false" liveChange="handleSetMaxLength" maxLength="20" type="Number" visible="{=${fieldMappingModels>/PDCinhandVarianceinAmountAEDVisible} === true ? true : false}"/>
+
+
+        <core:Title text="Undated Cheque / Security Deposit Cheque" />
+        <Label text="Amount (SAR)" visible="{=${fieldMappingModels>/UndatedCheque-SecurityDepositChequeAmountSARVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/UndatedCheque-SecurityDepositChequeAmountSARMandatory} === true ? true : false}"/>
+        <Input enabled="false" value="{Customers>/zundated_or_security_deposit_c}" maxLength="40" visible="{=${fieldMappingModels>/UndatedCheque-SecurityDepositChequeAmountSARVisible} === true ? true : false}"/>
+        
+        <Label text="Proposed Amount (SAR)" visible="{=${fieldMappingModels>/UndatedCheque-SecurityDepositChequeProposedAmountAEDVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/UndatedCheque-SecurityDepositChequeProposedAmountAEDMandatory} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zundated_or_secdepchck_proamt}" maxLength="40" visible="{=${fieldMappingModels>/UndatedCheque-SecurityDepositChequeProposedAmountAEDVisible} === true ? true : false}"/>
+
+        <Label text="Varience in Amount (SAR)" visible="{=${fieldMappingModels>/UndatedCheque-SecurityDepositChequeVarianceinAmountAEDVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/UndatedCheque-SecurityDepositChequeVarianceinAmountAEDMandatory} === true ? true : false}"/>
+        <Input value="{parts: [{path: 'Customers>/zundated_or_security_deposit_c'},
+		{path:'Customers>/zundated_or_secdepchck_proamt'}],
+  formatter:'.formatter.getVarienceAmt'}" enabled="false" maxLength="40" visible="{=${fieldMappingModels>/UndatedCheque-SecurityDepositChequeVarianceinAmountAEDVisible} === true ? true : false}"/>
+        
+        <core:Title text="CRI (only Insolvency risk)" />
+        <Label text="Insurer" visible="{=${fieldMappingModels>/CRIonlyInsolvencyriskInsurerVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CRIonlyInsolvencyriskInsurerMandatory} === true ? true : false}"/>
+        <Input enabled="false" value="{Customers>/zcri_insurer}" maxLength="20" visible="{=${fieldMappingModels>/CRIonlyInsolvencyriskInsurerVisible} === true ? true : false}"/>
+       
+       <Label text="Proposed Insurer" visible="{=${fieldMappingModels>/CRIonlyInsolvencyriskInsurerVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CRIonlyInsolvencyriskInsurerMandatory} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zun_cri_proposed_insurer}" maxLength="20" visible="{=${fieldMappingModels>/CRIonlyInsolvencyriskInsurerVisible} === true ? true : false}"/>
+       
+       <Label text="Amount (SAR)" visible="{=${fieldMappingModels>/CRIAmountVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CRIAmountMandatory} === true ? true : false}"/>
+        <Input enabled="false" value="{Customers>/zcri_insurer_amount}" liveChange="handleSetMaxLength" maxLength="10" type="Number" visible="{=${fieldMappingModels>/CRIAmountVisible} === true ? true : false}"/>
+
+        <Label text="Proposed Amount (SAR)" visible="{=${fieldMappingModels>/CRIAmountVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CRIAmountMandatory} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zun_cri_proposed_amount}" liveChange="handleSetMaxLength" maxLength="10" type="Number" visible="{=${fieldMappingModels>/CRIAmountVisible} === true ? true : false}"/>
+       
+       <Label text="Varience in Amount (SAR)" visible="{=${fieldMappingModels>/CRIVarianceinAmountAEDVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CRIAmountMandatory} === true ? true : false}"/>
+        <Input value="{parts: [{path: 'Customers>/zcri_insurer_amount'},
+		{path:'Customers>/zun_cri_proposed_amount'}],
+  formatter:'.formatter.getVarienceAmt'}" enabled="false" liveChange="handleSetMaxLength" maxLength="10" type="Number" visible="{=${fieldMappingModels>/CRIAmountVisible} === true ? true : false}"/>
+       
+        <core:Title text="Unconfirmed LC from Non-Approved Bank" />
+        <Label text="Bank Name" visible="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankNameVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankNameMandatory} === true ? true : false}"/>
+        <Input enabled="false" value="{Customers>/zuncfrmd_lc_nonapvd_bnkname}" maxLength="20" visible="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankNameVisible} === true ? true : false}"/>
+        
+        <Label text="Proposed Bank Name" visible="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankProposedBankNameVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankProposedBankNameMandatory} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zuncfrmd_lc_nonapvd_pro_bank}" maxLength="20" visible="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankProposedBankNameVisible} === true ? true : false}"/>
+
+        <Label text="Amount (SAR)" visible="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankAmountSARVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankAmountSARMandatory} === true ? true : false}"/>
+        <Input enabled="false" value="{Customers>/zuncfrmd_lc_nonapvd_bnkamt}" liveChange="handleSetMaxLength" maxLength="10" type="Number" visible="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankAmountSARVisible} === true ? true : false}"/>
+
+         <Label text="Proposed Amount (SAR)" visible="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankProposedAmountAEDVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankProposedAmountAEDMandatory} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zuncfrmd_lc_nonapvd_pro_amt}" liveChange="handleSetMaxLength" maxLength="10" type="Number" visible="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankProposedAmountAEDVisible} === true ? true : false}"/>
+
+         <Label text="Varience in Amount (SAR)" visible="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankVarianceinAmountAEDVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankVarianceinAmountAEDMandatory} === true ? true : false}"/>
+        <Input value="{parts: [{path: 'Customers>/zuncfrmd_lc_nonapvd_bnkamt'},
+		{path:'Customers>/zuncfrmd_lc_nonapvd_pro_amt'}],
+  formatter:'.formatter.getVarienceAmt'}" enabled="false" liveChange="handleSetMaxLength" maxLength="10" type="Number" visible="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankVarianceinAmountAEDVisible} === true ? true : false}"/>
+
+        
+    </forms:SimpleForm>
+</mvc:View>

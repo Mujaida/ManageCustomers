@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Price Group" class="sapUiPopupWithPadding"
+		items="{S4D>/PriceGroupSet}" search="handleValueHelpPriceGrpSearch"
+		confirm="handleValueHelpPriceGrpConfirm" cancel="handleValueHelpPriceGrpClose" multiSelect="false">
+		<StandardListItem title="{S4D>Pricegroup}" description="{S4D>Description}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Planning Group" class="sapUiPopupWithPadding"
+		items="{path:'S4D>/PlanningGroupSet'}" search="handleValueHelpPlanngGrpSearch"
+		confirm="handleValueHelpPlanngGrpConfirm" cancel="handleValueHelpPlanngGrpClose" multiSelect="false">
+		<StandardListItem title="{S4D>Planninggrp}" description="{S4D>Description}" />
+	</SelectDialog>
+</core:FragmentDefinition>

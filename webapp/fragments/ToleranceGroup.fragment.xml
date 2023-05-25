@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Tolerance Group" class="sapUiPopupWithPadding"
+		items="{path:'S4D>/ToleranceGroupSet'}" search="handleValueHelpToleranceGrpSearch"
+		confirm="handleValueHelpToleranceGrpConfirm" cancel="handleValueHelpToleranceGrpClose" multiSelect="false">
+		<StandardListItem title="{S4D>Tolerancegroup}" description="{S4D>Description}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

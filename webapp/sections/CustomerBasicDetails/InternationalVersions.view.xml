@@ -1,0 +1,27 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" >
+	<forms:SimpleForm editable="false" layout="ColumnLayout">
+		<Label text="Address Version" visible="{=${fieldMappingModels>/AddressVersionVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/AddressVersionMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zaddress_version}" maxLength="10" visible="{=${fieldMappingModels>/AddressVersionVisible} === true ? true : false}"/>
+		<Label text = "Title" visible="{=${fieldMappingModels>/TitleVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/TitleMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/ztitle}" visible="{=${fieldMappingModels>/TitleVisible} === true ? true : false}"/>
+		
+		<Label text="Name" visible="{=${fieldMappingModels>/NameVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/NameMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zfirst_name}" maxLength="40" visible="{=${fieldMappingModels>/NameVisible} === true ? true : false}"/>
+		<Label text="Name 2" visible="{=${fieldMappingModels>/Name2Visible} === true ? true : false}"
+ required="{=${fieldMappingModels>/Name2Mandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zlast_name}" maxLength="40" visible="{=${fieldMappingModels>/Name2Visible} === true ? true : false}"/>
+		<Label text= "Search term" visible="{=${fieldMappingModels>/SearchTermVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/SearchTermMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zsearch_term}" maxLength="25" visible="{=${fieldMappingModels>/SearchTermVisible} === true ? true : false}"/>
+		<Label text="Street House Number" visible="{=${fieldMappingModels>/StreetVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/StreetMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zstreet}" visible="{=${fieldMappingModels>/StreetVisible} === true ? true : false}"/>
+        <Label text="City" visible="{=${fieldMappingModels>/CityVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CityMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zcity}" maxLength="35" visible="{=${fieldMappingModels>/CityVisible} === true ? true : false}"/>
+		
+	</forms:SimpleForm>
+</mvc:View>

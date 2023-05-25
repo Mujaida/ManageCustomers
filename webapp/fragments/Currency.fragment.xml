@@ -1,0 +1,10 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+>
+<SelectDialog contentHeight="60%" showClearButton="true" title="Select Currency" class="sapUiPopupWithPadding"
+		items="{path:'S4D>/CurrencySet'}" search="handleValueHelpCurrencySearch"
+		confirm="handleValueHelpCurrencyConfirm" cancel="handleValueHelpCurrencyClose" multiSelect="false">
+		<StandardListItem title="{S4D>Waers}" />
+	</SelectDialog>
+</c:FragmentDefinition>

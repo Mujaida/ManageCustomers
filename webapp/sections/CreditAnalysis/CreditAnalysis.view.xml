@@ -1,0 +1,84 @@
+<mvc:View controllerName="iffco.managecustomer.sections.CreditAnalysis.CreditAnalysisController" xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core">
+    <!-- <forms:SimpleForm editable="false" layout="ColumnLayout">
+		<Label text="{i18n>ActualWork}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" id="actWork" value="{Customers>/ActualWork}" editable="true"/>
+		<Label text="{i18n>Reason}"/>
+			<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" id="reason" editable="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onValueHelpRequested" value="{detailView>/Reason}"/>
+		<Label text="{i18n>ConfText}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" id="confText" editable="true" value="{Customers>/ConfirmationText}"/>
+		<CheckBox text="{i18n>FinalConfirmation}" selected="{Customers>/Confirmed}"/>
+	</forms:SimpleForm> -->
+    <forms:SimpleForm editable="false" layout="ColumnLayout">
+        <core:Title text="Financials Details to be attached (any one)" />
+        <Label text="Financials Statements" visible="{=${fieldMappingModels>/FinancialStatementVisible} === true ? true : false}" required="{=${fieldMappingModels>/FinancialStatementMandatory} === true ? true : false}" />
+        <u:FileUploader visible="{=${fieldMappingModels>/FinancialStatementVisible} === true ? true : false}"
+          value="{getDmsModel>/financialStmts}"
+          id="financialStmts"
+    name="fileUploader"
+    buttonText="Upload File"
+    fileType="pdf"
+    sendXHR="true" change="onConfirm" />
+        
+        <Label text="D and B Report" visible="{=${fieldMappingModels>/DBReportVisible} === true ? true : false}" required="{=${fieldMappingModels>/DBReportMandatory} === true ? true : false}" />
+        <u:FileUploader visible="{=${fieldMappingModels>/DBReportVisible} === true ? true : false}" 
+       value="{getDmsModel>/dandbreport}"
+        id="dandbreport"
+    name="fileUploader"
+    buttonText="Upload File"
+    fileType="pdf"
+    sendXHR="true" change="onConfirm"/>
+        
+        <Label text="Bank Statement / References" visible="{=${fieldMappingModels>/BankStatement-ReferencesVisible} === true ? true : false}" 
+        required="{=${fieldMappingModels>/BankStatement-ReferencesMandatory} === true ? true : false}" />
+        <u:FileUploader visible="{=${fieldMappingModels>/BankStatement-ReferencesVisible} === true ? true : false}" 
+        value="{getDmsModel>/bankStatement}"
+        id="bankStatement"
+    name="fileUploader"
+    buttonText="Upload File"
+    fileType="pdf"
+    sendXHR="true" change="onConfirm" />
+        
+        <Label text="Last 12 months statement of accounts (IFFCO) / Other documents" visible="{=${fieldMappingModels>/Last12monthsstatementsofaccountsorotherdocumentsVisible} === true ? true : false}" required="{=${fieldMappingModels>/Last12monthsstatementsofaccountsorotherdocumentsMandatory} === true ? true : false}" />
+        <u:FileUploader visible="{=${fieldMappingModels>/Last12monthsstatementsofaccountsorotherdocumentsVisible} === true ? true : false}"
+        value="{getDmsModel>/otherDocs}"
+         id="otherDocs"
+    name="fileUploader"
+    buttonText="Upload File"
+    fileType="pdf"
+    sendXHR="true" change="onConfirm" />
+        
+        <core:Title text="Others" />
+        <Label text="Year of Establisment" visible="{=${fieldMappingModels>/YearofEstablishmentVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/YearofEstablishmentMandatory} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zyear_of_establishment}" type="Number" liveChange="handleSetMaxLength" maxLength="4" visible="{=${fieldMappingModels>/YearofEstablishmentVisible} === true ? true : false}"/>
+        
+        <Label text="Year of Financial" visible="{=${fieldMappingModels>/YearofFinancialVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/YearofFinancialMandatory} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zyear_of_financial}" type="Number" liveChange="handleSetMaxLength" maxLength="20" visible="{=${fieldMappingModels>/YearofFinancialVisible} === true ? true : false}"/>
+        
+        <Label text="Revenue/Net Profit Currency" visible="{=${fieldMappingModels>/RevenueNetProfitcurrencyVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/RevenueNetProfitcurrencyMandatory} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zrevenue_net_profit_crncy}" maxLength="20" visible="{=${fieldMappingModels>/RevenueNetProfitcurrencyVisible} === true ? true : false}"/>
+        
+        <Label text="Revenue/Turn over" visible="{=${fieldMappingModels>/RevenueturnoverVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/RevenueturnoverMandatory} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zrevenue_turnover}" maxLength="20" visible="{=${fieldMappingModels>/RevenueturnoverVisible} === true ? true : false}"/>
+        
+        <Label text="Net Profit" visible="{=${fieldMappingModels>/NetProfitVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/NetProfitMandatory} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" type="Number" liveChange="handleSetMaxLength" value="{Customers>/}" maxLength="20" visible="{=${fieldMappingModels>/NetProfitVisible} === true ? true : false}"/>
+        
+        <Label text="Country" visible="{=${fieldMappingModels>/CountryVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CountryMandatory} === true ? true : false}"/>
+        <MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zcountry2}" maxLength="20" valueHelpRequest="handleValueHelpForCountryRating"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/CountryVisible} === true ? true : false}"/>
+        
+        <Label text="Country Rating" visible="{=${fieldMappingModels>/CountryRatingVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CountryRatingMandatory} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" id="ctryRtng" maxLength="20" value="{Customers>/zcountry_rating}" visible="{=${fieldMappingModels>/CountryRatingVisible} === true ? true : false}"/>
+        
+        <Label text="D and B Credit Rating" visible="{=${fieldMappingModels>/DandBcreditRatingVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/DandBcreditRatingMandatory} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zd_and_b_rating}" maxLength="20" visible="{=${fieldMappingModels>/DandBcreditRatingVisible} === true ? true : false}"/>
+    </forms:SimpleForm>
+</mvc:View>

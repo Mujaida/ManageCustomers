@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Blocked Reason" class="sapUiPopupWithPadding"
+		items="{path:'S4D>/BlockReasonSet'}" search="handleValueHelpBlockedReasonSearch"
+		confirm="handleValueHelpBlockReasonConfirm" cancel="handleValueHelpBlockReasonClose" multiSelect="false">
+		<StandardListItem title="{S4D>Blockreason}" description="{S4D>Blockreasontxt}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

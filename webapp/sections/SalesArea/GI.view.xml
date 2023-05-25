@@ -1,0 +1,37 @@
+<mvc:View controllerName="iffco.managecustomer.sections.SalesArea.GIController" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" >
+	
+	<Table id="salesOrg" items="{salesModel>/}">
+												<headerToolbar>
+													<Toolbar>
+														<ToolbarSpacer/>
+														<Button id="addSalesId" icon="sap-icon://add" type="Transparent" press="handleAddSales"/>
+													</Toolbar>
+												</headerToolbar>
+												<columns>
+													<Column>
+														<Text text="Sales Organization" />
+													</Column>
+													<Column>
+														<Text text="Distribution Channel" />
+													</Column>
+													<Column>
+														<Text text="Division" />
+													</Column>
+													
+													<Column>
+														<Text text=""/>
+													</Column>
+												</columns>
+												<items>
+													<ColumnListItem type="Active"  press="onTaxItemPress">
+														<cells>
+															<Text id="taxLandId" text="{salesModel>zsales_orgnization} - {salesModel>zsales_orgnization_text}" visible="{=${fieldMappingModel>/391/visibility} === 'Y' ? true : false}"/>
+															<Text id="taxNameId" text="{salesModel>zdistribution_channel} - {salesModel>zdistribution_channel_text}" visible="{=${fieldMappingModel>/167/visibility} === 'Y' ? true : false}"/>
+															<Text id="TAXTYPE" text="{salesModel>zdivision} - {salesModel>zdivision_text}"  visible="{=${fieldMappingModel>/168/visibility} === 'Y' ? true : false}"/>
+															
+															<Button icon="sap-icon://delete" type="Transparent" press="handleDeleteSalesGrid"/>
+														</cells>
+													</ColumnListItem>
+												</items>
+											</Table>
+</mvc:View>

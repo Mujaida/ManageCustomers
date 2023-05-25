@@ -1,0 +1,25 @@
+<mvc:View controllerName="iffco.managecustomer.sections.SalesArea.PartialDeliveries" xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" >
+	<forms:SimpleForm editable="false" layout="ColumnLayout">
+		<Label text="Complete Delivery" visible="{=${fieldMappingModels>/CompleteDeliveryVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CompleteDeliveryMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zcomplete_delivery}" maxLength="1" visible="{=${fieldMappingModels>/CompleteDeliveryVisible} === true ? true : false}"/>
+		<Label text = "Maximum Number of Part. Deliveries" visible="{=${fieldMappingModels>/MaximumNumberofPart.DeliveriesVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/MaximumNumberofPart.DeliveriesMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" type="Number" liveChange="handleSetMaxLength" value="{Customers>/zmaximum_number_of_part_delive}" maxLength="1" visible="{=${fieldMappingModels>/MaximumNumberofPart.DeliveriesVisible} === true ? true : false}"/>
+		
+		<Label text="Partial Delivery per Item" visible="{=${fieldMappingModels>/PartialDeliveryperItemVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/PartialDeliveryperItemMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zpartial_delivery_per_item}" maxLength="1" visible="{=${fieldMappingModels>/PartialDeliveryperItemVisible} === true ? true : false}"/>
+		<Label text="Unlimited Tolerance"  visible="{=${fieldMappingModels>/UnlimitedToleranceVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/UnlimitedToleranceMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zunlimited_tolerance}" maxLength="1" visible="{=${fieldMappingModels>/UnlimitedToleranceVisible} === true ? true : false}"/>
+		<Label text = "Underdelivery Tolerance" visible="{=${fieldMappingModels>/UnderdeliveryToleranceVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/UnderdeliveryToleranceMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" type="Number" liveChange="handleSetMaxLength" value="{Customers>/zunder_delivery_tolerance}" maxLength="3" visible="{=${fieldMappingModels>/UnderdeliveryToleranceVisible} === true ? true : false}"/>
+		
+		<Label text="Overdelivery Tolerance" visible="{=${fieldMappingModels>/OverdeliveryToleranceVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/OverdeliveryToleranceMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" type="Number" liveChange="handleSetMaxLength" value="{Customers>/zover_delivery_tolerance}" maxLength="3" visible="{=${fieldMappingModels>/OverdeliveryToleranceVisible} === true ? true : false}"/>
+		
+	</forms:SimpleForm>
+</mvc:View>

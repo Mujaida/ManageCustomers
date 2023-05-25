@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Payment Method Supplement" class="sapUiPopupWithPadding"
+		items="{path:'S4D>/PaymentMethodSupplementSet'}" search="handleValueHelpPaymntMethdSupplmntSearch"
+		confirm="handleValueHelpPaymntMethdSupplmntConfirm" cancel="handleValueHelpPaymntMethdSupplmntClose" multiSelect="false">
+		<StandardListItem title="{S4D>PaymentMethodSupplement}" description="{S4D>Description}" />
+	</SelectDialog>
+</core:FragmentDefinition>

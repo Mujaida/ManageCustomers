@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Transportation Zone" class="sapUiPopupWithPadding"
+		items="{path:'S4D>/TransportZoneSet'}" search="handleValueHelpTrnsptZoneSearch"
+		confirm="handleValueHelpTrnsptZoneConfirm" cancel="handleValueHelpTrnsptZoneClose" multiSelect="false">
+		<StandardListItem title="{S4D>Zone1}" description="{S4D>Vtext}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

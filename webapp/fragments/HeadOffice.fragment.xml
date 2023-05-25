@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Head Office" class="sapUiPopupWithPadding"
+		items="{path:'S4D>/HeadOfficeSet'}" search="handleValueHelpHeadOffcSearch"
+		confirm="handleValueHelpHeadOffcConfirm" cancel="handleValueHelpHeadOffcClose" multiSelect="false">
+		<StandardListItem title="{S4D>Zuawa}" description="{S4D>Ttext}" />
+	</SelectDialog>
+</core:FragmentDefinition>

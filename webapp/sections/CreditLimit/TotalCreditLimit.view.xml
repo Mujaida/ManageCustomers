@@ -1,0 +1,80 @@
+<mvc:View controllerName="iffco.managecustomer.sections.CreditLimit.TotalCreditLimitController" xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" >
+	<forms:SimpleForm editable="false" layout="ColumnLayout">
+		<!-- <Label text="Total Secured Credit Limit (AED)" visible="{=${fieldMappingModels>/TotalSecuredCreditLimitVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/TotalSecuredCreditLimitMandatory} === true ? true : false}"/> -->
+ <Label text="Total Secured Credit Limit (AED)" />
+		<Input value="{parts: [{path: 'Customers>/zirr_bank_guarantee_amt'},
+		{path:'Customers>/zlc_issuance_amount'},
+		 {path:'Customers>/zlc_confirming_amount'},
+ {path:'Customers>/zcri_amount'},
+  {path:'Customers>/zclassa_customer_amount'},
+ {path:'Customers>/zcash_deposit_adv_amount'},
+ {path:'Customers>/zavalization_draft_amount'}],
+  formatter:'.formatter.getTotalAmount'}" type="Number" liveChange="handleSetMaxLength" maxLength="14" enabled="false" />
+		
+		<Label text="Proposed Total Secured Credit Limit (AED)" visible="{=${fieldMappingModels>/ProposedTotalSecuredCreditLimitAEDVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/ProposedTotalSecuredCreditLimitAEDMandatory} === true ? true : false}"/>
+		<Input value="{parts: [{path: 'Customers>/zibg_proposed_amount'},
+		{path:'Customers>/zilcab_proposed_amount'},
+		 {path:'Customers>/ziclc_proposed_amount'},
+          {path:'Customers>/zcri_proposed_amount'},
+        {path:'Customers>/zcorp_classa_proposed_amount'},
+         {path:'Customers>/zcashdep_adv_proposed_amount'},
+        {path:'Customers>/zavalization_proposed_amount'}],
+         formatter:'.formatter.getTotalAmount'}" enabled="false" type="Number" liveChange="handleSetMaxLength" maxLength="20" visible="{=${fieldMappingModels>/ProposedTotalSecuredCreditLimitAEDVisible} === true ? true : false}"/>
+
+        <Label text="Varience in Amount (AED)" visible="{=${fieldMappingModels>/TotalSecuredCreditLimitVarianceinAmountAEDVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/TotalSecuredCreditLimitVarianceinAmountAEDMandatory} === true ? true : false}"/>
+		<Input value="{parts: [{path: 'Customers>/ztotal_secured_limit'},
+		{path:'Customers>/ztot_cl_proposed_tot_securedcl'}],
+  formatter:'.formatter.getVarienceAmt'}" enabled="false" type="Number" liveChange="handleSetMaxLength" maxLength="8" visible="{=${fieldMappingModels>/TotalSecuredCreditLimitVarianceinAmountAEDVisible} === true ? true : false}"/>
+
+		<Label text="Total Unsecured Credit Limit (AED)" visible="{=${fieldMappingModels>/TotalUnsecuredCreditLimitVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/TotalUnsecuredCreditLimitMandatory} === true ? true : false}"/>
+		<Input value="{parts: [{path: 'Customers>/zopen_clean_credit_amount'},
+		 {path:'Customers>/zcad_amount'},
+ {path:'Customers>/zpoc_in_hand_amount'},
+  {path:'Customers>/zundated_or_security_deposit_c'},
+ {path:'Customers>/zcri_insurer_amount'},
+{path:'Customers>/zuncfrmd_lc_nonapvd_bnkamt'}
+ ],
+  formatter:'.formatter.getTotalUnsecuredAmount'}"
+		 type="Number" liveChange="handleSetMaxLength" maxLength="20" enabled="false" visible="{=${fieldMappingModels>/TotalUnsecuredCreditLimitVisible} === true ? true : false}"/>
+		
+		<Label text="Proposad Total Unsecured Credit Limit (AED)" visible="{=${fieldMappingModels>/ProposedTotalUnsecuredCreditLimitAEDVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/ProposedTotalUnsecuredCreditLimitAEDMandatory} === true ? true : false}"/>
+		<Input value="{parts: [{path: 'Customers>/zopen_clean_credit_proamount'},
+		 {path:'Customers>/zcad_pro_amount'},
+ {path:'Customers>/zpdc_in_hand_pro_amount'},
+  {path:'Customers>/zundated_or_secdepchck_proamt'},
+ {path:'Customers>/zun_cri_proposed_amount'},
+{path:'Customers>/zuncfrmd_lc_nonapvd_pro_amt'}
+ ],
+  formatter:'.formatter.getTotalUnsecuredAmount'}" enabled="false" type="Number" liveChange="handleSetMaxLength" maxLength="20" visible="{=${fieldMappingModels>/ProposedTotalUnsecuredCreditLimitAEDVisible} === true ? true : false}"/>
+
+		<Label text="Varience in Amount (AED)" visible="{=${fieldMappingModels>/TotalUnsecuredCreditLimitVarianceinAmountAEDVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/TotalUnsecuredCreditLimitVarianceinAmountAEDMandatory} === true ? true : false}"/>
+		<Input value="{parts: [{path: 'Customers>/ztotal_unsecured_limit'},
+		{path:'Customers>/ztot_cl_proposed_tot_unsec_cl'}],
+  formatter:'.formatter.getVarienceAmt'}" enabled="false" type="Number" liveChange="handleSetMaxLength" maxLength="8" visible="{=${fieldMappingModels>/TotalUnsecuredCreditLimitVarianceinAmountAEDVisible} === true ? true : false}"/>
+		
+		<Label text="Total Credit Amount (AED)" visible="{=${fieldMappingModels>/TotalCreditAmountVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/TotalCreditAmountMandatory} === true ? true : false}"/>
+		<Input value="{parts: [{path: 'Customers>/ztotal_secured_limit'},	
+ {path:'Customers>/ztotal_unsecured_limit'}],
+  formatter:'.formatter.getTotalCreditAmount'}" enabled="false" type="Number" liveChange="handleSetMaxLength" maxLength="10" visible="{=${fieldMappingModels>/TotalCreditAmountVisible} === true ? true : false}"/>
+	
+	<Label text="Proposed Total Credit Amount (AED)" visible="{=${fieldMappingModels>/ProposedCreditAmountAEDVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/ProposedCreditAmountAEDMandatory} === true ? true : false}"/>
+		<Input value="{parts: [{path: 'Customers>/ztot_cl_proposed_tot_securedcl'},	
+ {path:'Customers>/ztot_cl_proposed_tot_unsec_cl'}],
+  formatter:'.formatter.getTotalCreditAmount'}" enabled="false" type="Number" liveChange="handleSetMaxLength" maxLength="8" visible="{=${fieldMappingModels>/ProposedCreditAmountAEDVisible} === true ? true : false}"/>
+
+		<Label text="Varience in Amount (AED)" visible="{=${fieldMappingModels>/VarianceinAmountAEDVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/VarianceinAmountAEDMandatory} === true ? true : false}"/>
+		<Input value="{parts: [{path: 'Customers>/ztotal_credit_amount'},
+		{path:'Customers>/ztot_cl_proposed_credit_amount'}],
+  formatter:'.formatter.getVarienceAmt'}" enabled="false" type="Number" liveChange="handleSetMaxLength" maxLength="8" visible="{=${fieldMappingModels>/VarianceinAmountAEDVisible} === true ? true : false}"/>
+	
+	</forms:SimpleForm>
+</mvc:View>

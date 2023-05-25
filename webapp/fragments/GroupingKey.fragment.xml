@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Grouping Key" class="sapUiPopupWithPadding"
+		items="{path:'S4D>/GroupingKeySet'}" search="handleValueHelpGrpngKeySearch"
+		confirm="handleValueHelpGrpngKeyConfirm" cancel="handleValueHelpGrpngKeyClose" multiSelect="false">
+		<StandardListItem title="{S4D>Groupingkey}" description="{S4D>Description}" />
+	</SelectDialog>
+</core:FragmentDefinition>

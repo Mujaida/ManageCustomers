@@ -1,0 +1,21 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" >
+	<forms:SimpleForm editable="false" layout="ColumnLayout">
+		<Label text="Country" visible="{=${fieldMappingModels>/CountryVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CountryMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zcountry}" maxLength="20" visible="{=${fieldMappingModels>/CountryVisible} === true ? true : false}"/>
+		<Label text = "Tax category" visible="{=${fieldMappingModels>/TaxCategoryVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/TaxCategoryMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/ztaxcategory}" maxLength="4" visible="{=${fieldMappingModels>/TaxCategoryVisible} === true ? true : false}"/>
+		
+		<Label text="Tax Classification" visible="{=${fieldMappingModels>/TaxclassificationVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/TaxclassificationMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/ztax_classification}" maxLength="1" visible="{=${fieldMappingModels>/TaxclassificationVisible} === true ? true : false}"/>
+		
+		<Label text="Tax Category 2" visible="{=${fieldMappingModels>/TaxCategory2Visible} === true ? true : false}"
+ required="{=${fieldMappingModels>/TaxCategory2Mandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/ztax_category2}" maxLength="4" visible="{=${fieldMappingModels>/TaxCategory2Visible} === true ? true : false}"/>
+		<Label text="Tax Classification 2" visible="{=${fieldMappingModels>/Taxclassification2Visible} === true ? true : false}"
+ required="{=${fieldMappingModels>/Taxclassification2Mandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/ztax_classification2}" maxLength="1" visible="{=${fieldMappingModels>/Taxclassification2Visible} === true ? true : false}"/>
+	</forms:SimpleForm>
+</mvc:View>

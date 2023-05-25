@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Trading Partner" class="sapUiPopupWithPadding"
+		items="{S4D>//TradingPartnerSet}" search="handleValueHelpTrdPartnrSearch"
+		confirm="handleValueHelpTrdPartnrConfirm" cancel="handleValueHelpTrdPartnrClose" multiSelect="false">
+		<StandardListItem title="{S4D>Rcomp}" description="{S4D>Name1}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

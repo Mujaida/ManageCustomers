@@ -1,0 +1,48 @@
+specVersion: "2.5"
+metadata:
+  name: iffco.managecustomer
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: false
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+        backend:
+          - scp: true
+            path: /sap
+            url: https://ec1a78af-5702-4e45-810c-8adc11be0ea7.abap.eu10.hana.ondemand.com
+            destination: abap-cloud-iffcodev_abap_env-iffcotech_limited_fzc_iffcodev-iffcodev
+          - path: /sap
+            url: http://idevs4ha1.iffco.com:8001
+            client: "110"
+            destination: S4D
+          - path: /sap/opu/odata/sap/ZIFFCO_VALUEHELP_SRV
+            url: http://idevs4ha1.iffco.com:8001
+            client: "110"
+            destination: S4D_CLONING
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: sap-fe-mockserver
+      beforeMiddleware: csp
+      configuration:
+        mountPath: /
+        services:
+          - urlPath: /sap/opu/odata/sap/ZSB_CLAP_BINDING/
+            generateMockData: true
+            metadataXmlPath: ./webapp/localService/mainService/metadata.xml
+            mockdataRootPath: ./webapp/localService/data
+          - urlPath: /sap/opu/odata/sap/ZIFFCO_VALUEHELP_SRV
+            metadataPath: ./webapp/localService/ZIFFCO_VALUEHELP_SRV1/metadata.xml
+            mockdataPath: ./webapp/localService/ZIFFCO_VALUEHELP_SRV1/mockdata
+            generateMockData: true
+        annotations: []

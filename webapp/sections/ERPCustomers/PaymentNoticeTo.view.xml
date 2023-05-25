@@ -1,0 +1,19 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" >
+	<forms:SimpleForm editable="false" layout="ColumnLayout">
+		<Label text="Customer (With CI)" visible="{=${fieldMappingModels>/CustomerwithCIVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CustomerwithCIMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zcustomer_with_ci}" maxLength="1" visible="{=${fieldMappingModels>/CustomerwithCIVisible} === true ? true : false}"/>
+		<Label text = "Sales" visible="{=${fieldMappingModels>/SalesVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/SalesMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zsales}" maxLength="1" visible="{=${fieldMappingModels>/SalesVisible} === true ? true : false}"/>
+		<Label text = "Legal Department" visible="{=${fieldMappingModels>/LegalDeparmentVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/LegalDeparmentMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zlegal_deparment}" maxLength="1" visible="{=${fieldMappingModels>/LegalDeparmentVisible} === true ? true : false}"/>
+		<Label text="Customer (Without CI)" visible="{=${fieldMappingModels>/CustomerwithoutCIVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/CustomerwithoutCIMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zcustomer_w_o_ci}" visible="{=${fieldMappingModels>/CustomerwithoutCIVisible} === true ? true : false}"/>
+		<Label text = "Accounting" visible="{=${fieldMappingModels>/AccountingVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/AccountingMandatory} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zaccounting}" maxLength="1" visible="{=${fieldMappingModels>/AccountingVisible} === true ? true : false}"/>
+	</forms:SimpleForm>
+</mvc:View>

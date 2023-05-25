@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Shipping Condition" class="sapUiPopupWithPadding"
+		items="{S4D>/ShippingConditionSet}" search="handleValueHelpShippingCondnSearch"
+		confirm="handleValueHelpShippingCondnConfirm" cancel="handleValueHelpShippingCondnClose" multiSelect="false">
+		<StandardListItem title="{S4D>Shipping}" description="{S4D>Description}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

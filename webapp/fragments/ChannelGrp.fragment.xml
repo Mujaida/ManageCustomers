@@ -1,0 +1,76 @@
+<!-- value help dialog fragment (ValueHelpDialog.fragment.xml) -->
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:fb="sap.ui.comp.filterbar">
+    <Dialog title="Select Channel Group" contentHeight="auto" contentWidth="50%" visible="true">
+	<content>
+	<fb:FilterBar persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" afterVariantLoad=".onAfterVariantLoad">
+                                <fb:filterItems>
+								<fb:FilterItem name="Channel Group" label="Channel Group">
+                                        <fb:control>
+                                            <Input />
+                                        </fb:control>
+                                    </fb:FilterItem>
+                                    <fb:FilterItem name="Channel" label="Channel">
+                                        <fb:control>
+                                            <Input />
+                                        </fb:control>
+                                    </fb:FilterItem>
+                                    <fb:FilterItem name="Sub Channel" label="Sub Channel">
+                                        <fb:control>
+                                           
+                                            <Input />
+                                        </fb:control>
+                                    </fb:FilterItem>
+                                    <fb:FilterItem name="Line of business type" label="Line of business type">
+                                        <fb:control>
+                                            <Input />
+                                        </fb:control>
+                                    </fb:FilterItem>
+                                    
+                                </fb:filterItems>
+                            
+                            </fb:FilterBar>
+        
+            <Table selectionChange="getSelections" growing="true" growingThreshold="10"
+					growingTriggerText="Load More..."
+                    items="{path: '/zdd_lineofbusiness_vh'}">
+                    
+            
+                        <columns>
+                        <Column minScreenWidth="Tablet" demandPopin="true">
+                                <Text text="Channel Group" />
+                            </Column>
+                            <Column minScreenWidth="Tablet" demandPopin="true">
+                                <Text text="Channel" />
+                            </Column>
+                            <Column minScreenWidth="Tablet" demandPopin="true">
+                                <Text text="Sub Channel" />
+                            </Column>
+                            <Column minScreenWidth="Tablet" demandPopin="true">
+                                <Text text="Line Of Business Type" />
+                            </Column>
+                            
+                        </columns>
+
+                        <items>
+                            <ColumnListItem vAlign="Middle" type="Active" press="handleRequestnavigation">
+                                <cells>
+                                
+                                <Text text="{channelgroup}" />
+                                    <Text text="{channel}" />
+                                    <Text text="{subchannel}" />
+                                    <Text text="{lineofbusinesstype}" />
+                                   
+                                  
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+					 </content>
+
+					<buttons>
+            <Button text="Cancel" press="handleCancel"/>
+        </buttons>
+
+		
+    </Dialog>
+</core:FragmentDefinition>

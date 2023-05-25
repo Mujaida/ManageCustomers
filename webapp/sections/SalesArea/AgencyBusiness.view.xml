@@ -1,0 +1,10 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m">
+    <forms:SimpleForm editable="false" layout="ColumnLayout">
+        <Label text="Agency Business" visible="{=${fieldMappingModels>/AgencyBusinessVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/AgencyBusinessMandatory} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zagency_business}" maxLength="20" visible="{=${fieldMappingModels>/AgencyBusinessVisible} === true ? true : false}"/>
+        <Label text="Document Index Active" visible="{=${fieldMappingModels>/DocumentIndexActiveVisible} === true ? true : false}"
+ required="{=${fieldMappingModels>/DocumentIndexActiveMandatory} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zdocument_index_active}" maxLength="1" visible="{=${fieldMappingModels>/DocumentIndexActiveVisible} === true ? true : false}"/>
+    </forms:SimpleForm>
+</mvc:View>

@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Value Adjustment" class="sapUiPopupWithPadding"
+		items="{path:'S4D>/ValueAdjustmentSet'}" search="handleValueHelpValueAdjstmntSearch"
+		confirm="handleValueHelpValueAdjstmntConfirm" cancel="handleValueHelpValueAdjstmntClose" multiSelect="false">
+		<StandardListItem title="{S4D>Wbrsl}" />
+	</SelectDialog>
+</core:FragmentDefinition>

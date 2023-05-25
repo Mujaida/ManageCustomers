@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Legal Name" class="sapUiPopupWithPadding"
+		items="{path:'S4D>/LegalNameSet'}" search="handleValueHelpLegalNameSearch"
+		confirm="handleValueHelpLegalNameConfirm" cancel="handleValueHelpLegalNameClose" multiSelect="false">
+		<StandardListItem title="{S4D>Name1}" />
+	</SelectDialog>
+</core:FragmentDefinition>
