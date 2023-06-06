@@ -1,6 +1,6 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" >
 	<forms:SimpleForm editable="false" layout="ColumnLayout">
-		<Label text="Address Version" visible="{=${fieldMappingModels>/AddressVersionVisible} === true ? true : false}"
+		<Label text="Address Version" visible="{=${fieldMappingModels>/AddressVersionVisible} === true ? true : true}"
  required="{=${fieldMappingModels>/AddressVersionMandatory} === true ? true : false}"/>
 		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zaddress_version}" maxLength="10" visible="{=${fieldMappingModels>/AddressVersionVisible} === true ? true : false}"/>
 		<Label text = "Title" visible="{=${fieldMappingModels>/TitleVisible} === true ? true : false}"

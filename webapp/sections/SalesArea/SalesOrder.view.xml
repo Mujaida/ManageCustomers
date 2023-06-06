@@ -52,10 +52,13 @@
 		valueHelpOnly="true" visible="{=${fieldMappingModels>/UnitOfMeasureGroupVisible} === true ? true : false}"/>
 		<Label text="Exchange Rate Type" visible="{=${fieldMappingModels>/ExchangeRateTypeVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/ExchangeRateTypeMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zexchange_rate_type}" maxLength="4" visible="{=${fieldMappingModels>/ExchangeRateTypeVisible} === true ? true : false}"/>
+		<!-- <Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zexchange_rate_type}" maxLength="4" visible="{=${fieldMappingModels>/ExchangeRateTypeVisible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${appView>/process} === 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForExchngRateType" value="{Customers>/zexchange_rate_type}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/ExchangeRateTypeVisible} === true ? true : false}"/>
 		<Label text="PP Customer Procedure" visible="{=${fieldMappingModels>/PPCustomerProcedureVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/PPCustomerProcedureMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zpp_customer_procedure}" maxLength="2" visible="{=${fieldMappingModels>/PPCustomerProcedureVisible} === true ? true : false}"/>
-		
-	</forms:SimpleForm>
+		<!-- <Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zpp_customer_procedure}" maxLength="2" visible="{=${fieldMappingModels>/PPCustomerProcedureVisible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${appView>/process} === 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForPPCustProcedure" value="{Customers>/zpp_customer_procedure}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/PPCustomerProcedureVisible} === true ? true : false}"/>
+		</forms:SimpleForm>
 </mvc:View>

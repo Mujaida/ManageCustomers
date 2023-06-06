@@ -75,7 +75,7 @@ sap.ui.define([
                 this.authorField.setValue(title + " - " + desc);
                 this.Authorization.getBinding("items").filter([]);
                 this.Authorization.close();
-            }
+            },
             handleSetMaxLength:function (evt) {
                 var val = evt.getSource().getValue().length;
                 var maxLen = evt.getSource().getMaxLength();

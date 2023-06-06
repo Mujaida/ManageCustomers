@@ -26,7 +26,7 @@
         <core:Title text="Irrevocable LC from Approved Bank" />
         <Label text="LC Issuance Bank Country" visible="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankLCIssuanceBankCountryVisible} === true ? true : false}"
          required="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankLCIssuanceBankCountryMandatory} === true ? true : false}" />
-        <MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zlc_issuance_bankcountry}" valueHelpRequest="handleValueHelpForBankCountry"
+        <MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? false : true}" value="{Customers>/zlc_issuance_bankcountry}" valueHelpRequest="handleValueHelpForBankCountry"
 		valueHelpOnly="true" visible="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankLCIssuanceBankCountryVisible} === true ? true : false}"/>
         <!-- <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zlc_issuance_bankcountry}" visible="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankLCIssuanceBankCountryVisible} === true ? true : false}" /> -->
         <Label text="LC Issuance Bank" visible="{=${fieldMappingModels>/IrrevocableLCfromApprovedBankLCIssuanceBankVisible} === true ? true : false}" 
@@ -56,7 +56,7 @@
         <core:Title text="Irrevocable Confirmed LC" />
         <Label text="LC Confirming Bank Country" visible="{=${fieldMappingModels>/IrrevocableConfirmedLCLCConfirmingBankCountryVisible} === true ? true : false}"
          required="{=${fieldMappingModels>/IrrevocableConfirmedLCLCConfirmingBankCountryMandatory} === true ? true : false}" />
-         <MultiInput value="{Customers>/zlc_confirming_bank_country}" maxLength="20" valueHelpRequest="handleValueHelpForBankCountry1"
+         <MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? false : true}" value="{Customers>/zlc_confirming_bank_country}" maxLength="20" valueHelpRequest="handleValueHelpForBankCountry1"
 		valueHelpOnly="true" visible="{=${fieldMappingModels>/IrrevocableConfirmedLCLCConfirmingBankCountryVisible} === true ? true : false}"/>
         
         <Label text="LC Confirming Bank" visible="{=${fieldMappingModels>/IrrevocableConfirmedLCLCConfirmingBankVisible} === true ? true : false}"

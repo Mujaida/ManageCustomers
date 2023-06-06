@@ -1,0 +1,9 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+>
+<SelectDialog contentHeight="60%" showClearButton="true" title="Select Delivery Plant" class="sapUiPopupWithPadding"
+		items="{path:'S4D>/DeliveryPlantSet'}" search="handleValueHelpDelvPlantSearch" confirm="handleValueHelpDelvPlantConfirm" cancel="handleValueHelpDelvPlantClose" multiSelect="false">
+		<StandardListItem title="{S4D>Plant}" description="{S4D>Name}"/>
+	</SelectDialog>
+</c:FragmentDefinition>

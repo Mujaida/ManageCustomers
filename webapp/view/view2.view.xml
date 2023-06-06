@@ -254,7 +254,7 @@
                     
                 </subSections>
             </ObjectPageSection>
-            <ObjectPageSection titleUppercase="false" visible="{= ${appView>/vertical} === 'Cash' ? false : true}" id="CreditProfileSection" title="Credit profile">
+            <!-- <ObjectPageSection titleUppercase="false" visible="{= ${appView>/vertical} === 'Cash' ? false : true}" id="CreditProfileSection" title="Credit profile">
                 <subSections>
                     <ObjectPageSubSection id="CreditProfileData" title="Credit Profile">
                         <blocks>
@@ -286,14 +286,11 @@
                             <CreditProfileSegmentData:Lp id="CreditProfileSection6" />
                         </blocks>
                     </ObjectPageSubSection>
-                    <!-- <ObjectPageSubSection id="kf" title="Key Figures">
-                        <blocks>
-                            <CreditProfileSegmentData:KF id="CreditProfileSection7" />
-                        </blocks>
-                    </ObjectPageSubSection> -->
+                    
                     
                 </subSections>
-            </ObjectPageSection>
+            </ObjectPageSection> -->
+
             <ObjectPageSection titleUppercase="false" visible="{= ${appView>/vertical} === 'Cash' ? false : true}" id="PlannedActualSection" title="Credit Limit">
                 <subSections>
                     <ObjectPageSubSection id="plannedandactual" title="Credit Limit Type">

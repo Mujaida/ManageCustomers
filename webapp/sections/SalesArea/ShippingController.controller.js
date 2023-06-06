@@ -16,6 +16,11 @@ sap.ui.define([
                 this.getView().addDependent(this.DelvryPriorty);
                 this.DelvryPriorty.setModel(this.getOwnerComponent().getModel("S4D"));
             }
+            if (!this.DelvryPlant) {
+                this.DelvryPlant = new sap.ui.xmlfragment("Iffco.clap.fragments.DeliveryPlant", this);
+                this.getView().addDependent(this.DelvryPlant);
+                this.DelvryPlant.setModel(this.getOwnerComponent().getModel("S4D"));
+            }
             if (!this.ShippingCondn) {
                 this.ShippingCondn = new sap.ui.xmlfragment("iffco.managecustomer.fragments.ShippingCondn", this);
                 this.getView().addDependent(this.ShippingCondn);
@@ -80,6 +85,37 @@ sap.ui.define([
             }
         },
         handleValueHelpShippingCondnClose: function (evt) {
+            this.ShippingCondn.close();
+        },
+
+        //Value help for Delivery Plant
+        handleValueHelpForDelvryPlant: function (evt) {
+            this.DelvryPlant = evt.getSource();
+            this.DelvryPlant.getBinding("items").filter([]);
+            this.DelvryPlant.open();
+        },
+        handleValueHelpDelvPlantConfirm: function (evt) {
+            var title = evt.getParameter("selectedItems")[0].getProperty("title");
+            var desc = evt.getParameter("selectedItems")[0].getProperty("description");
+            this.DelvryPlant.setValue(title + " - " + desc);
+            this.ShippingCondn.getBinding("items").filter([]);
+            this.ShippingCondn.close();
+        },
+        handleValueHelpDelvPlantSearch: function (evt) {
+            var sValue = evt.getParameter("value");
+            if (sValue.length > 0) {
+                if (sValue.length == 4) {
+                    var oFilter1 = new sap.ui.model.Filter("Plant", 'EQ', sValue);
+                    this.ShippingCondn.getBinding("items").filter([oFilter1]);
+                } else {
+                    var oFilter2 = new sap.ui.model.Filter("Name", 'EQ', sValue);
+                    this.ShippingCondn.getBinding("items").filter([oFilter2]);
+                }
+            } else {
+                this.ShippingCondn.getBinding("items").filter([]);
+            }
+        },
+        handleValueHelpDelvPlantClose: function (evt) {
             this.ShippingCondn.close();
         },
 

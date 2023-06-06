@@ -4,6 +4,6 @@
 >
 <SelectDialog contentHeight="60%" showClearButton="true" title="Select Distribution Organization" class="sapUiPopupWithPadding"
 		items="{path:'S4D>/DistriChannelSet'}" search="handleValueHelpDistribSearch" confirm="handleValueHelpDistributionConfirm" cancel="handleValueHelpDistributionClose" multiSelect="false">
-		<StandardListItem title="{S4D>Dc}" description="{S4D>Dctext}"/>
+		<StandardListItem title="{S4D>Distributionchannel}" description="{S4D>Distributionchanneltext}"/>
 	</SelectDialog>
 </c:FragmentDefinition>

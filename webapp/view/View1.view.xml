@@ -26,9 +26,8 @@
                                             <Input />
                                         </fb:control>
                                     </fb:FilterItem>
-                                    <fb:FilterItem name="Company Code" label="Company Code">
+                                    <fb:FilterItem name="Company Code" label="Company Code" >
                                         <fb:control>
-                                           
                                             <Input />
                                         </fb:control>
                                     </fb:FilterItem>

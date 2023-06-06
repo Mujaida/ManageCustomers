@@ -44,6 +44,10 @@ sap.ui.define([
                 this.HeadOffice = new sap.ui.xmlfragment("iffco.managecustomer.fragments.HeadOffice", this);
                 this.getView().addDependent(this.HeadOffice);
             }
+            if (!this.CompCode) {
+                this.CompCode = new sap.ui.xmlfragment("iffco.managecustomer.fragments.CompCode", this);
+                this.getView().addDependent(this.CompCode);
+            }
         
         },
        
@@ -336,8 +340,39 @@ sap.ui.define([
         },
         handleValueHelpHeadOffcClose: function (evt) {
             this.HeadOffice.close();
-        }
+        },
 
+        //Value Help for Company Code
+        handleValueHelpForCompCode: function (evt) {
+            this.CompCodeField = evt.getSource();
+            this.CompCode.getBinding("items").filter([]);
+            this.CompCode.open();
+        },
+        handleValueHelpCompCodeSearch: function (evt) {
+            var sValue = evt.getParameter("value");
+            if (sValue.length > 0) {
+                if (sValue.length == 4) {
+                    var oFilter1 = new sap.ui.model.Filter("Bukrs", 'EQ', sValue);
+                    this.CompCode.getBinding("items").filter([oFilter1]);
+                }
+                 else {
+                    var oFilter2 = new sap.ui.model.Filter("Butxt", 'EQ', sValue);
+                    this.CompCode.getBinding("items").filter([oFilter2]);
+                }
+            } else {
+                this.CompCode.getBinding("items").filter([]);
+            }
+        },
+        handleValueHelpCompCodeConfirm: function (evt) {
+            var title = evt.getParameter("selectedItems")[0].getProperty("title");
+            var desc = evt.getParameter("selectedItems")[0].getProperty("description");
+            this.CompCodeField.setValue(title + " - " + desc);
+            this.CompCode.getBinding("items").filter([]);
+            this.CompCode.close();
+        },
+        handleValueHelpCompCodeClose: function (evt) {
+            this.CompCode.close();
+        }
         
 
 	});

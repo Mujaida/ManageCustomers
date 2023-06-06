@@ -17,7 +17,9 @@
 		valueHelpOnly="true" visible="{=${fieldMappingModels>/StateVisible} === true ? true : false}"/>
         <Label text="Language" visible="{=${fieldMappingModels>/LanguageVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/LanguageMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zlanguage}" maxLength="2" visible="{=${fieldMappingModels>/LanguageVisible} === true ? true : false}"/>
+		<!-- <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zlanguage}" maxLength="2" visible="{=${fieldMappingModels>/LanguageVisible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zlanguage}" valueHelpRequest="handleValueHelpForLanguage"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/LanguageVisible} === true ? true : false}"/>
 		<Label text="Transportation Zone" visible="{=${fieldMappingModels>/TransportationZoneVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/TransportationZoneMandatory} === true ? false : false}"/>
  <!-- <Input value="{Customers>/ztransportation_zone}" maxLength="10" visible="{=${fieldMappingModels>/TransportationZoneVisible} === true ? true : false}"/> -->

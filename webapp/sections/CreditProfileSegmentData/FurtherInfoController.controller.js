@@ -149,30 +149,7 @@ sap.ui.define(
         },
         handleValueHelpForInfoCat: function (evt) {
           this.infoCatField = evt.getSource();
-          // this.infoCat.getBinding("items").filter([new sap.ui.model.Filter("InformationCat", "EQ", this.chnlGrpVal)]);
-          // this.infoCat.getBinding("items").filter([]);
-          
-
-          var serviceURL = this.getOwnerComponent().getModel("S4D111").sServiceUrl;
-                var oModel = new sap.ui.model.odata.ODataModel(serviceURL, true);
-
-                oModel.read("/CreditInformationSet", {
-                    success: function (oData, oResponse) {
-                        var aCombinedData = [];
-                        var aUniqueCustomers = [];
-                        oData.results.forEach(function (oCustomer) {
-                            if (!aUniqueCustomers.includes(oCustomer.InformationDes)){
-                                aUniqueCustomers.push(oCustomer.InformationDes);
-                                aCombinedData.push(oCustomer);
-                            }
-                        });
-                    
-                      this.getOwnerComponent().setModel(new sap.ui.model.json.JSONModel(aCombinedData), "creditInfoSet");
-
-                    }.bind(this),
-                    error: function (error) {},
-                  });
-                  // this.infoCat.getBinding("items").filter([]);
+          this.infoCat.getBinding("items").filter([new sap.ui.model.Filter("InformationCat", "EQ", this.chnlGrpVal)]);
                   this.infoCat.open();
         },
         handleValueHelpInfoCatConfirm: function (evt) {
@@ -189,35 +166,27 @@ sap.ui.define(
         },
         handleValueHelpForIndusType: function (evt) {
           this.indusTypeField = evt.getSource();
-          // this.indusType
-          //   .getBinding("items")
-          //   .filter([
-          //     new sap.ui.model.Filter(
-          //       "InformationCat",
-          //       "EQ",
-          //       this.infoCatValue
-          //     ),
-          //   ]);
-          var serviceURL = this.getOwnerComponent().getModel("S4D111").sServiceUrl;
-                var oModel = new sap.ui.model.odata.ODataModel(serviceURL, true);
+          this.indusType.getBinding("items").filter([ new sap.ui.model.Filter("InformationCat","EQ", this.infoCatValue)]);
+          // var serviceURL = this.getOwnerComponent().getModel("S4D111").sServiceUrl;
+          //       var oModel = new sap.ui.model.odata.ODataModel(serviceURL, true);
                 
-                oModel.read("/CreditInformationSet", {
-                  filters: [new sap.ui.model.Filter("InformationCat", sap.ui.model.FilterOperator.EQ, this.infoCatValue)],
-                    success: function (oData, oResponse) {
-                        var aCombinedData = [];
-                        var aUniqueCustomers = [];
-                        oData.results.forEach(function (oCustomer) {
-                            if (!aUniqueCustomers.includes(oCustomer.NameOfType)){
-                                aUniqueCustomers.push(oCustomer.NameOfType);
-                                aCombinedData.push(oCustomer);
-                            }
-                        });
+          //       oModel.read("/CreditInformationSet", {
+          //         filters: [new sap.ui.model.Filter("InformationCat", sap.ui.model.FilterOperator.EQ, this.infoCatValue)],
+          //           success: function (oData, oResponse) {
+          //               var aCombinedData = [];
+          //               var aUniqueCustomers = [];
+          //               oData.results.forEach(function (oCustomer) {
+          //                   if (!aUniqueCustomers.includes(oCustomer.NameOfType)){
+          //                       aUniqueCustomers.push(oCustomer.NameOfType);
+          //                       aCombinedData.push(oCustomer);
+          //                   }
+          //               });
                     
-                      this.getOwnerComponent().setModel(new sap.ui.model.json.JSONModel(aCombinedData), "creditInfoSet1");
+          //             this.getOwnerComponent().setModel(new sap.ui.model.json.JSONModel(aCombinedData), "creditInfoSet1");
 
-                    }.bind(this),
-                    error: function (error) {},
-                  });
+          //           }.bind(this),
+          //           error: function (error) {},
+          //         });
           this.indusType.open();
         },
         handleValueHelpIndusTypeConfirm: function (evt) {
@@ -296,7 +265,6 @@ sap.ui.define(
         //Validation of the date field Valid From
 		handleStartDateChange: function (evt) {
 			this.ExpStrtDate = evt.getSource();
-			// this.getView().byId("fromDate").setValue(this.ExpStrtDate.getValue());
 			if (this.ExpEndDate && this.ExpStrtDate.getValue()) {
 				if (this.ExpStrtDate.getValue() !== "" && this.ExpEndDate.getValue() !== "") {
 					if (this.ExpStrtDate.getValue() > this.ExpEndDate.getValue()) {
@@ -318,10 +286,8 @@ sap.ui.define(
 		//Validation of the date field Valid To
 		handleEndDateChange: function (evt) {
 			this.ExpEndDate = evt.getSource();
-			// this.getView().byId("toDate").setValue(this.ExpEndDate.getValue());
+			
 			if (this.ExpStrtDate.getValue() !== "" && this.ExpEndDate.getValue() !== "") {
-				//if (this.ExpStrtDate.getValue() > this.ExpEndDate.getValue()) {
-
 				if (new Date(this.ExpStrtDate.getValue()) > new Date(this.ExpEndDate.getValue())) {
 					this.ExpStrtDate.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
 					this.ExpEndDate.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
@@ -337,7 +303,7 @@ sap.ui.define(
         //Validation of the date field Valid From
 		handleStartDateChange1: function (evt) {
 			this.ExpStrtDate1 = evt.getSource();
-			// this.getView().byId("enteredOn").setValue(this.ExpStrtDate1.getValue());
+			
 			if (this.ExpEndDate1) {
 				if (this.ExpStrtDate1.getValue() !== "" && this.ExpEndDate.getValue() !== "") {
 					if (this.ExpStrtDate1.getValue() > this.ExpEndDate1.getValue()) {
@@ -359,10 +325,7 @@ sap.ui.define(
 		//Validation of the date field Valid To
 		handleEndDateChange1: function (evt) {
 			this.ExpEndDate1 = evt.getSource();
-			// this.getView().byId("deletedOn").setValue(this.ExpEndDate.getValue());
 			if (this.ExpStrtDate1.getValue() !== "" && this.ExpEndDate1.getValue() !== "") {
-				//if (this.ExpStrtDate.getValue() > this.ExpEndDate.getValue()) {
-
 				if (new Date(this.ExpStrtDate1.getValue()) > new Date(this.ExpEndDate1.getValue())) {
 					this.ExpStrtDate1.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
 					this.ExpEndDate1.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
@@ -375,6 +338,7 @@ sap.ui.define(
 				this.ExpEndDate1.setValueState("None").setValueStateText("");
 			}
 		},
+    
     handleValueHelpIndusTypeSearch:function (evt) {
       var sValue = evt.getParameter("value");
       if (sValue.length > 0) {

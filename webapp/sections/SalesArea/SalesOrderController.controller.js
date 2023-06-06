@@ -35,6 +35,16 @@ sap.ui.define([
                     this.getView().addDependent(this.unitOfMsrGrp);
                     this.unitOfMsrGrp.setModel(this.getOwnerComponent().getModel("S4D"));
                 }
+                if (!this.exchngRateType) {
+                    this.exchngRateType = new sap.ui.xmlfragment("Iffco.clap.fragments.ExchangeRateType", this);
+                    this.getView().addDependent(this.exchngRateType);
+                    this.exchngRateType.setModel(this.getOwnerComponent().getModel("S4D"));
+                }
+                if (!this.PPCustProcedure) {
+                    this.PPCustProcedure = new sap.ui.xmlfragment("Iffco.clap.fragments.PPCustrProcedure", this);
+                    this.getView().addDependent(this.PPCustProcedure);
+                    this.PPCustProcedure.setModel(this.getOwnerComponent().getModel("S4D"));
+                }
             
             },
             //Value Help for Customer Group
@@ -180,6 +190,68 @@ sap.ui.define([
             },
             handleValueHelpUntMsrGrpClose: function (params) {
                 this.unitOfMsrGrp.close();
+            },
+            
+            //Value Help for PP Customer Procedure
+            handleValueHelpForPPCustProcedure: function (evt) {
+                this.PPCustProcedureField = evt.getSource();
+                this.PPCustProcedure.getBinding("items").filter([]);
+                this.PPCustProcedure.open();
+            },
+            handleValueHelpPPCustProcedureConfirm: function (evt) {
+                var title = evt.getParameter("selectedItems")[0].getProperty("title");
+                var desc = evt.getParameter("selectedItems")[0].getProperty("description");
+                this.PPCustProcedureField.setValue(title + " - " + desc);
+                this.PPCustProcedure.getBinding("items").filter([]);
+                this.PPCustProcedure.close();
+            },
+            handleValueHelpPPCustProcedureSearch: function (evt) {
+                var sValue = evt.getParameter("value");
+                if (sValue.length > 0) {
+                    if (sValue.length == 1) {
+                        var oFilter1 = new sap.ui.model.Filter("Ppcustproce", 'EQ', sValue);
+                        this.PPCustProcedure.getBinding("items").filter([oFilter1]);
+                    } else {
+                        var oFilter2 = new sap.ui.model.Filter("Description", 'EQ', sValue);
+                        this.PPCustProcedure.getBinding("items").filter([oFilter2]);
+                    }
+                } else {
+                    this.PPCustProcedure.getBinding("items").filter([]);
+                }
+            },
+            handleValueHelpPPCustProcedureClose: function (params) {
+                this.PPCustProcedure.close();
+            },
+
+            //Value Help for Exchange Rate Type
+            handleValueHelpForExchngRateType: function (evt) {
+                this.exchngRateTypeField = evt.getSource();
+                this.exchngRateType.getBinding("items").filter([]);
+                this.exchngRateType.open();
+            },
+            handleValueHelpExchngRateTypeConfirm: function (evt) {
+                var title = evt.getParameter("selectedItems")[0].getProperty("title");
+                var desc = evt.getParameter("selectedItems")[0].getProperty("description");
+                this.exchngRateTypeField.setValue(title + " - " + desc);
+                this.exchngRateType.getBinding("items").filter([]);
+                this.exchngRateType.close();
+            },
+            handleValueHelpExchngRateTypeSearch: function (evt) {
+                var sValue = evt.getParameter("value");
+                if (sValue.length > 0) {
+                    if (sValue.length == 4) {
+                        var oFilter1 = new sap.ui.model.Filter("Exchangeratetype", 'EQ', sValue);
+                        this.exchngRateType.getBinding("items").filter([oFilter1]);
+                    } else {
+                        var oFilter2 = new sap.ui.model.Filter("Description", 'EQ', sValue);
+                        this.exchngRateType.getBinding("items").filter([oFilter2]);
+                    }
+                } else {
+                    this.exchngRateType.getBinding("items").filter([]);
+                }
+            },
+            handleValueHelpExchngRateTypeClose: function (params) {
+                this.exchngRateType.close();
             }
 	});
 

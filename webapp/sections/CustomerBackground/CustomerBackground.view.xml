@@ -3,7 +3,7 @@
 		<core:Title text="Background Information"/>
           <Label text="Credit limit currency" visible="{=${fieldMappingModels>/CreditlimitCurrencyVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/CreditlimitCurrencyMandatory} === true ? true : false}"/>
-		<MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForCurrency" value="{Customers>/zcredit_limit_currency}"
+		<MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForCurrency" value="{Customers>/0/zcredit_limit_currency}"
 		valueHelpOnly="true" visible="{=${fieldMappingModels>/CreditlimitCurrencyVisible} === true ? true : false}"/>
 
 		<!-- <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zcredit_limit_currency}" maxLength="20" visible="{=${fieldMappingModels>/CreditlimitCurrencyVisible} === true ? true : false}"/> -->

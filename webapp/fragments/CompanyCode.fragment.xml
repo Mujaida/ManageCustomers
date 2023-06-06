@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Company" class="sapUiPopupWithPadding"
+		items="{path:'CountryCodesModel>/'}" search="handleValueHelpCountrySearch"
+		confirm="" selectionChange="handleCountryCodeSave" cancel="handleValueHelpCountrClose" multiSelect="false">
+		<StandardListItem title="{CountryCodesModel>Bukrs}" />
+	</SelectDialog>
+</core:FragmentDefinition>

@@ -12,8 +12,10 @@
         valueHelpOnly="true" visible="{=${fieldMappingModels>/ShippingConditionsVisible} === true ? true : false}"/>
 		<Label text="Delivery Plant" visible="{=${fieldMappingModels>/DeliveryPlantVisible} === true ? true : false}"
          required="{=${fieldMappingModels>/DeliveryPlantMandatory} === true ? true : false}" />
-        <Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zdelivery_plant}" maxLength="4" visible="{=${fieldMappingModels>/DeliveryPlantVisible} === true ? true : false}" />
-        <Label text="Order Combination"  visible="{=${fieldMappingModels>/OrderCombinationVisible} === true ? true : false}"
+        <!-- <Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zdelivery_plant}" maxLength="4" visible="{=${fieldMappingModels>/DeliveryPlantVisible} === true ? true : false}" /> -->
+        <MultiInput enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zdelivery_plant}" valueHelpRequest="handleValueHelpForDelvryPlant"
+        valueHelpOnly="true" visible="{=${fieldMappingModels>/DeliveryPlantVisible} === true ? true : false}"/>
+		<Label text="Order Combination"  visible="{=${fieldMappingModels>/OrderCombinationVisible} === true ? true : false}"
          required="{=${fieldMappingModels>/OrderCombinationMandatory} === true ? true : false}" />
         <Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zorder_combination}" maxLength="1" visible="{=${fieldMappingModels>/OrderCombinationVisible} === true ? true : false}" />
         <Label text="Relevant POD" visible="{=${fieldMappingModels>/RelevantPODVisible} === true ? true : false}"

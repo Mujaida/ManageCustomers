@@ -151,6 +151,34 @@ sap.ui.define([
             //     this.getView().addDependent(this.TaxClassfn);
             //     this.TaxClassfn.setModel(this.getOwnerComponent().getModel("S4D"));
             // }
+
+            if (!this.blockReason) {
+                this.blockReason = new sap.ui.xmlfragment("iffco.managecustomer.fragments.BlockedReason", this);
+                this.getView().addDependent(this.blockReason);
+                this.blockReason.setModel(this.getOwnerComponent().getModel());
+            }
+
+            if (!this.cs) {
+                this.cs = new sap.ui.xmlfragment("iffco.managecustomer.fragments.creditSegmentData", this);
+                this.getView().addDependent(this.creditSegment);
+                this.cs.setModel(this.getOwnerComponent().getModel());
+            }
+
+            if (!this.furtherInfo) {
+                this.furtherInfo = new sap.ui.xmlfragment("iffco.managecustomer.fragments.creditSegment", this);
+                this.getView().addDependent(this.furtherInfo);
+                this.furtherInfo.setModel(this.getOwnerComponent().getModel());
+              }
+              if (!this.infoCat) {
+                this.infoCat = new sap.ui.xmlfragment("iffco.managecustomer.fragments.InfoCat", this);
+                this.getView().addDependent(this.infoCat);
+                this.infoCat.setModel(this.getOwnerComponent().getModel());
+              }
+              if (!this.indusType) {
+                this.indusType = new sap.ui.xmlfragment("iffco.managecustomer.fragments.IndustryType", this);
+                this.getView().addDependent(this.indusType);
+                this.indusType.setModel(this.getOwnerComponent().getModel());
+              }
             
         },
 
@@ -349,6 +377,206 @@ sap.ui.define([
             }
         },
 
+            //  Credit limit value helps
+
+            handleValueHelpForBlockReason: function (evt) {
+                this.blockReasonField = evt.getSource();
+                this.blockReason.getBinding("items").filter([]);
+                    this.blockReason.open();
+            },
+            handleValueHelpBlockReasonClose: function (params) {
+                this.blockReason._dialog.close();
+            },
+            handleValueHelpBlockReasonConfirm: function (evt) {
+                var title = evt.getParameter("selectedItems")[0].getProperty("title");
+                var desc = evt.getParameter("selectedItems")[0].getProperty("description");
+                this.blockReasonField.setValue(title + " - " + desc);
+            },
+            handleValueHelpBlockedReasonSearch:function (evt) {
+                var sValue = evt.getParameter("value");
+                if (sValue.length > 0) {
+                    if (sValue.length == 2) {
+                        var oFilter1 = new sap.ui.model.Filter("Blockreason", 'EQ', sValue);
+                        this.blockReason.getBinding("items").filter([oFilter1]);
+                    } else {
+                        var oFilter2 = new sap.ui.model.Filter("Blockreasontxt", 'EQ', sValue);
+                        this.blockReason.getBinding("items").filter([oFilter2]);
+                    }
+                } else {
+                    this.blockReason.getBinding("items").filter([]);
+                }
+            },
+
+            handleValueHelpForCS: function (evt) {
+                this.creditSegmentField = evt.getSource();
+                if(this.getView().getModel("appView").getProperty("/cca")){
+                    this.cs.getBinding("items").filter([new sap.ui.model.Filter("credit_control_area", "EQ", this.getView().getModel("appView").getProperty("/cca"))]);
+                    this.cs.open();
+                    }else{
+                        MessageBox.error("Please select the credit control area first");
+                    }
+            },
+            handleValueHelpCSClose: function (params) {
+                this.cs._dialog.close();
+            },
+            handleValueHelpCSConfirm: function (evt) {
+                var title = evt.getParameter("selectedItems")[0].getProperty("title");
+                var desc = evt.getParameter("selectedItems")[0].getProperty("description");
+                this.creditSegmentField.setValue(title + " - " + desc);
+            },
+
+            handleValueHelpForIndusType: function (evt) {
+                this.indusTypeField = evt.getSource();
+                this.indusType.getBinding("items").filter([ new sap.ui.model.Filter("InformationCat","EQ", this.infoCatValue)]);
+                this.indusType.open();
+              },
+              handleValueHelpIndusTypeConfirm: function (evt) {
+                this.indusTypeValue = evt
+                  .getParameter("selectedItems")[0]
+                  .getProperty("title");
+                var desc = evt
+                  .getParameter("selectedItems")[0]
+                  .getProperty("description");
+                this.indusTypeField.setValue(this.indusTypeValue);
+                this.furtherInfo.getContent()[0].getContent()[3].setValue(desc);
+                // this.getView().byId("nameOfType").setValue(desc);
+              },
+              handleValueHelpIndusTypeClose: function (evt) {
+                this.indusType._dialog.close();
+              },
+
+              handleValueHelpForInfoCat: function (evt) {
+                this.infoCatField = evt.getSource();
+                this.infoCat.getBinding("items").filter([]);
+                        this.infoCat.open();
+              },
+              handleValueHelpInfoCatConfirm: function (evt) {
+                this.infoCatValue = evt
+                  .getParameter("selectedItems")[0]
+                  .getProperty("title");
+                var desc = evt
+                  .getParameter("selectedItems")[0]
+                  .getProperty("description");
+                this.infoCatField.setValue(this.infoCatValue + " - " + desc);
+              },
+              handleValueHelpInfoCatClose: function (evt) {
+                this.infoCat._dialog.close();
+              },
+
+              handleValueHelpIndusTypeSearch:function (evt) {
+                var sValue = evt.getParameter("value");
+                if (sValue.length > 0) {
+                    if (sValue.length == 2) {
+                        var oFilter1 = new sap.ui.model.Filter("InformationType", 'EQ', sValue);
+                        this.indusType.getBinding("items").filter([oFilter1]);
+                    } else {
+                        var oFilter2 = new sap.ui.model.Filter("NameOfType", 'EQ', sValue);
+                        this.indusType.getBinding("items").filter([oFilter2]);
+                    }
+                } else {
+                    this.indusType.getBinding("items").filter([]);
+                }
+            },
+            handleValueHelpInfoCatSearch:function (evt) {
+                var sValue = evt.getParameter("value");
+                if (sValue.length > 0) {
+                    if (sValue.length == 2) {
+                        var oFilter1 = new sap.ui.model.Filter("InformationCat", 'EQ', sValue);
+                        this.infoCat.getBinding("items").filter([oFilter1]);
+                    } else {
+                        var oFilter2 = new sap.ui.model.Filter("InformationDes", 'EQ', sValue);
+                        this.infoCat.getBinding("items").filter([oFilter2]);
+                    }
+                } else {
+                    this.infoCat.getBinding("items").filter([]);
+                }
+            },
+
+              dateFormatter: function (value) {
+                if (value) {
+                  var sNotifDate = new Date(value.toString().split("GMT")[0] + " UTC")
+                    .toISOString()
+                    .split(".")[0];
+                  return sNotifDate;
+                } else return "";
+              },
+
+              handleStartDateChange: function (evt) {
+                this.ExpStrtDate = evt.getSource();
+                if (this.ExpEndDate && this.ExpStrtDate.getValue()) {
+                    if (this.ExpStrtDate.getValue() !== "" && this.ExpEndDate.getValue() !== "") {
+                        if (this.ExpStrtDate.getValue() > this.ExpEndDate.getValue()) {
+                            this.ExpStrtDate.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
+                            this.ExpEndDate.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
+                        } else {
+                            this.ExpStrtDate.setValueState("None").setValueStateText("");
+                            this.ExpEndDate.setValueState("None").setValueStateText("");
+                        }
+                    } else {
+                        this.ExpStrtDate.setValueState("None").setValueStateText("");
+                        this.ExpEndDate.setValueState("None").setValueStateText("");
+                    }
+                } else {
+                    this.ExpStrtDate.setValueState("None").setValueStateText("");
+                }
+            },
+    
+            //Validation of the date field Valid To
+            handleEndDateChange: function (evt) {
+                this.ExpEndDate = evt.getSource();
+                
+                if (this.ExpStrtDate.getValue() !== "" && this.ExpEndDate.getValue() !== "") {
+                    if (new Date(this.ExpStrtDate.getValue()) > new Date(this.ExpEndDate.getValue())) {
+                        this.ExpStrtDate.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
+                        this.ExpEndDate.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
+                    } else {
+                        this.ExpStrtDate.setValueState("None").setValueStateText("");
+                        this.ExpEndDate.setValueState("None").setValueStateText("");
+                    }
+                } else {
+                    this.ExpStrtDate.setValueState("None").setValueStateText("");
+                    this.ExpEndDate.setValueState("None").setValueStateText("");
+                }
+            },
+            //Validation of the date field Valid From
+            handleStartDateChange1: function (evt) {
+                this.ExpStrtDate1 = evt.getSource();
+                
+                if (this.ExpEndDate1) {
+                    if (this.ExpStrtDate1.getValue() !== "" && this.ExpEndDate.getValue() !== "") {
+                        if (this.ExpStrtDate1.getValue() > this.ExpEndDate1.getValue()) {
+                            this.ExpStrtDate1.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
+                            this.ExpEndDate1.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
+                        } else {
+                            this.ExpStrtDate1.setValueState("None").setValueStateText("");
+                            this.ExpEndDate1.setValueState("None").setValueStateText("");
+                        }
+                    } else {
+                        this.ExpStrtDate1.setValueState("None").setValueStateText("");
+                        this.ExpEndDate1.setValueState("None").setValueStateText("");
+                    }
+                } else {
+                    this.ExpStrtDate1.setValueState("None").setValueStateText("");
+                }
+            },
+    
+            //Validation of the date field Valid To
+            handleEndDateChange1: function (evt) {
+                this.ExpEndDate1 = evt.getSource();
+                if (this.ExpStrtDate1.getValue() !== "" && this.ExpEndDate1.getValue() !== "") {
+                    if (new Date(this.ExpStrtDate1.getValue()) > new Date(this.ExpEndDate1.getValue())) {
+                        this.ExpStrtDate1.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
+                        this.ExpEndDate1.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
+                    } else {
+                        this.ExpStrtDate1.setValueState("None").setValueStateText("");
+                        this.ExpEndDate1.setValueState("None").setValueStateText("");
+                    }
+                } else {
+                    this.ExpStrtDate1.setValueState("None").setValueStateText("");
+                    this.ExpEndDate1.setValueState("None").setValueStateText("");
+                }
+            },
+
 		handleCreate : function (evt) {
 			var that =this;
             var objects = 
@@ -392,7 +620,7 @@ sap.ui.define([
                         "zsales_group" : "",
                         "zcustomer_group" : "",
                         "zabc_class" : "",
-                        "zcurrency" : "",
+                        "zsales_currency" : "",
                         "zaccount_at_customer" : "",
                         "zswitch_off_rounding" : "",
                         "zorderprobability" : "",
@@ -412,6 +640,35 @@ sap.ui.define([
                         "ztax_classification" : "",
                         "ztax_category2" : "",
                         "ztax_classification2" : "",
+                        "zrule" : "",
+                        "zrisk_class" : "",
+                        "zcheck_rule" : "",
+                        "zlimit_define" : "",
+                        "zlimit" : "0.0",
+                        "zvalidity_to" : "",
+                        "zcredit_segment" : "",
+                        "zrelationship_to_bp" : "",
+                        "zcredit_control_area_desc" : "",
+                        "zcredit_segment_desc" : "",
+                        "zblockedincm" : "",
+                        "zspecialattention" : "",
+                        "zblock_reason" : "",
+                        // "zcredit_exposure" : "",
+                        "zutiliation_ptg" : "0.0",
+                        "zresubmission_on" : "",
+                        "zinfo_category" : "",
+                        "zinfo_type" : "",
+                        "zname_of_type" : "",
+                        "zrelevant" : "",
+                        "zindividual_step" : "",
+                        "zcredit_amount" : "0.0",
+                        "zcredit_curr" : "",
+                        "zdate_from" : "",
+                        "zdate_to" : "",
+                        "zentered_on" : "",
+                        "zdeleted_on" : "",
+                        "zresubmission_date" : "",
+                        "ztext_field" : ""
                     };
            
         //    this.getOwnerComponent().getModel("salesDataModel").getData().push(JSON.parse(JSON.stringify(objects)));
@@ -439,14 +696,14 @@ sap.ui.define([
            container.addItem(salesPanel); 
 
         //   var headerText = salesPanel.getItems()[0].getContent()[0].getParent().getHeaderText();
-          var headerCount = count+1;
+        //   var headerCount = count+1;
 
-        var buttonText =   salesPanel.getItems()[0].getHeaderToolbar().getContent()[2];
-        // var buttonText =   salesPanel.getItems()[0].getHeaderToolbar().getContent()[0];
-        var headerText = salesPanel.getItems()[0].getHeaderToolbar().getContent()[0].getText();
-        //   salesPanel.getItems()[0].getContent()[0].getParent().getHeaderToolbar().getContent()[0].getText()
+        // var buttonText =   salesPanel.getItems()[0].getHeaderToolbar().getContent()[2];
+        // // var buttonText =   salesPanel.getItems()[0].getHeaderToolbar().getContent()[0];
+        // var headerText = salesPanel.getItems()[0].getHeaderToolbar().getContent()[0].getText();
+        // //   salesPanel.getItems()[0].getContent()[0].getParent().getHeaderToolbar().getContent()[0].getText()
             
-        salesPanel.getItems()[0].getHeaderToolbar().getContent()[0].setText(headerText+ " "+headerCount);
+        // salesPanel.getItems()[0].getHeaderToolbar().getContent()[0].setText(headerText+ " "+headerCount);
         // buttonText.setText(headerText +" "+headerCount);
 
         

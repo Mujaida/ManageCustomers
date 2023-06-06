@@ -2,40 +2,40 @@
 	<forms:SimpleForm editable="false" layout="ColumnLayout">
 		<Label text="Terms Of Payment" visible="{=${fieldMappingModels>/TermsOfPaymentVisible} === true ? true : false}"
 		 required="{=${fieldMappingModels>/TermsOfPaymentMandatory} === true ? true : false}"/>
-		 <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zterms_of_payment}" maxLength="4" visible="{=${fieldMappingModels>/TermsOfPaymentVisible} === true ? true : false}"/>
+		 <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zterms_of_payment}" maxLength="4" visible="{=${fieldMappingModels>/TermsOfPaymentVisible} === true ? true : false}"/>
 		
 		
 		<Label text = "Payment History Record" visible="{=${fieldMappingModels>/PaymentHistoryRecordVisible} === true ? true : false}" 
 		required="{=${fieldMappingModels>/PaymentHistoryRecordMandatory} === true ? true : false}"/>
-		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zpayment_history_record}" maxLength="1" visible="{=${fieldMappingModels>/PaymentHistoryRecordVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zpayment_history_record}" maxLength="1" visible="{=${fieldMappingModels>/PaymentHistoryRecordVisible} === true ? true : false}"/>
 		
 		<Label text="Credit Memo Payment Terms" visible="{=${fieldMappingModels>/CreditMemoPaymentTermsVisible} === true ? true : false}"
 		 required="{=${fieldMappingModels>/CreditMemoPaymentTermsMandatory} === true ? true : false}"/>
-		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zcredi_memo_payment_terms}" maxLength="4" visible="{=${fieldMappingModels>/CreditMemoPaymentTermsVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zcredi_memo_payment_terms}" maxLength="4" visible="{=${fieldMappingModels>/CreditMemoPaymentTermsVisible} === true ? true : false}"/>
 		<Label text = "BE Charges Payment Term" visible="{=${fieldMappingModels>/BEChargesPaymentTermVisible} === true ? true : false}"
 		 required="{=${fieldMappingModels>/BEChargesPaymentTermMandatory} === true ? true : false}"/>
-		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zbe_charges_payment_term}" visible="{=${fieldMappingModels>/BEChargesPaymentTermVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zbe_charges_payment_term}" visible="{=${fieldMappingModels>/BEChargesPaymentTermVisible} === true ? true : false}"/>
 		
 		<Label text="Check Cashing Time" visible="{=${fieldMappingModels>/CheckCashingTimeVisible} === true ? true : false}"
 		 required="{=${fieldMappingModels>/CheckCashingTimeMandatory} === true ? true : false}"/>
-		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zcheck_cashing_time}" maxLength="3" visible="{=${fieldMappingModels>/CheckCashingTimeVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zcheck_cashing_time}" maxLength="3" visible="{=${fieldMappingModels>/CheckCashingTimeVisible} === true ? true : false}"/>
 		<Label text = "Tolernace Group" visible="{=${fieldMappingModels>/ToleranceGroupVisible} === true ? true : false}"
 		 required="{=${fieldMappingModels>/ToleranceGroupMandatory} === true ? true : false}"/>
-		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/ztolerance_group}" maxLength="4" visible="{=${fieldMappingModels>/ToleranceGroupVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/ztolerance_group}" maxLength="4" visible="{=${fieldMappingModels>/ToleranceGroupVisible} === true ? true : false}"/>
 		
 		<Label text="Know/Negotiated Leave" visible="{=${fieldMappingModels>/KnowNegotiatedLeaveVisible} === true ? true : false}" 
 		required="{=${fieldMappingModels>/KnowNegotiatedLeaveMandatory} === true ? true : false}"/>
-		<!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zknown_egotiated_leave}" visible="{=${fieldMappingModels>/KnowNegotiatedLeaveVisible} === true ? true : false}"/> -->
-		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForKnowNegotiatedLeave" value="{Customers>/zknown_egotiated_leave}"
+		<!-- <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zknown_egotiated_leave}" visible="{=${fieldMappingModels>/KnowNegotiatedLeaveVisible} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForKnowNegotiatedLeave" value="{Customers>/zknown_egotiated_leave}"
 		valueHelpOnly="true" visible="{=${fieldMappingModels>/KnowNegotiatedLeaveVisible} === true ? true : false}"/>
 		<Label text="AR Pledging Indicator" visible="{=${fieldMappingModels>/30} === true ? true : false}" 
 		required="{=${fieldMappingModels>/30} === true ? true : false}"/>
-		<!-- <Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zar_pledging_indicator}" maxLength="2" visible="{=${fieldMappingModels>/30} === true ? true : false}"/> -->
-		<MultiInput enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" valueHelpRequest="handleValueHelpForARPledgeIndc" value="{Customers>/zar_pledging_indicator}"
+		<!-- <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zar_pledging_indicator}" maxLength="2" visible="{=${fieldMappingModels>/30} === true ? true : false}"/> -->
+		<MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForARPledgeIndc" value="{Customers>/zar_pledging_indicator}"
 		valueHelpOnly="true" visible="{=${fieldMappingModels>/30} === true ? true : false}"/>
 		<Label text="Payment History Record" visible="{=${fieldMappingModels>/PaymentHistoryRecordVisible} === true ? true : false}" 
 		required="{=${fieldMappingModels>/PaymentHistoryRecordMandatory} === true ? true : false}"/>
-		<Input enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{Customers>/zpayment_history_record}" maxLength="1" visible="{=${fieldMappingModels>/PaymentHistoryRecordVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zpayment_history_record}" maxLength="1" visible="{=${fieldMappingModels>/PaymentHistoryRecordVisible} === true ? true : false}"/>
 		
 	</forms:SimpleForm>
 </mvc:View>

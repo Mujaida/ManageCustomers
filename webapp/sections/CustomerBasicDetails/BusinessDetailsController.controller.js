@@ -359,6 +359,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",'sap/ui/model/Filter',
                 // this.getView().setModel(new sap.ui.model.json.JSONModel({}), "fieldMappingModels");
                 this.getView().getModel("fieldMappingModels").oData = flatObj;
                 this.getView().getModel("fieldMappingModels").updateBindings(true);
+                debugger
                 console.log(this.getView().getModel("fieldMappingModels").oData);
                 this.getView().setBusy(false);
 

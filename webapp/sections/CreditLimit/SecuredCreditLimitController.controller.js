@@ -82,7 +82,7 @@ sap.ui.define([
         handleValueHelpBankCountrySearch:function (evt) {
             var sValue = evt.getParameter("value");
                 if (sValue.length > 0) {
-                        var oFilter1 = new sap.ui.model.Filter("country", 'EQ', sValue);
+                        var oFilter1 = new sap.ui.model.Filter("Country", 'EQ', sValue);
                         this.bankCountry.getBinding("items").filter([oFilter1]);
                 } else {
                     this.bankCountry.getBinding("items").filter([]);
@@ -103,7 +103,7 @@ sap.ui.define([
         handleValueHelpBankCountrySearch1:function (evt) {
             var sValue = evt.getParameter("value");
                 if (sValue.length > 0) {
-                        var oFilter1 = new sap.ui.model.Filter("country", 'EQ', sValue);
+                        var oFilter1 = new sap.ui.model.Filter("Country", 'EQ', sValue);
                         this.bankCountry1.getBinding("items").filter([oFilter1]);
                 } else {
                     this.bankCountry1.getBinding("items").filter([]);

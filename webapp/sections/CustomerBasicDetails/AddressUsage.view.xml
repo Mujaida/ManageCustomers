@@ -1,6 +1,6 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" >
 	<forms:SimpleForm editable="false" layout="ColumnLayout">
-		<Label text="Address Type" visible="{=${fieldMappingModels>/AddressTypeVisible} === true ? true : false}"
+		<Label text="Address Type" visible="{=${fieldMappingModels>/AddressTypeVisible} === true ? true : true}"
  required="{=${fieldMappingModels>/AddressTypeMandatory} === true ? true : false}"/>
 		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zaddress_type}" maxLength="10" visible="{=${fieldMappingModels>/AddressTypeVisible} === true ? true : false}"/>
 		<Label text = "Address" visible="{=${fieldMappingModels>/AddressVisible} === true ? true : false}"

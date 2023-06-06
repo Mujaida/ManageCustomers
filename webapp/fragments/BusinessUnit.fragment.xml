@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
 	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Business unit" class="sapUiPopupWithPadding"
-		items="{/ZDD_BusinessUnit_VH}" search="handleValueHelpBusinessUnitSearch"
+		items="{/ZDD_BU_VH}" search="handleValueHelpBusinessUnitSearch"
 		confirm="handleValueHelpBusinessunitConfirm" cancel="handleValueHelpBusinessunitClose" multiSelect="false">
-		<StandardListItem title="{Businessunit}" />
+		<StandardListItem title="{businessunit}" />
 	</SelectDialog>
 </core:FragmentDefinition>

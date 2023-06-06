@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
 	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Bank Country" class="sapUiPopupWithPadding"
-		items="{/ZDD_BANK_VH}" search="handleValueHelpBankCountrySearch"
+		items="{/ZDD_COUNTRY}" search="handleValueHelpBankCountrySearch"
 		confirm="handleValueHelpBankCountryConfirm" cancel="handleValueHelpBankCountryClose" multiSelect="false">
-		<StandardListItem title="{country}" />
+		<StandardListItem title="{Country}" />
 	</SelectDialog>
 </core:FragmentDefinition>

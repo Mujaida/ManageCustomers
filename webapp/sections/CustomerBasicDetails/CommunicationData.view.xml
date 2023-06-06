@@ -9,7 +9,7 @@
 		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" placeholder="Country" maxLength="16" value="{Customers>/ztele_country}" visible="{=${fieldMappingModels>/TelephoneCountryVisible} === true ? true : false}"/>
 		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" placeholder="Number" maxLength="16" type="Number" liveChange="handleSetMaxLength" value="{Customers>/ztele_number}" visible="{=${fieldMappingModels>/TelephoneNumberVisible} === true ? true : false}"/>
 		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" placeholder="Extension" maxLength="16" value="{Customers>/ztele_extension}" visible="{=${fieldMappingModels>/TelephoneExtensionVisible} === true ? true : false}"/>
-		<Label text="Mobile" visible="{=${fieldMappingModels>/MobileNoVisible} === true ? true : false}"
+		<Label text="Country" visible="{=${fieldMappingModels>/MobileNoVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/MobileMandatory} === true ? true : false}"/>
 		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" placeholder="Country" value="{Customers>/zmobile_country}" maxLength="16" visible="{=${fieldMappingModels>/MobileNoVisible} === true ? true : false}"/>
 		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" placeholder="Number" type="Number" liveChange="handleSetMaxLength" value="{Customers>/zmobile_number}" maxLength="14" visible="{=${fieldMappingModels>/MobileNoVisible} === true ? true : false}"/>

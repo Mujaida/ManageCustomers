@@ -57,7 +57,7 @@
                         </columns>
 
                         <items>
-                            <ColumnListItem vAlign="Middle" type="Active" press="handleRequestnavigation">
+                            <ColumnListItem vAlign="Middle">
                                 <cells>
                                 
                                 <Text text="{existingCustomerSet>zbusiness_partner_id}" />

@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
 	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Information Category" class="sapUiPopupWithPadding"
-		items="{path:'creditInfoSet>/'}" search="handleValueHelpInfoCatSearch"
+		items="{path:'S4D>/CreditCategorySet'}" search="handleValueHelpInfoCatSearch"
 		confirm="handleValueHelpInfoCatConfirm" cancel="handleValueHelpInfoCatClose" multiSelect="false">
-		<StandardListItem title="{creditInfoSet>InformationCat}" description="{creditInfoSet>InformationDes}" />
+		<StandardListItem title="{S4D>InformationCat}" description="{S4D>InformationDes}" />
 	</SelectDialog>
 </core:FragmentDefinition>
