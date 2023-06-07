@@ -431,7 +431,8 @@ sap.ui.define(
       },
       handleRuleEngineConfiguration: function (oEvent) {
         console.log("ty");
-        if (this.evtProcess === 'Change Customer') {
+        // if (this.evtProcess === 'Change Customer') {
+          if (this.evtProcess === 'CHANGE') {
           var process = 'CHANGE';
         } else if (this.evtProcess === 'Extend Customer') {
           var process = 'EXTEND';
