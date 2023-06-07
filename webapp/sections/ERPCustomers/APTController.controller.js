@@ -123,6 +123,7 @@ sap.ui.define([
 
         //Value Help for Sort Key
         handleValueHelpForSortKey: function (evt) {
+            debugger
             this.SortKeyField = evt.getSource();
             this.SortKey.getBinding("items").filter([]);
             this.SortKey.open();
@@ -318,15 +319,21 @@ sap.ui.define([
         },
         handleValueHelpHeadOffcSearch: function (evt) {
             var sValue = evt.getParameter("value");
+            var filters = [];
             if (sValue.length > 0) {
-                if (sValue.length == 3) {
-                    var oFilter1 = new sap.ui.model.Filter("Zuawa", 'EQ', sValue);
-                    this.HeadOffice.getBinding("items").filter([oFilter1]);
-                }
-                 else {
-                    var oFilter2 = new sap.ui.model.Filter("Ttext", 'EQ', sValue);
-                    this.HeadOffice.getBinding("items").filter([oFilter2]);
-                }
+                var filter1 = new sap.ui.model.Filter({
+                    path: "Zuawa",
+                    operator: "Contains",
+                    value1: sValue
+                });
+                var filter2 = new sap.ui.model.Filter({
+                    path: "Ttext",
+                    operator: "Contains",
+                    value1: sValue
+                });
+                var sFilters = [filter1, filter2];
+                filters.push(new sap.ui.model.Filter(sFilters, false));
+                this.HeadOffice.getBinding("items").filter(filters, false);
             } else {
                 this.HeadOffice.getBinding("items").filter([]);
             }

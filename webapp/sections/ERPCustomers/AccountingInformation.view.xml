@@ -9,9 +9,9 @@
 		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zreconciliation_account}" maxLength="10" visible="{=${fieldMappingModels>/ReconciliationAccountVisible} === true ? true : false}"/>
 		<Label text="Head office" visible="{=${fieldMappingModels>/HeadOfficeVisible} === true ? true : false}" 
 		required="{=${fieldMappingModels>/HeadOfficeMandatory} === true ? true : false}"/>
-		<!-- <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zhead_office}" maxLength="10" visible="{=${fieldMappingModels>/HeadOfficeVisible} === true ? true : false}"/> -->
-		<MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForHeadOffice" value="{Customers>/zhead_office}"
-		valueHelpOnly="true" visible="{=${fieldMappingModels>/HeadOfficeVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zhead_office}" maxLength="10" visible="{=${fieldMappingModels>/HeadOfficeVisible} === true ? true : false}"/>
+		<!-- <MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForHeadOffice" value="{Customers>/zhead_office}"
+		valueHelpOnly="true" visible="{=${fieldMappingModels>/HeadOfficeVisible} === true ? true : false}"/> -->
 		<Label text="Authorization Group" visible="{=${fieldMappingModels>/AuthorizationGroupVisible} === true ? true : false}" 
 		required="{=${fieldMappingModels>/AuthorizationGroupMandatory} === true ? true : false}"/>
 		<!-- <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zauthorization_group}" maxLength="4" visible="{=${fieldMappingModels>/AuthorizationGroupVisible} === true ? true : false}"/> -->

@@ -68,21 +68,7 @@ sap.ui.define([
                 this.CCAField.setValue(title + " - " + desc);
                 this.getView().getModel("appView").setProperty("/cca", title);
             },
-            // handleValueHelpCreditSegmentSearch: function (evt) {
-            //     var sValue = evt.getParameter("value");
-            //     if (sValue.length > 0) {
-            //         if (sValue.length == 2) {
-            //             var oFilter1 = new sap.ui.model.Filter("Land1", 'EQ', sValue);
-            //             this.creditSegment.getBinding("items").filter([oFilter1]);
-            //         } else {
-            //             var oFilter2 = new sap.ui.model.Filter("Landx", 'EQ', sValue);
-            //             this.creditSegment.getBinding("items").filter([oFilter2]);
-            //         }
-            //         // this.Country.getBinding("items").filter([oFilter2]);
-            //     } else {
-            //         this.creditSegment.getBinding("items").filter([]);
-            //     }
-            // },
+          
 	});
 
 });

@@ -190,12 +190,7 @@
 		<Label text="Sales Group" visible="{=${fieldMappingModels>/SalesGroupVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/SalesGroupMandatory} === true ? true : false}"/>
 		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{salesDataModel>zsales_group}" maxLength="3" visible="{=${fieldMappingModels>/SalesGroupVisible} === true ? true : false}"/>
-
-		<Label text="Customer Group" visible="{=${fieldMappingModels>/CustomerGroupVisible} === true ? true : false}"
- required="{=${fieldMappingModels>/CustomerGroupMandatory} === true ? true : false}" />
-		<!-- <Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{salesDataModel>zcustomer_group}" maxLength="10" visible="{=${fieldMappingModels>/CustomerGroupVisible} === true ? true : false}"/> -->
-		<MultiInput enabled="{=${appView>/process} === 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForCusGrp" value="{salesDataModel>zcustomer_group}"
-		valueHelpOnly="true" visible="{=${fieldMappingModels>/CustomerGroupVisible} === true ? true : false}"/>
+		
 		<Label text = "ABC Class" visible="{=${fieldMappingModelss>/ABCClassVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/ABCClassMandatory} === true ? true : false}"/>
 		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{salesDataModel>zabc_class}" maxLength="2" visible="{=${fieldMappingModels>/ABCClassVisible} === true ? true : false}"/>
@@ -309,9 +304,9 @@
 		<Label text="Check Rule" visible="{=${fieldMappingModels>/CheckruleVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/CheckruleMandatory} === true ? true : false}"/>
 		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{salesDataModel>zcheck_rule}" maxLength="20" visible="{=${fieldMappingModels>/CheckruleVisible} === true ? true : false}"/>
-		<Label text="Credit Segment" visible="{=${fieldMappingModels>/CreditSegmentVisible} === true ? true : false}"
+		<!-- <Label text="Credit Segment" visible="{=${fieldMappingModels>/CreditSegmentVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/CreditSegmentMandatory} === true ? false : false}"/>
-		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{salesDataModel>zcredit_segment}" maxLength="28" visible="{=${fieldMappingModels>/CreditSegmentVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{salesDataModel>zcredit_segment}" maxLength="28" visible="{=${fieldMappingModels>/CreditSegmentVisible} === true ? true : false}"/> -->
 		<Label text="Limit Define" visible="{=${fieldMappingModels>/LimitdefineVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/LimitdefineMandatory} === true ? true : false}"/>
 		<Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{salesDataModel>zlimit_define}" maxLength="35" visible="{=${fieldMappingModels>/LimitdefineVisible} === true ? true : false}"/>
