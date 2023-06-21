@@ -3,17 +3,17 @@
         <Label text="Delivery Priority" visible="{=${fieldMappingModels>/DeliveryPriorityVisible} === true ? true : false}"
          required="{=${fieldMappingModels>/DeliveryPriorityMandatory} === true ? true : false}" />
         <!-- <Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zdelivery_priority}" liveChange="handleSetMaxLength" type="Number" maxLength="2" visible="{=${fieldMappingModels>/DeliveryPriorityVisible} === true ? true : false}" /> -->
-        <MultiInput enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zdelivery_priority}" valueHelpRequest="handleValueHelpForDelvPrior"
+        <MultiInput showClearIcon="true" enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zdelivery_priority}" valueHelpRequest="handleValueHelpForDelvPrior"
 	 valueHelpOnly="true" visible="{=${fieldMappingModels>/DeliveryPriorityVisible} === true ? true : false}"/>
 		<Label text="Shipping Conditions"  visible="{=${fieldMappingModels>/ShippingConditionsVisible} === true ? true : false}"
          required="{=${fieldMappingModels>/ShippingConditionsMandatory} === true ? true : false}" />
         <!-- <Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zshipping_conditions}" maxLength="2" visible="{=${fieldMappingModels>/ShippingConditionsVisible} === true ? true : false}" /> -->
-        <MultiInput enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zshipping_conditions}" valueHelpRequest="handleValueHelpForShippingCondn"
+        <MultiInput showClearIcon="true" enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zshipping_conditions}" valueHelpRequest="handleValueHelpForShippingCondn"
         valueHelpOnly="true" visible="{=${fieldMappingModels>/ShippingConditionsVisible} === true ? true : false}"/>
 		<Label text="Delivery Plant" visible="{=${fieldMappingModels>/DeliveryPlantVisible} === true ? true : false}"
          required="{=${fieldMappingModels>/DeliveryPlantMandatory} === true ? true : false}" />
         <!-- <Input enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zdelivery_plant}" maxLength="4" visible="{=${fieldMappingModels>/DeliveryPlantVisible} === true ? true : false}" /> -->
-        <MultiInput enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zdelivery_plant}" valueHelpRequest="handleValueHelpForDelvryPlant"
+        <MultiInput showClearIcon="true" enabled="{=${appView>/process} === 'EXTEND' ? true : false}" value="{Customers>/zdelivery_plant}" valueHelpRequest="handleValueHelpForDelvryPlant"
         valueHelpOnly="true" visible="{=${fieldMappingModels>/DeliveryPlantVisible} === true ? true : false}"/>
 		<Label text="Order Combination"  visible="{=${fieldMappingModels>/OrderCombinationVisible} === true ? true : false}"
          required="{=${fieldMappingModels>/OrderCombinationMandatory} === true ? true : false}" />

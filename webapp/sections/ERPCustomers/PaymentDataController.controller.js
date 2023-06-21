@@ -18,10 +18,11 @@ sap.ui.define([
                 this.KnwnNegtdLv = new sap.ui.xmlfragment("iffco.managecustomer.fragments.knowNegotiatedLv", this);
                 this.getView().addDependent(this.KnwnNegtdLv);
             }
-            // if (!this.ARPledgeIndc) {
-            //     this.ARPledgeIndc = new sap.ui.xmlfragment("iffco.managecustomer.fragments.ARPledgingIndc.fragment", this);
-            //     this.getView().addDependent(this.ARPledgeIndc);
-            // }
+            if (!this.ARPledgeIndc) {
+                this.ARPledgeIndc = new sap.ui.xmlfragment("iffco.managecustomer.fragments.ARPledgingIndc", this);
+                this.getView().addDependent(this.ARPledgeIndc);
+                this.ARPledgeIndc.setModel(this.getOwnerComponent().getModel("S4D"));
+            }
         },
         handleValueHelpForPaymentTerms:function (evt) {
             this.paymentTermsField = evt.getSource();
@@ -45,14 +46,21 @@ sap.ui.define([
         },
         handleValueHelpARPledgingIndcSearch: function(evt){
             var sValue = evt.getParameter("value");
+            var filters = [];
             if (sValue.length > 0) {
-                if (sValue.length == 2) {
-                    var oFilter1 = new sap.ui.model.Filter("Arpledgeindicator", 'EQ', sValue);
-                    this.ARPledgeIndc.getBinding("items").filter([oFilter1]);
-                } else {
-                    var oFilter2 = new sap.ui.model.Filter("Description", 'EQ', sValue);
-                    this.ARPledgeIndc.getBinding("items").filter([oFilter2]);
-                }
+                var filter1 = new sap.ui.model.Filter({
+                    path: "Arpledgeindicator",
+                    operator: "Contains",
+                    value1: sValue
+                });
+                var filter2 = new sap.ui.model.Filter({
+                    path: "Description",
+                    operator: "Contains",
+                    value1: sValue
+                });
+                var sFilters = [filter1, filter2];
+                filters.push(new sap.ui.model.Filter(sFilters, false));
+                this.ARPledgeIndc.getBinding("items").filter(filters, false);
             } else {
                 this.ARPledgeIndc.getBinding("items").filter([]);
             }
@@ -76,14 +84,21 @@ sap.ui.define([
         },
         handleValueHelpKnwnNegotdLvSearch: function(evt){
             var sValue = evt.getParameter("value");
+            var filters = [];
             if (sValue.length > 0) {
-                if (sValue.length == 2) {
-                    var oFilter1 = new sap.ui.model.Filter("KnownNegotiatedLeave", 'EQ', sValue);
-                    this.KnwnNegtdLv.getBinding("items").filter([oFilter1]);
-                } else {
-                    var oFilter2 = new sap.ui.model.Filter("Description", 'EQ', sValue);
-                    this.KnwnNegtdLv.getBinding("items").filter([oFilter2]);
-                }
+                var filter1 = new sap.ui.model.Filter({
+                    path: "KnownNegotiatedLeave",
+                    operator: "Contains",
+                    value1: sValue
+                });
+                var filter2 = new sap.ui.model.Filter({
+                    path: "Description",
+                    operator: "Contains",
+                    value1: sValue
+                });
+                var sFilters = [filter1, filter2];
+                filters.push(new sap.ui.model.Filter(sFilters, false));
+                this.KnwnNegtdLv.getBinding("items").filter(filters, false);
             } else {
                 this.KnwnNegtdLv.getBinding("items").filter([]);
             }

@@ -99,10 +99,10 @@ sap.ui.define([
             var sValue = evt.getParameter("value");
             if (sValue.length > 0) {
                 if (sValue.length == 2) {
-                    var oFilter1 = new sap.ui.model.Filter("Salesorg", 'EQ', sValue);
+                    var oFilter1 = new sap.ui.model.Filter("SalesOrg", 'EQ', sValue);
                     this.salesOrganization.getBinding("items").filter([oFilter1]);
                 } else {
-                    var oFilter2 = new sap.ui.model.Filter("Salesorgtext", 'EQ', sValue);
+                    var oFilter2 = new sap.ui.model.Filter("SalesOrgText", 'EQ', sValue);
                     this.salesOrganization.getBinding("items").filter([oFilter2]);
                 }
             } else {
@@ -128,10 +128,10 @@ sap.ui.define([
             var sValue = evt.getParameter("value");
             if (sValue.length > 0) {
                 if (sValue.length > 2) {
-                    var oFilter1 = new sap.ui.model.Filter("Dc", 'EQ', sValue);
+                    var oFilter1 = new sap.ui.model.Filter("DistributionChannel", 'EQ', sValue);
                     this.distribution.getBinding("items").filter([oFilter1]);
                 } else {
-                    var oFilter2 = new sap.ui.model.Filter("Dctext", 'EQ', sValue);
+                    var oFilter2 = new sap.ui.model.Filter("DistributionChannelText", 'EQ', sValue);
                     this.distribution.getBinding("items").filter([oFilter2]);
                 }
             } else {

@@ -3,8 +3,8 @@
 	xmlns:c="sap.ui.core"
 >
 <SelectDialog contentHeight="60%" showClearButton="true" title="Select Credit Segment" class="sapUiPopupWithPadding"
-		items="{path:'/ZDD_CM_MASTER'}" search="handleValueHelpCSSearch"
+		items="{path:'CSModel>/'}" search="handleValueHelpCSSearch"
 		confirm="handleValueHelpCSConfirm" cancel="handleValueHelpCSClose" multiSelect="false">
-		<StandardListItem title="{credit_segment}" description="{cs_description}" />
+		<StandardListItem title="{CSModel>credit_segment}" description="{CSModel>cs_description}" />
 	</SelectDialog>
 </c:FragmentDefinition>

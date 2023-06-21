@@ -22,17 +22,24 @@ sap.ui.define([
         },
         handleValueHelpIntrstIndcSearch: function (evt) {
             var sValue = evt.getParameter("value");
-            if (sValue.length > 0) {
-                if (sValue.length == 2) {
-                    var oFilter1 = new sap.ui.model.Filter("Interestindicator", 'EQ', sValue);
-                    this.InterestIndicator.getBinding("items").filter([oFilter1]);
+                var filters = [];
+                if (sValue.length > 0) {
+                    var filter1 = new sap.ui.model.Filter({
+                        path: "Interestindicator",
+                        operator: "Contains",
+                        value1: sValue
+                    });
+                    var filter2 = new sap.ui.model.Filter({
+                        path: "Description",
+                        operator: "Contains",
+                        value1: sValue
+                    });
+                    var sFilters = [filter1, filter2];
+                    filters.push(new sap.ui.model.Filter(sFilters, false));
+                    this.InterestIndicator.getBinding("items").filter(filters, false);
                 } else {
-                    var oFilter2 = new sap.ui.model.Filter("Description", 'EQ', sValue);
-                    this.InterestIndicator.getBinding("items").filter([oFilter2]);
+                    this.InterestIndicator.getBinding("items").filter([]);
                 }
-            } else {
-                this.InterestIndicator.getBinding("items").filter([]);
-            }
         },
         handleValueHelpIntrstIndcConfirm: function (evt) {
             var title = evt.getParameter("selectedItems")[0].getProperty("title");

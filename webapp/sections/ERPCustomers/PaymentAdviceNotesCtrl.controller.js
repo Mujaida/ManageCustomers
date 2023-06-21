@@ -25,17 +25,24 @@ sap.ui.define([
         },
         handleValueHelpSelectnRuleSearch: function (evt) {
             var sValue = evt.getParameter("value");
-            if (sValue.length > 0) {
-                if (sValue.length == 3) {
-                    var oFilter1 = new sap.ui.model.Filter("Selectionrule", 'EQ', sValue);
-                    this.SelectionRule.getBinding("items").filter([oFilter1]);
+                var filters = [];
+                if (sValue.length > 0) {
+                    var filter1 = new sap.ui.model.Filter({
+                        path: "Selectionrule",
+                        operator: "Contains",
+                        value1: sValue
+                    });
+                    var filter2 = new sap.ui.model.Filter({
+                        path: "Description",
+                        operator: "Contains",
+                        value1: sValue
+                    });
+                    var sFilters = [filter1, filter2];
+                    filters.push(new sap.ui.model.Filter(sFilters, false));
+                    this.SelectionRule.getBinding("items").filter(filters, false);
                 } else {
-                    var oFilter2 = new sap.ui.model.Filter("Description", 'EQ', sValue);
-                    this.SelectionRule.getBinding("items").filter([oFilter2]);
+                    this.SelectionRule.getBinding("items").filter([]);
                 }
-            } else {
-                this.SelectionRule.getBinding("items").filter([]);
-            }
         },
         handleValueHelpSelectnRuleConfirm: function (evt) {
             var title = evt.getParameter("selectedItems")[0].getProperty("title");
@@ -56,17 +63,24 @@ sap.ui.define([
         },
         handleValueHelpReasnCodConvSearch: function (evt) {
             var sValue = evt.getParameter("value");
-            if (sValue.length > 0) {
-                if (sValue.length == 3) {
-                    var oFilter1 = new sap.ui.model.Filter("Reasoncode", 'EQ', sValue);
-                    this.ReasonCodeConversion.getBinding("items").filter([oFilter1]);
+                var filters = [];
+                if (sValue.length > 0) {
+                    var filter1 = new sap.ui.model.Filter({
+                        path: "Reasoncode",
+                        operator: "Contains",
+                        value1: sValue
+                    });
+                    var filter2 = new sap.ui.model.Filter({
+                        path: "Description",
+                        operator: "Contains",
+                        value1: sValue
+                    });
+                    var sFilters = [filter1, filter2];
+                    filters.push(new sap.ui.model.Filter(sFilters, false));
+                    this.ReasonCodeConversion.getBinding("items").filter(filters, false);
                 } else {
-                    var oFilter2 = new sap.ui.model.Filter("Description", 'EQ', sValue);
-                    this.ReasonCodeConversion.getBinding("items").filter([oFilter2]);
+                    this.ReasonCodeConversion.getBinding("items").filter([]);
                 }
-            } else {
-                this.ReasonCodeConversion.getBinding("items").filter([]);
-            }
         },
         handleValueHelpReasnCodConvConfirm: function (evt) {
             var title = evt.getParameter("selectedItems")[0].getProperty("title");

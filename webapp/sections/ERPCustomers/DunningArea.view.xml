@@ -2,15 +2,15 @@
 	<forms:SimpleForm editable="false" layout="ColumnLayout">
 		<Label text="Grouping Key" visible="{=${fieldMappingModels>/GroupingKeyVisible} === true ? true : false}"
 		 required="{=${fieldMappingModels>/GroupingKeyMandatory} === true ? true : false}"/>
-		<!-- <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zgrouping_key}" maxLength="2" visible="{=${fieldMappingModels>/GroupingKeyVisible} === true ? true : false}"/> -->
-		<MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForGroupingKey" value="{Customers>/zgrouping_key}"
+		<!-- <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zgrouping_key}" maxLength="2" visible="{=${fieldMappingModels>/GroupingKeyVisible} === true ? true : false}"/> -->
+		<MultiInput showClearIcon="true" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" valueHelpRequest="handleValueHelpForGroupingKey" value="{Customers>/zgrouping_key}"
 		valueHelpOnly="true" visible="{=${fieldMappingModels>/GroupingKeyVisible} === true ? true : false}"/>
 		<Label text = "Dunning Area" visible="{=${fieldMappingModels>/DunningAreaVisible} === true ? true : false}"
 		 required="{=${fieldMappingModels>/DunningAreaMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zdunning_area}" maxLength="2" visible="{=${fieldMappingModels>/DunningAreaVisible} === true ? true : false}"/>		
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zdunning_area}" maxLength="2" visible="{=${fieldMappingModels>/DunningAreaVisible} === true ? true : false}"/>		
 		<Label text="Dunning Area Description" visible="{=${fieldMappingModels>/DunningAreaDescriptionVisible} === true ? true : false}"
 		 required="{=${fieldMappingModels>/DunningAreaDescriptionMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zdunning_area_description}" maxLength="2" visible="{=${fieldMappingModels>/DunningAreaDescriptionVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zdunning_area_description}" maxLength="2" visible="{=${fieldMappingModels>/DunningAreaDescriptionVisible} === true ? true : false}"/>
 		
 	</forms:SimpleForm>
 </mvc:View>

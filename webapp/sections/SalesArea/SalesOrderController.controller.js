@@ -36,12 +36,12 @@ sap.ui.define([
                     this.unitOfMsrGrp.setModel(this.getOwnerComponent().getModel("S4D"));
                 }
                 if (!this.exchngRateType) {
-                    this.exchngRateType = new sap.ui.xmlfragment("Iffco.clap.fragments.ExchangeRateType", this);
+                    this.exchngRateType = new sap.ui.xmlfragment("iffco.managecustomer.fragments.ExchangeRateType", this);
                     this.getView().addDependent(this.exchngRateType);
                     this.exchngRateType.setModel(this.getOwnerComponent().getModel("S4D"));
                 }
                 if (!this.PPCustProcedure) {
-                    this.PPCustProcedure = new sap.ui.xmlfragment("Iffco.clap.fragments.PPCustrProcedure", this);
+                    this.PPCustProcedure = new sap.ui.xmlfragment("iffco.managecustomer.fragments.PPCustrProcedure", this);
                     this.getView().addDependent(this.PPCustProcedure);
                     this.PPCustProcedure.setModel(this.getOwnerComponent().getModel("S4D"));
                 }
@@ -75,8 +75,10 @@ sap.ui.define([
             },
             handleValueHelpCurrencyConfirm: function (evt) {
                 var title = evt.getParameter("selectedItems")[0].getProperty("title");
-            
-                this.currencyField.setValue(title);
+                var desc = evt.getParameter("selectedItems")[0].getProperty("description");
+                this.currencyField.setValue(title + " - " + desc);
+                this.Currency.getBinding("items").filter([]);
+                this.Currency.close();
             },
             handleValueHelpCurrencySearch: function (evt) {
                 var sValue = evt.getParameter("value");

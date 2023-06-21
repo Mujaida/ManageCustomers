@@ -1,12 +1,12 @@
 <mvc:View controllerName="iffco.managecustomer.sections.ERPCustomers.PaymentAdviceNotesCtrl" xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m" >
 	<forms:SimpleForm editable="false" layout="ColumnLayout">
 		<Label text="Reason Code Conversion" visible="{=${fieldMappingModels>/ReasonCodeConversionVisible} === true ? true : false}" required="{=${fieldMappingModels>/ReasonCodeConversionMandatory} === true ? true : false}"/>
-		<!-- <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zreason_code_conversion}" maxLength="3" visible="{=${fieldMappingModels>/ReasonCodeConversionVisible} === true ? true : false}"/> -->
-		<MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForReasonCodeConversion" value="{Customers>/zreason_code_conversion}"
+		<!-- <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zreason_code_conversion}" maxLength="3" visible="{=${fieldMappingModels>/ReasonCodeConversionVisible} === true ? true : false}"/> -->
+		<MultiInput showClearIcon="true" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" valueHelpRequest="handleValueHelpForReasonCodeConversion" value="{Customers>/zreason_code_conversion}"
 		valueHelpOnly="true" visible="{=${fieldMappingModels>/ReasonCodeConversionVisible} === true ? true : false}"/>
 		<Label text = "Selection Rule" visible="{=${fieldMappingModels>/SelectionRuleVisible} === true ? true : false}" required="{=${fieldMappingModels>/SelectionRuleMandatory} === true ? true : false}"/>
-		<MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForSelectionRule" value="{Customers>/zselection_rule}"
+		<MultiInput showClearIcon="true" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" valueHelpRequest="handleValueHelpForSelectionRule" value="{Customers>/zselection_rule}"
 		valueHelpOnly="true" visible="{=${fieldMappingModels>/SelectionRuleVisible} === true ? true : false}"/>
-		<!-- <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zselection_rule}" maxLength="3" visible="{=${fieldMappingModels>/SelectionRuleVisible} === true ? true : false}"/> -->
+		<!-- <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zselection_rule}" maxLength="3" visible="{=${fieldMappingModels>/SelectionRuleVisible} === true ? true : false}"/> -->
 	</forms:SimpleForm>
 </mvc:View>

@@ -41,18 +41,25 @@ sap.ui.define([
             },
             handleValueHelpBlockedReasonSearch:function (evt) {
                 var sValue = evt.getParameter("value");
+                var filters = [];
                 if (sValue.length > 0) {
-                    if (sValue.length == 2) {
-                        var oFilter1 = new sap.ui.model.Filter("Blockreason", 'EQ', sValue);
-                        this.blockReason.getBinding("items").filter([oFilter1]);
-                    } else {
-                        var oFilter2 = new sap.ui.model.Filter("Blockreasontxt", 'EQ', sValue);
-                        this.blockReason.getBinding("items").filter([oFilter2]);
-                    }
+                    var filter1 = new sap.ui.model.Filter({
+                        path: "Blockreason",
+                        operator: "Contains",
+                        value1: sValue
+                    });
+                    var filter2 = new sap.ui.model.Filter({
+                        path: "Blockreasontxt",
+                        operator: "Contains",
+                        value1: sValue
+                    });
+                    var sFilters = [filter1, filter2];
+                    filters.push(new sap.ui.model.Filter(sFilters, false));
+                    this.blockReason.getBinding("items").filter(filters, false);
                 } else {
                     this.blockReason.getBinding("items").filter([]);
                 }
-            }
+            },
             
 	});
 

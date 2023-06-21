@@ -2,7 +2,7 @@
 	<forms:SimpleForm editable="false" id="cl" layout="ColumnLayout">
 		
 		<Label text="Credit Limit Type" visible="{=${fieldMappingModels>/CreditLimitTypeVisible} === true ? true : false}" required="{=${fieldMappingModels>/CreditLimitTypeMandatory} === true ? true : false}"/>
-		<RadioButtonGroup select="handleCreditLimitTypeSelect" selectedIndex="0">
+		<RadioButtonGroup enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" select="handleCreditLimitTypeSelect" selectedIndex="0">
 			<RadioButton selected="{= ${Customers>/zcredit_limit_type} === 'Secured Credit' || ${appView>/selectedType} === 0 ? true : false}" text="Secured Credit Limit" />
 			<RadioButton selected="{= ${Customers>/zcredit_limit_type} === 'UnSecured Credit' || ${appView>/selectedType} === 1 ? true : false}" text="UnSecured Credit Limit" />
 		    <RadioButton selected="{= ${Customers>/zcredit_limit_type} === 'Both' || ${appView>/selectedType} === 2 ? true : false}" text="Both" />

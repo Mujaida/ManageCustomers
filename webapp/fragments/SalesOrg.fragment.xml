@@ -3,8 +3,8 @@
 	xmlns:c="sap.ui.core"
 >
 <SelectDialog contentHeight="60%" showClearButton="true" title="Select Sales Organization" class="sapUiPopupWithPadding"
-		items="{path:'S4D>/SalesOrgSet'}" search="handleValueHelpSalesOrgSearch"
+		items="{path:'/ZDD_SALES_ORG_VH'}" search="handleValueHelpSalesOrgSearch"
 		confirm="handleValueHelpSalesOrgConfirm" cancel="handleValueHelpSalesOrgClose" multiSelect="false">
-		<StandardListItem title="{S4D>Salesorg}" description="{S4D>Salesorgtext}"/>
+		<StandardListItem title="{SalesOrg}" description="{SalesOrgText}"/>
 	</SelectDialog>
 </c:FragmentDefinition>

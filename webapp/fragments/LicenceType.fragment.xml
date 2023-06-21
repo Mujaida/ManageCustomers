@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
 	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Licence Type" class="sapUiPopupWithPadding"
-		items="{path:'LegalName>CountriesSet'}" search="handleValueHelpCountrySearch"
-		confirm="handleValueHelpCountryConfirm" cancel="handleValueHelpCountrClose" multiSelect="false">
-		<StandardListItem title="{zcountry}" />
+		items="{path:'/ZDD_LICENCE_TYPE'}" search="handleValueHelpLicenseTypSearch"
+		confirm="handleValueHelpLicenseTypConfirm" cancel="handleValueHelpLicenseTypClose" multiSelect="false">
+		<StandardListItem title="{licence_type}" />
 	</SelectDialog>
 </core:FragmentDefinition>

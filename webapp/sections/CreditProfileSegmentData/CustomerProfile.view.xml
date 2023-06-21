@@ -2,33 +2,33 @@
 	<forms:SimpleForm editable="false" layout="ColumnLayout">
 		<Label text="Rule" visible="{=${fieldMappingModels>/RuleVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/RuleMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zrule}" maxLength="20" visible="{=${fieldMappingModels>/RuleVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zrule}" maxLength="20" visible="{=${fieldMappingModels>/RuleVisible} === true ? true : false}"/>
 		<Label text = "Risk Class" visible="{=${fieldMappingModels>/RiskClassVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/RiskClassMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zrisk_class}" maxLength="3" visible="{=${fieldMappingModels>/RiskClassVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zrisk_class}" maxLength="3" visible="{=${fieldMappingModels>/RiskClassVisible} === true ? true : false}"/>
 		
 		<Label text="Check Rule" visible="{=${fieldMappingModels>/CheckruleVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/CheckruleMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zcheck_rule}" maxLength="20" visible="{=${fieldMappingModels>/CheckruleVisible} === true ? true : false}"/>
-		<Label text="Credit Segment" visible="{=${fieldMappingModels>/CreditSegmentVisible} === true ? true : false}"
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zcheck_rule}" maxLength="20" visible="{=${fieldMappingModels>/CheckruleVisible} === true ? true : false}"/>
+		<!-- <Label text="Credit Segment" visible="{=${fieldMappingModels>/CreditSegmentVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/CreditSegmentMandatory} === true ? false : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zcredit_segment}" maxLength="28" visible="{=${fieldMappingModels>/CreditSegmentVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zcredit_segment}" maxLength="28" visible="{=${fieldMappingModels>/CreditSegmentVisible} === true ? true : false}"/> -->
 		<Label text="Limit Define" visible="{=${fieldMappingModels>/LimitdefineVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/LimitdefineMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zlimit_define}" maxLength="35" visible="{=${fieldMappingModels>/LimitdefineVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zlimit_define}" maxLength="35" visible="{=${fieldMappingModels>/LimitdefineVisible} === true ? true : false}"/>
 		<Label text="Limit" visible="{=${fieldMappingModels>/LimitVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/LimitMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zlimit}" maxLength="13" type="Number" liveChange="handleSetMaxLength" visible="{=${fieldMappingModels>/LimitVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zlimit}" maxLength="13" type="Number" liveChange="handleSetMaxLength" visible="{=${fieldMappingModels>/LimitVisible} === true ? true : false}"/>
 		
 		<Label text="Validity to" visible="{=${fieldMappingModels>/ValiditytoVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/ValiditytoMandatory} === true ? true : false}"/>
-		<DatePicker enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zvalidity_to}"  valueFormat="MM.dd.yyyy" visible="{=${fieldMappingModels>/ValiditytoVisible} === true ? true : false}"/>
+		<DatePicker enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zvalidity_to}"  valueFormat="MM.dd.yyyy" visible="{=${fieldMappingModels>/ValiditytoVisible} === true ? true : false}"/>
 		<Label text="Credit Segment" visible="{=${fieldMappingModels>/CreditSegmentVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/CreditSegmentMandatory} === true ? false : false}"/>
-		 <MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zcredit_segment}" maxLength="28" valueHelpRequest="handleValueHelpForCS"
+		 <MultiInput showClearIcon="true" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zcredit_segment}" maxLength="28" valueHelpRequest="handleValueHelpForCS"
 		valueHelpOnly="true" visible="{=${fieldMappingModels>/CreditSegmentVisible} === true ? true : false}"/>
 		<Label text="Relationship to BP" visible="{=${fieldMappingModels>/RelationshiptoBPVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/RelationshiptoBPMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zrelationship_to_bp}" visible="{=${fieldMappingModels>/RelationshiptoBPVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zrelationship_to_bp}" visible="{=${fieldMappingModels>/RelationshiptoBPVisible} === true ? true : false}"/>
 	</forms:SimpleForm>
 </mvc:View>

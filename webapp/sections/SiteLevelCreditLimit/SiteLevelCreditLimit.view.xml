@@ -2,13 +2,13 @@
 	<forms:SimpleForm editable="false" layout="ColumnLayout">
 		<Label text="{i18n>ActualWork}" visible="{=${fieldMappingModel>/121/visibility} === true ? true : false}"
  required="{=${fieldMappingModels>/121/mandatory} === 'Y' ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}"  value="{Customers>/ActualWork}" editable="true"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}"  value="{Customers>/ActualWork}" editable="true"/>
 		<Label text="{i18n>Reason}" />
-			<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" editable="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onValueHelpRequested" value="{detailView>/Reason}"/>
-		<!--<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" id="input" showValueHelp="true" valueHelpOnly="true" valueHelpRequest=".onValueHelpRequested"-->
+			<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" editable="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onValueHelpRequested" value="{detailView>/Reason}"/>
+		<!--<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" id="input" showValueHelp="true" valueHelpOnly="true" valueHelpRequest=".onValueHelpRequested"-->
 		<!--	suggestionItems="{ path: '/ProductCollection', sorter: { path: 'Name' } }"></Input>-->
 		<Label text="{i18n>ConfText}" />
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}"  editable="true" value="{Customers>/ConfirmationText}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}"  editable="true" value="{Customers>/ConfirmationText}"/>
 		
 	</forms:SimpleForm>
 </mvc:View>

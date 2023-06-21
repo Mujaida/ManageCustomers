@@ -54,18 +54,25 @@ sap.ui.define([
             },
             handleValueHelpAuthrSearch: function (evt) {
                 var sValue = evt.getParameter("value");
-                if (sValue.length > 0) {
-                    if (sValue.length == 2) {
-                        var oFilter1 = new sap.ui.model.Filter("Authori", 'EQ', sValue);
-                        this.Authorization.getBinding("items").filter([oFilter1]);
-                    } else {
-                        var oFilter2 = new sap.ui.model.Filter("Description", 'EQ', sValue);
-                        this.Authorization.getBinding("items").filter([oFilter2]);
-                    }
-                } else {
-                    this.Authorization.getBinding("items").filter([]);
-                }
-            },
+                 var filters = [];
+                 if (sValue.length > 0) {
+                     var filter1 = new sap.ui.model.Filter({
+                         path: "Authori",
+                         operator: "Contains",
+                         value1: sValue
+                     });
+                     var filter2 = new sap.ui.model.Filter({
+                         path: "Description",
+                         operator: "Contains",
+                         value1: sValue
+                     });
+                     var sFilters = [filter1, filter2];
+                     filters.push(new sap.ui.model.Filter(sFilters, false));
+                     this.Authorization.getBinding("items").filter(filters, false);
+                 } else {
+                     this.Authorization.getBinding("items").filter([]);
+                 }
+             },
             handleValueHelpAuthurClose: function (params) {
                 this.Authorization.close();
             },

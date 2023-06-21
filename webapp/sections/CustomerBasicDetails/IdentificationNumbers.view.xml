@@ -2,32 +2,34 @@
 <forms:SimpleForm editable="false" layout="ColumnLayout">
 		<Label text="Identification Type" visible="{=${fieldMappingModels>/IdentificationTypeVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/IdentificationTypeMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zidentification_type}" maxLength="6" visible="{=${fieldMappingModels>/IdentificationTypeVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zidentification_type}" maxLength="6" visible="{=${fieldMappingModels>/IdentificationTypeVisible} === true ? true : false}"/>
 		<Label text = "Identification Number" visible="{=${fieldMappingModels>/IdentificationNumberVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/IdentificationNumberMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zidentification_number}" maxLength="60" visible="{=${fieldMappingModels>/IdentificationNumberVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zidentification_number}" maxLength="60" visible="{=${fieldMappingModels>/IdentificationNumberVisible} === true ? true : false}"/>
 		
          <Label text="VAT/GST Number" visible="{=${fieldMappingModels>/VAT-GSTNoVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/VAT-GSTNoVisibleMandatory} === true ? true : false}"/>
-		 <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zvat_gst_number}" liveChange="handleSetMaxLength" type="Number" maxLength="60" visible="{=${fieldMappingModels>/VAT-GSTNoVisible} === true ? true : false}"/>
+		 <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zvat_gst_number}" liveChange="handleSetMaxLength" type="Number" maxLength="60" visible="{=${fieldMappingModels>/VAT-GSTNoVisible} === true ? true : false}"/>
           
 		 <Label text="Attachment (VAT /GST No Attachment)" visible="{=${fieldMappingModels>/VAT-GSTNoVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/VAT-GSTNoVisibleMandatory} === true ? true : false}"/>
- <u:FileUploader value="{getDmsModel>/vatAttachment}" visible="{=${fieldMappingModels>/VAT-GSTNoVisible} === true ? true : false}"
+ <u:FileUploader enabled="{=${Customers>/zrequest_status} !== 'In Progress' ? true : false}" value="{getDmsModel>/vatAttachment}" visible="{=${fieldMappingModels>/VAT-GSTNoVisible} === true ? true : false}"
   id="vatAttachment"
     name="fileUploader"
     buttonText="Upload File"
     fileType="pdf"
     sendXHR="true" change="onConfirm" />
-		 <!-- <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zvat_gstno_attachment}" visible="{=${fieldMappingModels>/VAT-GSTNoVisible} === true ? true : false}"/> -->
+		 <!-- <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zvat_gstno_attachment}" visible="{=${fieldMappingModels>/VAT-GSTNoVisible} === true ? true : false}"/> -->
 
 		 <Label text="License Type" visible="{=${fieldMappingModels>/LicenseTypeVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/LicenseTypeMandatory} === true ? false : false}"/>
-		 <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zlicense_type}" visible="{=${fieldMappingModels>/LicenseTypeVisible} === true ? true : false}"/>
-
+		 <!-- <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zlicense_type}" visible="{=${fieldMappingModels>/LicenseTypeVisible} === true ? true : false}"/> -->
+		 <MultiInput showClearIcon="true" value="{Customers>/zlicense_type}" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" valueHelpRequest="handleValueHelpForLicense"
+		visible="{=${fieldMappingModels>/LicenseTypeVisible} === true ? true : false}" valueHelpOnly="true" />
+		
 		 <Label text="License Number" visible="{=${fieldMappingModels>/LicenseNoVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/LicenseNoMandatory} === true ? false : false}"/>
-		 <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zlicense_no}" maxLength="60" visible="{=${fieldMappingModels>/LicenseNoVisible} === true ? true : false}"/>
+		 <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zlicense_no}" maxLength="60" visible="{=${fieldMappingModels>/LicenseNoVisible} === true ? true : false}"/>
 
 		 <Label text="License Attachment" visible="{=${fieldMappingModels>/LicenseAttachmentmandatoryVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/LicenseAttachmentmandatory} === true ? true : false}"/>
@@ -36,19 +38,19 @@
     name="fileUploader"
     buttonText="Upload File"
     fileType="pdf"
-    sendXHR="true" change="onConfirm"/>	 
+    sendXHR="true" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" change="onConfirm"/>	 
 
 		<Label text="Valid from Date" visible="{=${fieldMappingModels>/ValidfromdateVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/ValidfromdateMandatory} === true ? true : false}"/>
-		<DatePicker enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" id="validFrom" value="{Customers>/zvalid_from}" visible="{=${fieldMappingModels>/ValidfromdateVisible} === true ? true : false}"  valueFormat="MM.dd.yyyy" change="handleStartDateChange" displayFormat="long"/>
+		<DatePicker enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" id="validFrom" value="{Customers>/zvalid_from}" visible="{=${fieldMappingModels>/ValidfromdateVisible} === true ? true : false}"  valueFormat="MM.dd.yyyy" change="handleStartDateChange" displayFormat="long"/>
 		
 		<Label text="Valid to date" visible="{=${fieldMappingModels>/ValidtodateVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/ValidtodateMandatory} === true ? true : false}"/>
-        <DatePicker enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" id="validTo" value="{Customers>/zvalid_to}" visible="{=${fieldMappingModels>/ValidtodateVisible} === true ? true : false}"  valueFormat="MM.dd.yyyy" change="handleEndDateChange" displayFormat="long"/>
+        <DatePicker enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" id="validTo" value="{Customers>/zvalid_to}" visible="{=${fieldMappingModels>/ValidtodateVisible} === true ? true : false}"  valueFormat="MM.dd.yyyy" change="handleEndDateChange" displayFormat="long"/>
 		
 		<Label text="Import License Number" visible="{=${fieldMappingModels>/ImportLicenseNumberVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/ImportLicenseNumberMandatory} === true ? true : false}"/>
-		 <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zimport_license_number}" visible="{=${fieldMappingModels>/ImportLicenseNumberVisible} === true ? true : false}"/>
+		 <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zimport_license_number}" visible="{=${fieldMappingModels>/ImportLicenseNumberVisible} === true ? true : false}"/>
 
 		 <Label text="Attachment (Import License Number)" visible="{=${fieldMappingModels>/ImportLicenseNumberVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/ImportLicenseNumberMandatory} === true ? true : false}"/>
@@ -57,26 +59,27 @@
     name="fileUploader"
     buttonText="Upload File"
     fileType="pdf"
-    sendXHR="true" change="onConfirm" />
-		 <!-- <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zimport_license_number_atachmnt}" visible="{=${fieldMappingModels>/ImportLicenseNumberVisible} === true ? true : false}"/> -->
+    sendXHR="true" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" change="onConfirm" />
+		 <!-- <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zimport_license_number_atachmnt}" visible="{=${fieldMappingModels>/ImportLicenseNumberVisible} === true ? true : false}"/> -->
 		 
-		 <Label text="Source of Enquiry" visible="{=${fieldMappingModels>/SourceofEnquiryVisible} === true ? true : false}"
+		<Label text="Source of Enquiry" visible="{=${fieldMappingModels>/SourceofEnquiryVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/SourceofEnquiryMandatory} === true ? true : false}"/>
-		 <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zsource_of_inquiry}" visible="{=${fieldMappingModels>/SourceofEnquiryVisible} === true ? true : false}"/>
-
+		<!-- <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zsource_of_inquiry}" visible="{=${fieldMappingModels>/SourceofEnquiryVisible} === true ? true : false}"/> -->
+		<MultiInput showClearIcon="true" value="{Customers>/zsource_of_inquiry}" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" valueHelpRequest="handleValueHelpForSourceOfEnquiry"
+		visible="{=${fieldMappingModels>/SourceofEnquiryVisible} === true ? true : false}" valueHelpOnly="true" />
 		<Label text="Responsible Institute" visible="{=${fieldMappingModels>/ResonsibleInstituteVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/ResonsibleInstituteMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zresonsible_institute}" visible="{=${fieldMappingModels>/ResonsibleInstituteVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zresonsible_institute}" visible="{=${fieldMappingModels>/ResonsibleInstituteVisible} === true ? true : false}"/>
 		<Label text="Entry Date" visible="{=${fieldMappingModels>/EntryDateVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/EntryDateMandatory} === true ? true : false}"/>
-		<DatePicker enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zentry_date}" visible="{=${fieldMappingModels>/EntryDateVisible} === true ? true : false}"  valueFormat="MM.dd.yyyy" change="handleLiveChange" displayFormat="long"/>
+		<DatePicker enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zentry_date}" visible="{=${fieldMappingModels>/EntryDateVisible} === true ? true : false}"  valueFormat="MM.dd.yyyy" change="handleLiveChange" displayFormat="long"/>
 		
 		<Label text="Country" visible="{=${fieldMappingModels>/CountryVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/CountryMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zcountry}" visible="{=${fieldMappingModels>/CountryVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zcountry}" visible="{=${fieldMappingModels>/CountryVisible} === true ? true : false}"/>
 		<Label text="Region" visible="{=${fieldMappingModels>/RegionVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/RegionMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zregion}" visible="{=${fieldMappingModels>/RegionVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zregion}" visible="{=${fieldMappingModels>/RegionVisible} === true ? true : false}"/>
 		
 	</forms:SimpleForm>	
 </mvc:View>

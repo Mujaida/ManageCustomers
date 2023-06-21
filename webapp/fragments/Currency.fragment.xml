@@ -5,6 +5,6 @@
 <SelectDialog contentHeight="60%" showClearButton="true" title="Select Currency" class="sapUiPopupWithPadding"
 		items="{path:'S4D>/CurrencySet'}" search="handleValueHelpCurrencySearch"
 		confirm="handleValueHelpCurrencyConfirm" cancel="handleValueHelpCurrencyClose" multiSelect="false">
-		<StandardListItem title="{S4D>Waers}" description="{S4D>Waers}" />
+		<StandardListItem title="{S4D>Waers}" description="{S4D>ltext}"/>
 	</SelectDialog>
 </c:FragmentDefinition>

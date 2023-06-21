@@ -8,10 +8,10 @@
         <CheckBox id="spclAtnt" selected="{=${Customers>/zspecialattention} === 'Y' ? true : false}" />
 
         <Label text="Block Reason" />
-        <MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zblock_reason}" valueHelpRequest="handleValueHelpForBlockReason"
+        <MultiInput showClearIcon="true" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zblock_reason}" valueHelpRequest="handleValueHelpForBlockReason"
 		valueHelpOnly="true" />
 
         <Label text="Resubmission On" />
-        <DatePicker enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" id="validFrom" value="{Customers>/zresubmission_on}" valueFormat="MM.dd.yyyy" displayFormat="long"/>
+        <DatePicker enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" id="validFrom" value="{Customers>/zresubmission_on}" valueFormat="MM.dd.yyyy" displayFormat="long"/>
     </forms:SimpleForm>
 </mvc:View>

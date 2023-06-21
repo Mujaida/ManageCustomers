@@ -4,35 +4,35 @@
      <!-- <core:Title text="Other Details"/> -->
 		<Label text="Customer Debtors Balance at Last Month End" visible="{=${fieldMappingModels>/CustomerDebtorsBalanceatLastMonthEndVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/CustomerDebtorsBalanceatLastMonthEndMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" type="Number" value="{Customers>/zod_cust_debtors_bal_lastmonth}" maxLength="20" visible="{=${fieldMappingModels>/CustomerDebtorsBalanceatLastMonthEndVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" type="Number" value="{Customers>/zod_cust_debtors_bal_lastmonth}" maxLength="20" visible="{=${fieldMappingModels>/CustomerDebtorsBalanceatLastMonthEndVisible} === true ? true : false}"/>
 		<Label text="Overdue if any" visible="{=${fieldMappingModels>/OverdueifanyVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/OverdueifanyMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" type="Number" value="{Customers>/zoverdue_if_any}" maxLength="20" visible="{=${fieldMappingModels>/Prov.ForDoubtfulDebtVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" type="Number" value="{Customers>/zoverdue_if_any}" maxLength="20" visible="{=${fieldMappingModels>/Prov.ForDoubtfulDebtVisible} === true ? true : false}"/>
 		<Label text="Prov. For Doubtful Debt" visible="{=${fieldMappingModels>/Prov.ForDoubtfulDebtVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/Prov.ForDoubtfulDebtMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" type="Number" value="{Customers>/zod_prov_for_doubtful_debt}" maxLength="20" visible="{=${fieldMappingModels>/Prov.ForDoubtfulDebtVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" type="Number" value="{Customers>/zod_prov_for_doubtful_debt}" maxLength="20" visible="{=${fieldMappingModels>/Prov.ForDoubtfulDebtVisible} === true ? true : false}"/>
         
         <Label text="Cheque Bounce" visible="{=${fieldMappingModels>/ChequeBounceVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/ChequeBounceMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zod_cheque_bounce}" maxLength="20" visible="{=${fieldMappingModels>/ChequeBounceVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zod_cheque_bounce}" maxLength="20" visible="{=${fieldMappingModels>/ChequeBounceVisible} === true ? true : false}"/>
         <Label text="Cases of Delayed Payments" visible="{=${fieldMappingModels>/CasesofDelayedPaymentsVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/CasesofDelayedPaymentsMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zod_cases_of_delayed_payts}" maxLength="20" visible="{=${fieldMappingModels>/CasesofDelayedPaymentsVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zod_cases_of_delayed_payts}" maxLength="20" visible="{=${fieldMappingModels>/CasesofDelayedPaymentsVisible} === true ? true : false}"/>
 		<Label text="Max Delay" visible="{=${fieldMappingModels>/MaxDelayVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/MaxDelayMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zod_max_delay}" maxLength="20" visible="{=${fieldMappingModels>/MaxDelayVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zod_max_delay}" maxLength="20" visible="{=${fieldMappingModels>/MaxDelayVisible} === true ? true : false}"/>
 		<Label text="Attachment of Statement of Accounts" visible="{=${fieldMappingModels>/AttachmentofStatementofAccountsVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/AttachmentofStatementofAccountsMandatory} === true ? true : false}"/>
 		
 		<u:FileUploader visible="{=${fieldMappingModels>/AttachmentofStatementofAccountsVisible} === true ? true : false}"
         value="{getDmsModel>/zodAttachOfStatement}"
-		enabled="{=${appView>/process} !== 'EXTEND' ? true : false}"
+		enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}"
          id="zodAttachOfStatement"
     name="fileUploader"
     buttonText="Upload File"
     fileType="pdf"
     sendXHR="true" change="onConfirm" />
 		
-		<!-- <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zod_attach_of_statement}" maxLength="20" visible="{=${fieldMappingModels>/AttachmentofStatementofAccountsVisible} === true ? true : false}"/> -->
+		<!-- <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zod_attach_of_statement}" maxLength="20" visible="{=${fieldMappingModels>/AttachmentofStatementofAccountsVisible} === true ? true : false}"/> -->
 	</forms:SimpleForm>
 </mvc:View>

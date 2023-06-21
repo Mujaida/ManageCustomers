@@ -38,146 +38,19 @@ sap.ui.define([
                     this.entityType.setModel(this.getOwnerComponent().getModel());
                 }
             },
-            // onBeforeRendering:function(){
 
-            // },
-            //Value Help for Country
-            handleValueHelpForCountry: function (evt) {
-                this.countryField = evt.getSource();
-                this.Country.getBinding("items").filter([]);
-                this.Country.open();
-            },
-            handleValueHelpCountrClose: function (params) {
-                this.Country._dialog.close();
-            },
-            handleValueHelpCountryConfirm: function (evt) {
-                var title = evt.getParameter("selectedItems")[0].getProperty("title");
-                var desc = evt.getParameter("selectedItems")[0].getProperty("description");
-                this.countryField.setValue(title + " - " + desc);
-            },
-            handleValueHelpCountrySearch: function (evt) {
-                var sValue = evt.getParameter("value");
-                if (sValue.length > 0) {
-                    if (sValue.length == 2) {
-                        var oFilter1 = new sap.ui.model.Filter("Land1", 'EQ', sValue);
-                        this.Country.getBinding("items").filter([oFilter1]);
-                    } else {
-                        var oFilter2 = new sap.ui.model.Filter("Landx", 'EQ', sValue);
-                        this.Country.getBinding("items").filter([oFilter2]);
-                    }
-                    // this.Country.getBinding("items").filter([oFilter2]);
-                } else {
-                    this.Country.getBinding("items").filter([]);
+            onAfterRendering: function() {
+                // Controller.prototype.onAfterRendering.apply(this, arguments);
+                var that = this;
+                var entityVal = "Co-Operative (COOP)";
+                if(entityVal.length>0){
+                that.getView().getModel("appView").setProperty("/TypeOfEntity", entityVal);
                 }
+                that.handleEntityCheckModel();
+                
             },
 
-            //Value Help for State/Region
-            handleValueHelpForRegion: function (evt) {
-                this.regionField = evt.getSource();
-                var val = this.getView().byId("LAND1").getValue();
-                if(val.length>0){
-                    this.Region.getBinding("items").filter([new sap.ui.model.Filter("Land1", "EQ", val.split(" - ")[0])]);
-                    this.Region.open();
-                }else{
-                    sap.m.MessageBox.error("Please select the Country");
-                }
-            },
-            handleValueHelpStateConfirm: function (evt) {
-                var title = evt.getParameter("selectedItems")[0].getProperty("title");
-                var desc = evt.getParameter("selectedItems")[0].getProperty("description");
-                this.regionField.setValue(title + " - " + desc);
-                this.Region.close();
-            },
-            handleValueHelpStateSearch: function (evt) {
-                var val = this.getView().byId("LAND1").getValue();
-                var sValue = evt.getParameter("value");
-                if (sValue.length > 0) {
-                    if (sValue.length == 2) {
-                        var oFilter1 = new sap.ui.model.Filter("Bland", 'EQ', sValue);
-                        var oFilter2 = new sap.ui.model.Filter("Land1", 'EQ', val);
-                        this.Region.getBinding("items").filter([oFilter1, oFilter2]);
-                    } else {
-                        var oFilter2 = new sap.ui.model.Filter("Bezei", 'EQ', sValue);
-                        this.Region.getBinding("items").filter([oFilter2]);
-                    }
-                } else {
-                    var val = this.getView().byId("LAND1").getValue();
-                    this.Region.getBinding("items").filter([new sap.ui.model.Filter("Land1", "EQ", val.split(" - ")[0])]);
-                }
-            },
-
-             //Value Help for Transportation Zone
-             handleValueHelpForTrsptnZne: function (evt) {
-                this.trnsptZonField = evt.getSource();
-                var val = this.getView().byId("LAND1").getValue();
-                if(val.length>0){
-                    this.TransprtZone.getBinding("items").filter([new sap.ui.model.Filter("Land1", "EQ", val.split(" - ")[0])]);
-                    // this.TransprtZone.getBinding("items").filter([]);
-                    this.TransprtZone.open();
-                }else{
-                    sap.m.MessageBox.error("Please select the Country");
-                }
-            },
-            handleValueHelpTrnsptZoneConfirm: function (evt) {
-                var title = evt.getParameter("selectedItems")[0].getProperty("title");
-                var desc = evt.getParameter("selectedItems")[0].getProperty("description");
-                this.trnsptZonField.setValue(title + " - " + desc);
-                this.TransprtZone.getBinding("items").filter([]);
-                this.TransprtZone.close();
-            },
-            handleValueHelpTrnsptZoneSearch: function (evt) {
-                var sValue = evt.getParameter("value");
-                if (sValue.length > 0) {
-                    if (sValue.length == 2) {
-                        var oFilter1 = new sap.ui.model.Filter("Zone1", 'EQ', sValue);
-                        this.TransprtZone.getBinding("items").filter([oFilter1]);
-                    } else {
-                        var oFilter2 = new sap.ui.model.Filter("Vtext", 'EQ', sValue);
-                        this.TransprtZone.getBinding("items").filter([oFilter2]);
-                    }
-                } else {
-                    this.TransprtZone.getBinding("items").filter([]);
-                }
-            },
-            handleValueHelpTrnsptZoneClose: function (params) {
-                this.TransprtZone.close();
-            },
-            handleValueHelpStateClose: function (params) {
-                this.Region.close();
-            },
-
-            // Value Help for Language
-            handleValueHelpForLanguage: function (evt) {
-                this.LanguageField = evt.getSource();
-                this.Language.getBinding("items").filter([]);
-                this.Language.open();
-            },
-
-            handleValueHelpLangConfirm: function (evt) {
-                var title = evt.getParameter("selectedItems")[0].getProperty("title");
-                var desc = evt.getParameter("selectedItems")[0].getProperty("description");
-                this.LanguageField.setValue(title + " - " + desc);
-                this.Language.getBinding("items").filter([]);
-                this.Language.close();
-            },
-            handleValueHelpLangSearch: function (evt) {
-                var sValue = evt.getParameter("value");
-                if (sValue.length > 0) {
-                    if (sValue.length == 2) {
-                        var oFilter1 = new sap.ui.model.Filter("Languages", 'EQ', sValue);
-                        this.Language.getBinding("items").filter([oFilter1]);
-                    } else {
-                        var oFilter2 = new sap.ui.model.Filter("Description", 'EQ', sValue);
-                        this.Language.getBinding("items").filter([oFilter2]);
-                    }
-                } else {
-                    this.Language.getBinding("items").filter([]);
-                }
-            },
-            handleValueHelpLangClose: function (params) {
-                this.Language.close();
-            },
-            //Value Help for Entity Type
+            //Value Help for Type Of Entity
             handleValueHelpForEntityType: function (evt) {
                 this.entityTypeField = evt.getSource();
                 this.entityType.getBinding("items").filter([]);
@@ -197,11 +70,14 @@ sap.ui.define([
                 var entityTypTitle = evt.getParameter("selectedItems")[0].getProperty("title");
                 that.entityTypeField.setValue(entityTypTitle);
                 that.getView().getModel("appView").setProperty("/TypeOfEntity", entityTypTitle);
-                that.handleEntityCheckModel(evt);
+                that.handleEntityCheckModel();
                 
             },
+            handleValueHelpTypOfEntityClose: function () {
+                this.entityType.close();
+            },
             //getService for type of entity to update fields
-            handleEntityCheckModel: function(evt){
+            handleEntityCheckModel: function(){
                 var that = this;
                 var appView = that.getView().getModel("appView");
                 var obj = {
@@ -315,9 +191,181 @@ sap.ui.define([
                 var val = this.getView().byId("entityId").getValue();
                 this.getView().getModel("appView").setProperty("/TypeOfEntity", val);
             },
-            handleValueHelpTypOfEntityClose: function () {
-                this.entityType.close();
+
+            //Value Help for Country
+            handleValueHelpForCountry: function (evt) {
+                this.countryField = evt.getSource();
+                this.Country.getBinding("items").filter([]);
+                this.Country.open();
+            },
+            handleValueHelpCountrClose: function (params) {
+                this.Country._dialog.close();
+            },
+            handleValueHelpCountryConfirm: function (evt) {
+                var title = evt.getParameter("selectedItems")[0].getProperty("title");
+                var desc = evt.getParameter("selectedItems")[0].getProperty("description");
+                this.countryField.setValue(title + " - " + desc);
+            },
+            handleValueHelpCountrySearch: function (evt) {
+                var sValue = evt.getParameter("value");
+                var filters = [];
+                if (sValue.length > 0) {
+                    var filter1 = new sap.ui.model.Filter({
+                        path: "Land1",
+                        operator: "Contains",
+                        value1: sValue
+                    });
+                    var filter2 = new sap.ui.model.Filter({
+                        path: "Landx",
+                        operator: "Contains",
+                        value1: sValue
+                    });
+                    var sFilters = [filter1, filter2];
+                    filters.push(new sap.ui.model.Filter(sFilters, false));
+                    this.Country.getBinding("items").filter(filters, false);
+                } else {
+                    this.Country.getBinding("items").filter([]);
+                }
+            },
+
+            //Value Help for State/Region
+            handleValueHelpForRegion: function (evt) {
+                this.regionField = evt.getSource();
+                var val = this.getView().byId("LAND1").getValue();
+                if(val.length>0){
+                    this.Region.getBinding("items").filter([new sap.ui.model.Filter("Land1", "EQ", val.split(" - ")[0])]);
+                    this.Region.open();
+                }else{
+                    sap.m.MessageBox.error("Please select the Country");
+                }
+            },
+            handleValueHelpStateConfirm: function (evt) {
+                var title = evt.getParameter("selectedItems")[0].getProperty("title");
+                var desc = evt.getParameter("selectedItems")[0].getProperty("description");
+                this.regionField.setValue(title + " - " + desc);
+                this.Region.close();
+            },
+            handleValueHelpStateSearch: function (evt) {
+                var val = this.getView().byId("LAND1").getValue();
+                var sValue = evt.getParameter("value");
+                var filters = [];
+                if (sValue.length > 0) {
+                    var filter1 = new sap.ui.model.Filter({
+                        path: "Bland",
+                        operator: "Contains",
+                        value1: sValue
+                    });
+                    var filter2 = new sap.ui.model.Filter({
+                        path: "Bezei",
+                        operator: "Contains",
+                        value1: sValue
+                    });
+                    var sFilters = [filter1, filter2];
+                    filters.push(new sap.ui.model.Filter(sFilters, false));
+                    if (val.length > 0) {
+                        filters.push(new sap.ui.model.Filter("Land1", "EQ", val.split(" - ")[0]));
+                    }
+                    this.Region.getBinding("items").filter(filters, true);
+                } else {
+                    this.Region.getBinding("items").filter([new sap.ui.model.Filter("Land1", "EQ", val.split(" - ")[0])]); 
+                }
+            },
+
+             //Value Help for Transportation Zone
+             handleValueHelpForTrsptnZne: function (evt) {
+                this.trnsptZonField = evt.getSource();
+                var val = this.getView().byId("LAND1").getValue();
+                if(val.length>0){
+                    this.TransprtZone.getBinding("items").filter([new sap.ui.model.Filter("Land1", "EQ", val.split(" - ")[0])]);
+                    // this.TransprtZone.getBinding("items").filter([]);
+                    this.TransprtZone.open();
+                }else{
+                    sap.m.MessageBox.error("Please select the Country");
+                }
+            },
+            handleValueHelpTrnsptZoneConfirm: function (evt) {
+                var title = evt.getParameter("selectedItems")[0].getProperty("title");
+                var desc = evt.getParameter("selectedItems")[0].getProperty("description");
+                this.trnsptZonField.setValue(title + " - " + desc);
+                this.TransprtZone.getBinding("items").filter([]);
+                this.TransprtZone.close();
+            },
+            handleValueHelpTrnsptZoneSearch: function (evt) {
+                var sValue = evt.getParameter("value");
+                var filters = [];
+                if (sValue.length > 0) {
+                    var filter1 = new sap.ui.model.Filter({
+                        path: "Zone1",
+                        operator: "Contains",
+                        value1: sValue
+                    });
+                    var filter2 = new sap.ui.model.Filter({
+                        path: "Vtext",
+                        operator: "Contains",
+                        value1: sValue
+                    });
+                    var sFilters = [filter1, filter2];
+                    filters.push(new sap.ui.model.Filter(sFilters, false));
+                    if (this.val.length > 0) {
+                        filters.push(new sap.ui.model.Filter("Land1", "EQ", this.val.split(" - ")[0]));
+                    }
+                    this.TransprtZone.getBinding("items").filter(filters, true);
+                } else {
+                    var val = this.getView().byId("LAND1").getValue();
+                    this.TransprtZone.getBinding("items").filter([new sap.ui.model.Filter("Land1", "EQ", val.split(" - ")[0])]); 
+                }
+            },
+            handleValueHelpTrnsptZoneClose: function (params) {
+                this.TransprtZone.close();
+            },
+            handleValueHelpStateClose: function (params) {
+                this.Region.close();
+            },
+
+            // Value Help for Language
+            handleValueHelpForLanguage: function (evt) {
+                this.LanguageField = evt.getSource();
+                this.Language.getBinding("items").filter([]);
+                this.Language.open();
+            },
+
+            handleValueHelpLangConfirm: function (evt) {
+                var title = evt.getParameter("selectedItems")[0].getProperty("title");
+                var desc = evt.getParameter("selectedItems")[0].getProperty("description");
+                this.LanguageField.setValue(title + " - " + desc);
+                this.Language.getBinding("items").filter([]);
+                this.Language.close();
+            },
+            handleValueHelpLangSearch: function (evt) {
+                var sValue = evt.getParameter("value");
+                var filters = [];
+                if (sValue.length > 0) {
+                    var filter1 = new sap.ui.model.Filter({
+                        path: "Languages",
+                        operator: "Contains",
+                        value1: sValue
+                    });
+                    var filter2 = new sap.ui.model.Filter({
+                        path: "Description",
+                        operator: "Contains",
+                        value1: sValue
+                    });
+                    var sFilters = [filter1, filter2];
+                    filters.push(new sap.ui.model.Filter(sFilters, false));
+                    this.Language.getBinding("items").filter(filters, false);
+                } else {
+                    this.Language.getBinding("items").filter([]);
+                }
+            },
+            handleValueHelpLangClose: function (params) {
+                this.Language.close();
             }
+            //Value Help for Entity Type
+            // handleValueHelpForEntityType: function (evt) {
+            //     this.entityTypeField = evt.getSource();
+            //     this.entityType.getBinding("items").filter([]);
+            //     this.entityType.open();
+            // },
             // handleValueHelpEntityClose: function () {
             //     this.entityType._dialog.close();
             // },

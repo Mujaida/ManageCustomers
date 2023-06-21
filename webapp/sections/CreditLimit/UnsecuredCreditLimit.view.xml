@@ -7,7 +7,7 @@
         
          <Label text="Proposed Amount (SAR)" visible="{=${fieldMappingModels>/OpenCredit-CleanCreditProposedAmountAEDVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/OpenCredit-CleanCreditProposedAmountAEDMandatory} === true ? true : false}"/>
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zopen_clean_credit_proamount}" liveChange="handleSetMaxLength" maxLength="20" type="Number" visible="{=${fieldMappingModels>/OpenCredit-CleanCreditProposedAmountAEDVisible} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zopen_clean_credit_proamount}" liveChange="handleSetMaxLength" maxLength="20" type="Number" visible="{=${fieldMappingModels>/OpenCredit-CleanCreditProposedAmountAEDVisible} === true ? true : false}"/>
 
          <Label text="Varience in Amounnt" visible="{=${fieldMappingModels>/OpenCredit-CleanCreditVarianceinAmountAEDVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/OpenCredit-CleanCreditVarianceinAmountAEDMandatory} === true ? true : false}"/>
@@ -23,7 +23,7 @@
         
         <Label text="Proposed Amount (SAR)" visible="{=${fieldMappingModels>/CADProposedAmountAEDVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/CADProposedAmountAEDMandatory} === true ? true : false}"/>
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zcad_pro_amount}" liveChange="handleSetMaxLength" maxLength="20" type="Number" visible="{=${fieldMappingModels>/CADProposedAmountAEDVisible} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zcad_pro_amount}" liveChange="handleSetMaxLength" maxLength="20" type="Number" visible="{=${fieldMappingModels>/CADProposedAmountAEDVisible} === true ? true : false}"/>
 
         <Label text="Varience in Amount (SAR)" visible="{=${fieldMappingModels>/CADVarianceinAmountAEDVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/CADVarianceinAmountAEDMandatory} === true ? true : false}"/>
@@ -38,7 +38,7 @@
         
         <Label text="Proposed Amount (SAR)" visible="{=${fieldMappingModels>/PDCinhandProposedAmountAEDVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/PDCinhandProposedAmountAEDMandatory} === true ? true : false}"/>
-        <Input  enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zpdc_in_hand_pro_amount}" liveChange="handleSetMaxLength" maxLength="20" type="Number" visible="{=${fieldMappingModels>/PDCinhandProposedAmountAEDVisible} === true ? true : false}"/>
+        <Input  enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zpdc_in_hand_pro_amount}" liveChange="handleSetMaxLength" maxLength="20" type="Number" visible="{=${fieldMappingModels>/PDCinhandProposedAmountAEDVisible} === true ? true : false}"/>
 
         <Label text="Varience in Amount (SAR)" visible="{=${fieldMappingModels>/PDCinhandVarianceinAmountAEDVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/PDCinhandVarianceinAmountAEDMandatory} === true ? true : false}"/>
@@ -54,7 +54,7 @@
         
         <Label text="Proposed Amount (SAR)" visible="{=${fieldMappingModels>/UndatedCheque-SecurityDepositChequeProposedAmountAEDVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/UndatedCheque-SecurityDepositChequeProposedAmountAEDMandatory} === true ? true : false}"/>
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zundated_or_secdepchck_proamt}" maxLength="40" visible="{=${fieldMappingModels>/UndatedCheque-SecurityDepositChequeProposedAmountAEDVisible} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zundated_or_secdepchck_proamt}" maxLength="40" visible="{=${fieldMappingModels>/UndatedCheque-SecurityDepositChequeProposedAmountAEDVisible} === true ? true : false}"/>
 
         <Label text="Varience in Amount (SAR)" visible="{=${fieldMappingModels>/UndatedCheque-SecurityDepositChequeVarianceinAmountAEDVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/UndatedCheque-SecurityDepositChequeVarianceinAmountAEDMandatory} === true ? true : false}"/>
@@ -69,7 +69,7 @@
        
        <Label text="Proposed Insurer" visible="{=${fieldMappingModels>/CRIonlyInsolvencyriskInsurerVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/CRIonlyInsolvencyriskInsurerMandatory} === true ? true : false}"/>
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zun_cri_proposed_insurer}" maxLength="20" visible="{=${fieldMappingModels>/CRIonlyInsolvencyriskInsurerVisible} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zun_cri_proposed_insurer}" maxLength="20" visible="{=${fieldMappingModels>/CRIonlyInsolvencyriskInsurerVisible} === true ? true : false}"/>
        
        <Label text="Amount (SAR)" visible="{=${fieldMappingModels>/CRIAmountVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/CRIAmountMandatory} === true ? true : false}"/>
@@ -77,7 +77,7 @@
 
         <Label text="Proposed Amount (SAR)" visible="{=${fieldMappingModels>/CRIAmountVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/CRIAmountMandatory} === true ? true : false}"/>
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zun_cri_proposed_amount}" liveChange="handleSetMaxLength" maxLength="10" type="Number" visible="{=${fieldMappingModels>/CRIAmountVisible} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zun_cri_proposed_amount}" liveChange="handleSetMaxLength" maxLength="10" type="Number" visible="{=${fieldMappingModels>/CRIAmountVisible} === true ? true : false}"/>
        
        <Label text="Varience in Amount (SAR)" visible="{=${fieldMappingModels>/CRIVarianceinAmountAEDVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/CRIAmountMandatory} === true ? true : false}"/>
@@ -92,7 +92,7 @@
         
         <Label text="Proposed Bank Name" visible="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankProposedBankNameVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankProposedBankNameMandatory} === true ? true : false}"/>
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zuncfrmd_lc_nonapvd_pro_bank}" maxLength="20" visible="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankProposedBankNameVisible} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zuncfrmd_lc_nonapvd_pro_bank}" maxLength="20" visible="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankProposedBankNameVisible} === true ? true : false}"/>
 
         <Label text="Amount (SAR)" visible="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankAmountSARVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankAmountSARMandatory} === true ? true : false}"/>
@@ -100,7 +100,7 @@
 
          <Label text="Proposed Amount (SAR)" visible="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankProposedAmountAEDVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankProposedAmountAEDMandatory} === true ? true : false}"/>
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zuncfrmd_lc_nonapvd_pro_amt}" liveChange="handleSetMaxLength" maxLength="10" type="Number" visible="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankProposedAmountAEDVisible} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zuncfrmd_lc_nonapvd_pro_amt}" liveChange="handleSetMaxLength" maxLength="10" type="Number" visible="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankProposedAmountAEDVisible} === true ? true : false}"/>
 
          <Label text="Varience in Amount (SAR)" visible="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankVarianceinAmountAEDVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/UnconfirmedLCfromNon-ApprovedBankVarianceinAmountAEDMandatory} === true ? true : false}"/>

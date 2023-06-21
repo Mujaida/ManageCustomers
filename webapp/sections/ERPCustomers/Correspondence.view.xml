@@ -2,37 +2,37 @@
     <forms:SimpleForm editable="false" layout="ColumnLayout">
         <Label text="Accounting Clerk" visible="{=${fieldMappingModels>/AccountingClerkVisible} === true ? true : false}"
          required="{=${fieldMappingModels>/AccountingClerkMandatory} === true ? true : false}" />
-        <!-- <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zaccounting_clerk}" maxLength="2" visible="{=${fieldMappingModels>/AccountingClerkVisible} === true ? true : false}" /> -->
-        <MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForAccountingClerk" value="{Customers>/zaccounting_clerk}"
+        <!-- <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zaccounting_clerk}" maxLength="2" visible="{=${fieldMappingModels>/AccountingClerkVisible} === true ? true : false}" /> -->
+        <MultiInput showClearIcon="true" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" valueHelpRequest="handleValueHelpForAccountingClerk" value="{Customers>/zaccounting_clerk}"
 		valueHelpOnly="true" visible="{=${fieldMappingModels>/AccountingClerkVisible} === true ? true : false}"/>
 		<Label text="Account with Number" visible="{=${fieldMappingModels>/AccountWithNumberVisible} === true ? true : false}"
          required="{=${fieldMappingModels>/AccountWithNumberMandatory} === true ? true : false}" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zaccount_with_number}" maxLength="30" visible="{=${fieldMappingModels>/AccountWithNumberVisible} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zaccount_with_number}" maxLength="30" visible="{=${fieldMappingModels>/AccountWithNumberVisible} === true ? true : false}"/>
         <Label text="Account Memo" visible="{=${fieldMappingModels>/AccountMemoVisible} === true ? true : false}"
          required="{=${fieldMappingModels>/AccountMemoMandatory} === true ? true : false}" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zaccount_memo}" maxLength="30" visible="{=${fieldMappingModels>/AccountMemoVisible} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zaccount_memo}" maxLength="30" visible="{=${fieldMappingModels>/AccountMemoVisible} === true ? true : false}"/>
         <Label text="Clerk At Customer" visible="{=${fieldMappingModels>/ClerkAtCustomerVisible} === true ? true : false}"
          required="{=${fieldMappingModels>/ClerkAtCustomerMandatory} === true ? true : false}" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zclerk_at_customer}" maxLength="2" visible="{=${fieldMappingModels>/ClerkAtCustomerVisible} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zclerk_at_customer}" maxLength="2" visible="{=${fieldMappingModels>/ClerkAtCustomerVisible} === true ? true : false}"/>
         <Label text="Clerk's Telephone Number" visible="{=${fieldMappingModels>/ClerkTelephoneNumberVisible} === true ? true : false}"
          required="{=${fieldMappingModels>/ClerkTelephoneNumberMandatory} === true ? true : false}" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zclerks_telephone_number}" maxLength="30" visible="{=${fieldMappingModels>/ClerkTelephoneNumberVisible} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zclerks_telephone_number}" maxLength="30" visible="{=${fieldMappingModels>/ClerkTelephoneNumberVisible} === true ? true : false}"/>
         <Label text="Account Statement" visible="{=${fieldMappingModels>/AccountStatementVisible} === true ? true : false}"
          required="{=${fieldMappingModels>/AccountStatementMandatory} === true ? true : false}" />
-        <!-- <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zaccount_statement}" maxLength="1" visible="{=${fieldMappingModels>/AccountStatementVisible} === true ? true : false}"/> -->
-        <MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForAccountStatement" value="{Customers>/zaccount_statement}"
+        <!-- <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zaccount_statement}" maxLength="1" visible="{=${fieldMappingModels>/AccountStatementVisible} === true ? true : false}"/> -->
+        <MultiInput showClearIcon="true" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" valueHelpRequest="handleValueHelpForAccountStatement" value="{Customers>/zaccount_statement}"
 		 valueHelpOnly="true" visible="{=${fieldMappingModels>/AccountStatementVisible} === true ? true : false}"/>
 		<Label text="Collective Invoice Variant" visible="{=${fieldMappingModels>/CollectiveInvoiceVariantVisible} === true ? true : false}"
          required="{=${fieldMappingModels>/CollectiveInvoiceVariantMandatory} === true ? true : false}" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zcollective_invoice_variant}" maxLength="1" visible="{=${fieldMappingModels>/CollectiveInvoiceVariantVisible} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zcollective_invoice_variant}" maxLength="1" visible="{=${fieldMappingModels>/CollectiveInvoiceVariantVisible} === true ? true : false}"/>
         <Label text="Local Processing" visible="{=${fieldMappingModels>/272} === true ? true : false}"
          required="{=${fieldMappingModels>/272} === true ? true : false}" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zlocal_processing}" maxLength="1" visible="{=${fieldMappingModels>/272} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zlocal_processing}" maxLength="1" visible="{=${fieldMappingModels>/272} === true ? true : false}"/>
         <Label text="Clerk's Internet Address" visible="{=${fieldMappingModels>/ClerksInternetAddressVisible} === true ? true : false}"
          required="{=${fieldMappingModels>/ClerksInternetAddressMandatory} === true ? true : false}" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zclerks_internet_address}" maxLength="130" visible="{=${fieldMappingModels>/ClerksInternetAddressVisible} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zclerks_internet_address}" maxLength="130" visible="{=${fieldMappingModels>/ClerksInternetAddressVisible} === true ? true : false}"/>
         <Label text="Clerk's Fax Number" visible="{=${fieldMappingModels>/ClerksFaxNumberVisible} === true ? true : false}"
          required="{=${fieldMappingModels>/ClerksFaxNumberMandatory} === true ? true : false}" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zclerks_fax_number}" maxLength="30" visible="{=${fieldMappingModels>/ClerksFaxNumberVisible} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zclerks_fax_number}" maxLength="30" visible="{=${fieldMappingModels>/ClerksFaxNumberVisible} === true ? true : false}"/>
     </forms:SimpleForm>
 </mvc:View>

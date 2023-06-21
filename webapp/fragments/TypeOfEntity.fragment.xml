@@ -4,4 +4,4 @@
 		confirm="handleValueHelpTypOfEntityConfirm" cancel="handleValueHelpTypOfEntityClose" multiSelect="false">
 		<StandardListItem title="{ztype_of_entity}" />
 	</SelectDialog>
-</core:FragmentDefinition>
+</core:FragmentDefinition>	

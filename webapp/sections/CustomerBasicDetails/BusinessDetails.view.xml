@@ -2,8 +2,7 @@
 	<forms:SimpleForm editable="false" layout="ColumnLayout">
 		<Label text="Business Partner ID / Grouping" 
  required="{=${fieldMappingModels>/BusinessPartnerIDGroupingMandatory} === true ? true : false}"/>
-		<Select
-		change="onSelectChange"
+		<Select enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" change="onSelectChange"
 					forceSelection="true"
 					selectedKey="{Customers>/zbusiness_partner_id_grouping}"
 					items="{
@@ -13,50 +12,50 @@
 				</Select>
         <Label text="Title" visible="{=${fieldMappingModels>/TitleVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/TitleMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/ztitle}" visible="{=${fieldMappingModels>/TitleVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/ztitle}" visible="{=${fieldMappingModels>/TitleVisible} === true ? true : false}"/>
         <Label text="First Name" visible="{=${fieldMappingModels>/NameVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/NameMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zfirst_name}" maxLength="40" visible="{=${fieldMappingModels>/NameVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zfirst_name}" maxLength="40" visible="{=${fieldMappingModels>/NameVisible} === true ? true : false}"/>
         <Label text="Last Name" visible="{=${fieldMappingModels>/Name2Visible} === true ? true : false}"
  required="{=${fieldMappingModels>/Name2Mandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zlast_name}" maxLength="40" visible="{=${fieldMappingModels>/Name2Visible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zlast_name}" maxLength="40" visible="{=${fieldMappingModels>/Name2Visible} === true ? true : false}"/>
         <Label text="Salutation" visible="{=${fieldMappingModels>/SalutationVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/SalutationMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zsalutation}" maxLength="2" visible="{=${fieldMappingModels>/SalutationVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zsalutation}" maxLength="2" visible="{=${fieldMappingModels>/SalutationVisible} === true ? true : false}"/>
 		 <Label text="Search Term1" visible="{=${fieldMappingModels>/SearchTerm1Visible} === true ? true : false}"
  required="{=${fieldMappingModels>/SearchTermMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zsearch_term1}" maxLength="25" visible="{=${fieldMappingModels>/SearchTerm1Visible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zsearch_term1}" maxLength="25" visible="{=${fieldMappingModels>/SearchTerm1Visible} === true ? true : false}"/>
 
 <Label text="Customer Type" visible="{=${fieldMappingModels>/CustomerTypeVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/CustomerTypeMandatory} === true ? true : false}"/>
-          <MultiInput enabled="true" value="{Customers>/zcustomer_type}" valueHelpRequest="handleValueHelpForCustomerType"
+          <MultiInput showClearIcon="true" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zcustomer_type}" valueHelpRequest="handleValueHelpForCustomerType"
 		visible="{=${fieldMappingModels>/CustomerTypeVisible} === true ? true : false}" valueHelpOnly="true" />
 		
 
 		<Label text="Customer Internal Rating" visible="{=${fieldMappingModels>/CustomerInternalRatingVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/CustomerInternalRatingMandatory} === true ? true : false}" />
-          <MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zclass}" valueHelpRequest="handleValueHelpForCustomerInternalRating"
+          <MultiInput showClearIcon="true" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zclass}" valueHelpRequest="handleValueHelpForCustomerInternalRating"
 		valueHelpOnly="true" visible="{=${fieldMappingModels>/CustomerInternalRatingVisible} === true ? true : false}" />
 
 
 		<Label text="Channel Group" visible="{=${fieldMappingModels>/ChannelGroupVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/ChannelGroupMandatory} === true ? true : false}"/>
- <MultiInput enabled="true" id="channelGrpId" value="{Customers>/zchannel_group}" maxLength="20" visible="{=${fieldMappingModels>/ChannelGroupVisible} === true ? true : false}" valueHelpRequest="handleValueHelpForChannelGrp"
+ <MultiInput showClearIcon="true" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" id="channelGrpId" value="{Customers>/zchannel_group}" maxLength="20" visible="{=${fieldMappingModels>/ChannelGroupVisible} === true ? true : false}" valueHelpRequest="handleValueHelpForChannelGrp"
 		valueHelpOnly="true" />
 		
 		<Label text="Channel" visible="{=${fieldMappingModels>/ChannelVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/ChannelMandatory} === true ? true : false}"/>
-		<MultiInput id="channelId" value="{Customers>/zchannel}" maxLength="20" visible="{=${fieldMappingModels>/ChannelVisible} === true ? true : false}" valueHelpRequest="handleValueHelpForChannel"
+		<MultiInput enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" showClearIcon="true" id="channelId" value="{Customers>/zchannel}" maxLength="20" visible="{=${fieldMappingModels>/ChannelVisible} === true ? true : false}" valueHelpRequest="handleValueHelpForChannel"
 		valueHelpOnly="true" />
 
 		<Label text="Sub Channel" visible="{=${fieldMappingModels>/Sub-ChannelVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/Sub-ChannelMandatory} === true ? true : false}"/>
-		<MultiInput id="subChannelId" value="{Customers>/zsub_channel}" maxLength="20" visible="{=${fieldMappingModels>/Sub-ChannelVisible} === true ? true : false}" valueHelpRequest="handleValueHelpForSubChannel"
+		<MultiInput showClearIcon="true" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" id="subChannelId" value="{Customers>/zsub_channel}" maxLength="20" visible="{=${fieldMappingModels>/Sub-ChannelVisible} === true ? true : false}" valueHelpRequest="handleValueHelpForSubChannel"
 		valueHelpOnly="true" />
 		
 		<Label text="Line of Business Type" visible="{=${fieldMappingModels>/LineofBusinessTypeVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/LineofBusinessTypeMandatory} === true ? true : false}"/>
-		<MultiInput id="lobtId" value="{Customers>/zline_business_type}" maxLength="20" visible="{=${fieldMappingModels>/LineofBusinessTypeVisible} === true ? true : false}" valueHelpRequest="handleValueHelpForlineOfBusinessType"
+		<MultiInput showClearIcon="true" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" id="lobtId" value="{Customers>/zline_business_type}" maxLength="20" visible="{=${fieldMappingModels>/LineofBusinessTypeVisible} === true ? true : false}" valueHelpRequest="handleValueHelpForlineOfBusinessType"
 		valueHelpOnly="true" />
 
 

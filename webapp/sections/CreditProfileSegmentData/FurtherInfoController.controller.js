@@ -36,15 +36,15 @@ sap.ui.define(
             this.indusType.setModel(this.getOwnerComponent().getModel());
           }
         },
-        handleSetMaxLength:function (evt) {
+        handleSetMaxLength: function (evt) {
           var val = evt.getSource().getValue().length;
           var maxLen = evt.getSource().getMaxLength();
-          if(val >= maxLen){
-              evt.getSource().setType("Text");
-          }else{
-              evt.getSource().setType("Number");
+          if (val >= maxLen) {
+            evt.getSource().setType("Text");
+          } else {
+            evt.getSource().setType("Number");
           }
-      },
+        },
         handleFurtherOpen: function (evt) {
           this.furtherInfo.open();
         },
@@ -89,8 +89,8 @@ sap.ui.define(
             .getContent()[19]
             .getValue()
             ? this.dateFormatter(
-                this.furtherInfo.getContent()[0].getContent()[19].getValue()
-              )
+              this.furtherInfo.getContent()[0].getContent()[19].getValue()
+            )
             : null;
           var textArea = this.furtherInfo
             .getContent()[0]
@@ -150,7 +150,7 @@ sap.ui.define(
         handleValueHelpForInfoCat: function (evt) {
           this.infoCatField = evt.getSource();
           this.infoCat.getBinding("items").filter([new sap.ui.model.Filter("InformationCat", "EQ", this.chnlGrpVal)]);
-                  this.infoCat.open();
+          this.infoCat.open();
         },
         handleValueHelpInfoCatConfirm: function (evt) {
           this.infoCatValue = evt
@@ -166,10 +166,10 @@ sap.ui.define(
         },
         handleValueHelpForIndusType: function (evt) {
           this.indusTypeField = evt.getSource();
-          this.indusType.getBinding("items").filter([ new sap.ui.model.Filter("InformationCat","EQ", this.infoCatValue)]);
+          this.indusType.getBinding("items").filter([new sap.ui.model.Filter("InformationCat", "EQ", this.infoCatValue)]);
           // var serviceURL = this.getOwnerComponent().getModel("S4D111").sServiceUrl;
           //       var oModel = new sap.ui.model.odata.ODataModel(serviceURL, true);
-                
+
           //       oModel.read("/CreditInformationSet", {
           //         filters: [new sap.ui.model.Filter("InformationCat", sap.ui.model.FilterOperator.EQ, this.infoCatValue)],
           //           success: function (oData, oResponse) {
@@ -181,7 +181,7 @@ sap.ui.define(
           //                       aCombinedData.push(oCustomer);
           //                   }
           //               });
-                    
+
           //             this.getOwnerComponent().setModel(new sap.ui.model.json.JSONModel(aCombinedData), "creditInfoSet1");
 
           //           }.bind(this),
@@ -244,7 +244,7 @@ sap.ui.define(
               .updateBindings(true);
             oModel.remove(that.dPath, {
               method: "DELETE",
-              success: function (data) {},
+              success: function (data) { },
               error: function (e) {
                 jQuery.sap.require("sap.m.MessageBox");
                 sap.m.MessageBox(e);
@@ -261,113 +261,125 @@ sap.ui.define(
               .updateBindings(true);
           }
         },
-        
-        //Validation of the date field Valid From
-		handleStartDateChange: function (evt) {
-			this.ExpStrtDate = evt.getSource();
-			if (this.ExpEndDate && this.ExpStrtDate.getValue()) {
-				if (this.ExpStrtDate.getValue() !== "" && this.ExpEndDate.getValue() !== "") {
-					if (this.ExpStrtDate.getValue() > this.ExpEndDate.getValue()) {
-						this.ExpStrtDate.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
-						this.ExpEndDate.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
-					} else {
-						this.ExpStrtDate.setValueState("None").setValueStateText("");
-						this.ExpEndDate.setValueState("None").setValueStateText("");
-					}
-				} else {
-					this.ExpStrtDate.setValueState("None").setValueStateText("");
-					this.ExpEndDate.setValueState("None").setValueStateText("");
-				}
-			} else {
-				this.ExpStrtDate.setValueState("None").setValueStateText("");
-			}
-		},
 
-		//Validation of the date field Valid To
-		handleEndDateChange: function (evt) {
-			this.ExpEndDate = evt.getSource();
-			
-			if (this.ExpStrtDate.getValue() !== "" && this.ExpEndDate.getValue() !== "") {
-				if (new Date(this.ExpStrtDate.getValue()) > new Date(this.ExpEndDate.getValue())) {
-					this.ExpStrtDate.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
-					this.ExpEndDate.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
-				} else {
-					this.ExpStrtDate.setValueState("None").setValueStateText("");
-					this.ExpEndDate.setValueState("None").setValueStateText("");
-				}
-			} else {
-				this.ExpStrtDate.setValueState("None").setValueStateText("");
-				this.ExpEndDate.setValueState("None").setValueStateText("");
-			}
-		},
         //Validation of the date field Valid From
-		handleStartDateChange1: function (evt) {
-			this.ExpStrtDate1 = evt.getSource();
-			
-			if (this.ExpEndDate1) {
-				if (this.ExpStrtDate1.getValue() !== "" && this.ExpEndDate.getValue() !== "") {
-					if (this.ExpStrtDate1.getValue() > this.ExpEndDate1.getValue()) {
-						this.ExpStrtDate1.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
-						this.ExpEndDate1.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
-					} else {
-						this.ExpStrtDate1.setValueState("None").setValueStateText("");
-						this.ExpEndDate1.setValueState("None").setValueStateText("");
-					}
-				} else {
-					this.ExpStrtDate1.setValueState("None").setValueStateText("");
-					this.ExpEndDate1.setValueState("None").setValueStateText("");
-				}
-			} else {
-				this.ExpStrtDate1.setValueState("None").setValueStateText("");
-			}
-		},
+        handleStartDateChange: function (evt) {
+          this.ExpStrtDate = evt.getSource();
+          if (this.ExpEndDate && this.ExpStrtDate.getValue()) {
+            if (this.ExpStrtDate.getValue() !== "" && this.ExpEndDate.getValue() !== "") {
+              if (this.ExpStrtDate.getValue() > this.ExpEndDate.getValue()) {
+                this.ExpStrtDate.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
+                this.ExpEndDate.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
+              } else {
+                this.ExpStrtDate.setValueState("None").setValueStateText("");
+                this.ExpEndDate.setValueState("None").setValueStateText("");
+              }
+            } else {
+              this.ExpStrtDate.setValueState("None").setValueStateText("");
+              this.ExpEndDate.setValueState("None").setValueStateText("");
+            }
+          } else {
+            this.ExpStrtDate.setValueState("None").setValueStateText("");
+          }
+        },
 
-		//Validation of the date field Valid To
-		handleEndDateChange1: function (evt) {
-			this.ExpEndDate1 = evt.getSource();
-			if (this.ExpStrtDate1.getValue() !== "" && this.ExpEndDate1.getValue() !== "") {
-				if (new Date(this.ExpStrtDate1.getValue()) > new Date(this.ExpEndDate1.getValue())) {
-					this.ExpStrtDate1.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
-					this.ExpEndDate1.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
-				} else {
-					this.ExpStrtDate1.setValueState("None").setValueStateText("");
-					this.ExpEndDate1.setValueState("None").setValueStateText("");
-				}
-			} else {
-				this.ExpStrtDate1.setValueState("None").setValueStateText("");
-				this.ExpEndDate1.setValueState("None").setValueStateText("");
-			}
-		},
-    
-    handleValueHelpIndusTypeSearch:function (evt) {
-      var sValue = evt.getParameter("value");
-      if (sValue.length > 0) {
-          if (sValue.length == 2) {
-              var oFilter1 = new sap.ui.model.Filter("InformationType", 'EQ', sValue);
-              this.indusType.getBinding("items").filter([oFilter1]);
+        //Validation of the date field Valid To
+        handleEndDateChange: function (evt) {
+          this.ExpEndDate = evt.getSource();
+
+          if (this.ExpStrtDate.getValue() !== "" && this.ExpEndDate.getValue() !== "") {
+            if (new Date(this.ExpStrtDate.getValue()) > new Date(this.ExpEndDate.getValue())) {
+              this.ExpStrtDate.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
+              this.ExpEndDate.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
+            } else {
+              this.ExpStrtDate.setValueState("None").setValueStateText("");
+              this.ExpEndDate.setValueState("None").setValueStateText("");
+            }
           } else {
-              var oFilter2 = new sap.ui.model.Filter("NameOfType", 'EQ', sValue);
-              this.indusType.getBinding("items").filter([oFilter2]);
+            this.ExpStrtDate.setValueState("None").setValueStateText("");
+            this.ExpEndDate.setValueState("None").setValueStateText("");
           }
-      } else {
-          this.indusType.getBinding("items").filter([]);
-      }
-  },
-  handleValueHelpInfoCatSearch:function (evt) {
-      var sValue = evt.getParameter("value");
-      if (sValue.length > 0) {
-          if (sValue.length == 2) {
-              var oFilter1 = new sap.ui.model.Filter("InformationCat", 'EQ', sValue);
-              this.infoCat.getBinding("items").filter([oFilter1]);
+        },
+        //Validation of the date field Valid From
+        handleStartDateChange1: function (evt) {
+          this.ExpStrtDate1 = evt.getSource();
+
+          if (this.ExpEndDate1) {
+            if (this.ExpStrtDate1.getValue() !== "" && this.ExpEndDate.getValue() !== "") {
+              if (this.ExpStrtDate1.getValue() > this.ExpEndDate1.getValue()) {
+                this.ExpStrtDate1.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
+                this.ExpEndDate1.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
+              } else {
+                this.ExpStrtDate1.setValueState("None").setValueStateText("");
+                this.ExpEndDate1.setValueState("None").setValueStateText("");
+              }
+            } else {
+              this.ExpStrtDate1.setValueState("None").setValueStateText("");
+              this.ExpEndDate1.setValueState("None").setValueStateText("");
+            }
           } else {
-              var oFilter2 = new sap.ui.model.Filter("InformationDes", 'EQ', sValue);
-              this.infoCat.getBinding("items").filter([oFilter2]);
+            this.ExpStrtDate1.setValueState("None").setValueStateText("");
           }
-      } else {
-          this.infoCat.getBinding("items").filter([]);
-      }
-  },
-      }
-    );
+        },
+
+        //Validation of the date field Valid To
+        handleEndDateChange1: function (evt) {
+          this.ExpEndDate1 = evt.getSource();
+          if (this.ExpStrtDate1.getValue() !== "" && this.ExpEndDate1.getValue() !== "") {
+            if (new Date(this.ExpStrtDate1.getValue()) > new Date(this.ExpEndDate1.getValue())) {
+              this.ExpStrtDate1.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
+              this.ExpEndDate1.setValueState("Error").setValueStateText("Start Date must be equal to or lesser than end date");
+            } else {
+              this.ExpStrtDate1.setValueState("None").setValueStateText("");
+              this.ExpEndDate1.setValueState("None").setValueStateText("");
+            }
+          } else {
+            this.ExpStrtDate1.setValueState("None").setValueStateText("");
+            this.ExpEndDate1.setValueState("None").setValueStateText("");
+          }
+        },
+        handleValueHelpIndusTypeSearch: function (evt) {
+          var sValue = evt.getParameter("value");
+          var filters = [];
+          if (sValue.length > 0) {
+            var filter1 = new sap.ui.model.Filter({
+              path: "InformationType",
+              operator: "Contains",
+              value1: sValue
+            });
+            var filter2 = new sap.ui.model.Filter({
+              path: "NameOfType",
+              operator: "Contains",
+              value1: sValue
+            });
+            var sFilters = [filter1, filter2];
+            filters.push(new sap.ui.model.Filter(sFilters, false));
+            this.indusType.getBinding("items").filter(filters, false);
+          } else {
+            this.indusType.getBinding("items").filter([]);
+          }
+        },
+        handleValueHelpInfoCatSearch: function (evt) {
+          var sValue = evt.getParameter("value");
+          var filters = [];
+          if (sValue.length > 0) {
+            var filter1 = new sap.ui.model.Filter({
+              path: "InformationCat",
+              operator: "Contains",
+              value1: sValue
+            });
+            var filter2 = new sap.ui.model.Filter({
+              path: "InformationDes",
+              operator: "Contains",
+              value1: sValue
+            });
+            var sFilters = [filter1, filter2];
+            filters.push(new sap.ui.model.Filter(sFilters, false));
+            this.infoCat.getBinding("items").filter(filters, false);
+          } else {
+            this.infoCat.getBinding("items").filter([]);
+          }
+        }
+      });
   }
 );

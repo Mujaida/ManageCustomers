@@ -5,16 +5,16 @@
 		<CheckBox selected="false" /> -->
 
 		<Label text="Amount" />
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zoldest_open_amount}" liveChange="handleSetMaxLength" maxLength="12" type="Number"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zoldest_open_amount}" liveChange="handleSetMaxLength" maxLength="12" type="Number"/>
       
         <Label text="Net Due Date" />
-        <DatePicker enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/znet_due_date}" placeholder="Enter Date" valueFormat="MM.dd.yyyy" />
+        <DatePicker enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/znet_due_date}" placeholder="Enter Date" valueFormat="MM.dd.yyyy" />
         
         <Label text="Document" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value= "{Customers>/zoldest_open_doc}" maxLength="32"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value= "{Customers>/zoldest_open_doc}" maxLength="32"/>
 
         <Label text="Days in Arrears" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value= "{Customers>/zdays_in_arrears}" liveChange="handleSetMaxLength" maxLength="7" type="Number"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value= "{Customers>/zdays_in_arrears}" liveChange="handleSetMaxLength" maxLength="7" type="Number"/>
 
 
 </forms:SimpleForm>

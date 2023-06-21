@@ -12,11 +12,11 @@
     xmlns:CreditAnalysis="iffco.managecustomer.sections.CreditAnalysis"
     xmlns:CreditLimit="iffco.managecustomer.sections.CreditLimit"
     xmlns:CustomerBackground="iffco.managecustomer.sections.CustomerBackground"
-    xmlns:CreditPerformanceEvaluation="iffco.managecustomer.sections.CreditPerformanceEvaluation"
     xmlns:DetailsOfExpectedBusiness="iffco.managecustomer.sections.DetailsOfExpectedBusiness"
     xmlns:ProposedCreditType="iffco.managecustomer.sections.ProposedCreditType"
     xmlns:Comments="iffco.managecustomer.sections.Comments"
 >
+    <!-- xmlns:CreditPerformanceEvaluation="iffco.managecustomer.sections.CreditPerformanceEvaluation" -->
     <ObjectPageLayout id="ObjectPageLayout" enableLazyLoading="false" showFooter="true" selectedSection="orderSection" showTitleInHeaderContent="true" showEditHeaderButton="true" editHeaderButtonPress="handleEditBtnPress" upperCaseAnchorBar="false">
         <headerTitle>
             <ObjectPageDynamicHeaderTitle>
@@ -325,7 +325,7 @@
                     </ObjectPageSubSection>
                 </subSections>
             </ObjectPageSection>
-            <ObjectPageSection titleUppercase="false" visible="{= ${appView>/vertical} === 'Cash' ? false : true}" id="CreditPerformanceEvaluation" title="Credit Performance Evaluation">
+            <!-- <ObjectPageSection titleUppercase="false" visible="{= ${appView>/vertical} === 'Cash' ? false : true}" id="CreditPerformanceEvaluation" title="Credit Performance Evaluation">
                 <subSections>
                     <ObjectPageSubSection id="CreditPerformanceEvaluationSection" title="Credit Performance Evaluation">
                         <blocks>
@@ -333,7 +333,7 @@
                         </blocks>
                     </ObjectPageSubSection>
                 </subSections>
-            </ObjectPageSection>
+            </ObjectPageSection> -->
             <ObjectPageSection titleUppercase="false" visible="{= ${appView>/vertical} === 'Cash' ? false : true}" id="CreditAnalysis" title="Credit Analysis">
                 <subSections>
                     <ObjectPageSubSection id="CreditAnalysisSection" title="Credit Analysis">
@@ -388,8 +388,8 @@
                     press="onMessagePopoverPress" />
                 <m:Button type="Emphasized" text="Back" press="onBack"/>
                 <m:ToolbarSpacer />
-                <m:Button type="Emphasized" text="{i18n>Save}" press="saveRequest" />
-                <m:Button type="Emphasized" text="{i18n>Submit}" press="submitRequest" />
+                <m:Button type="Emphasized" visible="{=${Customers>/zrequest_status} !== 'In Progress' || ${appView>/mode} === 'add' ? true : false}" text="{i18n>Save}" press="saveRequest" />
+                <m:Button type="Emphasized" visible="{=${Customers>/zrequest_status} !== 'In Progress' || ${appView>/mode} === 'add' ? true : false}" text="{i18n>Submit}" press="submitRequest" />
                 <!-- <m:Button type="Emphasized" text="{i18n>Submit}" press="submitRequest" /> -->
             </m:OverflowToolbar>
         </footer>

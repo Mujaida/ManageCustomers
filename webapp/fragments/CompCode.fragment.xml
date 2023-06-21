@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Country" class="sapUiPopupWithPadding"
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Company Code" class="sapUiPopupWithPadding"
 		items="{path:'S4D>/CompanyCodeSet'}" search="handleValueHelpCompCodeSearch"
 		confirm="handleValueHelpCompCodeConfirm" cancel="handleValueHelpCompCodeClose" multiSelect="false">
 		<StandardListItem title="{S4D>Bukrs}" description="{S4D>Butxt}"/>
