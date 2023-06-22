@@ -109,7 +109,6 @@ sap.ui.define(
 
         this.extendExistingCustomerSet();
         this.busyDialog.close();
-        debugger
         if (this.flagForFirstTime) {
           // this.handleRuleEngine();
           window.setTimeout(
@@ -237,7 +236,6 @@ sap.ui.define(
             // "$expand": "to_salesarea,to_comments"
           },
           success: function (oData, oResponse) {
-            // debugger
             if (oData.results.length > 0) {
               oData.results.sort((a, b) => b.zcreated_date - a.zcreated_date);
               for (var i = 0; i < oData.results.length; i++) {
@@ -423,7 +421,9 @@ sap.ui.define(
                 }
 
                 oCustomerDetailModel.setData(oData.results[i]);
-                this.getView().getModel("appView").setProperty("/status", oData.results[i].zrequest_status);
+                //Why both are same data
+                this.getView().getModel("appView").setProperty("/status", "Completed");
+                // this.getView().getModel("appView").setProperty("/status", oData.results[i].zrequest_status);
                 oCustomerDetailModel.refresh();
                 this.getDmsData();
                 break;
@@ -431,7 +431,6 @@ sap.ui.define(
             }
           }.bind(this),
           error: function (error) {
-            debugger
           },
         });
 
@@ -600,64 +599,10 @@ sap.ui.define(
             }.bind(this),
             error: function (oError) {
               this.handleRuleEngine();
-            },
+            }.bind(this),
           });
         }
       },
-      // onRead: function (ruleid) {
-      //   var oModel = this.getView().getModel("RuleEngine");
-      //   this.getView().setBusy(true);
-      //   oModel.read("/ZDD_RULE_UPDATE_FIELDS", {
-      //     filters: [new sap.ui.model.Filter("rule_id", "EQ", ruleid)],
-      //     urlParameters: {
-      //       $top: 10000,
-      //     },
-
-      //     success: function (oData, oResponse) {
-      //       console.log(oData.results);
-      //       var flatObj = {};
-      //       oData.results.forEach(function (obj) {
-      //         var sField = "";
-      //         var rField = "";
-      //         sField += obj.fieldname.split(" ").join("");
-      //         rField += obj.fieldname.split(" ").join("");
-
-      //         // if(obj.visibility){
-      //         sField += "Visible";
-      //         if (obj.visibility === "Y") {
-      //           flatObj[sField] = true;
-      //         } else {
-      //           flatObj[sField] = false;
-      //         }
-      //         // }
-      //         // if(obj.mandatory){
-      //         rField += "Mandatory";
-      //         if (obj.mandatory === "Y") {
-      //           flatObj[rField] = true;
-      //         } else {
-      //           flatObj[rField] = false;
-      //         }
-      //         // }
-      //       });
-      //       console.log(flatObj);
-      //       this.getOwnerComponent().setModel(
-      //         new sap.ui.model.json.JSONModel({}),
-      //         "fieldMappingModels"
-      //       );
-
-      //       this.getView().getModel("fieldMappingModels").oData = flatObj;
-      //       this.getView().getModel("fieldMappingModels").updateBindings(true);
-      //       console.log(this.getView().getModel("fieldMappingModels").oData);
-
-      //       this.getView().setBusy(false);
-
-      //     }.bind(this),
-      //     error: function (oError) {
-      //       // this.busyDialog.close();
-      //       this.getView().setBusy(false);
-      //     }.bind(this),
-      //   });
-      // },
       onDescriptionSelect: function (oEvent) {
         var oCustomerDetailModel = this.getView().getModel("Customers");
         oCustomerDetailModel.setProperty(
@@ -803,11 +748,12 @@ sap.ui.define(
                 var sCustomerId;
                 if (oEntry.zrequest_type === "Change Customer") {
                   sWFRequest = "change";
-                  sCustomerId = that.businessPartnerId;
+                  // sCustomerId = that.businessPartnerId;
                 } else {
                   sWFRequest = "create";
-                  sCustomerId = oEntry.zcustomer_num;
+                  // sCustomerId = oEntry.zcustomer_num;
                 }
+                sCustomerId = oEntry.zcustomer_num;
                 var oWFModel = that.getOwnerComponent().getModel("Workflow");
                 var body = {
                   definitionId:
@@ -1639,60 +1585,68 @@ sap.ui.define(
         this.getView().getModel("appView").updateBindings(true);
       },
       onConfirm: function () {
-        var dmsPath = this.getOwnerComponent().getModel("DMS").sMetadataUrl;
-        $.ajax({
-          type: "GET",
-          // url: "/sap/opu/odata/sap/API_CV_ATTACHMENT_SRV/$metadata",
-          url: dmsPath,
-          processData: false,
-          contentType: false,
-          headers: {
-
-            "X-CSRF-Token": "Fetch"
-
-          },
-          success: function (data, response, header) {
-            // handle success
-            this.token = header.getResponseHeader("x-csrf-token")
-            console.log(data);
-            this.dms();
-          }.bind(this),
-          error: function (jqXHR, textStatus, errorThrown) {
-            // handle error
-          }
-        });
-
-
-      },
-      dms: function (evt) {
-        var dmsData = this.getOwnerComponent().getModel("dmsModel").getData();
-        var dmsPath = this.getOwnerComponent().getModel("DMS").sServiceUrl;
-        dmsPath = this.getOwnerComponent().getModel("DMS").sServiceUrl + '/AttachmentContentSet';
-
-        for (var i = 0; i < dmsData.length; i++) {
+        try {
+          var dmsPath = this.getOwnerComponent().getModel("DMS").sMetadataUrl;
           $.ajax({
-            type: "POST",
-            // url: "/sap/opu/odata/sap/API_CV_ATTACHMENT_SRV/AttachmentContentSet",
+            type: "GET",
+            // url: "/sap/opu/odata/sap/API_CV_ATTACHMENT_SRV/$metadata",
             url: dmsPath,
             processData: false,
             contentType: false,
-            data: this.getOwnerComponent().getModel("dmsModel").getData()[i].file,
-            // data: this.getView().getModel("appView").getProperty("/dmsFile"),
             headers: {
-              "Content-Type": "application/pdf",
-              "slug": this.getOwnerComponent().getModel("dmsModel").getData()[i].fileName,
-              "BusinessObjectTypeName": "KNA1",
-              "LinkedSAPObjectKey": this.custNum,
-              "X-CSRF-Token": this.token,
-            },
-            success: function (data, response) {
 
-              console.log(data);
+              "X-CSRF-Token": "Fetch"
+
             },
+            success: function (data, response, header) {
+              // handle success
+              this.token = header.getResponseHeader("x-csrf-token")
+              console.log(data);
+              this.dms();
+            }.bind(this),
             error: function (jqXHR, textStatus, errorThrown) {
               // handle error
             }
           });
+
+        } catch (error) {
+
+        }
+
+      },
+      dms: function (evt) {
+        try {
+          var dmsData = this.getOwnerComponent().getModel("dmsModel").getData();
+          var dmsPath = this.getOwnerComponent().getModel("DMS").sServiceUrl;
+          dmsPath = this.getOwnerComponent().getModel("DMS").sServiceUrl + '/AttachmentContentSet';
+
+          for (var i = 0; i < dmsData.length; i++) {
+            $.ajax({
+              type: "POST",
+              // url: "/sap/opu/odata/sap/API_CV_ATTACHMENT_SRV/AttachmentContentSet",
+              url: dmsPath,
+              processData: false,
+              contentType: false,
+              data: this.getOwnerComponent().getModel("dmsModel").getData()[i].file,
+              // data: this.getView().getModel("appView").getProperty("/dmsFile"),
+              headers: {
+                "Content-Type": "application/pdf",
+                "slug": this.getOwnerComponent().getModel("dmsModel").getData()[i].fileName,
+                "BusinessObjectTypeName": "KNA1",
+                "LinkedSAPObjectKey": this.custNum,
+                "X-CSRF-Token": this.token,
+              },
+              success: function (data, response) {
+
+                console.log(data);
+              },
+              error: function (jqXHR, textStatus, errorThrown) {
+                // handle error
+              }
+            });
+          }
+        } catch (error) {
+
         }
       },
       onMessagePopoverPress: function (oEvent) {

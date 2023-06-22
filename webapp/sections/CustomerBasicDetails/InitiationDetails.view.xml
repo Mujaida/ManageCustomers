@@ -17,7 +17,7 @@
 
         <Label text="Vertical" visible="{=${fieldMappingModels>/VerticalVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/VerticalMandatory} === true ? true : false}"/>
-        <MultiInput showClearIcon="true" enabled="false" id="verticalId" value="{Customers>/zvertical}" valueHelpRequest="handleValueHelpForVertical"
+        <MultiInput showClearIcon="true" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" id="verticalId" value="{Customers>/zvertical}" valueHelpRequest="handleValueHelpForVertical"
 		valueHelpOnly="true" visible="{=${fieldMappingModels>/VerticalVisible} === true ? true : false}"/>
 
         <Label text="Priority" visible="{=${fieldMappingModels>/PriorityVisible} === true ? true : false}"
