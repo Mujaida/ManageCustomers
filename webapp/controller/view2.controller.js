@@ -422,8 +422,8 @@ sap.ui.define(
 
                 oCustomerDetailModel.setData(oData.results[i]);
                 //Why both are same data
-                this.getView().getModel("appView").setProperty("/status", "Completed");
-                // this.getView().getModel("appView").setProperty("/status", oData.results[i].zrequest_status);
+                // this.getView().getModel("appView").setProperty("/status", "Completed");
+                this.getView().getModel("appView").setProperty("/status", oData.results[i].zrequest_status);
                 oCustomerDetailModel.refresh();
                 this.getDmsData();
                 break;
