@@ -56,7 +56,7 @@ sap.ui.define(
           this.getView().addDependent(this.Incoterms);
         }
       },
-      _onRouteMatched: function (oEvent) {
+      _onRouteMatched: async function (oEvent) {
         this.busyDialog = new sap.m.BusyDialog();
         this.busyDialog.close();
         this.zcustomer_legal_name = oEvent.getParameters().arguments.zcustomer_legal_name;
@@ -107,7 +107,7 @@ sap.ui.define(
           this.evtProcess = oEvent.getParameters().arguments.zprocess;
         }
 
-        this.extendExistingCustomerSet();
+        await this.extendExistingCustomerSet();
         this.busyDialog.close();
         if (this.flagForFirstTime) {
           // this.handleRuleEngine();
@@ -126,7 +126,6 @@ sap.ui.define(
           .setProperty("/reqType", oEvent.getParameters().arguments.zprocess);
         this.handleHistory();
 
-        // this.getDmsData();
       },
 
       getDmsData: function (evt) {
@@ -208,24 +207,10 @@ sap.ui.define(
         });
       },
       extendExistingCustomerSet: function () {
+        // return new Promise((resolve, reject) => {
         var oModel = this.getOwnerComponent().getModel();
-        // var oModel = "/sap/opu/odata/sap/ZSB_CLAP_BINDING";
         this.sPath = "/ZDD_CUSTOMER";
         this.getView().getModel("Customers").updateBindings(true);
-        //   var filters = [];
-        // if(this.mode === 'edit' && this.evtProcess === 'CHANGE'){
-        //   filters.push(new sap.ui.model.Filter("zbusiness_partner_id", "EQ", this.businessPartnerId));
-        //   filters.push(new sap.ui.model.Filter("zrequest_type", "EQ", this.evtProcessExt));
-        // }else if(this.mode === 'edit' && this.evtProcess === 'EXTEND'){
-        //   filters.push(new sap.ui.model.Filter("zbusiness_partner_id", "EQ", this.businessPartnerId));
-        //   filters.push(new sap.ui.model.Filter("zrequest_type", "EQ", this.evtProcessExt));
-        // }else{
-        //   filters.push(new sap.ui.model.Filter("zbusiness_partner_id", "EQ", this.businessPartnerId));
-        // }
-
-
-
-        // this.sPath = "/ZDD_CUSTOMER(zcustomer_num=guid'" + this.getView().getModel("Customers").getData().zcustomer_num + "',zsales_orgnization='" + this.getView().getModel("Customers").getData().zsales_orgnization + "')"
         oModel.read(this.sPath, {
           // filters: filters,
           filters: [
@@ -236,6 +221,7 @@ sap.ui.define(
             // "$expand": "to_salesarea,to_comments"
           },
           success: function (oData, oResponse) {
+
             if (oData.results.length > 0) {
               oData.results.sort((a, b) => b.zcreated_date - a.zcreated_date);
               for (var i = 0; i < oData.results.length; i++) {
@@ -268,20 +254,6 @@ sap.ui.define(
                   this.getOwnerComponent().getModel("commentsModel").updateBindings(true);
                 }
                 if (oData.results[i].to_salesarea.results.length > 0) {
-                  // for (var k = 0; k < oData.results[i].to_salesarea.results.length; k++) {
-                  // delete oData.results[i].to_salesarea.results[k].__metadata;
-                  // salesItem.push({
-                  //   "zsales_area_id": oData.results[i].to_salesarea.results[k].zsales_area_id,
-                  //   "zcustomer_num": oData.results[i].to_salesarea.results[k].zcustomer_num,
-                  //   "Flag": "U",
-                  //   "zdistribution_channel": oData.results[i].to_salesarea.results[k].zdistribution_channel,
-                  //   "zdistribution_channel_text": oData.results[i].to_salesarea.results[k].zdistribution_channel_text,
-                  //   "zdivision": oData.results[i].to_salesarea.results[k].zdivision,
-                  //   "zdivision_text": oData.results[i].to_salesarea.results[k].zdivision_text,
-                  //   "zsales_orgnization": oData.results[i].to_salesarea.results[k].zsales_orgnization,
-                  //   "zsales_orgnization_text": oData.results[i].to_salesarea.results[k].zsales_orgnization_text
-
-                  // });
 
                   for (var k = 0; k < oData.results[i].to_salesarea.results.length; k++) {
                     delete oData.results[i].to_salesarea.results[k].__metadata;
@@ -429,86 +401,14 @@ sap.ui.define(
                 break;
               }
             }
+
           }.bind(this),
           error: function (error) {
+            console.log("Exting customer data is not coming", error);
           },
         });
-
+        // })
       },
-      // handleRuleEngine: function (oEvent) {
-      //   console.log("ty");
-      //   // if (this.evtProcess === 'Change Customer') {
-      //   if (this.evtProcess === 'CHANGE') {
-      //     var process = 'CHANGE';
-      //   } else if (this.evtProcess === 'Extend Customer') {
-      //     var process = 'EXTEND';
-      //   } else {
-      //     var process = this.evtProcess;
-      //   }
-      //   this.getView().getModel("appView").setProperty("/process", this.evtProcess);
-      //   // var process = "CREATE";
-      //   var sCustomerType = this.getView().getModel("appView").getProperty("/vertical") === 'Cash' ? 'Cash' : 'Credit';
-      //   if (this.getView().getModel("appView").getProperty("/bpg") === "Sold") {
-      //     var sBPGrouping = "Sold To";
-      //   } else if (this.getView().getModel("appView").getProperty("/bpg") === "Ship") {
-      //     var sBPGrouping = "Ship To";
-      //   } else if (this.getView().getModel("appView").getProperty("/bpg") === "One") {
-      //     var sBPGrouping = "One";
-      //   } else if (this.getView().getModel("appView").getProperty("/bpg") === "Inte") {
-      //     var sBPGrouping = "Inte";
-      //   } else {
-      //     var sBPGrouping = this.getView().getModel("appView").getProperty("/bpg");
-      //   }
-
-
-      //   // var sBPGrouping = this.getView().byId("orderdata").getParent().getSubSections()[1].getBlocks()[0].getAggregation("_views")[0].getContent()[0].getContent()[1].getSelectedItem().getText();
-      //   this.ruleId = "";
-      //   if (process !== "" && sCustomerType !== "" && sBPGrouping !== "") {
-      //     var oModel = this.getView().getModel("RuleEngine");
-      //     oModel.read("/Zdd_rule_engine", {
-      //       urlParameters: {
-      //         $top: 10000,
-      //       },
-      //       success: function (oData, oResponse) {
-      //         for (var i = 0; i < oData.results.length; i++) {
-      //           if (
-      //             oData.results[i].process === process &&
-      //             oData.results[i].customer_type ===
-      //             sCustomerType.toUpperCase() &&
-      //             oData.results[i].zbusiness_partner_id ===
-      //             sBPGrouping.toUpperCase()
-      //           ) {
-      //             this.ruleId = oData.results[i].rule_id;
-      //             console.log(this.ruleId);
-      //           }
-      //         }
-
-      //         if (this.ruleId == "" || this.ruleId == undefined) {
-      //           MessageBox.confirm(
-      //             "Rule engine Configuration does not exist for the selected keys?",
-      //             {
-      //               actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
-      //               emphasizedAction: MessageBox.Action.OK,
-      //               onClose: function (sAction) {
-      //                 if (sAction === "CANCEL") {
-      //                   oFilterBar
-      //                     .getFilterItems()[1]
-      //                     .getControl()
-      //                     .setSelectedItem(null);
-      //                 } else {
-      //                   this.onCreate(process, sCustomerType, sBPGrouping);
-      //                 }
-      //               }.bind(this),
-      //             }
-      //           );
-      //         } else {
-      //           this.onRead(this.ruleId);
-      //         }
-      //       }.bind(this),
-      //       error: function (oError) { },
-      //     });
-      //   }
-      // },
       handleRuleEngine: function (oEvent) {
         console.log("ty");
         if (this.evtProcess === 'CHANGE') {

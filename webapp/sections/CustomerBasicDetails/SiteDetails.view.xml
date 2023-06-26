@@ -5,7 +5,7 @@
 		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zlegal_entity}" maxLength="2" visible="{=${fieldMappingModels>/LegalEntityVisible} === true ? true : false}"/>
 		<Label text="Legal Name" visible="{=${fieldMappingModels>/LegalNameVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/LegalNameMandatory} === true ? true : false}"/>
-        <MultiInput showClearIcon="true" enabled="false" value="{Customers>/zcustomer_legal_name}" valueHelpRequest="handleValueHelpForLegalName"
+        <MultiInput showClearIcon="true" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zcustomer_legal_name}" valueHelpRequest="handleValueHelpForLegalName"
 		valueHelpOnly="true" visible="{=${fieldMappingModels>/LegalNameVisible} === true ? true : false}"/>
 		<Label text="Legal Form" visible="{=${fieldMappingModels>/LegalFormVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/LegalFormMandatory} === true ? true : false}"/>
