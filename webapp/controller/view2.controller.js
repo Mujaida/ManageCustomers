@@ -88,15 +88,15 @@ sap.ui.define(
         this.getOwnerComponent().setModel(new sap.ui.model.json.JSONModel([]), "salesDataModel");
         // this.getOwnerComponent().getModel("salesModel").oData = [];
 
-        if (oEvent.getParameters().arguments.zprocess === 'CHANGE') {
-          this.evtProcessExt = 'Change Customer';
-        } else if (oEvent.getParameters().arguments.zprocess === 'Change Customer') {
-          this.evtProcessExt = 'Change Customer';
-        } else if (oEvent.getParameters().arguments.zprocess === 'EXTEND') {
-          this.evtProcessExt = 'Extend Customer';
-        } else {
-          this.evtProcessExt = 'Extend Customer';
-        }
+        // if (oEvent.getParameters().arguments.zprocess === 'CHANGE') {
+        //   this.evtProcessExt = 'Change Customer';
+        // } else if (oEvent.getParameters().arguments.zprocess === 'Change Customer') {
+        //   this.evtProcessExt = 'Change Customer';
+        // } else if (oEvent.getParameters().arguments.zprocess === 'EXTEND') {
+        //   this.evtProcessExt = 'Extend Customer';
+        // } else {
+        //   this.evtProcessExt = 'Extend Customer';
+        // }
 
 
         if (oEvent.getParameters().arguments.zprocess === 'Change Customer') {
@@ -121,9 +121,10 @@ sap.ui.define(
         else {
           this.handleRuleEngine();
         }
-        this.getView()
-          .getModel("appView")
-          .setProperty("/reqType", oEvent.getParameters().arguments.zprocess);
+        // this.getView()
+        //   .getModel("appView")
+        //   .setProperty("/reqType", oEvent.getParameters().arguments.zprocess);
+        this.getView().getModel("appView").setProperty("/reqType", this.evtProcess);
         this.handleHistory();
 
       },
@@ -394,8 +395,8 @@ sap.ui.define(
 
                 oCustomerDetailModel.setData(oData.results[i]);
                 //Why both are same data
-                // this.getView().getModel("appView").setProperty("/status", "Completed");
-                this.getView().getModel("appView").setProperty("/status", oData.results[i].zrequest_status);
+                this.getView().getModel("appView").setProperty("/status", "Completed");
+                // this.getView().getModel("appView").setProperty("/status", oData.results[i].zrequest_status);
                 oCustomerDetailModel.refresh();
                 this.getDmsData();
                 break;
@@ -617,6 +618,7 @@ sap.ui.define(
             if (this.getView().getModel("Customers").getData().zvisa_valid_date === null || this.getView().getModel("Customers").getData().zvisa_valid_date.length < 13) {
               oEntry.zvisa_valid_date = oEntry.zvisa_valid_date ? this.dateFormatter(oEntry.zvisa_valid_date) : null;
             }
+            oEntry.zbusiness_partner_id = this.businessPartnerId;
             this.uPath = "/ZDD_CUSTOMER(zcustomer_num=guid'" + oEntry.zcustomer_num + "')";
             delete oEntry.to_comments;
             delete oEntry.to_salesarea;
@@ -647,18 +649,20 @@ sap.ui.define(
                 var sWFRequest;
                 var sCustomerId;
                 if (oEntry.zrequest_type === "Change Customer") {
-                  sWFRequest = "change";
+                  sWFRequest = "CHANGE";
                   // sCustomerId = that.businessPartnerId;
                 } else {
-                  sWFRequest = "create";
+                  sWFRequest = "CREATE";
                   // sCustomerId = oEntry.zcustomer_num;
                 }
                 sCustomerId = oEntry.zcustomer_num;
                 var oWFModel = that.getOwnerComponent().getModel("Workflow");
+                debugger
                 var body = {
                   definitionId:
                     "eu10.iffcodevprocessautomation.iffcocustomerservices.iFFCOCustomerCreate",
                   "context": {
+                    // "zbusiness_partner_Id": this.businessPartnerId,
                     "requesttype": sWFRequest,
                     "customerid": sCustomerId,
                     "customername": oEntry.zfirst_name,
@@ -673,7 +677,7 @@ sap.ui.define(
                     "linktotask": "",
                     "testmode": true,
                     "bulkdocumentid": "",
-                    "requestid": oEntry.zrequest_no,
+                    "requestid": this.reqNumber,
                     "channel": oEntry.zchannel
                   }
                 };
@@ -814,16 +818,17 @@ sap.ui.define(
         delete oEntry.to_salesarea;
         delete oEntry.to_credit;
         delete oEntry.ztype_of_Entity;
-        oModel.update(this.uPath, oEntry, {
-          success: function (oData, oResponse) {
-            jQuery.sap.require("sap.m.MessageBox");
-            // sap.m.MessageBox.success("Customer Id " + this.getView().getModel("Customers").getData().zrequest_no + " saved Successfully");
-            this.handleSalesData();
-          }.bind(this),
-          error: function (err) {
+        oEntry.zbusiness_partner_Id = this.businessPartnerId,
+          oModel.update(this.uPath, oEntry, {
+            success: function (oData, oResponse) {
+              jQuery.sap.require("sap.m.MessageBox");
+              // sap.m.MessageBox.success("Customer Id " + this.getView().getModel("Customers").getData().zrequest_no + " saved Successfully");
+              this.handleSalesData();
+            }.bind(this),
+            error: function (err) {
 
-          }
-        });
+            }
+          });
 
 
       },
@@ -859,7 +864,11 @@ sap.ui.define(
 
         salesEntry.forEach(function (obj, index) {
 
-          if (obj.Flag == undefined) {
+          if (!obj.Flag) {
+            // Mohammad sohail: adding business partner id and request no.
+            debugger
+            obj.zbusiness_partner_id = this.businessPartnerId;
+            obj.zrequest_no = this.reqNumber;
             obj.zsales_area_id = index.toString();
             obj.zsales_orgnization = obj.zsales_orgnization ? obj.zsales_orgnization.split(" - ")[0] : "";
             obj.zsales_orgnization_text = obj.zsales_orgnization ? obj.zsales_orgnization.split(" - ")[1] : "";
@@ -948,6 +957,10 @@ sap.ui.define(
           } else if (obj.Flag === 'U') {
             var salesUpdatePath = "/ZDD_CUST_SALESAREAS(zcustomer_num=guid'" + obj.zcustomer_num + "',zsales_orgnization='" + obj.zsales_orgnization + "',zsales_area_id='" + obj.zsales_area_id + "')";
             // var salesUpdatePath = "/ZDD_CUST_SALESAREAS(zcustomer_num=guid'" + obj.zcustomer_num + "',zsales_area_id='" + obj.zsales_area_id + "')";
+            debugger
+            // Mohammad sohail: adding business partner id and request no.
+            obj.zbusiness_partner_id = this.businessPartnerId;
+            obj.zrequest_no = this.reqNumber;
             obj.zsales_orgnization = obj.zsales_orgnization ? obj.zsales_orgnization.split(" - ")[0] : "";
             obj.zdistribution_channel = obj.zdistribution_channel ? obj.zdistribution_channel.split(" - ")[0] : "";
             obj.zdivision = obj.zdivision ? obj.zdivision.split(" - ")[0] : "";

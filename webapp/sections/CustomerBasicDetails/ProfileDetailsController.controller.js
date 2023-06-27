@@ -11,7 +11,7 @@ sap.ui.define([
             /**
              * @override
              */
-            onInit: function() {
+            onInit: function () {
                 // Controller.prototype.onInit.apply(this, arguments);
                 if (!this.Country) {
                     this.Country = new sap.ui.xmlfragment("iffco.managecustomer.fragments.Country", this);
@@ -39,15 +39,15 @@ sap.ui.define([
                 }
             },
 
-            onAfterRendering: function() {
+            onAfterRendering: function () {
                 // Controller.prototype.onAfterRendering.apply(this, arguments);
                 var that = this;
                 var entityVal = "Co-Operative (COOP)";
-                if(entityVal.length>0){
-                that.getView().getModel("appView").setProperty("/TypeOfEntity", entityVal);
+                if (entityVal.length > 0) {
+                    that.getView().getModel("appView").setProperty("/TypeOfEntity", entityVal);
                 }
                 that.handleEntityCheckModel();
-                
+
             },
 
             //Value Help for Type Of Entity
@@ -71,31 +71,31 @@ sap.ui.define([
                 that.entityTypeField.setValue(entityTypTitle);
                 that.getView().getModel("appView").setProperty("/TypeOfEntity", entityTypTitle);
                 that.handleEntityCheckModel();
-                
+
             },
             handleValueHelpTypOfEntityClose: function () {
                 this.entityType.close();
             },
             //getService for type of entity to update fields
-            handleEntityCheckModel: function(){
+            handleEntityCheckModel: function () {
                 var that = this;
                 var appView = that.getView().getModel("appView");
                 var obj = {
-                "COOP": "Co-Operative (COOP)",
-                "Consort": "CONSORTIUM",
-                "Govt": "Government",
-                "Ltd_Liability_partnrshp": "Limited Liability Partnership",
-                "Other": "Other",
-                "Partnership": "Partnership",
-                "Prt_ltd_Comp": "Private Limited Company",
-                "Pub_ltd_Comp": "Public Limited Company",
-                "Sole_Proprietorship": "Sole Proprietorship"
+                    "COOP": "Co-Operative (COOP)",
+                    "Consort": "CONSORTIUM",
+                    "Govt": "Government",
+                    "Ltd_Liability_partnrshp": "Limited Liability Partnership",
+                    "Other": "Other",
+                    "Partnership": "Partnership",
+                    "Prt_ltd_Comp": "Private Limited Company",
+                    "Pub_ltd_Comp": "Public Limited Company",
+                    "Sole_Proprietorship": "Sole Proprietorship"
                 }
                 that.getView().setModel(new sap.ui.model.json.JSONModel([obj]), "typOfEntityModel");
                 that.getView().getModel("typOfEntityModel").updateBindings(true);
                 var oModel = that.getView().getModel("typOfEntityModel").oData[0];
                 var entityTypTitle = appView.oData.TypeOfEntity;
-                if(entityTypTitle && entityTypTitle == oModel.COOP){
+                if (entityTypTitle && entityTypTitle == oModel.COOP) {
                     appView.setProperty("/TypeOfEntity1", true);
                     appView.setProperty("/TypeOfEntity2", false);
                     appView.setProperty("/TypeOfEntity3", false);
@@ -105,7 +105,7 @@ sap.ui.define([
                     appView.setProperty("/TypeOfEntity7", false);
                     appView.setProperty("/TypeOfEntity8", false);
                     appView.setProperty("/TypeOfEntity9", false);
-                }else if(entityTypTitle && entityTypTitle == oModel.Consort){
+                } else if (entityTypTitle && entityTypTitle == oModel.Consort) {
                     appView.setProperty("/TypeOfEntity1", false);
                     appView.setProperty("/TypeOfEntity2", true);
                     appView.setProperty("/TypeOfEntity3", false);
@@ -115,7 +115,7 @@ sap.ui.define([
                     appView.setProperty("/TypeOfEntity7", false);
                     appView.setProperty("/TypeOfEntity8", false);
                     appView.setProperty("/TypeOfEntity9", false);
-                }else if(entityTypTitle && entityTypTitle == oModel.Govt){
+                } else if (entityTypTitle && entityTypTitle == oModel.Govt) {
                     appView.setProperty("/TypeOfEntity1", false);
                     appView.setProperty("/TypeOfEntity2", false);
                     appView.setProperty("/TypeOfEntity3", true);
@@ -125,7 +125,7 @@ sap.ui.define([
                     appView.setProperty("/TypeOfEntity7", false);
                     appView.setProperty("/TypeOfEntity8", false);
                     appView.setProperty("/TypeOfEntity9", false);
-                }else if(entityTypTitle && entityTypTitle == oModel.Ltd_Liability_partnrshp){
+                } else if (entityTypTitle && entityTypTitle == oModel.Ltd_Liability_partnrshp) {
                     appView.setProperty("/TypeOfEntity1", false);
                     appView.setProperty("/TypeOfEntity2", false);
                     appView.setProperty("/TypeOfEntity3", false);
@@ -135,7 +135,7 @@ sap.ui.define([
                     appView.setProperty("/TypeOfEntity7", false);
                     appView.setProperty("/TypeOfEntity8", false);
                     appView.setProperty("/TypeOfEntity9", false);
-                }else if(entityTypTitle && entityTypTitle == oModel.Other){
+                } else if (entityTypTitle && entityTypTitle == oModel.Other) {
                     appView.setProperty("/TypeOfEntity1", false);
                     appView.setProperty("/TypeOfEntity2", false);
                     appView.setProperty("/TypeOfEntity3", false);
@@ -145,7 +145,7 @@ sap.ui.define([
                     appView.setProperty("/TypeOfEntity7", false);
                     appView.setProperty("/TypeOfEntity8", false);
                     appView.setProperty("/TypeOfEntity9", false);
-                }else if(entityTypTitle && entityTypTitle == oModel.Partnership){
+                } else if (entityTypTitle && entityTypTitle == oModel.Partnership) {
                     appView.setProperty("/TypeOfEntity1", false);
                     appView.setProperty("/TypeOfEntity2", false);
                     appView.setProperty("/TypeOfEntity3", false);
@@ -155,7 +155,7 @@ sap.ui.define([
                     appView.setProperty("/TypeOfEntity7", false);
                     appView.setProperty("/TypeOfEntity8", false);
                     appView.setProperty("/TypeOfEntity9", false);
-                }else if(entityTypTitle && entityTypTitle == oModel.Prt_ltd_Comp){
+                } else if (entityTypTitle && entityTypTitle == oModel.Prt_ltd_Comp) {
                     appView.setProperty("/TypeOfEntity1", false);
                     appView.setProperty("/TypeOfEntity2", false);
                     appView.setProperty("/TypeOfEntity3", false);
@@ -165,7 +165,7 @@ sap.ui.define([
                     appView.setProperty("/TypeOfEntity7", true);
                     appView.setProperty("/TypeOfEntity8", false);
                     appView.setProperty("/TypeOfEntity9", false);
-                }else if(entityTypTitle && entityTypTitle == oModel.Pub_ltd_Comp){
+                } else if (entityTypTitle && entityTypTitle == oModel.Pub_ltd_Comp) {
                     appView.setProperty("/TypeOfEntity1", false);
                     appView.setProperty("/TypeOfEntity2", false);
                     appView.setProperty("/TypeOfEntity3", false);
@@ -175,7 +175,7 @@ sap.ui.define([
                     appView.setProperty("/TypeOfEntity7", false);
                     appView.setProperty("/TypeOfEntity8", true);
                     appView.setProperty("/TypeOfEntity9", false);
-                }else if(entityTypTitle && entityTypTitle == oModel.Sole_Proprietorship){
+                } else if (entityTypTitle && entityTypTitle == oModel.Sole_Proprietorship) {
                     appView.setProperty("/TypeOfEntity1", false);
                     appView.setProperty("/TypeOfEntity2", false);
                     appView.setProperty("/TypeOfEntity3", false);
@@ -185,9 +185,9 @@ sap.ui.define([
                     appView.setProperty("/TypeOfEntity7", false);
                     appView.setProperty("/TypeOfEntity8", false);
                     appView.setProperty("/TypeOfEntity9", true);
-                } 
+                }
             },
-            onEntityConfirm: function(evt){
+            onEntityConfirm: function (evt) {
                 var val = this.getView().byId("entityId").getValue();
                 this.getView().getModel("appView").setProperty("/TypeOfEntity", val);
             },
@@ -232,10 +232,11 @@ sap.ui.define([
             handleValueHelpForRegion: function (evt) {
                 this.regionField = evt.getSource();
                 var val = this.getView().byId("LAND1").getValue();
-                if(val.length>0){
+                if (val.length > 0) {
                     this.Region.getBinding("items").filter([new sap.ui.model.Filter("Land1", "EQ", val.split(" - ")[0])]);
+                    // this.Region.getBinding("items").filter([new sap.ui.model.Filter("Land1", "EQ", val)]);
                     this.Region.open();
-                }else{
+                } else {
                     sap.m.MessageBox.error("Please select the Country");
                 }
             },
@@ -267,19 +268,19 @@ sap.ui.define([
                     }
                     this.Region.getBinding("items").filter(filters, true);
                 } else {
-                    this.Region.getBinding("items").filter([new sap.ui.model.Filter("Land1", "EQ", val.split(" - ")[0])]); 
+                    this.Region.getBinding("items").filter([new sap.ui.model.Filter("Land1", "EQ", val.split(" - ")[0])]);
                 }
             },
 
-             //Value Help for Transportation Zone
-             handleValueHelpForTrsptnZne: function (evt) {
+            //Value Help for Transportation Zone
+            handleValueHelpForTrsptnZne: function (evt) {
                 this.trnsptZonField = evt.getSource();
                 var val = this.getView().byId("LAND1").getValue();
-                if(val.length>0){
+                if (val.length > 0) {
                     this.TransprtZone.getBinding("items").filter([new sap.ui.model.Filter("Land1", "EQ", val.split(" - ")[0])]);
                     // this.TransprtZone.getBinding("items").filter([]);
                     this.TransprtZone.open();
-                }else{
+                } else {
                     sap.m.MessageBox.error("Please select the Country");
                 }
             },
@@ -312,7 +313,7 @@ sap.ui.define([
                     this.TransprtZone.getBinding("items").filter(filters, true);
                 } else {
                     var val = this.getView().byId("LAND1").getValue();
-                    this.TransprtZone.getBinding("items").filter([new sap.ui.model.Filter("Land1", "EQ", val.split(" - ")[0])]); 
+                    this.TransprtZone.getBinding("items").filter([new sap.ui.model.Filter("Land1", "EQ", val.split(" - ")[0])]);
                 }
             },
             handleValueHelpTrnsptZoneClose: function (params) {
@@ -383,6 +384,6 @@ sap.ui.define([
             //         evt.getSource().setType("Number");
             //     }
             // }
-	});
+        });
 
-});
+    });
