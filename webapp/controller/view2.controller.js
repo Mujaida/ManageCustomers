@@ -395,8 +395,8 @@ sap.ui.define(
 
                 oCustomerDetailModel.setData(oData.results[i]);
                 //Why both are same data
-                this.getView().getModel("appView").setProperty("/status", "Completed");
-                // this.getView().getModel("appView").setProperty("/status", oData.results[i].zrequest_status);
+                // this.getView().getModel("appView").setProperty("/status", "Completed");
+                this.getView().getModel("appView").setProperty("/status", oData.results[i].zrequest_status);
                 oCustomerDetailModel.refresh();
                 this.getDmsData();
                 break;
@@ -818,7 +818,7 @@ sap.ui.define(
         delete oEntry.to_salesarea;
         delete oEntry.to_credit;
         delete oEntry.ztype_of_Entity;
-        oEntry.zbusiness_partner_Id = this.businessPartnerId,
+        oEntry.zbusiness_partner_id = this.businessPartnerId,
           oModel.update(this.uPath, oEntry, {
             success: function (oData, oResponse) {
               jQuery.sap.require("sap.m.MessageBox");
