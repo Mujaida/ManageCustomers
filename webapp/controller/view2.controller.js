@@ -56,6 +56,7 @@ sap.ui.define(
           this.getView().addDependent(this.Incoterms);
         }
       },
+      // _onRouteMatched: async function (oEvent) {
       _onRouteMatched: async function (oEvent) {
         this.busyDialog = new sap.m.BusyDialog();
         this.busyDialog.close();
@@ -64,13 +65,18 @@ sap.ui.define(
         this.mode = oEvent.getParameters().arguments.mode;
         this.getView().getModel("appView").setProperty("/mode", this.mode);
 
-        // if(this.mode === "edit"){
+        this.onClearFiles();
+
+        if (this.mode === "edit") {
+          this.zsales_orgnization = oEvent.getParameters().arguments.zsales_orgnization ? oEvent.getParameters().arguments.zsales_orgnization : "";
+          this.zcustomer_num = oEvent.getParameters().arguments.zcustomer_num;
+          // this.uPath = "/ZDD_CUSTOMER(zcustomer_num=guid'" + this.zcustomer_num + "',zsales_orgnization='" + this.zsales_orgnization + "')";
+        } else {
+          this.getView().getModel("Customers").oData = [];
+          this.getView().getModel("appView").getData().status = '';
+        }
         this.bpg = oEvent.getParameters().arguments.bpg ? oEvent.getParameters().arguments.bpg : this.getView().getModel("appView").getProperty("/bpg");
         this.getView().getModel("appView").setProperty("/bpg", this.bpg);
-        this.zsales_orgnization = oEvent.getParameters().arguments.zsales_orgnization ? oEvent.getParameters().arguments.zsales_orgnization : "";
-        this.zcustomer_num = oEvent.getParameters().arguments.zcustomer_num;
-        // this.uPath = "/ZDD_CUSTOMER(zcustomer_num=guid'" + this.zcustomer_num + "',zsales_orgnization='" + this.zsales_orgnization + "')";
-        // }
 
         this.uPath = "/ZDD_CUSTOMER(zcustomer_num=guid'" + this.zcustomer_num + "')";
 
@@ -107,6 +113,7 @@ sap.ui.define(
           this.evtProcess = oEvent.getParameters().arguments.zprocess;
         }
 
+        // this.extendExistingCustomerSet();
         await this.extendExistingCustomerSet();
         this.busyDialog.close();
         if (this.flagForFirstTime) {
@@ -121,6 +128,7 @@ sap.ui.define(
         else {
           this.handleRuleEngine();
         }
+        
         // this.getView()
         //   .getModel("appView")
         //   .setProperty("/reqType", oEvent.getParameters().arguments.zprocess);
@@ -212,11 +220,18 @@ sap.ui.define(
         var oModel = this.getOwnerComponent().getModel();
         this.sPath = "/ZDD_CUSTOMER";
         this.getView().getModel("Customers").updateBindings(true);
+        var filters = []
+        if (this.mode === 'edit') {
+          filters.push(new sap.ui.model.Filter("zbusiness_partner_id", "EQ", this.businessPartnerId));
+          filters.push(new sap.ui.model.Filter("zcustomer_num", "EQ", this.zcustomer_num));
+        } else {
+          filters.push(new sap.ui.model.Filter("zbusiness_partner_id", "EQ", this.businessPartnerId));
+        }
         oModel.read(this.sPath, {
-          // filters: filters,
-          filters: [
-            new sap.ui.model.Filter("zbusiness_partner_id", "EQ", this.businessPartnerId),
-          ],
+          filters: filters,
+          // filters: [
+          //   new sap.ui.model.Filter("zbusiness_partner_id", "EQ", this.businessPartnerId),
+          // ],
           urlParameters: {
             "$expand": "to_salesarea,to_comments,to_credit"
             // "$expand": "to_salesarea,to_comments"
@@ -239,6 +254,8 @@ sap.ui.define(
                 var salesItem = this.getOwnerComponent().getModel("salesDataModel").getData();
                 var listItem = this.getOwnerComponent().getModel("commentsModel").getData();
                 var creditSegmentItem = this.getOwnerComponent().getModel("creditSegmentModel").getData();
+
+                this.requestNo = oData.results[i].zrequest_no;
 
                 if (oData.results[i].to_comments.results.length > 0) {
                   for (var j = 0; j < oData.results[i].to_comments.results.length; j++) {
@@ -396,7 +413,7 @@ sap.ui.define(
                 oCustomerDetailModel.setData(oData.results[i]);
                 //Why both are same data
                 // this.getView().getModel("appView").setProperty("/status", "Completed");
-                this.getView().getModel("appView").setProperty("/status", oData.results[i].zrequest_status);
+                this.getView().getModel("appView").setProperty("/status", oData.results[i].zstatus);
                 oCustomerDetailModel.refresh();
                 this.getDmsData();
                 break;
@@ -467,36 +484,58 @@ sap.ui.define(
             success: function (oData, oResponse) {
 
               var flatObj = {};
-              oData.results.forEach(function (obj) {
+              oData.results.forEach(function (obj, index) {
                 var sField = "";
                 var rField = "";
 
-                // if (!sField.includes(obj.fieldname)){
                 sField += obj.Fieldname.split(" ").join("");
                 rField += obj.Fieldname.split(" ").join("");
 
-                sField += "Visible";
-                if (obj.Visibility === "Y") {
-                  flatObj[sField] = true;
-                } else {
-                  flatObj[sField] = false;
-                }
-                // }
-                if (obj.Mandatory) {
-                  rField += "Mandatory";
-                  if (obj.Mandatory === "Y") {
-                    flatObj[rField] = true;
+                if (obj.Visibility) {
+                  sField += "Visible";
+                  if (!Object.keys(flatObj).includes(sField)) {
+                    if (obj.Visibility === "Y") {
+                      flatObj[sField] = true;
+                    } else {
+                      flatObj[sField] = false;
+                    }
                   } else {
-                    flatObj[rField] = false;
+                    sField += obj.Customersub1.split(" ").join("");
+                    if (obj.Visibility === "Y") {
+                      flatObj[sField] = true;
+                    } else {
+                      flatObj[sField] = false;
+                    }
                   }
                 }
-              })
-              console.log(flatObj);
+                if (obj.Mandatory) {
+                  rField += "Mandatory";
+
+                  if (!Object.keys(flatObj).includes(rField)) {
+                    if (obj.Mandatory === "Y") {
+                      flatObj[rField] = true;
+                    } else {
+                      flatObj[rField] = false;
+                    }
+                  } else {
+                    rField += obj.Customersub1.split(" ").join("");
+                    if (obj.Mandatory === "Y") {
+                      flatObj[rField] = true;
+                    } else {
+                      flatObj[rField] = false;
+                    }
+                  }
+
+                }
+              }.bind(this)),
+                console.log(flatObj);
               this.getOwnerComponent().setModel(new sap.ui.model.json.JSONModel({}), "fieldMappingModels");
               this.getView().getModel("fieldMappingModels").oData = flatObj;
               this.getView().getModel("fieldMappingModels").updateBindings(true);
               console.log(this.getView().getModel("fieldMappingModels").oData);
               this.getOwnerComponent().getModel().refresh(true);
+              this.busyDialog.close();
+              // resolve()
             }.bind(this),
             error: function (oError) {
               this.handleRuleEngine();
@@ -564,7 +603,7 @@ sap.ui.define(
                 "CHANGE"
                 ? "Change Customer"
                 : "Extend Customer";
-            oEntry.zrequest_status = "In Progress";
+            oEntry.zstatus = "Completed";
             oEntry.zcredit_limit_type =
               this.getView()
                 .getModel("appView")
@@ -576,48 +615,51 @@ sap.ui.define(
               .getModel("appView")
               .getProperty("/custType");
 
-            if (this.getView().getModel("Customers").getData().zdate_founded === null || this.getView().getModel("Customers").getData().zdate_founded.length < 13) {
+            var custData = this.getView().getModel("Customers").getData();
+            if (custData.zdate_founded !== undefined && custData.zdate_founded === null && (custData.zdate_founded !== undefined|| custData.zdate_founded.length < 13)) {
               oEntry.zdate_founded = oEntry.zdate_founded ? this.dateFormatter(oEntry.zdate_founded) : null;
             }
-            if (this.getView().getModel("Customers").getData().zliquidationdate === null || this.getView().getModel("Customers").getData().zliquidationdate.length < 13) {
+            if (custData.zliquidationdate !== undefined && custData.zliquidationdate === null || custData.zliquidationdate.length < 13) {
               oEntry.zliquidationdate = oEntry.zliquidationdate ? this.dateFormatter(oEntry.zliquidationdate) : null;
             }
-            if (this.getView().getModel("Customers").getData().zdate === null || this.getView().getModel("Customers").getData().zdate.length < 13) {
+            if (custData.zdate !== undefined && custData.zdate === null || custData.zdate.length < 13) {
               oEntry.zdate = oEntry.zdate ? this.dateFormatter(oEntry.zdate) : null;
             }
-            if (this.getView().getModel("Customers").getData().zvalid_from === null || this.getView().getModel("Customers").getData().zvalid_from.length < 13) {
+            if (custData.zvalid_from !== undefined && custData.zvalid_from === null || custData.zvalid_from.length < 13) {
               oEntry.zvalid_from = oEntry.zvalid_from ? this.dateFormatter(oEntry.zvalid_from) : null;
             }
-            if (this.getView().getModel("Customers").getData().zvalid_to === null || this.getView().getModel("Customers").getData().zvalid_to.length < 13) {
+            if (custData.zvalid_to !== undefined && custData.zvalid_to === null || custData.zvalid_to.length < 13) {
               oEntry.zvalid_to = oEntry.zvalid_to ? this.dateFormatter(oEntry.zvalid_to) : null;
             }
-            if (this.getView().getModel("Customers").getData().zentry_date === null || this.getView().getModel("Customers").getData().zentry_date.length < 13) {
+            if (custData.zentry_date !== undefined && custData.zentry_date === null || custData.zentry_date.length < 13) {
               oEntry.zentry_date = oEntry.zentry_date ? this.dateFormatter(oEntry.zentry_date) : null;
             }
-            if (this.getView().getModel("Customers").getData().zduedate === null || this.getView().getModel("Customers").getData().zduedate.length < 13) {
+            if (custData.zduedate !== undefined && custData.zduedate === null || custData.zduedate.length < 13) {
               oEntry.zduedate = oEntry.zduedate ? this.dateFormatter(oEntry.zduedate) : null;
             }
-            if (this.getView().getModel("Customers").getData().zupdated_date === null || this.getView().getModel("Customers").getData().zupdated_date.length < 13) {
+            //oEntry.zcreated_date = oEntry.zcreated_date ? this.dateFormatter(oEntry.zcreated_date) : null;
+            if (custData.zupdated_date !== undefined && custData.zupdated_date === null || custData.zupdated_date.length < 13) {
               oEntry.zupdated_date = oEntry.zupdated_date ? this.dateFormatter(oEntry.zupdated_date) : null;
             }
-            if (this.getView().getModel("Customers").getData().zfinalizedon === null || this.getView().getModel("Customers").getData().zfinalizedon.length < 13) {
+            if (custData.zfinalizedon !== undefined && custData.zfinalizedon === null || custData.zfinalizedon.length < 13) {
               oEntry.zfinalizedon = oEntry.zfinalizedon ? this.dateFormatter(oEntry.zfinalizedon) : null;
             }
-            if (this.getView().getModel("Customers").getData().zlast_key_date === null || this.getView().getModel("Customers").getData().zlast_key_date.length < 13) {
+            if (custData.zlast_key_date !== undefined && custData.zlast_key_date === null || custData.zlast_key_date.length < 13) {
               oEntry.zlast_key_date = oEntry.zlast_key_date ? this.dateFormatter(oEntry.zlast_key_date) : null;
             }
-            if (this.getView().getModel("Customers").getData().zcreated_date === null || this.getView().getModel("Customers").getData().zcreated_date.length < 13) {
+            if (custData.zcreated_date !== undefined && custData.zcreated_date === null || custData.zcreated_date.length < 13) {
               oEntry.zcreated_date = oEntry.zcreated_date ? this.dateFormatter(oEntry.zcreated_date) : null;
             }
-            if (this.getView().getModel("Customers").getData().zcl_validity_proposed_date === null || this.getView().getModel("Customers").getData().zcl_validity_proposed_date.length < 13) {
+            if (custData.zcl_validity_proposed_date !== undefined && custData.zcl_validity_proposed_date === null || custData.zcl_validity_proposed_date.length < 13) {
               oEntry.zcl_validity_proposed_date = oEntry.zcl_validity_proposed_date ? this.dateFormatter(oEntry.zcl_validity_proposed_date) : null;
             }
-            if (this.getView().getModel("Customers").getData().zvalid_passport_date === null || this.getView().getModel("Customers").getData().zvalid_passport_date.length < 13) {
+            if (custData.zvalid_passport_date !== undefined && custData.zvalid_passport_date === null || custData.zvalid_passport_date.length < 13) {
               oEntry.zvalid_passport_date = oEntry.zvalid_passport_date ? this.dateFormatter(oEntry.zvalid_passport_date) : null;
             }
-            if (this.getView().getModel("Customers").getData().zvisa_valid_date === null || this.getView().getModel("Customers").getData().zvisa_valid_date.length < 13) {
+            if (custData.zvisa_valid_date !== undefined && custData.zvisa_valid_date === null || custData.zvisa_valid_date.length < 13) {
               oEntry.zvisa_valid_date = oEntry.zvisa_valid_date ? this.dateFormatter(oEntry.zvisa_valid_date) : null;
             }
+
             oEntry.zbusiness_partner_id = this.businessPartnerId;
             this.uPath = "/ZDD_CUSTOMER(zcustomer_num=guid'" + oEntry.zcustomer_num + "')";
             delete oEntry.to_comments;
@@ -649,20 +691,21 @@ sap.ui.define(
                 var sWFRequest;
                 var sCustomerId;
                 if (oEntry.zrequest_type === "Change Customer") {
-                  sWFRequest = "CHANGE";
+                  sWFRequest = "change";
                   // sCustomerId = that.businessPartnerId;
                 } else {
-                  sWFRequest = "CREATE";
+                  sWFRequest = "create";
                   // sCustomerId = oEntry.zcustomer_num;
                 }
                 sCustomerId = oEntry.zcustomer_num;
-                var oWFModel = that.getOwnerComponent().getModel("Workflow");
                 debugger
+                var oWFModel = that.getOwnerComponent().getModel("Workflow");
+                 // "zbusiness_partner_Id": this.businessPartnerId,
                 var body = {
                   definitionId:
                     "eu10.iffcodevprocessautomation.iffcocustomerservices.iFFCOCustomerCreate",
                   "context": {
-                    // "zbusiness_partner_Id": this.businessPartnerId,
+                   
                     "requesttype": sWFRequest,
                     "customerid": sCustomerId,
                     "customername": oEntry.zfirst_name,
@@ -681,23 +724,22 @@ sap.ui.define(
                     "channel": oEntry.zchannel
                   }
                 };
-                oWFModel.create(
-                  "/createWF",
-                  { body: JSON.stringify(body) },
-                  {
-                    success: function (oData) {
-                      sap.m.MessageToast.show(
-                        "Customer is submitted Successfully"
-                      );
-                    },
-                    error: function (oError) {
-                      sap.m.MessageToast.show(
-                        "Error while initiating workflow request!"
-                      );
-                    },
-                  }
-                );
-
+                  oWFModel.create(
+                    "/createWF",
+                    { body: JSON.stringify(body) },
+                    {
+                      success: function (oData) {
+                        sap.m.MessageToast.show(
+                          "Customer is submitted Successfully"
+                        );
+                      },
+                      error: function (oError) {
+                        sap.m.MessageToast.show(
+                          "Error while initiating workflow request!"
+                        );
+                      },
+                    }
+                  );
               }.bind(this),
               error: function (err) {
 
@@ -758,7 +800,7 @@ sap.ui.define(
             "CHANGE"
             ? "Change Customer"
             : "Extend Customer";
-        oEntry.zrequest_status = "In Draft";
+        oEntry.zstatus = "In Draft";
         oEntry.zcredit_limit_type =
           this.getView()
             .getModel("appView")
@@ -769,49 +811,64 @@ sap.ui.define(
         oEntry.zdescription = this.getView()
           .getModel("appView")
           .getProperty("/custType");
-        if (this.getView().getModel("Customers").getData().zdate_founded === null || this.getView().getModel("Customers").getData().zdate_founded.length < 13) {
+        var custData = this.getView().getModel("Customers").getData();
+        if ((custData.zdate_founded !== undefined && custData.zliquidationdate !== null ) && custData.zdate_founded.length < 13) {
           oEntry.zdate_founded = oEntry.zdate_founded ? this.dateFormatter(oEntry.zdate_founded) : null;
         }
-        if (this.getView().getModel("Customers").getData().zliquidationdate === null || this.getView().getModel("Customers").getData().zliquidationdate.length < 13) {
+        if ((custData.zliquidationdate !== undefined && custData.zliquidationdate !== null) && custData.zliquidationdate.length < 13) {
           oEntry.zliquidationdate = oEntry.zliquidationdate ? this.dateFormatter(oEntry.zliquidationdate) : null;
         }
-        if (this.getView().getModel("Customers").getData().zdate === null || this.getView().getModel("Customers").getData().zdate.length < 13) {
+        if ((custData.zdate !== undefined && custData.zdate !== null) && custData.zdate.length < 13) {
           oEntry.zdate = oEntry.zdate ? this.dateFormatter(oEntry.zdate) : null;
         }
-        if (this.getView().getModel("Customers").getData().zvalid_from === null || this.getView().getModel("Customers").getData().zvalid_from.length < 13) {
+        if ((custData.zvalid_from !== undefined && custData.zvalid_from !== null) && custData.zvalid_from.length < 13) {
           oEntry.zvalid_from = oEntry.zvalid_from ? this.dateFormatter(oEntry.zvalid_from) : null;
         }
-        if (this.getView().getModel("Customers").getData().zvalid_to === null || this.getView().getModel("Customers").getData().zvalid_to.length < 13) {
+        if ((custData.zvalid_to !== undefined && custData.zvalid_to !== null ) && custData.zvalid_to.length < 13) {
           oEntry.zvalid_to = oEntry.zvalid_to ? this.dateFormatter(oEntry.zvalid_to) : null;
         }
-        if (this.getView().getModel("Customers").getData().zentry_date === null || this.getView().getModel("Customers").getData().zentry_date.length < 13) {
+        if ((custData.zentry_date !== undefined && custData.zentry_date !== null) && custData.zentry_date.length < 13) {
           oEntry.zentry_date = oEntry.zentry_date ? this.dateFormatter(oEntry.zentry_date) : null;
         }
-        if (this.getView().getModel("Customers").getData().zduedate === null || this.getView().getModel("Customers").getData().zduedate.length < 13) {
+        if ((custData.zduedate !== undefined && custData.zduedate !== null ) && custData.zduedate.length < 13) {
           oEntry.zduedate = oEntry.zduedate ? this.dateFormatter(oEntry.zduedate) : null;
         }
         //oEntry.zcreated_date = oEntry.zcreated_date ? this.dateFormatter(oEntry.zcreated_date) : null;
-        if (this.getView().getModel("Customers").getData().zupdated_date === null || this.getView().getModel("Customers").getData().zupdated_date.length < 13) {
+        if ((custData.zupdated_date !== undefined && custData.zupdated_date !== null ) && custData.zupdated_date.length < 13) {
           oEntry.zupdated_date = oEntry.zupdated_date ? this.dateFormatter(oEntry.zupdated_date) : null;
         }
-        if (this.getView().getModel("Customers").getData().zfinalizedon === null || this.getView().getModel("Customers").getData().zfinalizedon.length < 13) {
+        if ((custData.zfinalizedon !== undefined && custData.zfinalizedon !== null) && custData.zfinalizedon.length < 13) {
           oEntry.zfinalizedon = oEntry.zfinalizedon ? this.dateFormatter(oEntry.zfinalizedon) : null;
         }
-        if (this.getView().getModel("Customers").getData().zlast_key_date === null || this.getView().getModel("Customers").getData().zlast_key_date.length < 13) {
+        if ((custData.zlast_key_date !== undefined && custData.zlast_key_date !== null) && custData.zlast_key_date.length < 13) {
           oEntry.zlast_key_date = oEntry.zlast_key_date ? this.dateFormatter(oEntry.zlast_key_date) : null;
         }
-        if (this.getView().getModel("Customers").getData().zcreated_date === null || this.getView().getModel("Customers").getData().zcreated_date.length < 13) {
+        if ((custData.zcreated_date !== undefined && custData.zcreated_date !== null) && custData.zcreated_date.length < 13) {
           oEntry.zcreated_date = oEntry.zcreated_date ? this.dateFormatter(oEntry.zcreated_date) : null;
         }
-        if (this.getView().getModel("Customers").getData().zcl_validity_proposed_date === null || this.getView().getModel("Customers").getData().zcl_validity_proposed_date.length < 13) {
+        if ((custData.zcl_validity_proposed_date !== undefined && custData.zcl_validity_proposed_date !== null) && custData.zcl_validity_proposed_date.length < 13) {
           oEntry.zcl_validity_proposed_date = oEntry.zcl_validity_proposed_date ? this.dateFormatter(oEntry.zcl_validity_proposed_date) : null;
         }
-        if (this.getView().getModel("Customers").getData().zvalid_passport_date === null || this.getView().getModel("Customers").getData().zvalid_passport_date.length < 13) {
+        if ((custData.zvalid_passport_date !== undefined && custData.zvalid_passport_date !== null) && custData.zvalid_passport_date.length < 13) {
           oEntry.zvalid_passport_date = oEntry.zvalid_passport_date ? this.dateFormatter(oEntry.zvalid_passport_date) : null;
         }
-        if (this.getView().getModel("Customers").getData().zvisa_valid_date === null || this.getView().getModel("Customers").getData().zvisa_valid_date.length < 13) {
+        if ((custData.zvisa_valid_date !== undefined && custData.zvisa_valid_date !== null) && custData.zvisa_valid_date.length < 13) {
           oEntry.zvisa_valid_date = oEntry.zvisa_valid_date ? this.dateFormatter(oEntry.zvisa_valid_date) : null;
         }
+
+        if(this.getView().getModel("appView").getProperty("/bpg").split(" ")[0].includes("Intercompany")){
+          oEntry.zbusiness_partner_grouping = "Z070";
+         }
+         else if(this.getView().getModel("appView").getProperty("/bpg").split(" ")[0].includes("Sold")){
+             oEntry.zbusiness_partner_grouping = "BP01"
+         }
+         else if(this.getView().getModel("appView").getProperty("/bpg").split(" ")[0].includes("Ship")){
+             oEntry.zbusiness_partner_grouping = "BP02"
+         }
+         else if(this.getView().getModel("appView").getProperty("/bpg").split(" ")[0].includes("One")){
+             oEntry.zbusiness_partner_grouping = "BP08"
+         }
+
         this.uPath = "/ZDD_CUSTOMER(zcustomer_num=guid'" + oEntry.zcustomer_num + "')";
 
         delete oEntry.to_comments;
@@ -866,7 +923,6 @@ sap.ui.define(
 
           if (!obj.Flag) {
             // Mohammad sohail: adding business partner id and request no.
-            debugger
             obj.zbusiness_partner_id = this.businessPartnerId;
             obj.zrequest_no = this.reqNumber;
             obj.zsales_area_id = index.toString();
@@ -957,7 +1013,6 @@ sap.ui.define(
           } else if (obj.Flag === 'U') {
             var salesUpdatePath = "/ZDD_CUST_SALESAREAS(zcustomer_num=guid'" + obj.zcustomer_num + "',zsales_orgnization='" + obj.zsales_orgnization + "',zsales_area_id='" + obj.zsales_area_id + "')";
             // var salesUpdatePath = "/ZDD_CUST_SALESAREAS(zcustomer_num=guid'" + obj.zcustomer_num + "',zsales_area_id='" + obj.zsales_area_id + "')";
-            debugger
             // Mohammad sohail: adding business partner id and request no.
             obj.zbusiness_partner_id = this.businessPartnerId;
             obj.zrequest_no = this.reqNumber;
@@ -1283,6 +1338,32 @@ sap.ui.define(
           this.opOrder = "1";
         }
       },
+      onClearFiles : function () {
+        var simpleFormIdArr = ["CreditAnalysisView", "Planned2", "orderData193", "orderData13"];
+
+        for (var j = 0; j < simpleFormIdArr.length; j++) {
+            var content = this.getView().byId(simpleFormIdArr[j]).getAggregation("_views") !== null ? this.getView().byId(simpleFormIdArr[j]).getAggregation("_views")[0].getContent()[0].getContent() : "";
+            var isVisible = this.getView().byId(simpleFormIdArr[j]).getParent().getParent().getVisible();
+
+            if (isVisible) {
+                for (var b = 0; b < content.length; b++) {
+                    if (content[b].getMetadata().getName() != "sap.ui.core.Title") {
+                        if (content[b].getVisible()) {
+                            if (content[b].getMetadata().getName() == "sap.m.Label" && content[b].getVisible() ===
+                                true) {
+                                if (content[b + 1].getMetadata().getName() == "sap.ui.unified.FileUploader") {
+                                    if (content[b + 1].getValue() !== "") {
+                                        content[b + 1].clear();
+                                        
+                                    } 
+                                } 
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
       handleValidateFormFields: function () {
         var that = this;
         var State = true;

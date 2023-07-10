@@ -28,6 +28,17 @@ sap.ui.define([
                 //  oFileUploader.attachUploadComplete(this.onFileUploadComplete, this);
 
             },
+            // reset functionality on adapt filters
+            onReset:function (evt) {
+                // to fetch the selected filter items
+                var filterBars = evt.getSource().mAggregations.filterGroupItems;
+    
+                    for(var i=0; i<filterBars.length; i++){
+                        if(filterBars[i].getVisibleInFilterBar() === false){
+                            filterBars[i].setVisibleInFilterBar(true);
+                        }
+                    }
+            },
             existingCustomerList: function (evt) {
                 // zbusiness_partner_id
                 var serviceURL = this.getOwnerComponent().getModel("S4D111").sServiceUrl;
