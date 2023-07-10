@@ -6,6 +6,6 @@
 	
 	<Label text="Proposed Date" visible="{=${fieldMappingModels>/ProposedDateVisible} === true ? true : false}"
 		required="{=${fieldMappingModels>/ProposedDateMandatory} === true ? true : false}" />
-		<DatePicker enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zcl_validity_proposed_date}" valueFormat="MM.dd.yyyy" visible="{=${fieldMappingModels>/ProposedDateVisible} === true ? true : false}"/>
+		<DatePicker enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zcl_validity_proposed_date}" valueFormat="MM.dd.yyyy" visible="{=${fieldMappingModels>/ProposedDateVisible} === true ? true : false}"/>
 	</forms:SimpleForm>
 </mvc:View>

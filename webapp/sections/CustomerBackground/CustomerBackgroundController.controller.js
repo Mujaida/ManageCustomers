@@ -44,17 +44,30 @@ sap.ui.define([
         },
         handleValueHelpCurrencyConfirm: function (evt) {
             var title = evt.getParameter("selectedItems")[0].getProperty("title");
-        
-            this.currencyField.setValue(title);
+            var desc = evt.getParameter("selectedItems")[0].getProperty("description");
+            this.currencyField.setValue(title + " - " + desc);
+            this.Currency.getBinding("items").filter([]);
+            this.Currency.close();
         },
         handleValueHelpCurrencySearch: function (evt) {
             var sValue = evt.getParameter("value");
+            var filters = [];
             if (sValue.length > 0) {
-                    var oFilter1 = new sap.ui.model.Filter("Waers", 'EQ', sValue);
-                    this.Currency.getBinding("items").filter([oFilter1]);
-            
+                var filter1 = new sap.ui.model.Filter({
+                    path: "Waers",
+                    operator: "Contains",
+                    value1: sValue
+                });
+                var filter2 = new sap.ui.model.Filter({
+                    path: "ltext",
+                    operator: "Contains",
+                    value1: sValue
+                });
+                var sFilters = [filter1, filter2];
+                filters.push(new sap.ui.model.Filter(sFilters, false));
+                this.Currency.getBinding("items").filter(filters, false);
             } else {
-                this.Country.getBinding("items").filter([]);
+                this.Currency.getBinding("items").filter([]);
             }
         }
 	});

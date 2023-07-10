@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Country" class="sapUiPopupWithPadding"
-		items="{path:'LegalName>CountriesSet'}" search="handleValueHelpCountrySearch"
-		confirm="handleValueHelpCountryConfirm" cancel="handleValueHelpCountrClose" multiSelect="false">
-		<StandardListItem title="{zcountry}" />
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Source Of Enquiry" class="sapUiPopupWithPadding"
+		items="{path:'/ZDD_SOURCE_OF_ENQUIRY'}" search="handleValueHelpSrcOfEnqrySearch"
+		confirm="handleValueHelpSrcOfEnqryConfirm" cancel="handleValueHelpSrcOfEnqryClose" multiSelect="false">
+		<StandardListItem title="{zsource_of_enquiry}" />
 	</SelectDialog>
 </core:FragmentDefinition>

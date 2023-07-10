@@ -2,22 +2,22 @@
     <forms:SimpleForm editable="false" layout="ColumnLayout">
         <Label text="Policy Number" visible="{=${fieldMappingModels>/PolicyNumberVisible} === true ? true : false}"
          required="{=${fieldMappingModels>/PolicyNumberMandatory} === true ? true : false}" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zpolicy_number}" maxLength="10" type="Number" liveChange="handleSetMaxLength" visible="{=${fieldMappingModels>/PolicyNumberVisible} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zpolicy_number}" maxLength="10" type="Number" liveChange="handleSetMaxLength" visible="{=${fieldMappingModels>/PolicyNumberVisible} === true ? true : false}"/>
         <Label text="Amount Insured" visible="{=${fieldMappingModels>/AmountInsuredVisible} === true ? true : false}"
          required="{=${fieldMappingModels>/AmountInsuredMandatory} === true ? true : false}" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" type="Number" liveChange="handleSetMaxLength" value="{Customers>/zamount_insured}" maxLength="10" visible="{=${fieldMappingModels>/AmountInsuredVisible} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" type="Number" liveChange="handleSetMaxLength" value="{Customers>/zamount_insured}" maxLength="10" visible="{=${fieldMappingModels>/AmountInsuredVisible} === true ? true : false}"/>
 
         <Label text="Lead Months" visible="{=${fieldMappingModels>/LeadMonthsVisible} === true ? true : false}" 
         required="{=${fieldMappingModels>/LeadMonthsMandatory} === true ? true : false}" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" type="Number" liveChange="handleSetMaxLength" value="{Customers>/zlead_months}" maxLength="8" visible="{=${fieldMappingModels>/LeadMonthsVisible} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" type="Number" liveChange="handleSetMaxLength" value="{Customers>/zlead_months}" maxLength="8" visible="{=${fieldMappingModels>/LeadMonthsVisible} === true ? true : false}"/>
         <Label text="Institute Number" visible="{=${fieldMappingModels>/InstituteNumberVisible} === true ? true : false}"
          required="{=${fieldMappingModels>/InstituteNumberMandatory} === true ? true : false}" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zinstitute_number}" maxLength="2" visible="{=${fieldMappingModels>/InstituteNumberVisible} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zinstitute_number}" maxLength="2" visible="{=${fieldMappingModels>/InstituteNumberVisible} === true ? true : false}"/>
         <Label text="Valid To" visible="{=${fieldMappingModels>/ValidtoVisible} === true ? true : false}"
          required="{=${fieldMappingModels>/ValidtoMandatory} === true ? true : false}" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zvalid_to}" maxLength="7" visible="{=${fieldMappingModels>/ValidtoVisible} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zvalid_to}" maxLength="7" visible="{=${fieldMappingModels>/ValidtoVisible} === true ? true : false}"/>
         <Label text="Deductible" visible="{=${fieldMappingModels>/DeductibleVisible} === true ? true : false}"
          required="{=${fieldMappingModels>/DeductibleMandatory} === true ? true : false}" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" type="Number" liveChange="handleSetMaxLength" value="{Customers>/zdeductible}" maxLength="3" visible="{=${fieldMappingModels>/DeductibleVisible} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" type="Number" liveChange="handleSetMaxLength" value="{Customers>/zdeductible}" maxLength="3" visible="{=${fieldMappingModels>/DeductibleVisible} === true ? true : false}"/>
     </forms:SimpleForm>
 </mvc:View>

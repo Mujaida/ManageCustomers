@@ -7,7 +7,7 @@
 
 		<Label text="Proposed Volume" visible="{=${fieldMappingModels>/ProposedVolumeVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/ProposedVolumeMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" liveChange="handleSetMaxLength" type="Number" value="{Customers>/zannual_proposed_volume}" maxLength="20" visible="{=${fieldMappingModels>/ProposedVolumeVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" liveChange="handleSetMaxLength" type="Number" value="{Customers>/zannual_proposed_volume}" maxLength="20" visible="{=${fieldMappingModels>/ProposedVolumeVisible} === true ? true : false}"/>
 		
 		<Label text="Variance in Amount" visible="{=${fieldMappingModels>/VarianceinAmountVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/VarianceinAmountMandatory} === true ? true : false}"/>
@@ -18,7 +18,7 @@
 
 		<Label text="Actual Volume" visible="{=${fieldMappingModels>/ActualVolumeVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/ActualVolumeMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" type="Number" value="{Customers>/zannual_actual_volume}" maxLength="20" visible="{=${fieldMappingModels>/ActualVolumeVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" type="Number" value="{Customers>/zannual_actual_volume}" maxLength="20" visible="{=${fieldMappingModels>/ActualVolumeVisible} === true ? true : false}"/>
         
 		<Label text="Value" visible="{=${fieldMappingModels>/ValueVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/ValueMandatory} === true ? true : false}"/>
@@ -26,7 +26,7 @@
 
 		<Label text="Proposed Value" visible="{=${fieldMappingModels>/ProposedValueVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/ProposedValueMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" type="Number" liveChange="handleSetMaxLength" 
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" type="Number" liveChange="handleSetMaxLength" 
 		maxLength="8" value="{Customers>/zannual_propsed_value}" visible="{=${fieldMappingModels>/ProposedValueVisible} === true ? true : false}"/>
         
 		<Label text="Variance in Amount" visible="{=${fieldMappingModels>/VarianceinAmountVisible} === true ? true : false}"
@@ -38,22 +38,22 @@
 		<Label text="Currency" visible="{=${fieldMappingModels>/CreditlimitCurrencyVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/CreditlimitCurrencyMandatory} === true ? true : false}"/>
      <Input value="{Customers>/zcredit_limit_currency}" enabled="false" visible="{=${fieldMappingModels>/CreditlimitCurrencyVisible} === true ? true : false}"/>
-		<!-- <MultiInput enabled="false" valueHelpRequest="handleValueHelpForCurrency" value="{Customers>/zcredit_limit_currency}"
+		<!-- <MultiInput showClearIcon="true" enabled="false" valueHelpRequest="handleValueHelpForCurrency" value="{Customers>/zcredit_limit_currency}"
 		valueHelpOnly="true" visible="{=${fieldMappingModels>/CreditlimitCurrencyVisible} === true ? true : false}"/> -->
 
 		<Label text="Actual Turnover" visible="{=${fieldMappingModels>/ActualTurnoverVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/ActualTurnoverMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zannual_actual_turnover}" liveChange="handleSetMaxLength" maxLength="8" type="Number" visible="{=${fieldMappingModels>/ActualTurnoverVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zannual_actual_turnover}" liveChange="handleSetMaxLength" maxLength="8" type="Number" visible="{=${fieldMappingModels>/ActualTurnoverVisible} === true ? true : false}"/>
 
 	<core:Title text="Monthly Expected Highest Sales"/>
          <Label text="Sales Volume" visible="{=${fieldMappingModels>/MonthlyPhysicalBuyVolumeVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/MonthlyPhysicalBuyVolumeMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" type="Number" value="{Customers>/zmonthly_sales_volume}"
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" type="Number" value="{Customers>/zmonthly_sales_volume}"
 		 maxLength="20" visible="{=${fieldMappingModels>/MonthlyPhysicalBuyVolumeVisible} === true ? true : false}"/>
 
 		 <Label text="Acutal Sales Volume" visible="{=${fieldMappingModels>/MonthlyPhysicalBuyVolumeVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/MonthlyPhysicalBuyVolumeMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" type="Number" value="{Customers>/zmonthly_actual_sales_volume}"
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" type="Number" value="{Customers>/zmonthly_actual_sales_volume}"
 		 maxLength="20" visible="{=${fieldMappingModels>/MonthlyPhysicalBuyVolumeVisible} === true ? true : false}"/>
 
 		 <Label text="Variance in Amount" visible="{=${fieldMappingModels>/MonthlyPhysicalBuyVolumeVisible} === true ? true : false}"
@@ -70,7 +70,7 @@
 
 		 <Label text="Actual Volume" visible="{=${fieldMappingModels>/MonthlyPhysicalBuyVolumeVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/MonthlyPhysicalBuyVolumeMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" type="Number" value="{Customers>/zmonthly_actual_volume}"
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" type="Number" value="{Customers>/zmonthly_actual_volume}"
 		 maxLength="20" visible="{=${fieldMappingModels>/MonthlyPhysicalBuyVolumeVisible} === true ? true : false}"/>
 
 		 <Label text="Sales Value" visible="{=${fieldMappingModels>/MonthlyPhysicalBuyVolumeVisible} === true ? true : false}"
@@ -80,7 +80,7 @@
 
 		 <Label text="Actual Sales Value" visible="{=${fieldMappingModels>/MonthlyPhysicalBuyVolumeVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/MonthlyPhysicalBuyVolumeMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" type="Number" value="{Customers>/zmonthly_actual_sales_value}"
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" type="Number" value="{Customers>/zmonthly_actual_sales_value}"
 		 maxLength="20" visible="{=${fieldMappingModels>/MonthlyPhysicalBuyVolumeVisible} === true ? true : false}"/>
 
 		 <Label text="Variance in Amount" visible="{=${fieldMappingModels>/MonthlyPhysicalBuyVolumeVisible} === true ? true : false}"
@@ -97,14 +97,14 @@
 
 		  <Label text="Actual Turnover" visible="{=${fieldMappingModels>/MonthlyPhysicalBuyVolumeVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/MonthlyPhysicalBuyVolumeMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" type="Number" value="{Customers>/zmonthly_actual_turnover}"
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" type="Number" value="{Customers>/zmonthly_actual_turnover}"
 		 maxLength="20" visible="{=${fieldMappingModels>/MonthlyPhysicalBuyVolumeVisible} === true ? true : false}"/>
 		
 		<core:Title text="Gross Contribution"/>
 
 		<Label text="Gross Average GC% or avg gc /MT %" visible="{=${fieldMappingModels>/GrossAverageGCoravggc-MTVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/GrossAverageGCoravggc-MTMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zgross_average_gc_or_av_gc_mt}" maxLength="20" visible="{=${fieldMappingModels>/GrossAverageGCoravggc-MTVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zgross_average_gc_or_av_gc_mt}" maxLength="20" visible="{=${fieldMappingModels>/GrossAverageGCoravggc-MTVisible} === true ? true : false}"/>
 
 		<Label text="Avg GC/MT or GC%" visible="{=${fieldMappingModels>/AvgGC-MTorGCVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/AvgGC-MTorGCMandatory} === true ? true : false}"/>
@@ -112,22 +112,22 @@
 		
 		<Label text="Proposed Avg GC/MT or GC%" visible="{=${fieldMappingModels>/AvgGC-MTorGCVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/AvgGC-MTorGCMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zgc_proposed_avg_gc_mt_or_gc}" maxLength="20" visible="{=${fieldMappingModels>/AvgGC-MTorGCVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zgc_proposed_avg_gc_mt_or_gc}" maxLength="20" visible="{=${fieldMappingModels>/AvgGC-MTorGCVisible} === true ? true : false}"/>
 
         <Label text="Varience in Amount (AED)" visible="{=${fieldMappingModels>/AvgGC-MTorGCVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/AvgGC-MTorGCMandatory} === true ? true : false}"/>
 		<Input value="{parts: [{path: 'Customers>/zgc_proposed_avg_gc_mt_or_gc'},
 		{path:'Customers>/zavg_gc_mt_or_gc'}],
-  formatter:'.formatter.getVarienceAmt'}" enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" maxLength="20" visible="{=${fieldMappingModels>/AvgGC-MTorGCVisible} === true ? true : false}"/>
+  formatter:'.formatter.getVarienceAmt'}" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" maxLength="20" visible="{=${fieldMappingModels>/AvgGC-MTorGCVisible} === true ? true : false}"/>
 
 		<Label text="Inco Term" visible="{=${fieldMappingModels>/IncoTermVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/IncoTermMandatory} === true ? true : false}"/>		
-		<MultiInput enabled="false" value="{Customers>/zinco_term}" maxLength="3" valueHelpRequest="handleValueHelpForIncoterms"
+		<MultiInput showClearIcon="true" enabled="false" value="{Customers>/zinco_term}" maxLength="3" valueHelpRequest="handleValueHelpForIncoterms"
 	 valueHelpOnly="true" visible="{=${fieldMappingModels>/IncoTermVisible} === true ? true : false}"/>
 
         <Label text="Proposed Inco Term" visible="{=${fieldMappingModels>/IncoTermVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/IncoTermMandatory} === true ? true : false}"/>		
-		<MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zgc_proposed_inco_term}" maxLength="3" valueHelpRequest="handleValueHelpForIncoterms"
+		<MultiInput showClearIcon="true" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zgc_proposed_inco_term}" maxLength="3" valueHelpRequest="handleValueHelpForIncoterms"
 	 valueHelpOnly="true" visible="{=${fieldMappingModels>/IncoTermVisible} === true ? true : false}"/>
 
 	

@@ -3,7 +3,7 @@
         <Label text="Request ID" />
         <Input enabled="false" visible="{=${appView>/mode} === 'edit' ? true : false}" value="{Customers>/zrequest_no}" maxLength="10" editable="false" />
         <Label text="Request Type"  />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value = "{appView>/reqType}" editable="false" maxLength="20"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value = "{appView>/reqType}" editable="false" maxLength="20"/>
         <!-- <Label text="Description" />
         <RadioButtonGroup selectedIndex="0" select="onDescriptionSelect">
             <RadioButton id="0" selected="{= ${Customers>/zdescription} === 'Credit' ? true : false}" text="Credit"/>
@@ -12,35 +12,35 @@
 
         <Label text="Business Unit" visible="{=${fieldMappingModels>/BusinessUnitVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/BusinessUnitMandatory} === true ? true : false}"/>
- <MultiInput enabled="true" id="businessId" value="{Customers>/zbusiness_unit_name}" valueHelpRequest="handleValueHelpForBusinessUnit"
+ <MultiInput showClearIcon="true" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" id="businessId" value="{Customers>/zbusiness_unit_name}" valueHelpRequest="handleValueHelpForBusinessUnit"
 		valueHelpOnly="true" visible="{=${fieldMappingModels>/BusinessUnitVisible} === true ? true : false}"/>
 
         <Label text="Vertical" visible="{=${fieldMappingModels>/VerticalVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/VerticalMandatory} === true ? true : false}"/>
-        <MultiInput enabled="false" id="verticalId" value="{Customers>/zvertical}" valueHelpRequest="handleValueHelpForVertical"
+        <MultiInput showClearIcon="true" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" id="verticalId" value="{Customers>/zvertical}" valueHelpRequest="handleValueHelpForVertical"
 		valueHelpOnly="true" visible="{=${fieldMappingModels>/VerticalVisible} === true ? true : false}"/>
 
         <Label text="Priority" visible="{=${fieldMappingModels>/PriorityVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/PriorityMandatory} === true ? true : false}" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zpriority}" maxLength="10" visible="{=${fieldMappingModels>/PriorityVisible} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zpriority}" maxLength="10" visible="{=${fieldMappingModels>/PriorityVisible} === true ? true : false}"/>
         <Label text="Due Date" visible="{=${fieldMappingModels>/DueDateVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/DueDateMandatory} === true ? true : false}" />
-        <DatePicker enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zduedate}"  valueFormat="MM.dd.yyyy" visible="{=${fieldMappingModels>/DueDateVisible} === true ? true : false}"/>
+        <DatePicker enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zduedate}"  valueFormat="MM.dd.yyyy" visible="{=${fieldMappingModels>/DueDateVisible} === true ? true : false}"/>
         <Label text="Reason" visible="{=${fieldMappingModels>/ReasonVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/ReasonMandatory} === true ? true : false}" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zreason}" visible="{=${fieldMappingModels>/ReasonVisible} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zreason}" visible="{=${fieldMappingModels>/ReasonVisible} === true ? true : false}"/>
         <Label text="Status" visible="{=${fieldMappingModels>/StatusVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/StatusMandatory} === true ? true : false}"/>
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zstatus}" maxLength="10" editable="false" visible="{=${fieldMappingModels>/StatusVisible} === true ? true : false}"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zstatus}" maxLength="10" editable="false" visible="{=${fieldMappingModels>/StatusVisible} === true ? true : false}"/>
 
         <Label text="Created On/By" visible="{=${fieldMappingModels>/CreatedOnVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/CreatedOnMandatory} === true ? true : false}" />
-        <DatePicker enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" editable="false" value="{Customers>/zcreated_date}" visible="{=${fieldMappingModels>/CreatedOnVisible} === true ? true : false}"  valueFormat="MM.dd.yyyy" displayFormat="long" />
+        <DatePicker enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" editable="false" value="{Customers>/zcreated_date}" visible="{=${fieldMappingModels>/CreatedOnVisible} === true ? true : false}"  valueFormat="MM.dd.yyyy" displayFormat="long" />
         <Label text="Updated On/By" visible="{=${fieldMappingModels>/ChangedOnVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/ChangedOnMandatory} === true ? true : false}"/>
-        <DatePicker enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" editable="false" value="{Customers>/zupdated_date}" visible="{=${fieldMappingModels>/ChangedOnVisible} === true ? true : false}"  valueFormat="MM.dd.yyyy" displayFormat="long"/>
+        <DatePicker enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" editable="false" value="{Customers>/zupdated_date}" visible="{=${fieldMappingModels>/ChangedOnVisible} === true ? true : false}"  valueFormat="MM.dd.yyyy" displayFormat="long"/>
         <Label text="Finished On/By" visible="{=${fieldMappingModels>/FinalizedOnVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/FinalizedOnMandatory} === true ? true : false}"/>
-        <DatePicker enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" editable="false" value="{Customers>/zfinalizedon}" visible="{=${fieldMappingModels>/FinalizedOnVisible} === true ? true : false}"/>
+        <DatePicker enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" editable="false" value="{Customers>/zfinalizedon}" visible="{=${fieldMappingModels>/FinalizedOnVisible} === true ? true : false}"/>
     </forms:SimpleForm>
 </mvc:View>

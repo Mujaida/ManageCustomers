@@ -2,7 +2,7 @@
 <forms:SimpleForm editable="false" layout="ColumnLayout">
 
     <Label text="Information Cat" />
-		<MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" id="infoCat" value="{Customers>/zinfo_category}" valueHelpRequest="handleValueHelpForInfoCat"
+		<MultiInput showClearIcon="true" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" id="infoCat" value="{Customers>/zinfo_category}" valueHelpRequest="handleValueHelpForInfoCat"
 		valueHelpOnly="true" />
 	
 	</forms:SimpleForm>

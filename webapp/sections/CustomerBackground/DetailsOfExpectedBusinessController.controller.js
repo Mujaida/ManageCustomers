@@ -24,6 +24,10 @@ sap.ui.define([
                     this.getView().addDependent(this.Incoterms);
                     this.Incoterms.setModel(this.getOwnerComponent().getModel());
                 }
+                if (!this.Currency) {
+                    this.Currency = new sap.ui.xmlfragment("iffco.managecustomer.fragments.Currency", this);
+                    this.getView().addDependent(this.Currency);
+                }
             
             },
             handleSetMaxLength:function (evt) {
@@ -58,6 +62,43 @@ sap.ui.define([
                     this.Incoterms.getBinding("items").filter([]);
                 }
             },
+            //Value Help for currency
+            handleValueHelpForCurrency: function (evt) {
+                this.currencyField = evt.getSource();
+                this.Currency.getBinding("items").filter([]);
+                this.Currency.open();
+            },
+            handleValueHelpCurrencyClose: function (params) {
+                this.Currency._dialog.close();
+            },
+            handleValueHelpCurrencyConfirm: function (evt) {
+                var title = evt.getParameter("selectedItems")[0].getProperty("title");
+                var desc = evt.getParameter("selectedItems")[0].getProperty("description");
+                this.currencyField.setValue(title + " - " + desc);
+                this.Currency.getBinding("items").filter([]);
+                this.Currency.close();
+            },
+            handleValueHelpCurrencySearch: function (evt) {
+                var sValue = evt.getParameter("value");
+                var filters = [];
+                if (sValue.length > 0) {
+                    var filter1 = new sap.ui.model.Filter({
+                        path: "Waers",
+                        operator: "Contains",
+                        value1: sValue
+                    });
+                    var filter2 = new sap.ui.model.Filter({
+                        path: "ltext",
+                        operator: "Contains",
+                        value1: sValue
+                    });
+                    var sFilters = [filter1, filter2];
+                    filters.push(new sap.ui.model.Filter(sFilters, false));
+                    this.Currency.getBinding("items").filter(filters, false);
+                } else {
+                    this.Currency.getBinding("items").filter([]);
+                }
+            }
             
             
 	});

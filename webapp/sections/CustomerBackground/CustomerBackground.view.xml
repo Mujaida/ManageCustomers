@@ -3,12 +3,12 @@
 		<core:Title text="Background Information"/>
           <Label text="Credit limit currency" visible="{=${fieldMappingModels>/CreditlimitCurrencyVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/CreditlimitCurrencyMandatory} === true ? true : false}"/>
-		<MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForCurrency" value="{Customers>/0/zcredit_limit_currency}"
+		<MultiInput showClearIcon="true" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" valueHelpRequest="handleValueHelpForCurrency" value="{Customers>/zcredit_limit_currency}"
 		valueHelpOnly="true" visible="{=${fieldMappingModels>/CreditlimitCurrencyVisible} === true ? true : false}"/>
 
-		<!-- <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zcredit_limit_currency}" maxLength="20" visible="{=${fieldMappingModels>/CreditlimitCurrencyVisible} === true ? true : false}"/> -->
+		<!-- <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zcredit_limit_currency}" maxLength="20" visible="{=${fieldMappingModels>/CreditlimitCurrencyVisible} === true ? true : false}"/> -->
 		<!-- <Label text="Background of Customer" />
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="" /> -->
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="" /> -->
 <!-- business proposal and attachment is not been added in backend -->
 		<Label text="Business Proposal" visible="{=${fieldMappingModels>/BusinessProposalVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/BusinessProposalMandatory} === true ? true : false}"/>
@@ -16,7 +16,7 @@
 
         <Label text="Proposed Business Proposal" visible="{=${fieldMappingModels>/ProposedBusinessProposalVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/ProposedBusinessProposalMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zproposed_business_proposal}" visible="{=${fieldMappingModels>/ProposedBusinessProposalVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zproposed_business_proposal}" visible="{=${fieldMappingModels>/ProposedBusinessProposalVisible} === true ? true : false}"/>
 
 		<Label text="Attachment" visible="{=${fieldMappingModels>/BusinessProposalVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/BusinessProposalMandatory} === true ? true : false}"/>
@@ -39,14 +39,14 @@
     buttonText="Upload File"
     fileType="pdf"
     sendXHR="true" change="onConfirm" />
-		<!-- <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zproposed_busi_proposal_attach}" maxLength="20" visible="{=${fieldMappingModels>/ProposedBusinessProposalAttachmentsVisible} === true ? true : false}"/> -->
+		<!-- <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zproposed_busi_proposal_attach}" maxLength="20" visible="{=${fieldMappingModels>/ProposedBusinessProposalAttachmentsVisible} === true ? true : false}"/> -->
 
 		<Label text="Rationable for Trading" visible="{=${fieldMappingModels>/RationableforTradingVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/RationableforTradingMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zrationable_for_trading}" maxLength="20" visible="{=${fieldMappingModels>/RationableforTradingVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zrationable_for_trading}" maxLength="20" visible="{=${fieldMappingModels>/RationableforTradingVisible} === true ? true : false}"/>
 
 		<!-- <Label text="Proposed Background of Customer" visible="{=${fieldMappingModels>/ProposedBackgroundofCustomerVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/ProposedBackgroundofCustomerMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zproposed_bckgrnd_customer}" visible="{=${fieldMappingModels>/ProposedBackgroundofCustomerVisible} === true ? true : false}"/> -->
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zproposed_bckgrnd_customer}" visible="{=${fieldMappingModels>/ProposedBackgroundofCustomerVisible} === true ? true : false}"/> -->
 	</forms:SimpleForm>
 </mvc:View>

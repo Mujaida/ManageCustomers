@@ -23,9 +23,8 @@
 													<ColumnListItem type="Active"  visible="{= ${attachmentsModel>Flag} === 'D' ? false : true}">
 														<cells>
 															<Text id="fieldName" text="{path:'attachmentsModel>FieldName', formatter: '.formatter.getFieldSpace'}" />
-															<Link id="fileName" text="{attachmentsModel>FileName}" press="onClickAttachment"/>
-															
-															<Button icon="sap-icon://delete" type="Transparent" press="handleDeleteAttachment"/>
+															<Link enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" id="fileName" text="{attachmentsModel>FileName}" press="onClickAttachment"/>
+															<Button enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" icon="sap-icon://delete" type="Transparent" press="handleDeleteAttachment"/>
 														</cells>
 													</ColumnListItem>
 												</items>

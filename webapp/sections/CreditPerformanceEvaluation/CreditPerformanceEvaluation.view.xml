@@ -3,24 +3,24 @@
         <core:Title text="Credit Performance"/>
 		<Label text="Debtors Balance of the customer as at last month end" visible="{=${fieldMappingModels>/DebtorsBalanceofthecustomerasatlastmonthendVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/DebtorsBalanceofthecustomerasatlastmonthendMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zdebtors_bal_of_cust_last}" maxLength="20" visible="{=${fieldMappingModels>/DebtorsBalanceofthecustomerasatlastmonthendVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'CHANGE' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zdebtors_bal_of_cust_last}" maxLength="20" visible="{=${fieldMappingModels>/DebtorsBalanceofthecustomerasatlastmonthendVisible} === true ? true : false}"/>
 		<Label text="Overdue if any" visible="{=${fieldMappingModels>/OverdueifanyVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/OverdueifanyMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zoverdue_if_any}" maxLength="20" visible="{=${fieldMappingModels>/OverdueifanyVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'CHANGE' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zoverdue_if_any}" maxLength="20" visible="{=${fieldMappingModels>/OverdueifanyVisible} === true ? true : false}"/>
 		<Label text="Provision created if any" visible="{=${fieldMappingModels>/314} === true ? true : false}"
  required="{=${fieldMappingModels>/314} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zprovision_created_if_any}" maxLength="20" visible="{=${fieldMappingModels>/314} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'CHANGE' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zprovision_created_if_any}" maxLength="20" visible="{=${fieldMappingModels>/314} === true ? true : false}"/>
 		 <core:Title text=""/>
 		<Label text="Number of times customer defaulted payment terms" visible="{=${fieldMappingModels>/NumberoftimescustomerdefaultedpaymenttermsVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/NumberoftimescustomerdefaultedpaymenttermsMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zno_of_times_cust_def_payterm}" maxLength="20" visible="{=${fieldMappingModels>/NumberoftimescustomerdefaultedpaymenttermsVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'CHANGE' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zno_of_times_cust_def_payterm}" maxLength="20" visible="{=${fieldMappingModels>/NumberoftimescustomerdefaultedpaymenttermsVisible} === true ? true : false}"/>
 		<Label text="If CRI, then CRI withdrawn / Reduced in last 12 months" 
 		visible="{=${fieldMappingModels>/IfCRI-thenCRIwithdrawn-Reducedinlast12monthsVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/IfCRI-thenCRIwithdrawn-Reducedinlast12monthsMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zif_cri_reduced_in_last_12_mnt}" maxLength="20"
+		<Input enabled="{=${appView>/process} === 'CHANGE' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zif_cri_reduced_in_last_12_mnt}" maxLength="20"
 		visible="{=${fieldMappingModels>/IfCRI-thenCRIwithdrawn-Reducedinlast12monthsVisible} === true ? true : false}"/>
 		<Label text="Customer Assessment and other factors" visible="{=${fieldMappingModels>/CustomerAssessmentandotherfactorsVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/CustomerClassificationMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zcust_assessment_other_factors}" maxLength="20" visible="{=${fieldMappingModels>/CustomerAssessmentandotherfactorsVisible} === true ? true : false}"/>   
+		<Input enabled="{=${appView>/process} === 'CHANGE' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zcust_assessment_other_factors}" maxLength="20" visible="{=${fieldMappingModels>/CustomerAssessmentandotherfactorsVisible} === true ? true : false}"/>   
 	</forms:SimpleForm>
 </mvc:View>

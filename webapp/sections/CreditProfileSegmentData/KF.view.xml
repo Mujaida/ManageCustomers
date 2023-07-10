@@ -4,33 +4,33 @@
 		<CheckBox selected="false" /> -->
 
 		<Label text="DSO" />
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zdso}" maxLength="8" />
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zdso}" maxLength="8" />
       
         <Label text="Amount" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value= "{Customers>/zdso_amount}" maxLength="12" liveChange="handleSetMaxLength" type="Number"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value= "{Customers>/zdso_amount}" maxLength="12" liveChange="handleSetMaxLength" type="Number"/>
 
         <Label text="W/o Cash Disc" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value= "{Customers>/zwo_cash_discount}" maxLength="12" liveChange="handleSetMaxLength" type="Number"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value= "{Customers>/zwo_cash_discount}" maxLength="12" liveChange="handleSetMaxLength" type="Number"/>
 
         <Label text="With Cash Disc" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value= "{Customers>/zwith_cash_discount}" maxLength="12" liveChange="handleSetMaxLength" type="Number"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value= "{Customers>/zwith_cash_discount}" maxLength="12" liveChange="handleSetMaxLength" type="Number"/>
 
         <Label text="Sales" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value= "{Customers>/zmax_sales}" maxLength="12" liveChange="handleSetMaxLength" type="Number"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value= "{Customers>/zmax_sales}" maxLength="12" liveChange="handleSetMaxLength" type="Number"/>
 
         <Label text="Days in Arrears" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value= "{Customers>/zwo_cash_days_in_arrears}" maxLength="3" liveChange="handleSetMaxLength" type="Number"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value= "{Customers>/zwo_cash_days_in_arrears}" maxLength="3" liveChange="handleSetMaxLength" type="Number"/>
 
         <Label text="Days in Arrears" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value= "{Customers>/zwith_cash_days_in_arrears}" maxLength="3" liveChange="handleSetMaxLength" type="Number"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value= "{Customers>/zwith_cash_days_in_arrears}" maxLength="3" liveChange="handleSetMaxLength" type="Number"/>
 
         <Label text="Maximum Sales" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value= "{Customers>/zmax_sales}" maxLength="12" liveChange="handleSetMaxLength" type="Number"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value= "{Customers>/zmax_sales}" maxLength="12" liveChange="handleSetMaxLength" type="Number"/>
 
         <Label text="Collection Amt" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" type="Number" liveChange="handleSetMaxLength" value= "{Customers>/zdso_amount}" maxLength="12"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" type="Number" liveChange="handleSetMaxLength" value= "{Customers>/zdso_amount}" maxLength="12"/>
 
         <Label text="Percentage" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" type="Number" liveChange="handleSetMaxLength" value= "{Customers>/zdso_amount}" maxLength="12"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" type="Number" liveChange="handleSetMaxLength" value= "{Customers>/zdso_amount}" maxLength="12"/>
         </forms:SimpleForm>
 </mvc:View>

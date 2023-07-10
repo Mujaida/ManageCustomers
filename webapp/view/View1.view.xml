@@ -14,7 +14,7 @@
                 <f:header>
                     <f:DynamicPageHeader>
                         <f:content>
-                            <fb:FilterBar id="filterbar" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" afterVariantLoad=".onAfterVariantLoad">
+                            <fb:FilterBar id="filterbar" reset="onReset" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" afterVariantLoad=".onAfterVariantLoad">
                                 <fb:filterItems>
 								<fb:FilterItem name="Request Number" label="Request Number">
                                         <fb:control>
@@ -26,8 +26,9 @@
                                             <Input />
                                         </fb:control>
                                     </fb:FilterItem>
-                                    <fb:FilterItem name="Company Code" label="Company Code" >
+                                    <fb:FilterItem name="Company Code" label="Company Code">
                                         <fb:control>
+                                           
                                             <Input />
                                         </fb:control>
                                     </fb:FilterItem>

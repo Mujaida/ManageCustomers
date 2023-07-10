@@ -4,13 +4,13 @@
 		<CheckBox selected="false" /> -->
 
 		<Label text="Payment On" />
-        <DatePicker enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zpayment_on}" placeholder="Enter Date" valueFormat="MM.dd.yyyy" />
+        <DatePicker enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zpayment_on}" placeholder="Enter Date" valueFormat="MM.dd.yyyy" />
       
         <Label text="Amount" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value= "{Customers>/zlast_payment_amount}" maxLength="12" liveChange="handleSetMaxLength" type="Number"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value= "{Customers>/zlast_payment_amount}" maxLength="12" liveChange="handleSetMaxLength" type="Number"/>
 
         <Label text="Document" />
-        <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value= "{Customers>/zlast_payment_doc}" liveChange="handleSetMaxLength" maxLength="32"/>
+        <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value= "{Customers>/zlast_payment_doc}" liveChange="handleSetMaxLength" maxLength="32"/>
 
         </forms:SimpleForm>
 </mvc:View>

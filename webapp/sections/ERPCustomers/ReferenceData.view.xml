@@ -2,14 +2,14 @@
 	<forms:SimpleForm editable="false" layout="ColumnLayout">
 		<Label text="Previous Account Number" visible="{=${fieldMappingModels>/PreviousAccountNumberVisible} === true ? true : false}"
 		 required="{=${fieldMappingModels>/PreviousAccountNumberMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zprevious_account_number}" type="Number" liveChange="handleSetMaxLength" maxLength="10" visible="{=${fieldMappingModels>/PreviousAccountNumberVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zprevious_account_number}" type="Number" liveChange="handleSetMaxLength" maxLength="10" visible="{=${fieldMappingModels>/PreviousAccountNumberVisible} === true ? true : false}"/>
 		<Label text = "Buying Group" visible="{=${fieldMappingModels>/BuyingGroupVisible} === true ? true : false}"
 		 required="{=${fieldMappingModels>/BuyingGroupMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zbuying_group}" maxLength="10" visible="{=${fieldMappingModels>/BuyingGroupVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zbuying_group}" maxLength="10" visible="{=${fieldMappingModels>/BuyingGroupVisible} === true ? true : false}"/>
 		
 		<Label text="Personnel Number" visible="{=${fieldMappingModels>/PersonnelNumberVisible} === true ? true : false}"
 		 required="{=${fieldMappingModels>/PersonnelNumberMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zpersonnel_number}" maxLength="8" type="Number" liveChange="handleSetMaxLength" visible="{=${fieldMappingModels>/PersonnelNumberVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zpersonnel_number}" maxLength="8" type="Number" liveChange="handleSetMaxLength" visible="{=${fieldMappingModels>/PersonnelNumberVisible} === true ? true : false}"/>
 		
 	</forms:SimpleForm>
 </mvc:View>

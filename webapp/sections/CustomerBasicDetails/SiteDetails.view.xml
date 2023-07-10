@@ -2,27 +2,27 @@
 	<forms:SimpleForm editable="false" layout="ColumnLayout">
 		<Label text="Legal Entity" visible="{=${fieldMappingModels>/LegalEntityVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/LegalEntityMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zcustomer_legal_name}" maxLength="2" visible="{=${fieldMappingModels>/LegalEntityVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zlegal_entity}" maxLength="2" visible="{=${fieldMappingModels>/LegalEntityVisible} === true ? true : false}"/>
 		<Label text="Legal Name" visible="{=${fieldMappingModels>/LegalNameVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/LegalNameMandatory} === true ? true : false}"/>
-        <MultiInput enabled="false" value="{Customers>/zcustomer_legal_name}" valueHelpRequest="handleValueHelpForLegalName"
+        <MultiInput showClearIcon="true" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zcustomer_legal_name}" valueHelpRequest="handleValueHelpForLegalName"
 		valueHelpOnly="true" visible="{=${fieldMappingModels>/LegalNameVisible} === true ? true : false}"/>
 		<Label text="Legal Form" visible="{=${fieldMappingModels>/LegalFormVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/LegalFormMandatory} === true ? true : false}"/>
-		<Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zlegalform}" maxLength="2" type="Number" liveChange="handleSetMaxLength" visible="{=${fieldMappingModels>/LegalFormVisible} === true ? true : false}"/>
+		<Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zlegalform}" maxLength="2" type="Number" liveChange="handleSetMaxLength" visible="{=${fieldMappingModels>/LegalFormVisible} === true ? true : false}"/>
 		<Label text="Date Founded" visible="{=${fieldMappingModels>/DateFoundedVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/DateFoundedMandatory} === true ? true : false}"/>
-		<DatePicker enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" id="zdateFound" value="{Customers>/zdate_founded}" valueFormat="yyyy-MM-dd" visible="{=${fieldMappingModels>/DateFoundedVisible} === true ? true : false}"/>
+		<DatePicker enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" id="zdateFound" value="{Customers>/zdate_founded}" valueFormat="yyyy-MM-dd" visible="{=${fieldMappingModels>/DateFoundedVisible} === true ? true : false}"/>
 		<!-- <DatePicker id="zdateFound" value="{path:'Customers>/zdate_founded', formatter: '.formatter.dateFormatter'}" valueFormat="yyyy-MM-dd" /> -->
 		<Label text="Liquidation Date" visible="{=${fieldMappingModels>/LiquidationDateVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/LiquidationDateMandatory} === true ? true : false}"/>
-		<DatePicker enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" id="zliqDate" value="{Customers>/zliquidationdate}" valueFormat="yyyy-MM-dd" visible="{=${fieldMappingModels>/LiquidationDateVisible} === true ? true : false}"/>
+		<DatePicker enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" id="zliqDate" value="{Customers>/zliquidationdate}" valueFormat="yyyy-MM-dd" visible="{=${fieldMappingModels>/LiquidationDateVisible} === true ? true : false}"/>
 		<!-- <DatePicker id="zliqDate" value="{path:'Customers>/zliquidationdate', formatter: '.formatter.dateFormatter'}" valueFormat="yyyy-MM-dd" /> -->
 		
 		<Label text="Authorization Group" visible="{=${fieldMappingModels>/AuthorizationGroupVisible} === true ? true : false}"
  required="{=${fieldMappingModels>/AuthorizationGroupMandatory} === true ? true : false}"/>
-		<!-- <Input enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" value="{Customers>/zauthorization_group}" maxLength="4" visible="{=${fieldMappingModels>/AuthorizationGroupVisible} === true ? true : false}"/> -->
-		<MultiInput enabled="{=${appView>/process} !== 'EXTEND' ? true : false}" valueHelpRequest="handleValueHelpForAuthorization" value="{Customers>/zauthorization_group}"
+		<!-- <Input enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" value="{Customers>/zauthorization_group}" maxLength="4" visible="{=${fieldMappingModels>/AuthorizationGroupVisible} === true ? true : false}"/> -->
+		<MultiInput showClearIcon="true" enabled="{=${appView>/process} === 'EXTEND' || ${appView>/status} === 'In Progress' ? false : true}" valueHelpRequest="handleValueHelpForAuthorization" value="{Customers>/zauthorization_group}"
 		valueHelpOnly="true" visible="{=${fieldMappingModels>/AuthorizationGroupVisible} === true ? true : false}"/>
 		
 	</forms:SimpleForm>

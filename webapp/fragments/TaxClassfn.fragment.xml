@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
 	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Tax Classification" class="sapUiPopupWithPadding"
-		items="{S4D>/TaxCategorySet}" search="handleValueHelpTaxClassfnSearch"
+		items="{S4D>/TaxCategoryClasSet}" search="handleValueHelpTaxClassfnSearch"
 		confirm="handleValueHelpTaxClassfnConfirm" cancel="handleValueHelpTaxClassfnClose" multiSelect="false">
 		<StandardListItem title="{S4D>Taxclassification}" description="{S4D>Description}"/>
 	</SelectDialog>

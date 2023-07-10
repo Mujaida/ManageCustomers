@@ -17,7 +17,7 @@ sap.ui.define([
                 this.DelvryPriorty.setModel(this.getOwnerComponent().getModel("S4D"));
             }
             if (!this.DelvryPlant) {
-                this.DelvryPlant = new sap.ui.xmlfragment("Iffco.clap.fragments.DeliveryPlant", this);
+                this.DelvryPlant = new sap.ui.xmlfragment("iffco.managecustomer.fragments.DeliveryPlant", this);
                 this.getView().addDependent(this.DelvryPlant);
                 this.DelvryPlant.setModel(this.getOwnerComponent().getModel("S4D"));
             }

@@ -53,20 +53,19 @@
                             <Column minScreenWidth="Tablet" demandPopin="true">
                                 <Text text="Country" />
                             </Column>
-                            
+                             <Column minScreenWidth="Tablet" demandPopin="true">
+                                <Text text="status" />
+                            </Column>
                         </columns>
-
                         <items>
                             <ColumnListItem vAlign="Middle">
                                 <cells>
-                                
                                 <Text text="{existingCustomerSet>zbusiness_partner_id}" />
                                     <Text text="{existingCustomerSet>zfirst_name}" />
                                     <Text text="{existingCustomerSet>zcustomer_legal_name}" />
                                     <Text text="{existingCustomerSet>zcompany_code}" />
 									<Text text="{existingCustomerSet>zcountry}" />
-                                   
-                                  
+                                    <Text text="{existingCustomerSet>zstatus}" />
                                 </cells>
                             </ColumnListItem>
                         </items>

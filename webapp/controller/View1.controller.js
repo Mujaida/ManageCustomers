@@ -4,14 +4,14 @@ sap.ui.define([
     'sap/ui/model/FilterOperator',
     "sap/ui/core/Fragment",
     "sap/m/MessageBox",
+    "sap/m/MessageToast",
     "iffco/managecustomer/formatter/formatter"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, Filter, FilterOperator, Fragment, MessageBox, formatter) {
+    function (Controller, Filter, FilterOperator, Fragment, MessageBox, MessageToast, formatter) {
         "use strict";
-
         return Controller.extend("iffco.managecustomer.controller.View1", {
             formatter: formatter,
             onInit: function () {
@@ -28,25 +28,16 @@ sap.ui.define([
                 //  oFileUploader.attachUploadComplete(this.onFileUploadComplete, this);
 
             },
-            onCompanyCodes: function (oEvent) {
-                var serviceURL = this.getOwnerComponent().getModel("S4D111").sServiceUrl;
-                var oModel = new sap.ui.model.odata.ODataModel(serviceURL, true);
-                oModel.read("/CompanyCodeSet", {
-                    success: function (oData, oResponse) {
-                        let oModel = new sap.ui.model.json.JSONModel(oData.results);
-                        if (!this.dialog) {
-                            this.dialog = sap.ui.xmlfragment(this.getView().getId(), "iffco.managecustomer.fragments.CompanyCode", this);
-                            this.getView().addDependent(this.dialog);
-                            this.dialog.setModel(oModel, "CountryCodesModel");
+            // reset functionality on adapt filters
+            onReset:function (evt) {
+                // to fetch the selected filter items
+                var filterBars = evt.getSource().mAggregations.filterGroupItems;
+    
+                    for(var i=0; i<filterBars.length; i++){
+                        if(filterBars[i].getVisibleInFilterBar() === false){
+                            filterBars[i].setVisibleInFilterBar(true);
                         }
-                        this.dialog.open();
-
-                    }.bind(this)
-                });
-            },
-            handleCountryCodeSave: function(evt){
-                const codeValue = evt.getParameter("listItem").getProperty("title");
-                this.getView().byId('companyCodeFilterId').setValue(codeValue);
+                    }
             },
             existingCustomerList: function (evt) {
                 // zbusiness_partner_id
@@ -70,88 +61,34 @@ sap.ui.define([
 
                         this.getOwnerComponent().setModel(new sap.ui.model.json.JSONModel(aCombinedData), "existingCustomerSet");
 
-
-
                     }.bind(this),
                     error: function (error) { },
                 });
             },
             handleOK: function (evt) {
                 var that = this;
-
-                this.check2 = true;
-                var busyDialog = new sap.m.BusyDialog();
-                busyDialog.open();
-                // if(that.getView().getModel("appView").getProperty("/selectedMode") === true){
-
-                //  var oModel = this.getOwnerComponent().getModel();
-                // this.sPath = "/ZDD_CUSTOMER";
-                // oModel.read(this.sPath, {
-                //     filters: [
-                //           new sap.ui.model.Filter("zbusiness_partner_id", "EQ", this.zbusinessPartnerId),
-                //         ],
-                //     success: function (oData, oResponse) {
-                //         if(oData.results.length > 0){
-                //             oData.results.sort((a, b) => b.zcreated_date - a.zcreated_date);
-                //         for(var i=0; i<oData.results.length; i++){
-                //             this.zcustNo = oData.results[i].zcustomer_num;
-                //             this.zsales = oData.results[i].zsales_orgnization;
-                //             this.reqType = oData.results[i].zrequest_type ? oData.results[i].zrequest_type : "";
-                //             break;
-                //         }
-                //         if(this.reqType !== 'Change Customer' && this.reqType !== 'Extend Customer'){
-                //             // busyDialog.open();
-                //             var oRouter = this.getOwnerComponent().getRouter();
-                //             oRouter.navTo("CustomerDetail",{
-                //                 "zcustomer_legal_name": this.zcustomer_legal_name,
-                //                 "zprocess": that.getView().getModel("appView").getProperty("/process"),
-                //                 "mode" : "add",
-                //                 "zbusinessPartnerId" : this.zbusinessPartnerId,
-                //                 "zcustomer_num" : this.zcustNo,
-                //                 "zsales_orgnization" : this.zsales
-                //             });  
-                //             if(!this.check1 && !this.checkB){
-                //                 this.checkB  = true;
-                //                 setTimeout(function () {
-                //                     busyDialog.close();
-                //                 }, 28000);
-                //                 }else{
-                //                     busyDialog.close(); 
-                //                 }
-                //         }else{
-                //             busyDialog.close();
-                //             MessageBox.error("The request is already in process");
-                //         }
-                //     }
-                //         }.bind(this),
-                //         error:function (error) {
-
-
-                //     }
-
-                //     });
-
-
-                // }else{
-                //     busyDialog.close();
-                //     MessageBox.error("Please select a customer to proceed");
-                // }
-
-                var oRouter = this.getOwnerComponent().getRouter();
-                oRouter.navTo("CustomerDetail", {
-                    "zcustomer_legal_name": this.zcustomer_legal_name,
-                    "zprocess": that.getView().getModel("appView").getProperty("/process"),
-                    "mode": "add",
-                    "zbusinessPartnerId": this.zbusinessPartnerId
-                    // "zcustomer_num" : this.zcustNo
-                });
-                if (!this.check1 && !this.checkB) {
-                    this.checkB = true;
-                    setTimeout(function () {
+                if (this.ex.getContent()[1].getSelectedItem()) {
+                    this.check2 = true;
+                    var busyDialog = new sap.m.BusyDialog();
+                    busyDialog.open();
+                    var oRouter = this.getOwnerComponent().getRouter();
+                    oRouter.navTo("CustomerDetail", {
+                        "zcustomer_legal_name": this.zcustomer_legal_name,
+                        "zprocess": that.getView().getModel("appView").getProperty("/process"),
+                        "mode": "add",
+                        "zbusinessPartnerId": this.zbusinessPartnerId
+                        // "zcustomer_num" : this.zcustNo
+                    });
+                    if (!this.check1 && !this.checkB) {
+                        this.checkB = true;
+                        setTimeout(function () {
+                            busyDialog.close();
+                        }, 28000);
+                    } else {
                         busyDialog.close();
-                    }, 28000);
+                    }
                 } else {
-                    busyDialog.close();
+                    sap.m.MessageBox.error("Please select a record.");
                 }
 
 
@@ -341,7 +278,7 @@ sap.ui.define([
                 if (!this._pDialog) {
                     this._pDialog = Fragment.load({
                         id: oView.getId(),
-                        name: "Iffco.clap.fragments.LegalName",
+                        name: "iffco.managecustomer.fragments.LegalName",
                         controller: this
                     }).then(function (oDialog) {
                         oDialog.setModel(oView.getModel("LegalName"));
@@ -358,21 +295,38 @@ sap.ui.define([
 
             onDialogClose: function (oEvent) {
                 var aContexts = oEvent.getParameter("selectedContexts");
-                // if (aContexts && aContexts.length) {
-                //     MessageToast.show("You have chosen " + aContexts.map(function (oContext) { return oContext.getObject().Name; }).join(", "));
-                // } else {
-                //     MessageToast.show("No new item was selected.");
-                // }
                 oEvent.getSource().getBinding("items").filter([]);
+            },
+
+            onClearSelection: function () {
+                var table = this.ex.getContent()[1]; // Replace "yourTableId" with the actual ID of your table
+                // Get all items/rows in the table
+                var items = table.getItems();
+
+                // Iterate over each item and set its "selected" property to false
+                items.forEach(function (item) {
+                    item.setSelected(false);
+                });
+
+                //to remove the preselected filters - Mujaida
+                var filterItems = this.ex.getContent()[0].getFilterItems();
+                if(filterItems.length>0){
+                    for (var a = 0; a<filterItems.length; a++){
+                        filterItems[a].getControl().setValue();
+                    }
+                }
             },
 
             handleChangeCustomer: function (oEvent) {
                 this.getView().getModel("appView").setProperty("/process", 'CHANGE');
+                this.onClearSelection();
+                this.onSearchExist();
                 this.ex.open();
-
             },
             handleExtendCustomer: function (oEvent) {
                 this.getView().getModel("appView").setProperty("/process", 'EXTEND');
+                this.onClearSelection();
+                this.onSearchExist();
                 this.ex.open();
 
             },

@@ -26,14 +26,21 @@ sap.ui.define([
             },
             handleValueHelpAcctClerkSearch: function (evt) {
                 var sValue = evt.getParameter("value");
+                var filters = [];
                 if (sValue.length > 0) {
-                    if (sValue.length == 2) {
-                        var oFilter1 = new sap.ui.model.Filter("Accountingclerk", 'EQ', sValue);
-                        this.AccountingClerk.getBinding("items").filter([oFilter1]);
-                    } else {
-                        var oFilter2 = new sap.ui.model.Filter("Description", 'EQ', sValue);
-                        this.AccountingClerk.getBinding("items").filter([oFilter2]);
-                    }
+                    var filter1 = new sap.ui.model.Filter({
+                        path: "Accountingclerk",
+                        operator: "Contains",
+                        value1: sValue
+                    });
+                    var filter2 = new sap.ui.model.Filter({
+                        path: "Description",
+                        operator: "Contains",
+                        value1: sValue
+                    });
+                    var sFilters = [filter1, filter2];
+                    filters.push(new sap.ui.model.Filter(sFilters, false));
+                    this.AccountingClerk.getBinding("items").filter(filters, false);
                 } else {
                     this.AccountingClerk.getBinding("items").filter([]);
                 }
@@ -57,14 +64,21 @@ sap.ui.define([
             },
             handleValueHelpAcctStatemntSearch: function (evt) {
                 var sValue = evt.getParameter("value");
+                var filters = [];
                 if (sValue.length > 0) {
-                    if (sValue.length == 2) {
-                        var oFilter1 = new sap.ui.model.Filter("Accountstatements", 'EQ', sValue);
-                        this.AccountStatement.getBinding("items").filter([oFilter1]);
-                    } else {
-                        var oFilter2 = new sap.ui.model.Filter("Description", 'EQ', sValue);
-                        this.AccountStatement.getBinding("items").filter([oFilter2]);
-                    }
+                    var filter1 = new sap.ui.model.Filter({
+                        path: "Accountstatements",
+                        operator: "EQ",
+                        value1: sValue
+                    });
+                    var filter2 = new sap.ui.model.Filter({
+                        path: "Description",
+                        operator: "Contains",
+                        value1: sValue
+                    });
+                    var sFilters = [filter1, filter2];
+                    filters.push(new sap.ui.model.Filter(sFilters, false));
+                    this.AccountStatement.getBinding("items").filter(filters, false);
                 } else {
                     this.AccountStatement.getBinding("items").filter([]);
                 }

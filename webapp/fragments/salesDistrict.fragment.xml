@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Sales Order" class="sapUiPopupWithPadding"
+	<SelectDialog contentHeight="60%" showClearButton="true" title="Select Sales District" class="sapUiPopupWithPadding"
 		items="{path:'S4D>/SalesDistrictSet'}" search="handleValueHelpSalesDistSearch"
 		confirm="handleValueHelpSalesDistConfirm" cancel="handleValueHelpSalesDistClose" multiSelect="false">
 		<StandardListItem title="{S4D>District}" description="{S4D>Discription}"/>

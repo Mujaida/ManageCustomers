@@ -3,11 +3,9 @@
 	<l:VerticalLayout class="sapUiContentPadding" width="100%">
 		<l:content>
 
-		<Button text="Add Sales Area" id="add" icon="sap-icon://add" type="Transparent" press="handleCreate" />
-		<Button text="Generate Sales Area" id="generateSales" press="handleGenerateSales"/>
-			 <VBox id="container"> </VBox>
-			
-
+		<Button text="Add Sales Area" enabled="{=${appView>/status} === 'In Progress' || ${appView>/process} === 'CHANGE' ? false : true}" id="add" icon="sap-icon://add" type="Transparent" press="handleCreate" />
+		<Button text="Display Sales Area" id="generateSales" press="handleGenerateSales"/>
+			 <VBox id="container"></VBox>
 		</l:content>
 	</l:VerticalLayout>
 </mvc:View>
