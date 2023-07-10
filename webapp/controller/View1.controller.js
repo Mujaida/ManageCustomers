@@ -61,8 +61,6 @@ sap.ui.define([
 
                         this.getOwnerComponent().setModel(new sap.ui.model.json.JSONModel(aCombinedData), "existingCustomerSet");
 
-
-
                     }.bind(this),
                     error: function (error) { },
                 });
@@ -90,7 +88,7 @@ sap.ui.define([
                         busyDialog.close();
                     }
                 } else {
-                    MessageToast.show("No Record Selected");
+                    sap.m.MessageBox.error("Please select a record.");
                 }
 
 
@@ -297,16 +295,11 @@ sap.ui.define([
 
             onDialogClose: function (oEvent) {
                 var aContexts = oEvent.getParameter("selectedContexts");
-                // if (aContexts && aContexts.length) {
-                //     MessageToast.show("You have chosen " + aContexts.map(function (oContext) { return oContext.getObject().Name; }).join(", "));
-                // } else {
-                //     MessageToast.show("No new item was selected.");
-                // }
                 oEvent.getSource().getBinding("items").filter([]);
             },
+
             onClearSelection: function () {
                 var table = this.ex.getContent()[1]; // Replace "yourTableId" with the actual ID of your table
-
                 // Get all items/rows in the table
                 var items = table.getItems();
 
@@ -314,15 +307,26 @@ sap.ui.define([
                 items.forEach(function (item) {
                     item.setSelected(false);
                 });
+
+                //to remove the preselected filters - Mujaida
+                var filterItems = this.ex.getContent()[0].getFilterItems();
+                if(filterItems.length>0){
+                    for (var a = 0; a<filterItems.length; a++){
+                        filterItems[a].getControl().setValue();
+                    }
+                }
             },
 
             handleChangeCustomer: function (oEvent) {
                 this.getView().getModel("appView").setProperty("/process", 'CHANGE');
                 this.onClearSelection();
+                this.onSearchExist();
                 this.ex.open();
             },
             handleExtendCustomer: function (oEvent) {
                 this.getView().getModel("appView").setProperty("/process", 'EXTEND');
+                this.onClearSelection();
+                this.onSearchExist();
                 this.ex.open();
 
             },

@@ -43,7 +43,7 @@
                 </snappedContent>
 
                 <actions>
-                    <m:Button text="{Customers>/zstatus}" press="toggleFooter" />
+                    <m:Button text="{Customers>/zrequest_status}" press="toggleFooter" />
                 </actions>
             </ObjectPageDynamicHeaderTitle>
         </headerTitle>
@@ -388,10 +388,10 @@
                     press="onMessagePopoverPress" />
                 <m:Button type="Emphasized" text="Back" press="onBack"/>
                 <m:ToolbarSpacer />
-                <!-- <m:Button type="Emphasized" visible="{=${Customers>/zrequest_status} !== 'In Progress' || ${appView>/mode} === 'add' ? true : false}" text="{i18n>Save}" press="saveRequest" />
-                <m:Button type="Emphasized" visible="{=${Customers>/zrequest_status} !== 'In Progress' || ${appView>/mode} === 'add' ? true : false}" text="{i18n>Submit}" press="submitRequest" /> -->
-                <m:Button type="Emphasized" text="{i18n>Save}" press="saveRequest" />
-                <m:Button type="Emphasized" text="{i18n>Submit}" press="submitRequest" />
+                <m:Button type="Emphasized" visible="{=${Customers>/zrequest_status} !== 'In Progress' || ${appView>/mode} === 'add' ? true : false}" text="{i18n>Save}" press="saveRequest" />
+                <m:Button type="Emphasized" visible="{=${Customers>/zrequest_status} !== 'In Progress' || ${appView>/mode} === 'add' ? true : false}" text="{i18n>Submit}" press="submitRequest" />
+                <!-- <m:Button type="Emphasized" text="{i18n>Save}" press="saveRequest" />
+                <m:Button type="Emphasized" text="{i18n>Submit}" press="submitRequest" /> -->
             </m:OverflowToolbar>
         </footer>
     </ObjectPageLayout>

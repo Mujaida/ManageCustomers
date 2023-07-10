@@ -170,6 +170,10 @@ sap.ui.define([
                 this.getView().addDependent(this.indusType);
                 this.indusType.setModel(this.getOwnerComponent().getModel());
             }
+            if (!this.salesPanel) {
+                this.salesPanel = new sap.ui.xmlfragment("iffco.managecustomer.fragments.salesPanel", this);
+                this.getView().addDependent(this.salesPanel);
+            }
         },
 
         handleAddSales: function (evt) {
@@ -512,35 +516,14 @@ sap.ui.define([
 
         //Value Help for Credit Segment
         handleValueHelpForCS: function (evt) {
-            var that = this;
             this.creditSegmentField = evt.getSource();
-            var oModel = this.getOwnerComponent().getModel();
-            if (cca && this.sOrgTitle) {
-
-                //Creating a model for the get service of Credit Segment field to remove duplicate records.
-                oModel.read("/ZDD_CREDIT_SEGMENT_VH", {
-                success: function (oData, oResponse) {
-                    var aCombinedData = [];
-                    var aUniqueCustomers = [];
-                    oData.results.forEach(function (obj) {
-                        if (!aUniqueCustomers.includes(obj.credit_segment)) {
-                            aUniqueCustomers.push(obj.credit_segment);
-                            aCombinedData.push(obj);
-                        }
-                    });
-                    that.getOwnerComponent().setModel(new sap.ui.model.json.JSONModel(aCombinedData), "CSModel");
-                    that.getOwnerComponent().getModel("CSModel").updateBindings(true);
-                    var cca = this.getView().getModel("appView").getProperty("/cca");   
-                    var filter1 = new sap.ui.model.Filter("credit_control_area", "EQ", cca);
-                    var filter2 = new sap.ui.model.Filter("SalesOrg", "EQ", this.sOrgTitle);
-                    that.cs.getBinding("items").filter([filter1, filter2]);
-                    }.bind(this),
-                error: function (oError) { }
-            });
-            that.cs.open();
-        } else {
-            MessageBox.error("Please select the credit control area first");
-        }         
+            if (this.getView().getModel("appView").getProperty("/cca")) {
+                this.cs.getBinding("items").filter([new sap.ui.model.Filter("credit_control_area", "EQ", this.getView().getModel("appView").getProperty("/cca")),
+                new sap.ui.model.Filter("SalesOrg", "EQ", this.sOrgTitle)]);
+                this.cs.open();
+            } else {
+                MessageBox.error("Please select the credit control area first");
+            }
         },
         handleValueHelpCSClose: function (params) {
             this.cs._dialog.close();
@@ -1611,31 +1594,19 @@ sap.ui.define([
         handleValueHelpTaxCatConfirm: function (evt) {
             var title = evt.getParameter("selectedItems")[0].getProperty("title");
             this.taxCatTitle = title;
-            var desc = evt.getParameter("selectedItems")[0].getProperty("description");
-            this.TaxCat.setValue(title + " - " + desc);
+            // var desc = evt.getParameter("selectedItems")[0].getProperty("description");
+            this.TaxCat.setValue(title);
             this.TaxCategory.getBinding("items").filter([]);
             this.TaxCategory.close();
         },
         handleValueHelpTaxCatSearch: function (evt) {
             var sValue = evt.getParameter("value");
-            var filters = [];
-            if (sValue.length > 0) {
-                var filter1 = new sap.ui.model.Filter({
-                    path: "Taxcategory",
-                    operator: "Contains",
-                    value1: sValue
-                });
-                var filter2 = new sap.ui.model.Filter({
-                    path: "Description",
-                    operator: "Contains",
-                    value1: sValue
-                });
-                var sFilters = [filter1, filter2];
-                filters.push(new sap.ui.model.Filter(sFilters, false));
-                this.TaxCategory.getBinding("items").filter(filters, false);
-            } else {
-                this.TaxCategory.getBinding("items").filter([]);
-            }
+				if (sValue.length > 0) {   
+					var oFilter2 = new sap.ui.model.Filter("Taxcategory", 'Contains', sValue);
+					this.TaxCategory.getBinding("items").filter([oFilter2]);
+				}else {
+					this.TaxCategory.getBinding("items").filter([]);
+				}
         },
         handleValueHelpTaxCatClose: function (evt) {
             this.TaxCategory.close();
@@ -1643,31 +1614,13 @@ sap.ui.define([
 
         //Value Help for Tax Classification
         handleValueHelpForTaxClssfn: function (evt) {
-            var that = this;
+            debugger
             this.TaxClass = evt.getSource();
             if (this.taxCatTitle) {
-
-            //Creating a model for the get service of Tax Classification field to remove duplicate records.
-            var serviceURL = that.getOwnerComponent().getModel("S4D").sServiceUrl;
-            var oModel = new sap.ui.model.odata.ODataModel(serviceURL, true);
-            oModel.read("/TaxCategoryClasSet", {
-                success: function (oData, oResponse) {
-                    var aCombinedData = [];
-                    var aUniqueCustomers = [];
-                    oData.results.forEach(function (obj) {
-                        if (!aUniqueCustomers.includes(obj.Taxclassification)) {
-                            aUniqueCustomers.push(obj.Taxclassification);
-                            aCombinedData.push(obj);
-                        }
-                    });
-                    that.getOwnerComponent().setModel(new sap.ui.model.json.JSONModel(aCombinedData), "TaxClsModel");
-                    that.getOwnerComponent().getModel("TaxClsModel").updateBindings(true);
-                    that.TaxClassfn.getBinding("items").filter([new sap.ui.model.Filter("Taxcategory", "EQ", this.taxCatTitle)]);
-                    }.bind(this),
-                error: function (oError) { }
-            });
-            that.TaxClassfn.open();
-            } else {
+                this.TaxClassfn.getBinding("items").filter([new sap.ui.model.Filter("Taxcategory", "EQ", this.taxCatTitle)]);
+                this.TaxClassfn.open();
+            } 
+           else {
                 sap.m.MessageBox.error("Please select the Tax Category");
             }
         },
